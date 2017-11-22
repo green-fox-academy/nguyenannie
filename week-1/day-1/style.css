@@ -1,0 +1,48 @@
+body {
+    font-family: EB Garamond;
+    margin: 0;
+    padding: 0;
+}
+main {
+    padding: 0 10% 0 10%;
+    margin: 0 auto 0 auto;
+}
+h1 {
+    margin: 40px auto 40px auto;
+    font-weight: bold;
+    font-size: 50px;
+}
+#wiki h2 {
+    text-align: center;
+    margin: 40px auto 40px auto;
+}
+#profile h2{
+    color: #ff0099;
+}
+
+nav {
+    margin-top: 0;
+    padding-right: 10%;
+    background-color: #333333;
+    height: 40px;
+    background-image: url("nav-image.png");
+    background-size: 50px 30px;
+    background-repeat: no-repeat;
+    background-position: 10% 50%;
+}
+.nav{
+    float: right;
+}
+a {
+    margin-top: 50px;
+    color:#ff0099;
+    text-align: center;
+    vertical-align:middle;
+    padding: 50px 20px 10px;
+    text-decoration: underline;
+}
+.horizontal_underscored_line{
+    border-bottom: 2px  dashed black;
+    width: 30px;
+    margin: 50px auto 50px auto;
+} 
