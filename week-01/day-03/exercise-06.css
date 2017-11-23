@@ -1,0 +1,20 @@
+span {
+    height: 300px;
+    width:300px;
+    border-radius: 50%;
+    background: rgb(43,234,221);
+    margin:10px;
+    text-align: center;
+    line-height: 300px;
+    vertical-align: middle;
+    font-size:36px;
+    display:inline-block;
+    font-family: sans-serif;
+    color:white;
+}
+span:first-child{
+    background: rgb(183,39,232);
+}
+span:last-child{
+    background: rgb(234,189,46);
+}
