@@ -1,0 +1,12 @@
+*{
+    font-family: Helvetica, Arial, sans-serif;
+}
+h1{
+    color:rgb(235,173,87);
+}
+p:nth-of-type(2){
+    margin-left:20px;
+}
+P {
+    font-size: 27px;
+}
