@@ -1,0 +1,14 @@
+
+body{
+    margin: 50px auto;
+    background: rgb(221, 221, 221);
+}
+div { 
+    width: 30%;
+    height: 150px;
+    margin: 10px 35%;
+    border: 5px solid rgb(128, 205, 150);
+    background-color: rgb(28, 145, 160);
+    font-size: 36px;
+    padding:20px;
+}
