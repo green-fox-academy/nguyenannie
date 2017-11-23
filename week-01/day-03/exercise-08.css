@@ -1,0 +1,20 @@
+div {
+    border: 2px solid rgb(70,136,241);
+    height: 100px;
+    margin: 10px;
+    padding-top: 15px;
+    padding-left:10px;
+    padding-right:10px;
+    width:740px;
+}
+span {
+    margin: 15px 10px;
+    height:50px;
+    width:50px;
+    display: inline-block;
+    background: rgba(29, 73, 200,0.7);
+
+}
+div:nth-of-type(2){
+    background: rgb(252,100,78);
+}
