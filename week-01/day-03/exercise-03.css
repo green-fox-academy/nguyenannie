@@ -1,0 +1,27 @@
+body {
+    padding-top: 50px;
+    padding-bottom:50px;
+}
+div[class="outer-div"]{
+    border: 15px solid rgb(70,136,241);
+    margin: 1% 30%;
+    width: 40%;
+    height: 250px;
+}
+
+.outer-div:nth-child(1){
+    background: rgb(228,119,120);
+}
+.outer-div:nth-child(2){
+    background: rgb(171,230,229);
+}
+
+div {
+    height:125px;
+    font-size: 36px;
+    line-height: 110px;
+    vertical-align: middle;
+    text-align: center;
+    color:white;
+    font-family: Helvetica, Arial, sans-serif;
+}
