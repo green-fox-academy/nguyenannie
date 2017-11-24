@@ -3,13 +3,14 @@
 <head>
     <meta charset="utf-8">
     <link href="form.css" type="text/css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 </head>
 <body>
     <form action="My first form">
-        <div class="row">Profile</div>
+        <div class="row" id="profile">Profile</div>
         <div class="divider">
             <span class="col">
-                <p>Personal info</p>
+                <p class="purple">Personal info</p>
                 <legend>Name</legend>
                 <input type="text" name="name" required><br>
                 <div class="col3">
@@ -55,7 +56,7 @@
                 <p>You can choose multiple!</p>
             </span>
             <span class="col">
-                <p>Contact</p>
+                <p class="purple">Contact</p>
                 <legend class="telephone">Phone number</legend>
                 <input type="telephone" placeholder="+36 -- --- ---" required />                
                 <legend class="email">Email</legend>

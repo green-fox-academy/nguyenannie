@@ -4,6 +4,8 @@ form {
     border: 1px solid black;
     width: 900px;
     height: 900px;
+    font-size: 18px;
+    font-family: "Raleway";
 }
 
 .divider {
@@ -35,8 +37,10 @@ div.row {
     margin-bottom:0;
     padding:0;
 }
-div:first-of-type {
-    height: 30px;
+#profile {
+    height: 20px;
+    margin:0;
+    font-size: 50px;
 }
 .col div {
     border: 3px solid rgb(220,214,206);
@@ -49,14 +53,23 @@ div.col3{
     height: 50px;
     margin:0;
 }
+input[name="name"]  {
+    width: 300px;
+    margin-bottom: 5px;
+    height: 20px;
+    border-radius: 4px;
+}
 p.birthyear {
     height:10px;
     line-height: 2px;
-    margin: 7px 0 5px;
+    margin: 10px 0 5px;
 }
 input[name="birthyear"] {
     margin:0;
     line-height: 2px;
+    height: 20px;
+    width:70px;
+    border-radius: 4px;
 }
 #gender {
     line-height: 2px;
@@ -84,7 +97,7 @@ input[name="twitter"],
 select {
     width: 300px;
     height:20px;
-    margin: 5px 20px;
+    margin: 5px 0;
     border-radius: 5px;
 }
 legend[class="telephone"],
@@ -92,11 +105,11 @@ legend[class="email"],
 legend[class="facebook"],
 legend[class="twitter"],
 legend[class="selection"] {
-    margin: 3px 20px;
+    margin: 3px 0;
 }
 .col p {
     margin: 5px 20px;
-    width:150px;
+    width:250px;
 }
 .col p {
     width:200px;
@@ -123,4 +136,23 @@ label[for="web"] {
 }
 input[name="introduction"] {
     vertical-align: top;
+}
+p.purple {
+    background: rgb(147,140,150); 
+    width: 300px;
+    height: 40px;
+    font-weight: bold;
+    margin:0;
+    color:white;
+    line-height: 40px;
+    vertical-align: middle;
+    font-size: 22px;
+    padding-left:5px;
+}
+legend:first-of-type {
+    margin-bottom: 5px;
+}
+
+p.introduction {
+    margin-bottom: 15px;
 }
