@@ -1,0 +1,54 @@
+form {
+    margin: auto;
+    background: green;
+    border: 1px solid black;
+    width: 900px;
+    height: 1000px;
+}
+
+.divider {
+    display: flex;
+}
+span.col{
+    border: 20px solid black;
+    flex-grow: 1;
+    height:500px;
+    padding:0;
+    margin:0;
+}
+.col3 {
+    display:flex;
+}
+span.smallcol {
+    border: 3px solid pink;
+    flex-grow: 1;
+    height:50px;
+    padding:0;
+    margin:0;
+    line-height: 150px;
+    vertical-align: middle;
+    margin-top:100px;
+}
+
+div.row {
+    border: 20px solid black;
+    width: 860px;
+    height: 700px;
+    margin-top:10px;
+    margin-bottom:10px;
+    padding:0;
+}
+div:first-of-type {
+    height: 30px;
+}
+.col div {
+    border: 3px solid red;
+    height:150px;
+    padding:0;
+    margin: 100px 0 0 0;
+}
+div.col3{
+    border:0;
+    height: 100px;
+    margin-top:0px;
+}
