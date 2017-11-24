@@ -9,30 +9,78 @@
         <div class="row">Profile</div>
         <div class="divider">
             <span class="col">
-                <p>Personal information</p>
-                <legend>Nev</legend>
+                <p>Personal info</p>
+                <legend>Name</legend>
                 <input type="text" name="name" required><br>
                 <div class="col3">
-                    <span class="smallcol"></span>
-                    <span class="smallcol"></span>
+                    <span class="smallcol">
+                        <p class="birthyear">Date of Birth</p>
+                        <input type="number" min="1800" max="2005" value="1995" name="birthyear" placeholder="pl. 1984" required>
+                    </span>
+                    <span class="smallcol">
+                        <p id="gender">Sex</p>
+                        <input type="radio" id="male" name="gender" />
+                        <label for="male">Male</label>
+                        <input type="radio" id="female" name="gender" />
+                        <label for="female">Female</label>
+                    </span>
                 </div>
-                <div></div>
+                <p>What are your favorite brands?</p>
+                <div class="col4">
+                    <span class="acol4">
+                        <input type="checkbox" id="adidas" />
+                        <label for="web">Adidas</label><br/>
+                        <input type="checkbox" id="apple" />
+                        <label for="photoshop">Apple</label><br/>
+                        <input type="checkbox" id="coke" />
+                        <label for="madona">Coca-cola</label><br/>
+                        <input type="checkbox" id="mazda" />
+                        <label for="web">Mazda</label><br/>
+                        <input type="checkbox" id="nike" />
+                        <label for="web">Nike</label><br/>
+                    </span>
+                    <span class="acol4">
+                            <input type="checkbox" id="opel" />
+                            <label for="web">Opel</label><br/>
+                            <input type="checkbox" id="rayban" />
+                            <label for="web">Ray-Ban</label><br/>
+                            <input type="checkbox" id="starbucks" />
+                            <label for="web">Starbucks</label><br/>
+                            <input type="checkbox" id="tesla" />
+                            <label for="web">Tesla</label><br/>
+                            <input type="checkbox" id="yahoo" />
+                            <label for="web">Yahoo</label><br/>
+                    </span>
+                </div>
+                <p>You can choose multiple!</p>
             </span>
             <span class="col">
-                <p>Kapscolat</p>
-                <legend>Telephon cim</legend>
+                <p>Contact</p>
+                <legend class="telephone">Phone number</legend>
                 <input type="telephone" placeholder="+36 -- --- ---" required />                
-                <legend>Email cim</legend>
+                <legend class="email">Email</legend>
                 <input type="email" placeholder="Nev@domain.hu" required />
-                <legend>Facebook Profilod</legend>
-                <input type="text" placeholder="http://facebook.com/.." />
-                <legend>Twitter Profilod</legend>
-                <input type="text" placeholder="http://twitter.com/.." />
-                <legend>milyen hazban laksz</legend>
-                <select id="homelist" placeholder="Valassz tipusz">
+                <legend class="facebook">Facebook Profile</legend>
+                <input type="text" placeholder="http://facebook.com/.." name="facebook"/>
+                <legend class="twitter">Twitter Profile</legend>
+                <input type="text" placeholder="http://twitter.com/.." name="twitter"/>
+                <legend class="selection">What kind of building do you live in?</legend>
+                <select>
+                        <option>House</option>
+                        <option>Tent</option>
+                </select>
             </span>
         </div>
-        <div class="row">blah</div>
+        <div class="row">
+            <p class="introduction">Introduction *</p>
+            <input type="text" name="introduction" placeholder="Write a few sentences about yourself!"required>
+            <p class="cv">CV upload</p>
+            <input type="file" placeholder=" CHOOSEFILE"><br/>
+            <input type="checkbox" id="accept" />
+            <label for="except">I accept <a href="">the term and conditions</a></label><br/>
+        </div>
+        <input type="submit" value="Save" />
+        <input type="reset" value="Delete" />
     </form>
 </body>
 </html>
