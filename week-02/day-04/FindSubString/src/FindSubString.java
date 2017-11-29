@@ -2,10 +2,19 @@ import java.util.*;
 
 public class FindSubString {
     public static void main(String[] args) {
-        String s1 = "this is what I'm searching in";
+        /*String s1 = "this is what I'm searching in";
         String s2 = "searching";
+        */
+        Scanner input = new Scanner(System.in);
 
-        System.out.print(findSubString(s1,s2));
+        System.out.println("Please enter your string: ");
+        String string1 = input.nextLine();
+
+        System.out.println("Please enter the second string you wanna find in the first string: ");
+        String string2 = input.nextLine();
+
+        System.out.println("The the starting index where the second string is starting in the first one is: ");
+        System.out.print(findSubString(string1,string2));
 
     }
     public static int findSubString(String one,String two) {

@@ -2,10 +2,27 @@ import java.util.*;
 
 public class SubStringList {
     public static void main(String[] args) {
+
         ArrayList<String> input = new ArrayList<String>(Arrays.asList("this", "is", "what", "I'm", "searching", "in"));
         String elem = "ching";
-
         System.out.print(substrlist(input,elem));
+
+
+        /*
+        Scanner input = new Scanner(System.in);
+
+
+        System.out.println("Please enter your string: ");
+        String substring = input.nextLine();
+
+        System.out.println("Please enter a list of string: ");
+        String string = input.nextLine();
+        ArrayList<String> list = new ArrayList<String>(Arrays.asList(string.split(",")));
+
+        System.out.print(substrlist(list, string));
+        */
+
+
 
     }
     public static int substrlist(ArrayList<String> inputList, String inputString) {

@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class SortThatList {
     public static void main(String[] args) {
         int[] array = {34, 12, 24, 9, 5};
@@ -17,7 +19,7 @@ public class SortThatList {
         }
 
         for(int i =0; i <arr.length; i++) {
-            System.out.println(arr[i]);
+            System.out.print(arr[i] + " ");
         }
     }
 }
