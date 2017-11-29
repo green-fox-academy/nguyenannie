@@ -2,13 +2,21 @@ import java.util.*;
 
 public class PalindromeSearcher {
     public static void main(String[] args) {
-        String input = "dog goat dad duck doodle never";
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("Please enter the string you want to search for palindrome: ");
+        String inputString = input.nextLine();
+
+        ArrayList<String> result = palindromeSearcher(inputString);
+        System.out.print(result);
+        /*String input = "dog goat dad duck doodle never";
         System.out.print(palindromeSearcher(input));
+        */
 
     }
     public static ArrayList<String> palindromeSearcher(String input) {
         ArrayList<String> result = new ArrayList<String>();
-        for(int k = 3; k < input.length(); k++) {
+        for(int k = 3; k < input.length() + 1; k++) {
             for(int i = 0; i < input.length() - k + 1; i ++) {
                 String substr = input.substring(i, i + k);
                 if(checkPalindrome(substr) == true) {

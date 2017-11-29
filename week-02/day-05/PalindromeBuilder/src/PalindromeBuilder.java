@@ -2,8 +2,13 @@ import java.util.*;
 
 public class PalindromeBuilder {
     public static void main(String[] args) {
-        String s1 = "greenfox";
-        System.out.print(palindromeBuilder(s1));
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("Enter the string you want to build a palindrome:");
+        String inputString = input.nextLine();
+
+        String result = palindromeBuilder(inputString);
+        System.out.print("The palindrome is: \n" + result);
 
     }
 
