@@ -1,0 +1,2 @@
+This is file 1.
+I want it to copy its content to file2.
