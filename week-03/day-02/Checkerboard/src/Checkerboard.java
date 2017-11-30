@@ -8,7 +8,19 @@ public class Checkerboard {
 
     public static void mainDraw(Graphics graphics){
         // fill the canvas with a checkerboard pattern.
-        int s = 20;
+        int tileSize = 20;
+        int realh = HEIGHT -23;
+        for(int i = 0; i < WIDTH/tileSize; i ++) {
+            for(int j = 0; j < realh/tileSize; j ++) {
+                if (i % 2 != j % 2){
+                    graphics.setColor(Color.BLACK);
+                } else {
+                    graphics.setColor(Color.WHITE);
+                }
+                drawSquare(graphics, i * tileSize, j *tileSize, tileSize);
+            }
+        }
+        /*
         int y = 0;
         int x = 0;
         while(y <=HEIGHT) {
@@ -26,6 +38,8 @@ public class Checkerboard {
             }
             x = x + 2 * s;
         }
+        */
+
 
     }
 
