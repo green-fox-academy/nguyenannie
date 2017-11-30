@@ -8,16 +8,17 @@ import java.util.*;
 
 public class Lottery {
     public static void main(String[] args) {
-        int[] in = {10,10,9,8,7,6,10,10,10,10,9,9,9,8,8,8,7,7,7,6,14,15,16,17};
-        System.out.print(findMostPopular(in));
-        /*
-        String[] k = in.split(";");
-        ArrayList<String> n = new ArrayList<String>(k);
-        System.out.print(k);
-        */
+        String pathName = "/Users/annie/greenfox/nguyenannie/week-03/day-01/Lottery/otos.txt";
+        int[] result = findLottery(pathName);
+        for(int i = 0; i < result.length; i ++) {
+            System.out.println(result[i]);
+        }
     }
 
     public static int[] findLottery(String pathName){
+        ArrayList<int[]> aConcat = new ArrayList<int[]>();
+        int[] concatFinal = aConcat.get(0);
+        int[] result = findMostPopular(concatFinal);
         try {
             Path path = Paths.get(pathName);
             List<String> data = Files.readAllLines(path);
@@ -30,18 +31,15 @@ public class Lottery {
                 splitData.add(arrayInput);
             }
             int[] concat1 = joinArray(splitData.get(0),splitData.get(1));
-            ArrayList<int[]> aConcat = new ArrayList<int[]>();
             for(int i = 2; i < splitData.size() - 2; i ++){
                 int[] concat2 = joinArray(concat1,splitData.get(i));
                 aConcat.set(0,concat2);
             }
-            int[] concatFinal = aConcat.get(0);
-            int[] result = findMostPopular(concatFinal);
-            return result;
 
         } catch(Exception e){
             System.out.print(e);
         }
+        return result;
 
     }
 
@@ -131,8 +129,8 @@ public class Lottery {
                     }
                 }
             }
-            aList.remove(index);
             bList.add(numberMax);
+            aList.remove(index);
         }
 
         int[] result = new int[5];
