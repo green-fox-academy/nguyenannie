@@ -1,3 +1,5 @@
+import org.omg.CORBA.CODESET_INCOMPATIBLE;
+
 import javax.swing.*;
 
 import java.awt.*;
@@ -12,9 +14,13 @@ public class LinePlayQuarters {
         // [https://github.com/greenfox-academy/teaching-materials/blob/master/workshop/drawing/line-play/r1.png]
         int space = 20;
         for (int i = 0; i <= WIDTH/space/2; i++) {
+            graphics.setColor(Color.GREEN);
             graphics.drawLine(i * space,0,0,WIDTH/2 - i* space );
+            graphics.setColor(Color.PINK);
             graphics.drawLine(0, WIDTH/2 + i* space,i * space,WIDTH );
+            graphics.setColor(Color.CYAN);
             graphics.drawLine(WIDTH/2 + i * space,0,WIDTH,i* space );
+            graphics.setColor(Color.BLUE);
             graphics.drawLine(WIDTH/2 + i * space,WIDTH,WIDTH, WIDTH - i *space);
         }
 
