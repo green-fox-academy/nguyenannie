@@ -7,7 +7,7 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
 public class RecursiveCircle {
     public static void mainDraw(Graphics g) {
         //recursiveCircle2(g,WIDTH/2,WIDTH/2,200,3);
-        recursiveCircle(g,WIDTH/2,WIDTH/2,200,3);
+        recursiveCircle(g,WIDTH/2,WIDTH/2,300,5);
 
 
     }
