@@ -8,7 +8,7 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
 public class KochLine{
 
     public static void mainDraw(Graphics g) {
-        recursiveKochLines(g,0,300,600,0,4);
+        recursiveKochLines(g,0,300,600,0,3);
         //kochLine(g,200,200,300,Math.PI/5);
     }
 
@@ -32,8 +32,11 @@ public class KochLine{
         }
 
         recursiveKochLines(g,x,y,size/3,angle,n-1);
+        g.setColor(Color.GREEN);
         recursiveKochLines(g,x1,y1,size/3,angle - Math.PI/3,n-1);
+        g.setColor(Color.BLUE);
         recursiveKochLines(g,x2,y2,size/3,angle +  Math.PI/3,n-1);
+        g.setColor(Color.RED);
         recursiveKochLines(g,x3,y3,size/3,angle,n-1);
 
     }
