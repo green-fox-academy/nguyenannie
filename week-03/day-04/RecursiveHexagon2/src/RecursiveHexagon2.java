@@ -7,6 +7,10 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
 public class RecursiveHexagon2 {
 
     public static void mainDraw(Graphics g) {
+        g.setColor(Color.WHITE);
+        g.fillRect(0,0,WIDTH,WIDTH);
+        g.setColor(Color.GREEN);
+        drawHexagon(g,WIDTH/2,WIDTH/2,200);
         recursiveHexagon(g,WIDTH/2,WIDTH/2,200,4);
 
     }
@@ -14,7 +18,9 @@ public class RecursiveHexagon2 {
         if(n == 0) {
             return;
         }
+
         drawHexagon(g,x,y,size);
+
         double height = Math.sqrt(3.0) * size / 2;
 
         double x0 = x - size/3;
@@ -43,14 +49,19 @@ public class RecursiveHexagon2 {
         }
         */
 
-
+        g.setColor(Color.RED);
         recursiveHexagon(g,x0,y0,size/3, n - 1);
+        g.setColor(Color.GREEN);
         recursiveHexagon(g,x1,y1,size/3, n - 1);
+        g.setColor(Color.BLUE);
         recursiveHexagon(g,x2,y2,size/3, n - 1);
+        g.setColor(Color.CYAN);
         recursiveHexagon(g,x3,y3,size/3, n - 1);
+        g.setColor(Color.YELLOW);
         recursiveHexagon(g,x4,y4,size/3, n - 1);
+        g.setColor(Color.MAGENTA);
         recursiveHexagon(g,x5,y5,size/3, n - 1);
-        
+
     }
 
     public static void drawHexagon(Graphics g, double x, double y, int size) {
