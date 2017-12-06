@@ -1,16 +1,18 @@
 import javax.swing.*;
 
 import java.awt.*;
+import java.util.concurrent.TimeUnit;
 
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
 public class Tree {
     static Turtle t;
+
     public static void mainDraw(Graphics g) {
         t = new Turtle(g,300,600);
-        g.setColor(Color.BLUE);
+        g.setColor(new Color(0,49,62));
         g.fillRect(0,0,WIDTH,WIDTH);
-        g.setColor(Color.YELLOW);
+        g.setColor(new Color(255,215,47));
         drawTree(9,60);
     }
     public static void drawTree(int n,double size) {
