@@ -6,8 +6,8 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
 public class RecursiveCircle {
     public static void mainDraw(Graphics g) {
-        //recursiveCircle2(g,WIDTH/2,WIDTH/2,200,3);
-        recursiveCircle(g,WIDTH/2,WIDTH/2,300,5);
+        recursiveCircle2(g,WIDTH/2,WIDTH/2,300,5);
+        //recursiveCircle(g,WIDTH/2,WIDTH/2,300,5);
 
 
     }
@@ -27,33 +27,38 @@ public class RecursiveCircle {
             pointx[i] = x + size / 4 * Math.cos(angles[i]);
             pointy[i] = y + size / 4 * Math.sin(angles[i]);
         }
+        g.setColor(Color.GREEN);
         recursiveCircle2(g,(int)pointx[0],(int)pointy[0],size/2,n-1);
+        g.setColor(Color.BLUE);
         recursiveCircle2(g,(int)pointx[1],(int)pointy[1],size/2,n-1);
+        g.setColor(Color.RED);
         recursiveCircle2(g,(int)pointx[2],(int)pointy[2],size/2,n-1);
 
     }
     // draw recursive function with calculated coordinate
-    public static void recursiveCircle(Graphics g,int x, int y, int size, int n)  {
+    public static void recursiveCircle(Graphics g,double x, double y, int size, int n)  {
         if(n == 0){
             return;
         }
-        drawCircle(g,x,y,size);
 
-        int x0 = x;
-        int y0 = y - size/4;
+        drawCircle(g,(int)x,(int)y,size);
 
-        int x1 = x - (int)(size/(Math.sqrt(2.0)*4));
-        int y1 = y + (int)(size/(Math.sqrt(2.0)*4));
+        double x0 = x;
+        double y0 = y - size/4;
 
-        int x2 = x + (int)(size/(Math.sqrt(2.0)*4));
-        int y2 = y + (int)(size/(Math.sqrt(2.0)*4));
+        double x1 = x - size/(Math.sqrt(2.0)*4);
+        double y1 = y + size/(Math.sqrt(2.0)*4);
 
-        g.setColor(Color.RED);
+        double x2 = x + size/(Math.sqrt(2.0)*4);
+        double y2 = y + size/(Math.sqrt(2.0)*4);
+
+        g.setColor(Color.GREEN);
         recursiveCircle(g,x0,y0,size/2,n-1);
         g.setColor(Color.BLUE);
         recursiveCircle(g,x1 ,y1 ,size/2,n-1);
-        g.setColor(Color.GREEN);
+        g.setColor(Color.RED);
         recursiveCircle(g,x2 ,y2 ,size/2,n-1);
+
     }
 
 
