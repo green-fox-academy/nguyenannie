@@ -41,6 +41,7 @@ public class KochLine{
         recursiveKochLines(g,x3,y3,size/3,angle,n-1);
 
     }
+    /*
     public static void kochLine(Graphics g, int x, int y, int size, double angle) {
 
         int x1 = x + (int)(Math.cos(angle) * size/3);
@@ -61,6 +62,7 @@ public class KochLine{
         g.drawLine(x2,y2,x3,y3);
         g.drawLine(x3,y3,x4,y4);
     }
+    */
     static int WIDTH = 600;
     static int HEIGHT = 623;
 
@@ -99,10 +101,9 @@ public class KochLine{
             }
         }
     }
-    */
 
-    /*
-    public static void recursiveKochLines(Graphics g, int x, int y, int size, int n) {
+
+    public static void recursiveKochLine(Graphics g, int x, int y, int size, int n) {
         if(n == 0) {
             return;
         }
@@ -122,10 +123,10 @@ public class KochLine{
         double x3 = x + 7 * size/18 + height/3*Math.cos(angles[3]);
         double y3 = y + 2 * height/3 + height/3 * Math.sin(angles[3]);
 
-        recursiveKochLines(g,(int)x0,(int)y0,size/3, n -1 );
-        recursiveKochLines(g,(int)x1,(int)y1,size/3, n -1 );
-        recursiveKochLines(g,(int)x2,(int)y2,size/3, n -1 );
-        recursiveKochLines(g,(int)x3,(int)y3,size/3, n -1 );
+        recursiveKochLine(g,(int)x0,(int)y0,size/3, n -1 );
+        recursiveKochLine(g,(int)x1,(int)y1,size/3, n -1 );
+        recursiveKochLine(g,(int)x2,(int)y2,size/3, n -1 );
+        recursiveKochLine(g,(int)x3,(int)y3,size/3, n -1 );
 
         drawKochLine(g,x,y,size);
     }
@@ -153,5 +154,7 @@ public class KochLine{
         g.drawLine(x2,y2,x3,y3);
 
     }
+
     */
+
 }

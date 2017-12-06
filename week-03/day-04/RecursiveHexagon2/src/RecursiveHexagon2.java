@@ -18,7 +18,6 @@ public class RecursiveHexagon2 {
         if(n == 0) {
             return;
         }
-
         drawHexagon(g,x,y,size);
 
         double height = Math.sqrt(3.0) * size / 2;
@@ -48,7 +47,6 @@ public class RecursiveHexagon2 {
             recursiveHexagon(g,xpoints[i],ypoints[i],size/3, n - 1);
         }
         */
-
         g.setColor(Color.RED);
         recursiveHexagon(g,x0,y0,size/3, n - 1);
         g.setColor(Color.GREEN);
@@ -86,8 +84,6 @@ public class RecursiveHexagon2 {
 
         g.drawPolygon(new int[]{(int)x0,(int)x1,(int)x2,(int)x3,(int)x4,(int)x5}, new int[]{(int)y0,(int)y1,(int)y2,(int)y3,(int)y4,(int)y5},6);
     }
-
-
 
     static int WIDTH = 600;
     static int HEIGHT = 623;

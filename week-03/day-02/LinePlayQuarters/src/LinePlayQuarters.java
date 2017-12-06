@@ -24,9 +24,7 @@ public class LinePlayQuarters {
             graphics.drawLine(WIDTH/2 + i * space,WIDTH,WIDTH, WIDTH - i *space);
         }
 
-
     }
-
 
     //    Don't touch the code below
     static int WIDTH = 320;

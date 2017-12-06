@@ -13,7 +13,7 @@ public class Tree {
         g.setColor(new Color(0,49,62));
         g.fillRect(0,0,WIDTH,WIDTH);
         g.setColor(new Color(255,215,47));
-        drawTree(9,60);
+        drawTree(9,40);
     }
     public static void drawTree(int n,double size) {
         double a = 0.90;
@@ -34,8 +34,6 @@ public class Tree {
            t.penDown();
         }
     }
-
-
 
     static int WIDTH = 600;
     static int HEIGHT = 623;

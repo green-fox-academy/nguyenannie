@@ -9,21 +9,24 @@ public class PurpleSteps3d {
     public static void mainDraw(Graphics graphics){
         // reproduce this:
         // [https://github.com/greenfox-academy/teaching-materials/blob/master/workshop/drawing/purple-steps-3d/r4.png]
-        int x = 10;
-        int y = 10;
-        for(int i = 0; i < 6; i++) {
-            draw3dSquare(graphics,x,y);
-            x = x + y;
-            y = y + 10;
+        int step = 10;
+        int size = 0;
+        int x = 0;
+        int y = 0;
+        for(int i = 0; i < 7; i++) {
+            size = (i + 1)* step;
+            x = x + i * step;
+            y = y + i * step;
+            draw3dSquare(graphics,x,y,size);
         }
 
     }
 
-    public static void draw3dSquare(Graphics g, int x, int y) {
+    public static void draw3dSquare(Graphics g, int x, int y, int size) {
         g.setColor(new Color(153,50,204));
-        g.fillRect(x,x,y,y);
+        g.fillRect(x,x,size,size);
         g.setColor(Color.BLACK);
-        g.drawRect(x,x,y,y);
+        g.drawRect(x,x,size,size);
     }
 
     //    Don't touch the code below

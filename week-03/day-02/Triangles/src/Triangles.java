@@ -15,7 +15,9 @@ public class Triangles {
         int height = (int) WIDTH/20;
         int k = 21;
         int z = 0;
+        //draw from the bottom
         for(int j = 20; j > 0; j --) {
+            //draw triangles on each lines, move triangles to the left each level up and reduce the height
             for (int i = 1; i < k; i++) {
                 drawTriangle(graphics, i * side + z * side/2, j * height);
             }
