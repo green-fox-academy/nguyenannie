@@ -1,6 +1,10 @@
+import java.util.Scanner;
+
 public class String2 {
     public static void main(String[] args) {
-        String aString = "axbycxdyex";
+        Scanner input = new Scanner(System.in);
+        System.out.println("Enter your string:");
+        String aString = input.nextLine();
         System.out.println(deleteX(aString));
     }
 
