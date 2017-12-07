@@ -1,6 +1,12 @@
+import java.util.Scanner;
+
 public class Bunny1 {
     public static void main(String[] args) {
-        System.out.println(bunnyEar(1));
+        Scanner input = new Scanner(System.in);
+        System.out.println("Enter the number of Bunnies");
+        int numberofBuns = input.nextInt();
+
+        System.out.println(bunnyEar(numberofBuns));
 
     }
     public static int bunnyEar(int b){
