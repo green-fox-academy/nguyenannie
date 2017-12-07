@@ -1,6 +1,11 @@
+import java.util.Scanner;
+
 public class Bunny2 {
     public static void main(String[] args) {
-        System.out.println(bunnyWierdEar(5));
+        Scanner input = new Scanner(System.in);
+        System.out.println("Please enter the number of Bunnies");
+        int numberofBunnies = input.nextInt();
+        System.out.println(bunnyWierdEar(numberofBunnies));
     }
     public static int bunnyWierdEar(int x) {
         if( x == 0) {
