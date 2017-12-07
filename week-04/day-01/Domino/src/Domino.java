@@ -1,18 +1,18 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
 public class Domino {
-    List<int[]> dominos = new ArrayList<>();
+    private final int[] values;
 
-    public void setDominos(List<int[]> dominos) {
-        this.dominos = dominos;
+    public Domino(int valueA, int valueB) {
+        this.values = new int[]{valueA, valueB};
     }
 
-    public List<int[]> getDominos() {
-        return dominos;
+    public int[] getValues() {
+        return values;
     }
 
-    public ArrayList<int[]> order(ArrayList<int[]> dominoes){
-
+    @Override
+    public String toString() {
+        return "[" + values[0] + ", " + values[1] + "]";
     }
 }

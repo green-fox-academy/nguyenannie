@@ -20,6 +20,11 @@ public class Checkerboard {
                 drawSquare(graphics, i * tileSize, j *tileSize, tileSize);
             }
         }
+    }
+    public static void drawSquare(Graphics g, int x, int y, int s) {
+        g.fillRect(x,y,s,s);
+    }
+
         /*
         int y = 0;
         int x = 0;
@@ -39,14 +44,6 @@ public class Checkerboard {
             x = x + 2 * s;
         }
         */
-
-
-    }
-
-    public static void drawSquare(Graphics g, int x, int y, int s) {
-        g.fillRect(x,y,s,s);
-    }
-
 
     //    Don't touch the code below
     static int WIDTH = 320;
