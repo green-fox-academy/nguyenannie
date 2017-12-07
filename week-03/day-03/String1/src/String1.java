@@ -1,10 +1,14 @@
+import java.util.Scanner;
+
 public class String1 {
     public static void main(String[] args) {
-        System.out.println(replace("abxabxx"));
+        Scanner input = new Scanner(System.in);
+        System.out.println("Enter your string please: ");
+        String aString = input.nextLine();
+        System.out.println(replace(aString));
     }
 
     public static String replace(String str) {
-
         if (str.length() == 0) {
             return "";
         }
