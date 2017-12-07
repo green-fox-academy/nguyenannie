@@ -1,25 +1,24 @@
 import java.util.Random;
 
 public class Pirate {
-    int intoxication;
+    int rum;
     boolean alive = true;
+    boolean passout = false;
 
     public Pirate(){
 
     }
     public void drinkSomeRum(){
-        intoxication +=1;
-        if(!alive){
-            System.out.println("He's dead");
-        }
+        rum +=1;
     }
     public void howItsGoingMate(){
         if(!alive){
             System.out.println("He's dead");
-        } else if(intoxication >= 4) {
+        } else if(rum <= 4) {
             System.out.println("Pour me anudder!");
         } else {
             System.out.println("Arghh, I'ma Pirate. How d'ya d'ink its goin?");
+            passout = true;
         }
     }
     public void dies(){
@@ -33,8 +32,8 @@ public class Pirate {
         } else if (r == 2) {
             pirate.dies();
         } else if(r == 3) {
-            pirate.dies();
-            this.dies();
+            pirate.passout = true;
+            this.passout = true;
         }
     }
 }
