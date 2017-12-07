@@ -1,11 +1,20 @@
 public class Main {
     public static void main(String[] args) {
-        Pirate pirate1 = new Pirate();
-        Pirate pirate2 = new Pirate();
+        Ship ship1 = new Ship();
+        Ship ship2 = new Ship();
 
-        pirate1.brawl(pirate2);
-        System.out.println(pirate1.alive);
-        System.out.println(pirate2.alive);
+        ship1.fillShip();
+        ship2.fillShip();
+
+        ship1.battle(ship2);
+        if(ship1.win){
+            System.out.println("Ship1 wins");
+        } else {
+            System.out.println("Ship2 wins");
+        }
+
+        System.out.println(ship1.alivePirates);
+        System.out.println(ship2.alivePirates);
 
     }
 
