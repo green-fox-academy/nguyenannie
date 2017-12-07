@@ -1,6 +1,10 @@
+import java.util.Scanner;
+
 public class String3 {
     public static void main(String[] args) {
-        String aString = "Annie";
+        Scanner input = new Scanner(System.in);
+        System.out.println("Please enter your string:");
+        String aString = input.nextLine();
         System.out.println(separator(aString));
 
     }
