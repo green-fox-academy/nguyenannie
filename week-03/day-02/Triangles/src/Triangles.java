@@ -10,9 +10,9 @@ public class Triangles {
     public static void mainDraw(Graphics graphics){
         // reproduce this:
         // [https://github.com/greenfox-academy/teaching-materials/blob/master/workshop/drawing/triangles/r5.png]
-        int side = (int) WIDTH/20;
+        int side =  WIDTH/20;
         //int height = (int)(Math.sqrt(Math.pow(side,2) + Math.pow(side/2,2)));
-        int height = (int) WIDTH/20;
+        int height =  WIDTH/20;
         int k = 21;
         int z = 0;
         //draw from the bottom
@@ -28,9 +28,9 @@ public class Triangles {
     }
 
     public static void drawTriangle(Graphics g,int x, int y){
-        int side = (int) WIDTH/20;
+        int side = WIDTH/20;
         //int height = (int)(Math.sqrt(Math.pow(side,2) + Math.pow(side/2,2)));
-        int height = (int) WIDTH/20;
+        int height = WIDTH/20;
         g.drawPolygon(new int[]{x - side/2, x, x + side/2}, new int[]{y, y - height, y}, 3);
 
     }
