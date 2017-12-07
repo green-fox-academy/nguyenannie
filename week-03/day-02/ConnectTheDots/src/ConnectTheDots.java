@@ -20,9 +20,8 @@ public class ConnectTheDots {
         int[][] bunchofdots = {{50, 100}, {70, 70}, {80, 90}, {90, 90}, {100, 70}, {120, 100}, {85, 130}, {50, 100}};
         connectPoint(graphics,bunchofdots);
         connectPoint(graphics,box);
-
-
     }
+
     public static void connectPoint(Graphics g, int [][] points) {
         g.setColor(Color.GREEN);
         for(int i = 0; i < points.length - 1; i++) {
