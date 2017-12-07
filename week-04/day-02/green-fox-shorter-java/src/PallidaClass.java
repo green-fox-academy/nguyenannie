@@ -21,6 +21,6 @@ public class PallidaClass {
     }
 
     public void info() {
-        System.out.println("Pallida " + className + " class has " + students.size() + "students and  " + mentors.size() + "mentors.");
+        System.out.println("Pallida " + className + " class has " + students.size() + " students and " + mentors.size() + " mentors.");
     }
 }

@@ -32,5 +32,12 @@ public class Main {
             person.introduce();
             person.getGoal();
         }
+
+        PallidaClass badass = new PallidaClass("BADA55");
+        badass.addStudent(student);
+        badass.addStudent(john);
+        badass.addMentor(mentor);
+        badass.addMentor(gandhi);
+        badass.info();
     }
 }
