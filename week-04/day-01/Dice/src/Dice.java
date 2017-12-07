@@ -1,33 +1,55 @@
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class Dice {
-    /*
-    int dice1;
-    int dice2;
-    int dice3;
-    int dice4;
-    int dice5;
-    int dice6;
-    */
+    //    You have a Dice class which has 6 dice
+    //    You can roll all of them with roll()
+    //    Check the current rolled numbers with getCurrent()
+    //    You can reroll with reroll()
+    //    Your task is to get where all dice is a 6
 
-    List<Integer> diceList = new ArrayList<Integer>();
+    int[] dices = new int[6];
 
-    public void roll() {
-        for(int i = 0; i < diceList.size(); i ++) {
-            //diceList.set(i, (int) (Math.random()*6)+ 1);
-            this.diceList.add(i,(int) (Math.random()*6)+ 1);
+    public int[] roll() {
+        for (int i = 0; i < dices.length; i++) {
+            dices[i] = (int) (Math.random() * 6) + 1;
         }
+        return dices;
     }
 
-    public List<Integer> getCurrent() {
-        return this.diceList;
+    public int[] getCurrent() {
+        return dices;
+    }
+
+    public int getCurrent(int i) {
+        return dices[i];
     }
 
     public void reroll() {
-        for(int i = 0; i < diceList.size(); i ++) {
-            this.diceList.set(i, (int) (Math.random()*6)+ 1);
+        for (int i = 0; i < dices.length; i++) {
+            dices[i] = (int) (Math.random() * 6) + 1;
+        }
+    }
+
+    public void reroll(int k) {
+        dices[k] = (int) (Math.random() * 6) + 1;
+    }
+
+    public static void main(String[] args) {
+        Dice myDice = new Dice();
+        myDice.getCurrent();
+        myDice.roll();
+        myDice.getCurrent();
+        for(int i = 0; i < 6; i ++){
+            if(myDice.dices[i] != 6) {
+                while (myDice.dices[i] != 6) {
+                    myDice.getCurrent(i);
+                    myDice.reroll(i);
+                }
+            }
+        }
+        myDice.getCurrent();
+        for(int i = 0; i < 6; i++) {
+            System.out.println(myDice.dices[i]);
         }
     }
 }
