@@ -7,7 +7,12 @@ public class Dominoes {
         // You have the list of Dominoes
         // Order them into one snake where the adjacent dominoes have the same numbers on their adjacent sides
         // eg: [2, 4], [4, 3], [3, 5] ...
-
+        dominoes.add(1,dominoes.get(4));
+        dominoes.remove(5);
+        dominoes.add(3,dominoes.get(4));
+        dominoes.remove(5);
+        dominoes.add(4,dominoes.get(5));
+        dominoes.remove(6);
         System.out.println(dominoes);
     }
 
