@@ -1,6 +1,13 @@
+import java.util.Scanner;
+
 public class Power {
     public static void main(String[] args) {
-        System.out.println(power(3,10));
+        Scanner input = new Scanner(System.in);
+        System.out.println("Enter your base number: ");
+        int base = input.nextInt();
+        System.out.println("Enter your power number: ");
+        int power = input.nextInt();
+        System.out.println(power(base, power));
     }
 
     public static int power(int x, int y){
