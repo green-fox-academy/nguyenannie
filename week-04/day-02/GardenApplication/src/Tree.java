@@ -1,9 +1,4 @@
 public class Tree extends Plant{
-    String color;
-    String atype;
-    double waterStatus;
-    double waterAbsorbRate;
-    boolean needWater;
 
     public Tree(){
         waterAbsorbRate = 0.4;
@@ -18,12 +13,10 @@ public class Tree extends Plant{
     }
 
     public boolean isNeedWater() {
-        if(waterStatus < 10) {
+        if(waterLevel < 10) {
             needWater = true;
-            System.out.println("Tree " + color + " needs water.");
         } else {
             needWater = false;
-            System.out.println("Tree " + color + " doesnt need water.");
         }
         return needWater;
     }

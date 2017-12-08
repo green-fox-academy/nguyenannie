@@ -12,13 +12,24 @@ public class Main {
         Flower flower2 = new Flower();
         flower2.setColor("blue");
 
-        garden.addPlant(tree1);
-        garden.addPlant(tree2);
         garden.addPlant(flower1);
         garden.addPlant(flower2);
+        garden.addPlant(tree1);
+        garden.addPlant(tree2);
 
         garden.printStatus();
-
+        for(int i = 0; i < garden.plants.size(); i ++) {
+            if(garden.plants.get(i).needWater){
+                garden.calculateDryPlants();
+                garden.water(40);
+                garden.printStatus();
+                if(garden.plants.get(i).needWater) {
+                    garden.calculateDryPlants();
+                    garden.water(70);
+                    garden.printStatus();
+                }
+            }
+        }
 
     }
 }

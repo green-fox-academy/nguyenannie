@@ -10,7 +10,6 @@ public class Garden {
 
     public Garden() {
         plants = new ArrayList<>();
-        size = plants.size();
     }
 
     public void addPlant(Plant plant) {
@@ -18,7 +17,7 @@ public class Garden {
     }
 
     public void printStatus(){
-        for(int i = 0; i < size; i ++){
+        for(int i = 0; i < plants.size(); i ++){
             if(plants.get(i).isNeedWater()) {
                 System.out.println(plants.get(i).atype + " " + plants.get(i).color + " needs water.");
             } else {
@@ -27,7 +26,7 @@ public class Garden {
         }
 
     }
-    public int calculateDryTrees() {
+    public int calculateDryPlants() {
         for(int i = 0; i < plants.size(); i ++) {
             if(plants.get(i).needWater) {
                 dryPlants += 1;
@@ -36,14 +35,14 @@ public class Garden {
         return dryPlants;
     }
 
-    public double waterWith40(){
-        waterPerPlant = (40.0 / dryPlants);
-        return waterPerPlant;
-    }
-
-    public double waterWith70() {
-        waterPerPlant = (70.0 / dryPlants);
-        return waterPerPlant;
+    public void water(double waterAmount){
+        waterPerPlant = (waterAmount / dryPlants);
+        System.out.println("Water with " + waterAmount);
+        for(int i = 0; i < plants.size(); i ++) {
+            if(plants.get(i).needWater) {
+                plants.get(i).waterLevel += waterPerPlant * plants.get(i).waterAbsorbRate;
+            }
+        }
     }
 
 }
