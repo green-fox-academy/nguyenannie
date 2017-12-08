@@ -1,25 +1,25 @@
 public class AirCraft {
-    int ammoStore;
+    int ammo;
     int maxAmmo;
     int baseDemage;
     int demage;
     String type;
     boolean isEmpty;
-    int ammoNeeded;
+    int ammoNeeded = 0;
 
     public AirCraft() {
-        ammoStore = 0;
+        ammo = 0;
     }
 
     public int fight(){
-        demage = baseDemage * ammoStore;
-        ammoStore = 0;
+        demage = baseDemage * ammo;
+        ammo = 0;
         return demage;
     }
 
     public int refill(int ammoFilling){
-        ammoFilling -= maxAmmo;
-        ammoStore += ammoFilling;
+        ammoFilling -= (maxAmmo - ammo);
+        ammo += ammoFilling;
         return ammoFilling;
     }
 
@@ -27,12 +27,16 @@ public class AirCraft {
         return this.type;
     }
 
+    public int getAmmoStore(){
+        return ammo;
+    }
+
     public void getStatus(){
-        System.out.println("Type " +  type + ", " + "Ammo: " + ammoStore + ", " + "Base Damage: " + baseDemage + ", "+ "All Damage: " + demage + ".");
+        System.out.println("Type " +  type + ", " + "Ammo: " + ammo + ", " + "Base Damage: " + baseDemage + ", "+ "All Damage: " + demage + ".");
     }
 
     public boolean isEmpty() {
-        if (ammoStore == 0) {
+        if (ammo == 0) {
             isEmpty = true;
         } else {
             isEmpty = false;
