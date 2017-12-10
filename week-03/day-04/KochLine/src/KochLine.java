@@ -40,7 +40,19 @@ public class KochLine{
         recursiveKochLines(g,x2,y2,size/3,angle +  Math.PI/3,n-1);
         recursiveKochLines(g,x3,y3,size/3,angle,n-1);
 
+
     }
+    static int countEven(int[] a) {
+        int c = 0;
+        for (int i = 0; i < a.length; i++) {
+            if (a[i] % 2 == 0) {
+                c += 1;
+            }
+        }
+        return c;
+    }
+
+
     /*
     public static void kochLine(Graphics g, int x, int y, int size, double angle) {
 

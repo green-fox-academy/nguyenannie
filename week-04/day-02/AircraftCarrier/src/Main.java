@@ -12,8 +12,12 @@ public class Main {
             carrier.airCrafts.get(i).getStatus();
         }
         System.out.println(carrier.getTotalAmmoNeeded());
-        carrier.fill();
-        System.out.println(carrier.getTotalDemage());
+        try {
+            carrier.fill();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        System.out.println(carrier.getTotalAmmoNeeded());
 
         carrier.getCarrierStatus();
 

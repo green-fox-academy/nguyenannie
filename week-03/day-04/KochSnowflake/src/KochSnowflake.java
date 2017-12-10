@@ -6,14 +6,22 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
 public class KochSnowflake {
     public static void mainDraw(Graphics g) {
-        KnockSnowFlake(g,50,150,500,0,3);
+        //invertedKochSnowFlake(g,50,150,500,2);
+        invertedKochSnowFlake(g,50,150,500,3);
+        //invertedKochSnowFlake(g,50,150,500,4);
 
     }
-    public static void KnockSnowFlake(Graphics g, int x, int y, int size, double angle, int n) {
+    public static void kochSnowFlake(Graphics g, int x, int y, int size, double angle, int n) {
         int height = (int)(Math.sqrt(3.0) * size/2);
         recursiveKochLines(g,x,y,size,angle,n);
         recursiveKochLines(g,x + size,y,size,angle+ 2 * Math.PI/3,n);
         recursiveKochLines(g,x + size/2,y + height,size,angle - 2 * Math.PI/3,n);
+    }
+    public static void invertedKochSnowFlake(Graphics g, int x, int y, int size, int n) {
+        int height = (int)(Math.sqrt(3.0) * size/2);
+        recursiveKochLines(g,x + size,y,size, Math.PI, n);
+        recursiveKochLines(g, x, y, size,Math.PI/3,n);
+        recursiveKochLines(g,x + size/2,y + height, size,- Math.PI/3,n);
     }
 
     public static void recursiveKochLines(Graphics g, double x, double y, int size, double angle, int n) {
