@@ -2,15 +2,17 @@ import java.util.Random;
 
 public class Pirate {
     int rum;
-    boolean alive = true;
-    boolean passout = false;
+    boolean alive;
+    boolean passout;
 
     public Pirate(){
-
+        alive = true;
+        passout = false;
     }
     public void drinkSomeRum(){
         rum +=1;
     }
+
     public void howItsGoingMate(){
         if(!alive){
             System.out.println("He's dead");

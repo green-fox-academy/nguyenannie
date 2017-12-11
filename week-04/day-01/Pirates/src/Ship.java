@@ -4,35 +4,37 @@ import java.util.Random;
 
 public class Ship {
     List<Pirate> ship;
-    Pirate captain = new Pirate();
+    Pirate captain;
     int alivePirates;
     boolean win;
-    int calculatedScore = alivePirates - captainConsumedRum();
     int rumStorage;
 
-    public Ship() {
-        ship = new ArrayList<>();
-    }
-
     public void fillShip() {
+        ship = new ArrayList<>();
+        captain = new Pirate();
         ship.add(captain);
         for (int i = 0; i < new Random().nextInt(100); i++) {
             ship.add(new Pirate());
         }
     }
 
-    public void numberofAlivePirate() {
+    public int numberofAlivePirate() {
         for (int i = 0; i < ship.size(); i++) {
             if (ship.get(i).alive) {
                 alivePirates += 1;
             }
         }
-        System.out.println("Number of alive pirates are: " + alivePirates);
+        return alivePirates;
     }
 
     public int captainConsumedRum() {
         captain.drinkSomeRum();
         return captain.rum;
+    }
+
+    public int calculateScore(){
+        int calculatedScore = alivePirates - captainConsumedRum();
+        return calculatedScore;
     }
 
     public void captainStatus() {
@@ -47,7 +49,7 @@ public class Ship {
     }
 
     public boolean battle(Ship anotherShip) {
-        if (this.calculatedScore < anotherShip.calculatedScore) {
+        if (this.calculateScore() < anotherShip.calculateScore()) {
             win = false;
             alivePirates -= new Random().nextInt();
         } else {
@@ -55,5 +57,10 @@ public class Ship {
             rumStorage += new Random().nextInt();
         }
         return win;
+    }
+
+    public void getStatus(){
+        System.out.println("Captain consumed " + captainConsumedRum() + " rums.");
+        System.out.println("Number of alive pirates in the crew are: " + numberofAlivePirate());
     }
 }
