@@ -1,11 +1,11 @@
 public class Plant {
-    String color;
-    String atype;
+    protected String color;
+    protected String atype;
     double waterLevel;
     double waterAbsorbRate;
     boolean needWater;
 
-    public Plant(){
+    protected Plant(){
         waterLevel = 0;
     }
 

@@ -3,8 +3,6 @@ import java.util.List;
 
 public class Garden {
     List<Plant> plants;
-    int needToBeWatered;
-    int dryPlants;
     double waterPerPlant = 0;
     int size;
 
@@ -16,33 +14,37 @@ public class Garden {
         plants.add(plant);
     }
 
-    public void printStatus(){
-        for(int i = 0; i < plants.size(); i ++){
-            if(plants.get(i).isNeedWater()) {
+    public void printStatus() {
+        for (int i = 0; i < plants.size(); i++) {
+            if (plants.get(i).isNeedWater()) {
                 System.out.println(plants.get(i).atype + " " + plants.get(i).color + " needs water.");
             } else {
-                System.out.println(plants.get(i).atype + " " + plants.get(i).color + " doesnt need water.");
+                System.out.println(plants.get(i).atype + " " + plants.get(i).color + " doesn't need water.");
             }
         }
 
     }
+
     public int calculateDryPlants() {
-        for(int i = 0; i < plants.size(); i ++) {
-            if(plants.get(i).needWater) {
+        int dryPlants = 0;
+        for (int i = 0; i < plants.size(); i++) {
+            if (plants.get(i).needWater) {
                 dryPlants += 1;
             }
         }
         return dryPlants;
     }
 
-    public void water(double waterAmount){
-        waterPerPlant = (waterAmount / dryPlants);
+    public void water(double waterAmount) {
+        boolean doesNeedMoreWater = true;
+        waterPerPlant = (waterAmount / calculateDryPlants());
         System.out.println("Water with " + waterAmount);
-        for(int i = 0; i < plants.size(); i ++) {
-            if(plants.get(i).needWater) {
+        for (int i = 0; i < plants.size(); i++) {
+            if (plants.get(i).needWater && doesNeedMoreWater) {
                 plants.get(i).waterLevel += waterPerPlant * plants.get(i).waterAbsorbRate;
+            } else {
+                doesNeedMoreWater = !doesNeedMoreWater;
             }
         }
     }
-
 }
