@@ -2,15 +2,23 @@ import java.util.Random;
 
 public class Pirate {
     int rum;
-    boolean alive;
+    private boolean alive;
     boolean passout;
 
     public Pirate(){
         alive = true;
         passout = false;
+        rum = 0;
     }
     public void drinkSomeRum(){
-        rum +=1;
+        rum += (int) (Math.random()* 10) ;
+        if(rum > 4){
+            passout = true;
+        }
+    }
+
+    public boolean getAlive(){
+        return alive;
     }
 
     public void howItsGoingMate(){
@@ -20,19 +28,18 @@ public class Pirate {
             System.out.println("Pour me anudder!");
         } else {
             System.out.println("Arghh, I'ma Pirate. How d'ya d'ink its goin?");
-            passout = true;
         }
     }
-    public void dies(){
+    public void die(){
         alive = false;
     }
 
     public void brawl(Pirate pirate) {
         int r = new Random().nextInt(3) + 1;
         if(r == 1) {
-            this.dies();
+            this.die();
         } else if (r == 2) {
-            pirate.dies();
+            pirate.die();
         } else if(r == 3) {
             pirate.passout = true;
             this.passout = true;

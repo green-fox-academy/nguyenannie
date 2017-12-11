@@ -3,24 +3,26 @@ import java.util.List;
 import java.util.Random;
 
 public class Ship {
-    List<Pirate> ship;
+    List<Pirate> pirates;
     Pirate captain;
-    int alivePirates;
-    boolean win;
     int rumStorage;
 
+    public Ship(){
+        pirates = new ArrayList<>();
+    }
+
     public void fillShip() {
-        ship = new ArrayList<>();
         captain = new Pirate();
-        ship.add(captain);
+        pirates.add(captain);
         for (int i = 0; i < new Random().nextInt(100); i++) {
-            ship.add(new Pirate());
+            pirates.add(new Pirate());
         }
     }
 
-    public int numberofAlivePirate() {
-        for (int i = 0; i < ship.size(); i++) {
-            if (ship.get(i).alive) {
+    public int numberofAlivePirates() {
+        int alivePirates = 0;
+        for (int i = 0; i < pirates.size(); i++) {
+            if (pirates.get(i).getAlive()) {
                 alivePirates += 1;
             }
         }
@@ -33,34 +35,52 @@ public class Ship {
     }
 
     public int calculateScore(){
-        int calculatedScore = alivePirates - captainConsumedRum();
-        return calculatedScore;
+        return numberofAlivePirates() - captain.rum; //captainConsumedRum()
     }
 
     public void captainStatus() {
-        if (!captain.alive) {
+        if (!captain.getAlive()) {
             System.out.println("Captain is dead");
-        } else if (captainConsumedRum() <= 4) {
-            System.out.println("Captain drank " + captainConsumedRum() + " rum");
-        } else {
+        } else if (captain.rum > 4) {
+            System.out.println("Captain consumed " + captain.rum + " rums.");
             System.out.println("Captain passes out!");
+        } else {
+            System.out.println("Captain consumed " + captain.rum + " rums.");
         }
 
     }
 
+    public void loser(){
+        for(int i = 0; i < pirates.size(); i++){
+            if(pirates.get(i).getAlive() && Math.random() < 0.3 ) {
+                pirates.get(i).die();
+            }
+        }
+    }
+
+    public void winner(){
+        rumStorage += new Random().nextInt(50);
+    }
+
     public boolean battle(Ship anotherShip) {
+        boolean win;
         if (this.calculateScore() < anotherShip.calculateScore()) {
+            this.loser();
+            anotherShip.winner();
             win = false;
-            alivePirates -= new Random().nextInt();
         } else {
+            anotherShip.loser();
+            this.winner();
             win = true;
-            rumStorage += new Random().nextInt();
         }
         return win;
     }
 
     public void getStatus(){
-        System.out.println("Captain consumed " + captainConsumedRum() + " rums.");
-        System.out.println("Number of alive pirates in the crew are: " + numberofAlivePirate());
+        System.out.println("Total number of crew is: " + pirates.size());
+        captainStatus();
+        System.out.println("Number of alive pirates in the crew are: " + numberofAlivePirates());
+        System.out.println("Total rum storage is: " + rumStorage);
+        System.out.println();
     }
 }

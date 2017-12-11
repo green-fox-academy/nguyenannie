@@ -6,8 +6,13 @@ public class BattleApp {
         ship1.fillShip();
         ship2.fillShip();
 
-        System.out.println(ship1.ship.size());
-        System.out.println(ship2.ship.size());
+        ship1.captainConsumedRum();
+        ship2.captainConsumedRum();
+
+        ship1.getStatus();
+        ship2.getStatus();
+
+        ship1.battle(ship2);
 
         ship1.getStatus();
         ship2.getStatus();
