@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class BattleApp {
     public static void main(String[] args) {
         Ship ship1 = new Ship();
@@ -16,5 +18,7 @@ public class BattleApp {
 
         ship1.getStatus();
         ship2.getStatus();
+
     }
+
 }
