@@ -3,11 +3,12 @@ import java.util.List;
 
 public class Garden {
     List<Plant> plants;
-    double waterPerPlant = 0;
+    double waterPerPlant;
     int size;
 
     public Garden() {
         plants = new ArrayList<>();
+        waterPerPlant = 0;
     }
 
     public void addPlant(Plant plant) {

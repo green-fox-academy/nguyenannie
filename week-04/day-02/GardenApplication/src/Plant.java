@@ -13,5 +13,4 @@ public class Plant {
         return needWater;
     }
 
-
 }
