@@ -34,11 +34,12 @@ public class Extension {
         for (int i = 0; i < length; i++) {
             char c = teve.charAt(i);
             if (isVowel(c)) {
-                teve = String.join(c + "v" + c, teve.split(""+c));
-                i+=2;
-                length+=2;
+                teve = teve.substring(0,i) + c + "v" + c + teve.substring(i + 1, length);
+                i += 2;
+                length += 2;
             }
         }
         return teve;
+
     }
 }
