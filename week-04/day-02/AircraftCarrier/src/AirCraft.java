@@ -1,4 +1,4 @@
-public class AirCraft {
+abstract class AirCraft {
     private int ammo;
     protected int maxAmmo;
     protected int baseDamage;
