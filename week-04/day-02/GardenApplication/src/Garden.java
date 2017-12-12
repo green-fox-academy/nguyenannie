@@ -4,7 +4,6 @@ import java.util.List;
 public class Garden {
     List<Plant> plants;
     double waterPerPlant;
-    int size;
 
     public Garden() {
         plants = new ArrayList<>();
@@ -23,7 +22,7 @@ public class Garden {
                 System.out.println(plants.get(i).atype + " " + plants.get(i).color + " doesn't need water.");
             }
         }
-
+        System.out.println();
     }
 
     public int calculateDryPlants() {
