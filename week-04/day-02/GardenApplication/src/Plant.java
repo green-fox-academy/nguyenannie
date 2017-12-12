@@ -1,4 +1,4 @@
-public class Plant {
+abstract class Plant {
     protected String color;
     protected String atype;
     double waterLevel;
