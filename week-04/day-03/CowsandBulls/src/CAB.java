@@ -1,13 +1,10 @@
 import java.util.Scanner;
 
 public class CAB {
-    int randomNum;
-    int counter;
-    int cow = 0;
-    int bull = 0;
-    boolean playing;
-    boolean finished;
-    String toGuess;
+    private int randomNum;
+    private int counter;
+    public boolean playing;
+    public String toGuess;
 
 
     public CAB(){
@@ -15,14 +12,12 @@ public class CAB {
                     + (int)(Math.random() * 9 + 1) * 10 + (int)(Math.random() * 9 + 1);
         toGuess = Integer.toString(randomNum);
         playing = true;
-        finished = false;
         counter = 0;
     }
 
-    public void guess() {
-        Scanner playerInput = new Scanner(System.in);
-        System.out.println("Enter your guess please");
-        String playerGuess = playerInput.nextLine();
+    public int[] guess(String playerGuess) {
+        int cow = 0;
+        int bull = 0;
         for(int i = 0; i < 4; i++){
             if(playerGuess.charAt(i) == toGuess.charAt(i)){
                 cow += 1;
@@ -32,24 +27,30 @@ public class CAB {
                 }
             }
         }
-        System.out.println("you have "+ cow + " cow and " + bull + " bull.");
+        return new int[]{cow,bull};
     }
 
     public void play(){
+        Scanner playerInput = new Scanner(System.in);
+        System.out.println("Enter your guess please");
+
         while(playing){
-            guess();
+            String playerGuess = playerInput.nextLine();
+
+            int[] result = guess(playerGuess);
+            int cow = result[0];
+            int bull = result[1];
+
             if(cow == 4){
                 playing = false;
-                finished = true;
             }
-            cow = 0;
-            bull = 0;
             counter +=1;
+            System.out.println("you have "+ cow + " cow and " + bull + " bull.");
         }
-        if(finished){
-            System.out.println("You win the game with " + counter + " guess(es)!");
-        }
+
+        System.out.println("You win the game with " + counter + " guess(es)!");
     }
+
     public static void main(String[] args) {
         CAB cab = new CAB();
         System.out.println(cab.toGuess);
