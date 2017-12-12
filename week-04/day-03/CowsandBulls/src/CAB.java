@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class CAB {
-    private int randomNum;
+    int randomNum;
     private int counter;
     public boolean playing;
     public String toGuess;
@@ -15,7 +15,7 @@ public class CAB {
         counter = 0;
     }
 
-    public int[] guess(String playerGuess) {
+    public int[] guess(String playerGuess, String toGuess) {
         int cow = 0;
         int bull = 0;
         for(int i = 0; i < 4; i++){
@@ -37,7 +37,7 @@ public class CAB {
         while(playing){
             String playerGuess = playerInput.nextLine();
 
-            int[] result = guess(playerGuess);
+            int[] result = guess(playerGuess,toGuess);
             int cow = result[0];
             int bull = result[1];
 
@@ -45,7 +45,7 @@ public class CAB {
                 playing = false;
             }
             counter +=1;
-            System.out.println("you have "+ cow + " cow and " + bull + " bull.");
+            System.out.println("you have "+ cow + " cow(s) and " + bull + " bull(s).");
         }
 
         System.out.println("You win the game with " + counter + " guess(es)!");
