@@ -9,7 +9,7 @@ public class Sharpie {
         this.inkAmount = 100;
     }
 
-    public void use(int inkUsed) {
+    public void use(float inkUsed) {
         inkAmount -= inkUsed;
     }
 }
