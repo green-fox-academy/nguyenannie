@@ -1,3 +1,4 @@
+import com.sun.source.tree.AssertTree;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -9,7 +10,9 @@ public class CABTest {
 
     @Test
     public void testCAB_Constructor(){
-        assertEquals(true,cab.playing);
+        assertTrue(cab.getRandomNum() < 9999 && cab.getRandomNum() > 1000);
+        assertEquals(0, cab.getCounter());
+        assertTrue(cab.getPlayingStatus());
     }
 
     @Test

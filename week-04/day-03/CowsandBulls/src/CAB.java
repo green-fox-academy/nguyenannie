@@ -1,10 +1,10 @@
 import java.util.Scanner;
 
 public class CAB {
-    int randomNum;
+    private int randomNum;
     private int counter;
-    public boolean playing;
-    public String toGuess;
+    private boolean playing;
+    private String toGuess;
 
 
     public CAB(){
@@ -13,6 +13,22 @@ public class CAB {
         toGuess = Integer.toString(randomNum);
         playing = true;
         counter = 0;
+    }
+
+    public int getRandomNum(){
+        return randomNum;
+    }
+
+    public String getToGuess(){
+        return toGuess;
+    }
+
+    public boolean getPlayingStatus(){
+        return playing;
+    }
+
+    public int getCounter(){
+        return counter;
     }
 
     public int[] guess(String playerGuess, String toGuess) {
