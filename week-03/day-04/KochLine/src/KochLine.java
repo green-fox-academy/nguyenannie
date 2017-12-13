@@ -42,16 +42,6 @@ public class KochLine{
 
 
     }
-    static int countEven(int[] a) {
-        int c = 0;
-        for (int i = 0; i < a.length; i++) {
-            if (a[i] % 2 == 0) {
-                c += 1;
-            }
-        }
-        return c;
-    }
-
 
     /*
     public static void kochLine(Graphics g, int x, int y, int size, double angle) {
