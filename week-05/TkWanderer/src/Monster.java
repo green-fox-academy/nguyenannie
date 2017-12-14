@@ -1,14 +1,18 @@
 import javax.swing.*;
 
 public class Monster extends Entity {
-    private int level;
-    private String bossImage = "boss.gif";
+    protected int level;
+    protected final String monsterImage = "skeleton.gif";
 
     Monster() {
-        maxHealthPoint = 20 * getLevel() * d6.getRandomDice() + d6.getRandomDice();
-        defendPoint = getLevel()/2 * d6.getRandomDice() + d6.getRandomDice()/2;
-        strikePoint = getLevel()*d6.getRandomDice() + getLevel();
+        maxHealthPoint = 20 * getLevel() * d6.getRandomDice();
+        defendPoint = getLevel()/2 * d6.getRandomDice();
+        strikePoint = getLevel()*d6.getRandomDice();
         initCharacter();
+    }
+
+    public void move(){
+
     }
 
     public void setLevel(int level) {
@@ -19,11 +23,12 @@ public class Monster extends Entity {
         return level;
     }
 
+
     public void initCharacter(){
-        ImageIcon icon = new ImageIcon(bossImage);
+        ImageIcon icon = new ImageIcon(monsterImage);
         image = icon.getImage();
-        x = 200;
-        y = 200;
+        x = 3;
+        y = 7;
     }
 
 }

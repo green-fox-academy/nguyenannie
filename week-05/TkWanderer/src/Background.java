@@ -6,7 +6,6 @@ public class Background {
     protected int corY;
     protected Image texture;
     protected String fileName;
-    //public static final int somethingfinal = 7;
 
     public Background(){
         initBackground();
@@ -28,21 +27,13 @@ public class Background {
         this.corY = corY;
     }
 
-    public Image getTexture() {
-        return texture;
-    }
-
     public void setTexture(String fileName) {
         ImageIcon icon = new ImageIcon(fileName);
         this.texture = icon.getImage();
     }
 
-    public void setFileName(String fileName){
-        this.fileName = fileName;
-    }
-
-    public String getFileName(){
-        return fileName;
+    public Image getTexture() {
+        return texture;
     }
 
     public void initBackground(){
@@ -50,6 +41,7 @@ public class Background {
         corX = 0;
         corY = 0;
     }
+
     public Rectangle getBounds(){
         return new Rectangle(getCorX(),getCorY(),getTexture().getWidth(null),getTexture().getHeight(null));
     }
@@ -67,4 +59,3 @@ public class Background {
 
 
 }
-

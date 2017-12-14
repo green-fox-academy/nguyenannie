@@ -2,8 +2,8 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 
-public abstract class Entity {
-    protected final int step = 50;
+public class Entity {
+    protected final int step = Floor.tileSize;
 
     protected int maxHealthPoint;
     protected int currentHealthPoint;
@@ -12,12 +12,14 @@ public abstract class Entity {
     protected Dice d6 = new Dice();
     protected boolean isDead;
 
+    protected Image image;
+    protected String fileName;
+
     protected int xstep;
     protected int ystep;
     protected int x;
     protected int y;
-    protected Image image;
-    protected String fileName;
+
 
     public Entity() {
 
@@ -29,8 +31,16 @@ public abstract class Entity {
     }
 
     public void move() {
+
     }
 
+    public void setX(int x){
+        this.x = x;
+    }
+
+    public void setY(int y){
+        this.y = y;
+    }
 
     public int getX() {
         return x;
@@ -40,8 +50,10 @@ public abstract class Entity {
         return y;
     }
 
-    public void setFileName(String file){
-        this.fileName = file;
+
+    public void setImage(String file){
+        ImageIcon icon = new ImageIcon(file);
+        this.image = icon.getImage();
     }
 
     public String getFileName() {
@@ -63,7 +75,7 @@ public abstract class Entity {
 
     public void drawCharacter(Graphics g){
         Graphics2D g2d = (Graphics2D) g;
-        g2d.drawImage(getImage(), getX(), getY(), null);
+        g2d.drawImage(getImage(), getX()*step, getY()*step, null);
     }
 
 

@@ -2,6 +2,8 @@ import java.awt.*;
 
 public class Floor extends Background {
 
+    static final int tileSize = 72;
+
     public Floor(){
         fileName = "floor.gif";
         initBackground();
@@ -17,4 +19,5 @@ public class Floor extends Background {
             }
         }
     }
+
 }
