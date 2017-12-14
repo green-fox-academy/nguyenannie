@@ -37,8 +37,8 @@ public class Hero extends Entity {
             y = 0;
         }
 
-        if(y > 9) {
-            y = 9;
+        if(y > 10) {
+            y = 10;
         }
     }
 

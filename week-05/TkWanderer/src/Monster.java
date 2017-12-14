@@ -4,11 +4,15 @@ public class Monster extends Entity {
     protected int level;
     protected final String monsterImage = "skeleton.gif";
 
-    Monster() {
+    Monster(){
+
+    }
+
+    Monster(int xc, int yc) {
         maxHealthPoint = 20 * getLevel() * d6.getRandomDice();
         defendPoint = getLevel()/2 * d6.getRandomDice();
         strikePoint = getLevel()*d6.getRandomDice();
-        initCharacter();
+        initCharacter(xc,yc);
     }
 
     public void move(){
@@ -23,12 +27,11 @@ public class Monster extends Entity {
         return level;
     }
 
-
-    public void initCharacter(){
+    public void initCharacter(int xc,int yc){
         ImageIcon icon = new ImageIcon(monsterImage);
         image = icon.getImage();
-        x = 3;
-        y = 7;
+        x = xc;
+        y = yc;
     }
 
 }
