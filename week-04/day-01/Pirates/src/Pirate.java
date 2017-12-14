@@ -1,7 +1,8 @@
 import java.util.Random;
 
 public class Pirate {
-    int rum;
+    public static final int RUM_LIMIT = 4;
+    protected int rum;
     private boolean alive;
     boolean passout;
 
@@ -12,6 +13,9 @@ public class Pirate {
     }
     public void drinkSomeRum(){
         rum += (int) (Math.random()* 10) ;
+        if(!alive){
+            System.out.println("He's dead");
+        }
         if(rum > 4){
             passout = true;
         }
@@ -24,23 +28,30 @@ public class Pirate {
     public void howItsGoingMate(){
         if(!alive){
             System.out.println("He's dead");
-        } else if(rum <= 4) {
+        } else if(rum <= RUM_LIMIT) {
             System.out.println("Pour me anudder!");
         } else {
             System.out.println("Arghh, I'ma Pirate. How d'ya d'ink its goin?");
         }
     }
     public void die(){
-        alive = false;
+        if(!alive){
+            System.out.println("He's dead");
+        } else alive = false;
     }
 
     public void brawl(Pirate pirate) {
-        int r = new Random().nextInt(3) + 1;
-        if(r == 1) {
+        if(!this.alive | !pirate.alive){
+            System.out.println("He's dead");
+            return;
+        }
+
+        int r = new Random().nextInt(3);
+        if(r == 0) {
             this.die();
-        } else if (r == 2) {
+        } else if (r == 1) {
             pirate.die();
-        } else if(r == 3) {
+        } else if(r == 2) {
             pirate.passout = true;
             this.passout = true;
         }
