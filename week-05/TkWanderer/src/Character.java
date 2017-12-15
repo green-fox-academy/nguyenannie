@@ -2,13 +2,14 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 
-public class Entity {
+public class Character {
     protected final int step = Tile.tileSize;
 
     protected int maxHealthPoint;
     protected int currentHealthPoint;
     protected int defendPoint;
     protected int strikePoint;
+    protected int strikeValue;
     protected Dice d6 = new Dice();
     protected boolean isDead;
 
@@ -20,7 +21,9 @@ public class Entity {
     protected int x;
     protected int y;
 
-    public Entity() {
+    Map map = new Map();
+
+    public Character() {
 
         initCharacter();
     }
@@ -33,13 +36,6 @@ public class Entity {
 
     }
 
-    public void setX(int x){
-        this.x = x;
-    }
-
-    public void setY(int y){
-        this.y = y;
-    }
 
     public int getX() {
         return x;
@@ -99,11 +95,39 @@ public class Entity {
         return result;
     }
 
+    public int calculateStrikeValue(){
+        return 2 * d6.getRandomDice() + strikePoint;
+    }
+
+    public boolean canAttack(Character enemy) {
+        if(this.calculateStrikeValue() > enemy.defendPoint) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public void attack() {
+
+    }
+
+    public void defend(){
+
+    }
+
+    public void leveling(){
+        maxHealthPoint += d6.getRandomDice();
+        defendPoint += d6.getRandomDice();
+        strikePoint += d6.getRandomDice();
+    }
+
+
+
 }
 
 
 /*
- =======================================================================================================
+=======================================================================================================
 0001010000
 0001010110
 0111010110

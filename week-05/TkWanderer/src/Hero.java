@@ -1,13 +1,10 @@
-import javax.swing.*;
 import java.awt.event.KeyEvent;
 
-public class Hero extends Entity {
+public class Hero extends Character {
     private String faceDown = "hero-down.gif";
     private String faceRight = "hero-right.gif";
     private String faceLeft = "hero-left.gif";
     private String faceUp = "hero-up.gif";
-    Map map = new Map();
-
 
     Hero() {
         maxHealthPoint = 30 + 3 * d6.getRandomDice();
@@ -29,8 +26,8 @@ public class Hero extends Entity {
         newY = y + ystep;
 
         if(!map.getTile(newX,newY).isSolid){
-            x += xstep;
-            y += ystep;
+            x = newX;
+            y = newY;
         }
 
         if(map.getTile(newX,newY).isSolid) {
@@ -61,6 +58,10 @@ public class Hero extends Entity {
             ystep = 1;
             setImage(faceDown);
         }
+
+        if(key == KeyEvent.VK_SPACE) {
+            attack();
+        }
     }
 
     public void keyReleased(KeyEvent e) {
@@ -81,6 +82,10 @@ public class Hero extends Entity {
 
         if (key == KeyEvent.VK_DOWN || key == KeyEvent.VK_S) {
             ystep = 0;
+        }
+
+        if(key == KeyEvent.VK_SPACE){
+            defend();
         }
     }
 

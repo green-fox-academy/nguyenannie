@@ -29,7 +29,7 @@ public class Board extends JPanel implements ActionListener {
         setBackground(Color.WHITE);
 
         hero = new Hero();
-        monster1 = new Monster(4,4);
+        monster1 = new Monster(9,9);
         monster2 = new Monster(0,9);
         monster3 = new Monster(9,0);
         bossMonster = new BossMonster();
@@ -64,7 +64,6 @@ public class Board extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        hero.move();
         repaint();
     }
 
@@ -78,6 +77,12 @@ public class Board extends JPanel implements ActionListener {
         @Override
         public void keyPressed(KeyEvent e) {
             hero.keyPressed(e);
+            hero.move();
+            bossMonster.takeTurn();
+            monster1.takeTurn();
+            monster2.takeTurn();
+            monster3.takeTurn();
+
         }
     }
 
