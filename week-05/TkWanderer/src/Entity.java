@@ -3,7 +3,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 
 public class Entity {
-    protected final int step = Floor.tileSize;
+    protected final int step = Tile.tileSize;
 
     protected int maxHealthPoint;
     protected int currentHealthPoint;
@@ -19,7 +19,6 @@ public class Entity {
     protected int ystep;
     protected int x;
     protected int y;
-
 
     public Entity() {
 
@@ -102,3 +101,18 @@ public class Entity {
 
 }
 
+
+/*
+ =======================================================================================================
+0001010000
+0001010110
+0111010110
+0000010000
+1111011110
+0101000010
+0101011010
+0000011010
+0111000010
+0001011010
+0101010000
+ */

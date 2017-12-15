@@ -12,7 +12,7 @@ public class GamePlay extends JFrame {
     private void initUI() {
         add(board, BorderLayout.CENTER);
 
-        setSize(10 * Floor.tileSize,11 * Floor.tileSize + 23);
+        setSize(10 * Tile.tileSize,11 * Tile.tileSize + 23);
         setResizable(false);
 
         setTitle("Game Plays");
@@ -33,4 +33,3 @@ public class GamePlay extends JFrame {
         });
     }
 }
-

@@ -6,6 +6,7 @@ public class Hero extends Entity {
     private String faceRight = "hero-right.gif";
     private String faceLeft = "hero-left.gif";
     private String faceUp = "hero-up.gif";
+    Map map = new Map();
 
 
     Hero() {
@@ -22,23 +23,17 @@ public class Hero extends Entity {
     }
 
     public void move(){
-        x += xstep;
-        y += ystep;
+        int newX = 0, newY = 0;
 
-        if(x < 0){
-            x = 0;
+        newX = x + xstep;
+        newY = y + ystep;
+
+        if(!map.getTile(newX,newY).isSolid){
+            x += xstep;
+            y += ystep;
         }
 
-        if(x > 9) {
-            x = 9;
-        }
-
-        if(y < 0){
-            y = 0;
-        }
-
-        if(y > 10) {
-            y = 10;
+        if(map.getTile(newX,newY).isSolid) {
         }
     }
 

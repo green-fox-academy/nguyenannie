@@ -1,8 +1,18 @@
 import java.awt.*;
 
-public class Floor extends Background {
+//public class Floor extends Tile {
+
+
+
+    /*
 
     static final int tileSize = 72;
+
+    public Floor(boolean isSolid){
+        fileName = "floor.gif";
+        this.isSolid = isSolid;
+        initBackground();
+    }
 
     public Floor(){
         fileName = "floor.gif";
@@ -19,5 +29,7 @@ public class Floor extends Background {
             }
         }
     }
+     */
 
-}
+
+//}

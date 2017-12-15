@@ -14,8 +14,7 @@ public class Board extends JPanel implements ActionListener {
     private Monster monster2;
     private Monster monster3;
     private BossMonster bossMonster;
-    Background floor;
-    Background wall;
+    Map map;
     private final int DELAY = 100;
 
     public Board() {
@@ -33,9 +32,8 @@ public class Board extends JPanel implements ActionListener {
         monster1 = new Monster(4,4);
         monster2 = new Monster(0,9);
         monster3 = new Monster(9,0);
-        floor = new Floor();
-        wall = new Wall();
         bossMonster = new BossMonster();
+        map = new Map();
 
         timer = new Timer(DELAY, this);
         timer.start();
@@ -56,8 +54,7 @@ public class Board extends JPanel implements ActionListener {
     }
 
     private void doDrawing(Graphics g) {
-        floor.drawBackground(g);
-        wall.drawBackground(g);
+        map.drawBackground(g);
         monster1.drawCharacter(g);
         monster2.drawCharacter(g);
         monster3.drawCharacter(g);
