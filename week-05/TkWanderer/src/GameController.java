@@ -71,19 +71,22 @@ public class GameController {
 
         int key = e.getKeyCode();
 
-        if (key == KeyEvent.VK_LEFT || key == KeyEvent.VK_A) {
-        }
+        switch (key) {
+            case KeyEvent.VK_LEFT:
+            case KeyEvent.VK_A:
+                break;
 
-        if (key == KeyEvent.VK_RIGHT || key == KeyEvent.VK_D) {
-        }
+            case KeyEvent.VK_RIGHT:
+            case KeyEvent.VK_D:
+                break;
 
-        if (key == KeyEvent.VK_UP || key == KeyEvent.VK_W) {
-        }
+            case KeyEvent.VK_UP:
+            case KeyEvent.VK_W:
+                break;
 
-        if (key == KeyEvent.VK_DOWN || key == KeyEvent.VK_S) {
-        }
-
-        if(key == KeyEvent.VK_SPACE){
+            case KeyEvent.VK_DOWN:
+            case KeyEvent.VK_S:
+                break;
         }
     }
 

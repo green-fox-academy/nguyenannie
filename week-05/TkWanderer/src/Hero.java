@@ -31,14 +31,17 @@ public class Hero extends Character {
                 newY = y - 1;
                 setImage(faceUp);
                 break;
+
             case DOWN:
                 newY = y + 1;
                 setImage(faceDown);
                 break;
+
             case LEFT:
                 newX = x - 1;
                 setImage(faceLeft);
                 break;
+                
             case RIGHT:
                 newX = x + 1;
                 setImage(faceRight);
