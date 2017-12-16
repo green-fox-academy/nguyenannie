@@ -15,8 +15,6 @@ public class Character {
     protected Image image;
     protected String fileName;
 
-    protected int xstep;
-    protected int ystep;
     protected int x;
     protected int y;
 
@@ -59,19 +57,10 @@ public class Character {
     }
 
 
-    public void keyPressed(KeyEvent e) {
-
-    }
-
-    public void keyReleased(KeyEvent e) {
-
-    }
-
     public void drawCharacter(Graphics g){
         Graphics2D g2d = (Graphics2D) g;
         g2d.drawImage(getImage(), getX()*step, getY()*step, null);
     }
-
 
     public boolean isDead() {
         if(currentHealthPoint <= 0){
@@ -80,6 +69,37 @@ public class Character {
             isDead = false;
         }
         return isDead;
+    }
+
+    public int calculateStrikeValue(){
+        return 2 * d6.getRandomDice() + strikePoint;
+    }
+
+    public boolean attackSucceeds(Character enemy) {
+        if(this.calculateStrikeValue() > enemy.defendPoint) {
+            return true;
+        } else {
+            this.currentHealthPoint -= enemy.calculateStrikeValue() - this.defendPoint;
+            return false;
+        }
+    }
+
+    public void attack(Character enemy) {
+        if(enemy.isDead || this.isDead) {
+            return;
+        } else {
+            if (attackSucceeds(enemy)) {
+                enemy.currentHealthPoint -= this.calculateStrikeValue() - enemy.defendPoint;
+            } else {
+                this.currentHealthPoint -= enemy.calculateStrikeValue() - this.defendPoint;
+            }
+        }
+    }
+
+    public void leveling(){
+        maxHealthPoint += d6.getRandomDice();
+        defendPoint += d6.getRandomDice();
+        strikePoint += d6.getRandomDice();
     }
 
     public Rectangle getBounds(){
@@ -93,34 +113,6 @@ public class Character {
         }
         return result;
     }
-
-    public int calculateStrikeValue(){
-        return 2 * d6.getRandomDice() + strikePoint;
-    }
-
-    public boolean canAttack(Character enemy) {
-        if(this.calculateStrikeValue() > enemy.defendPoint) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public void attack() {
-
-    }
-
-    public void defend(){
-
-    }
-
-    public void leveling(){
-        maxHealthPoint += d6.getRandomDice();
-        defendPoint += d6.getRandomDice();
-        strikePoint += d6.getRandomDice();
-    }
-
-
 
 }
 

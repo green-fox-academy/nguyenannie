@@ -60,9 +60,13 @@ public class GameController {
                 heroMoved = true;
                 break;
         }
+
         if(heroMoved){
             for (int i = 0; i < monsterList.size(); i++) {
                 monsterList.get(i).takeTurn();
+                if(monsterList.get(i).x == hero.x && monsterList.get(i).y == hero.y){
+                    hero.attack(monsterList.get(i));
+                }
             }
         }
     }

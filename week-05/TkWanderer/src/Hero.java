@@ -41,7 +41,7 @@ public class Hero extends Character {
                 newX = x - 1;
                 setImage(faceLeft);
                 break;
-                
+
             case RIGHT:
                 newX = x + 1;
                 setImage(faceRight);
