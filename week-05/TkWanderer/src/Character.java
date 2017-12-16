@@ -9,7 +9,6 @@ public class Character {
     protected int currentHealthPoint;
     protected int defendPoint;
     protected int strikePoint;
-    protected int strikeValue;
     protected Dice d6 = new Dice();
     protected boolean isDead;
 

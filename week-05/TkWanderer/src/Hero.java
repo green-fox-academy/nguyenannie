@@ -6,6 +6,10 @@ public class Hero extends Character {
     private String faceLeft = "hero-left.gif";
     private String faceUp = "hero-up.gif";
 
+    enum Directions {
+        UP, DOWN, LEFT, RIGHT;
+    }
+
     Hero() {
         maxHealthPoint = 30 + 3 * d6.getRandomDice();
         defendPoint = 2 * d6.getRandomDice();
@@ -19,11 +23,27 @@ public class Hero extends Character {
         y = 0;
     }
 
-    public void move(){
-        int newX = 0, newY = 0;
+    public void move(Directions dir){
+        int newX = x, newY = y;
 
-        newX = x + xstep;
-        newY = y + ystep;
+        switch (dir) {
+            case UP:
+                newY = y - 1;
+                setImage(faceUp);
+                break;
+            case DOWN:
+                newY = y + 1;
+                setImage(faceDown);
+                break;
+            case LEFT:
+                newX = x - 1;
+                setImage(faceLeft);
+                break;
+            case RIGHT:
+                newX = x + 1;
+                setImage(faceRight);
+                break;
+        }
 
         if(!map.getTile(newX,newY).isSolid){
             x = newX;
@@ -33,62 +53,6 @@ public class Hero extends Character {
         if(map.getTile(newX,newY).isSolid) {
         }
     }
-
-
-    public void keyPressed(KeyEvent e) {
-
-        int key = e.getKeyCode();
-
-        if (key == KeyEvent.VK_LEFT || key == KeyEvent.VK_A) {
-            xstep = -1;
-            setImage(faceLeft);
-        }
-
-        if (key == KeyEvent.VK_RIGHT || key == KeyEvent.VK_D) {
-            xstep = 1;
-            setImage(faceRight);
-        }
-
-        if (key == KeyEvent.VK_UP || key == KeyEvent.VK_W) {
-            ystep = -1;
-            setImage(faceUp);
-        }
-
-        if (key == KeyEvent.VK_DOWN || key == KeyEvent.VK_S) {
-            ystep = 1;
-            setImage(faceDown);
-        }
-
-        if(key == KeyEvent.VK_SPACE) {
-            attack();
-        }
-    }
-
-    public void keyReleased(KeyEvent e) {
-
-        int key = e.getKeyCode();
-
-        if (key == KeyEvent.VK_LEFT || key == KeyEvent.VK_A) {
-            xstep = 0;
-        }
-
-        if (key == KeyEvent.VK_RIGHT || key == KeyEvent.VK_D) {
-            xstep = 0;
-        }
-
-        if (key == KeyEvent.VK_UP || key == KeyEvent.VK_W) {
-            ystep = 0;
-        }
-
-        if (key == KeyEvent.VK_DOWN || key == KeyEvent.VK_S) {
-            ystep = 0;
-        }
-
-        if(key == KeyEvent.VK_SPACE){
-            defend();
-        }
-    }
-
 
 }
 

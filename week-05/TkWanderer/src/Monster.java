@@ -6,16 +6,21 @@ public class Monster extends Character {
     protected int level;
     protected final String monsterImage = "skeleton.gif";
     boolean cantMove;
+    private boolean hasKey;
 
-    Monster(){
-
+    public Monster(){
     }
 
-    Monster(int xc, int yc) {
+    Monster(int xc, int yc, boolean hasKey) {
         maxHealthPoint = 20 * getLevel() * d6.getRandomDice();
         defendPoint = getLevel()/2 * d6.getRandomDice();
         strikePoint = getLevel()*d6.getRandomDice();
+        this.hasKey = hasKey;
         initCharacter(xc,yc);
+    }
+
+    public boolean getHasKey(){
+        return this.hasKey;
     }
 
     public void move(){
