@@ -81,15 +81,15 @@ public class Character {
     public void attack(Character enemy) {
         System.out.println("attacking " + enemy.x + ", " + enemy.y);
         if(enemy.isDead() || this.isDead()) {
-            //System.out.println("target dead");
+            System.out.println("target dead");
         } else {
-            //System.out.println("hp before " + enemy.currentHealthPoint + " hp hero " + this.currentHealthPoint);
+            System.out.println("hp before " + enemy.currentHealthPoint + " hp hero " + this.currentHealthPoint);
             if (attackSucceeds(enemy)) {
                 enemy.currentHealthPoint -= this.calculateStrikeValue() - enemy.defendPoint;
             } else {
                 this.currentHealthPoint -= enemy.calculateStrikeValue() - this.defendPoint;
             }
-            //System.out.println("hp after " + enemy.currentHealthPoint + " hp hero " + this.currentHealthPoint);
+            System.out.println("hp after " + enemy.currentHealthPoint + " hp hero " + this.currentHealthPoint);
         }
     }
 

@@ -9,12 +9,12 @@ import javax.swing.*;
 public class Board extends JPanel implements ActionListener {
 
     private Timer timer;
-    GameController gc;
+    private GameController gc;
     private final int DELAY = 100;
 
     public Board() {
         initBoard();
-        add(new ScoreDisplay());
+        //add(new ScoreDisplay());
     }
 
     private void initBoard() {
@@ -41,11 +41,11 @@ public class Board extends JPanel implements ActionListener {
 
     private void doDrawing(Graphics g) {
         gc.getMap().drawBackground(g);
-        gc.getMonster(0).drawCharacter(g);
-        gc.getMonster(1).drawCharacter(g);
-        gc.getMonster(2).drawCharacter(g);
-        gc.getMonster(3).drawCharacter(g);
+        for(int i = 0; i < gc.getMonsterList().size(); i ++){
+            gc.getMonster(i).drawCharacter(g);
+        }
         gc.getHero().drawCharacter(g);
+        gc.drawInfo(g);
         //System.out.println(gc.getHero().currentHealthPoint + " " + gc.getHero().strikePoint + " " + gc.getMonster(0).currentHealthPoint);
     }
 

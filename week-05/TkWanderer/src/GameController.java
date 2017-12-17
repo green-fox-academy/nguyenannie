@@ -6,7 +6,7 @@ import java.util.List;
 public class GameController {
     private Hero hero;
     private List<Monster> monsterList = new ArrayList<>();
-    private final int monsterNum = 3;
+    private final int monsterNum = 5;
     Map map;
 
     public GameController(){
@@ -24,6 +24,10 @@ public class GameController {
     }
     public Monster getMonster(int i) {
         return monsterList.get(i);
+    }
+
+    public List<Monster> getMonsterList() {
+        return monsterList;
     }
 
     public Map getMap() {
@@ -64,7 +68,11 @@ public class GameController {
                 for(int i = 0; i < monsterList.size(); i ++) {
                     if (monsterList.get(i).x == hero.x && monsterList.get(i).y == hero.y) {
                         hero.attack(monsterList.get(i));
-                        monsterList.get(i).attack(hero);
+                        if(monsterList.get(i).isDead()){
+                            monsterList.remove(i);
+                        } else {
+                            monsterList.get(i).attack(hero);
+                        }
                     }
                 }
         }
@@ -99,4 +107,40 @@ public class GameController {
         }
     }
 
+    public String getKeyInfo(Monster m){
+        if(m.getHasKey()){
+            return "K";
+        } else {
+            return "";
+        }
+    }
+
+    public void drawInfo(Graphics g) {
+        g.setColor(Color.white);
+        g.setFont(new Font("Serif", Font.BOLD, 24));
+        String statusText;
+        String statusText2 = "";
+        g.fillRect(480, 8, 240, 30);
+        g.setColor(Color.blue);
+        if(hero.isDead()) {
+            statusText = "DEAD";
+        } else {
+            statusText = "HP: " + hero.currentHealthPoint + "  SP: " + hero.strikePoint + "  DP: "+ hero.defendPoint;
+            for(int i = 0; i < monsterList.size(); i ++){
+                if(hero.x == monsterList.get(i).x && hero.y == monsterList.get(i).y){
+                    statusText = "HP: " + hero.currentHealthPoint + "  SP: " + hero.strikePoint + "  DP: "+ hero.defendPoint;
+                    statusText2 = "HP: " + monsterList.get(i).currentHealthPoint
+                                 + "  SP: " + monsterList.get(i).strikePoint
+                                 + "  DP: "+ monsterList.get(i).defendPoint;
+                }
+            }
+        }
+        g.drawString(statusText, 480, 30);
+        if(statusText2.length() > 0){
+            g.setColor(Color.white);
+            g.fillRect(480, 38, 240, 30);
+        }
+        g.setColor(Color.blue);
+        g.drawString(statusText2,480,60);
+    }
 }
