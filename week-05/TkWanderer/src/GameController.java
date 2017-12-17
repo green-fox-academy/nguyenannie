@@ -59,14 +59,19 @@ public class GameController {
                 hero.move(Hero.Directions.DOWN);
                 heroMoved = true;
                 break;
+
+            case KeyEvent.VK_SPACE:
+                for(int i = 0; i < monsterList.size(); i ++) {
+                    if (monsterList.get(i).x == hero.x && monsterList.get(i).y == hero.y) {
+                        hero.attack(monsterList.get(i));
+                        monsterList.get(i).attack(hero);
+                    }
+                }
         }
 
         if(heroMoved){
             for (int i = 0; i < monsterList.size(); i++) {
                 monsterList.get(i).takeTurn();
-                if(monsterList.get(i).x == hero.x && monsterList.get(i).y == hero.y){
-                    hero.attack(monsterList.get(i));
-                }
             }
         }
     }

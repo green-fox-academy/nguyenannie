@@ -10,7 +10,6 @@ public class Character {
     protected int defendPoint;
     protected int strikePoint;
     protected Dice d6 = new Dice();
-    protected boolean isDead;
 
     protected Image image;
     protected String fileName;
@@ -63,16 +62,11 @@ public class Character {
     }
 
     public boolean isDead() {
-        if(currentHealthPoint <= 0){
-            isDead = true;
-        } else {
-            isDead = false;
-        }
-        return isDead;
+        return currentHealthPoint <= 0;
     }
 
     public int calculateStrikeValue(){
-        return 2 * d6.getRandomDice() + strikePoint;
+        return 2 * d6.getRandomDice() + this.strikePoint;
     }
 
     public boolean attackSucceeds(Character enemy) {
@@ -85,14 +79,17 @@ public class Character {
     }
 
     public void attack(Character enemy) {
-        if(enemy.isDead || this.isDead) {
-            return;
+        System.out.println("attacking " + enemy.x + ", " + enemy.y);
+        if(enemy.isDead() || this.isDead()) {
+            //System.out.println("target dead");
         } else {
+            //System.out.println("hp before " + enemy.currentHealthPoint + " hp hero " + this.currentHealthPoint);
             if (attackSucceeds(enemy)) {
                 enemy.currentHealthPoint -= this.calculateStrikeValue() - enemy.defendPoint;
             } else {
                 this.currentHealthPoint -= enemy.calculateStrikeValue() - this.defendPoint;
             }
+            //System.out.println("hp after " + enemy.currentHealthPoint + " hp hero " + this.currentHealthPoint);
         }
     }
 

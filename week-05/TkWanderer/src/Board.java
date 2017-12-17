@@ -46,6 +46,7 @@ public class Board extends JPanel implements ActionListener {
         gc.getMonster(2).drawCharacter(g);
         gc.getMonster(3).drawCharacter(g);
         gc.getHero().drawCharacter(g);
+        //System.out.println(gc.getHero().currentHealthPoint + " " + gc.getHero().strikePoint + " " + gc.getMonster(0).currentHealthPoint);
     }
 
     @Override

@@ -3,7 +3,7 @@ import java.awt.event.KeyEvent;
 import java.util.Random;
 
 public class Monster extends Character {
-    protected int level;
+    protected int level = 1;
     protected final String monsterImage = "skeleton.gif";
     boolean cantMove;
     private boolean hasKey;
@@ -15,6 +15,7 @@ public class Monster extends Character {
         maxHealthPoint = 20 * getLevel() * d6.getRandomDice();
         defendPoint = getLevel()/2 * d6.getRandomDice();
         strikePoint = getLevel()*d6.getRandomDice();
+        currentHealthPoint = maxHealthPoint;
         this.hasKey = hasKey;
         initCharacter(xc,yc);
     }
