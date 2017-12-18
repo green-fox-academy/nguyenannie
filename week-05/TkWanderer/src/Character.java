@@ -6,9 +6,9 @@ public class Character {
 
     protected int maxHealthPoint;
     protected int currentHealthPoint;
-    protected int defendPoint;
-    protected int strikePoint;
-    protected int level;
+    protected double defendPoint;
+    protected double strikePoint;
+    protected int level = 1;
     protected Dice d6 = new Dice();
 
     protected Image image;
@@ -72,7 +72,7 @@ public class Character {
         return currentHealthPoint <= 0;
     }
 
-    public int calculateStrikeValue(){
+    public double calculateStrikeValue(){
         return 2 * d6.getRandomDice() + this.strikePoint;
     }
 

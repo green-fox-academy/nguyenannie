@@ -16,7 +16,6 @@ public class Hero extends Character {
         defendPoint = 2 * d6.getRandomDice();
         strikePoint = 5 + d6.getRandomDice();
         currentHealthPoint = maxHealthPoint;
-        level = 1;
         initCharacter();
     }
 

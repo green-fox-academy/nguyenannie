@@ -7,6 +7,7 @@ public class GameController {
     private Hero hero;
     private List<Monster> monsterList;
     private int monsterNum;
+    private int savedMonsterLevel = 0;
     Monster keyMonster;
     BossMonster boss;
 
@@ -18,6 +19,21 @@ public class GameController {
         map = new Map();
         hero= new Hero();
     }
+
+    public void initGame() {
+        monsterList = new ArrayList<>();
+
+        for(int i = 0; i < monsterNum - 2; i ++) {
+            monsterList.add(new Monster(new Random().nextInt(10), new Random().nextInt(11), false));
+        }
+
+        keyMonster = new Monster(new Random().nextInt(10), new Random().nextInt(11),true);
+        boss = new BossMonster(new Random().nextInt(10), new Random().nextInt(11));
+
+        monsterList.add(keyMonster);
+        monsterList.add(boss);
+    }
+
 
     public Hero getHero() {
         return hero;
@@ -84,10 +100,12 @@ public class GameController {
         }
 
         if(keyMonster.isDead() && boss.isDead()) {
+            savedMonsterLevel++;
             update();
         }
 
         if(monsterList.size() == 0) {
+            savedMonsterLevel++;
             update();
         }
 
@@ -105,22 +123,9 @@ public class GameController {
         initGame();
 
         for(int i = 0; i < monsterList.size(); i ++) {
-            monsterList.get(i).updateLevel(hero.level);
+            monsterList.get(i).level = savedMonsterLevel;
+            monsterList.get(i).updateLevel();
         }
-    }
-
-    public void initGame() {
-        monsterList = new ArrayList<>();
-
-        for(int i = 0; i < monsterNum - 2; i ++) {
-            monsterList.add(new Monster(new Random().nextInt(10), new Random().nextInt(11), false));
-        }
-
-        keyMonster = new Monster(new Random().nextInt(10), new Random().nextInt(11),true);
-        boss = new BossMonster(new Random().nextInt(10), new Random().nextInt(11));
-
-        monsterList.add(keyMonster);
-        monsterList.add(boss);
     }
 
     public void keyReleased(KeyEvent e) {
