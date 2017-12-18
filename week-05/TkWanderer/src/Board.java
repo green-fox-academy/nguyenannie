@@ -3,6 +3,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferStrategy;
 import javax.swing.*;
 
 
@@ -12,8 +13,6 @@ public class Board extends JPanel implements ActionListener {
     private GameController gc;
     private final int DELAY = 100;
 
-    private Thread thread;
-    private boolean running = false;
 
     public Board() {
         initBoard();
@@ -35,22 +34,17 @@ public class Board extends JPanel implements ActionListener {
     public void paintComponent(Graphics g) {
 
         super.paintComponent(g);
-        gc.doDrawing(g);
+        doDrawing(g);
         Toolkit.getDefaultToolkit().sync();
     }
 
-    public synchronized void start() {
-        if(running) {
-            return;
+    void doDrawing(Graphics g) {
+        gc.getMap().drawBackground(g);
+        for(int i = 0; i < gc.getMonsterList().size(); i ++){
+            gc.getMonster(i).drawCharacter(g);
         }
-
-        running = true;
-        thread = new Thread();
-        thread.start();
-    }
-
-    public void run(){
-        System.out.println("hello");
+        gc.getHero().drawCharacter(g);
+        gc.drawInfo(g);
     }
 
 

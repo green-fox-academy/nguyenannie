@@ -5,18 +5,15 @@ import java.util.List;
 
 public class GameController {
     private Hero hero;
-    private List<Monster> monsterList = new ArrayList<>();
+    private List<Monster> monsterList;
     private final int monsterNum = 5;
+    Monster keyMonster;
+    BossMonster boss;
+
     Map map;
 
     public GameController(){
-        for(int i = 0; i < monsterNum - 1; i ++) {
-            monsterList.add(new Monster(new Random().nextInt(10), new Random().nextInt(11),false));
-        }
-        monsterList.add(new Monster(new Random().nextInt(10), new Random().nextInt(11),true));
-        monsterList.add(new BossMonster(new Random().nextInt(10), new Random().nextInt(11)));
-        map = new Map();
-        hero = new Hero();
+        resetLevel();
     }
 
     public Hero getHero() {
@@ -82,8 +79,33 @@ public class GameController {
                 monsterList.get(i).takeTurn();
             }
         }
+
+        if(keyMonster.isDead() && boss.isDead()) {
+            resetLevel();
+        }
+
+        if(monsterList.size()== 0) {
+            resetLevel();
+        }
+
+        if(hero.isDead()) {
+            resetLevel();
+        }
     }
 
+    private void resetLevel() {
+        monsterList = new ArrayList<>();
+        keyMonster = new Monster(new Random().nextInt(10), new Random().nextInt(11),true);
+        boss = new BossMonster(new Random().nextInt(10), new Random().nextInt(11));
+        for(int i = 0; i < monsterNum - 1; i ++) {
+            monsterList.add(new Monster(new Random().nextInt(10), new Random().nextInt(11),false));
+        }
+        monsterList.add(keyMonster);
+        monsterList.add(boss);
+        map = new Map();
+        hero = new Hero();
+    }
+    
     public void keyReleased(KeyEvent e) {
 
         int key = e.getKeyCode();
@@ -119,7 +141,6 @@ public class GameController {
 
         if(hero.isDead()) {
             statusTextHero = "DEAD";
-            System.exit(0);
         } else {
             statusTextHero = "Hero (Level " + hero.getLevel() + ") HP:  " + hero.currentHealthPoint + "/" + hero.maxHealthPoint
                              + " | SP:  " + hero.strikePoint
@@ -147,14 +168,5 @@ public class GameController {
         }
         g.setColor(Color.black);
         g.drawString(statusTextMonster,430,30);
-    }
-
-    void doDrawing(Graphics g) {
-        getMap().drawBackground(g);
-        for(int i = 0; i < getMonsterList().size(); i ++){
-            getMonster(i).drawCharacter(g);
-        }
-        getHero().drawCharacter(g);
-        drawInfo(g);
     }
 }

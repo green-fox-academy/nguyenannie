@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.awt.image.BufferStrategy;
 import javax.swing.*;
 
 public class GamePlay extends JFrame {
@@ -11,8 +12,6 @@ public class GamePlay extends JFrame {
 
     private void initUI() {
         add(board);
-        board.start();
-        board.run();
 
         setSize(10 * Tile.tileSize,11 * Tile.tileSize + 23);
         setResizable(false);
@@ -29,8 +28,8 @@ public class GamePlay extends JFrame {
             @Override
             public void run() {
 
-                GamePlay ex = new GamePlay();
-                ex.setVisible(true);
+                GamePlay gamePlay = new GamePlay();
+                gamePlay.setVisible(true);
             }
         });
     }
