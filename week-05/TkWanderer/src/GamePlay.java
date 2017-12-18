@@ -1,5 +1,4 @@
 import java.awt.*;
-import java.awt.image.BufferStrategy;
 import javax.swing.*;
 
 public class GamePlay extends JFrame {

@@ -6,8 +6,8 @@ import java.util.List;
 public class GameController {
     private Hero hero;
     private List<Monster> monsterList;
-    private final int monsterNum = 5;
-    int updateLevel = 1;
+    private int monsterNum;
+    private int monsterDead = 0;
     Monster keyMonster;
     BossMonster boss;
 
@@ -68,6 +68,7 @@ public class GameController {
                         hero.attack(monsterList.get(i));
                         if(monsterList.get(i).isDead()){
                             monsterList.remove(i);
+                            monsterDead ++;
                         } else {
                             monsterList.get(i).attack(hero);
                         }
@@ -85,7 +86,7 @@ public class GameController {
             update();
         }
 
-        if(monsterList.size()== 0) {
+        if(monsterList.size() == 0) {
             update();
         }
 
@@ -95,10 +96,11 @@ public class GameController {
     }
 
     private void reset() {
+        monsterNum = 3;
         monsterList = new ArrayList<>();
         keyMonster = new Monster(new Random().nextInt(10), new Random().nextInt(11),true);
         boss = new BossMonster(new Random().nextInt(10), new Random().nextInt(11));
-        for(int i = 0; i < monsterNum - 1; i ++) {
+        for(int i = 0; i < monsterNum - 2; i ++) {
             monsterList.add(new Monster(new Random().nextInt(10), new Random().nextInt(11), false));
         }
         monsterList.add(keyMonster);
@@ -111,19 +113,15 @@ public class GameController {
         hero.updateLevel();
         hero.levelUp();
         hero.initCharacter();
+        monsterNum = (int)(Math.random() * 3) + 3;
 
-        keyMonster = new Monster(new Random().nextInt(10), new Random().nextInt(11),true);
-        boss = new BossMonster(new Random().nextInt(10), new Random().nextInt(11));
-        for(int i = 0; i < monsterNum - 1; i ++) {
+        for(int i = 0; i < monsterNum - 2; i ++) {
             monsterList.add(new Monster(new Random().nextInt(10), new Random().nextInt(11), false));
         }
+        keyMonster = new Monster(new Random().nextInt(10), new Random().nextInt(11),true);
+        boss = new BossMonster(new Random().nextInt(10), new Random().nextInt(11));
         monsterList.add(keyMonster);
         monsterList.add(boss);
-
-        for(int i = 0; i < monsterList.size(); i ++) {
-            monsterList.get(i).levelUp();
-        }
-
     }
 
     public void keyReleased(KeyEvent e) {

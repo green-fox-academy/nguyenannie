@@ -51,12 +51,6 @@ public class Monster extends Character {
         return r - 1;
     }
 
-    public void levelUp(){
-        maxHealthPoint = 2 * level * d6.getRandomDice();
-        defendPoint =  level/2 * d6.getRandomDice();
-        strikePoint = level * d6.getRandomDice();
-    }
-
     public void initCharacter(int xc,int yc){
         ImageIcon icon = new ImageIcon(monsterImage);
         image = icon.getImage();

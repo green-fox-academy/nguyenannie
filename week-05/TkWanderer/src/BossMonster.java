@@ -4,7 +4,7 @@ public class BossMonster extends Monster{
     private final String bossImage = "boss.gif";
 
     BossMonster(int xc, int yc) {
-        maxHealthPoint = 20 * getLevel() * d6.getRandomDice() + d6.getRandomDice();
+        maxHealthPoint = 2 * getLevel() * d6.getRandomDice() + d6.getRandomDice();
         defendPoint = getLevel()/2 * d6.getRandomDice() + d6.getRandomDice()/2;
         strikePoint = getLevel() * d6.getRandomDice() + getLevel();
         currentHealthPoint = maxHealthPoint;
