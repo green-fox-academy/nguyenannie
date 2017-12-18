@@ -32,18 +32,10 @@ public class Board extends JPanel implements ActionListener {
     public void paintComponent(Graphics g) {
 
         super.paintComponent(g);
-        doDrawing(g);
+        gc.doDrawing(g);
         Toolkit.getDefaultToolkit().sync();
     }
 
-    private void doDrawing(Graphics g) {
-        gc.getMap().drawBackground(g);
-        for(int i = 0; i < gc.getMonsterList().size(); i ++){
-            gc.getMonster(i).drawCharacter(g);
-        }
-        gc.getHero().drawCharacter(g);
-        gc.drawInfo(g);
-    }
 
     @Override
     public void actionPerformed(ActionEvent e) {

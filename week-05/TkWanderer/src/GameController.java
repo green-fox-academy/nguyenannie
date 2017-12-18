@@ -129,6 +129,7 @@ public class GameController {
 
         if(hero.isDead()) {
             statusTextHero = "DEAD";
+            System.exit(0);
         } else {
             statusTextHero = "Hero (Level " + hero.getLevel() + ") HP:  " + hero.currentHealthPoint + "/" + hero.maxHealthPoint
                              + " | SP:  " + hero.strikePoint
@@ -156,5 +157,14 @@ public class GameController {
         }
         g.setColor(Color.black);
         g.drawString(statusTextMonster,430,30);
+    }
+
+    void doDrawing(Graphics g) {
+        getMap().drawBackground(g);
+        for(int i = 0; i < getMonsterList().size(); i ++){
+            getMonster(i).drawCharacter(g);
+        }
+        getHero().drawCharacter(g);
+        drawInfo(g);
     }
 }
