@@ -7,13 +7,14 @@ public class GameController {
     private Hero hero;
     private List<Monster> monsterList;
     private final int monsterNum = 5;
+    int updateLevel = 1;
     Monster keyMonster;
     BossMonster boss;
 
     Map map;
 
     public GameController(){
-        resetLevel();
+        reset();
     }
 
     public Hero getHero() {
@@ -81,29 +82,48 @@ public class GameController {
         }
 
         if(keyMonster.isDead() && boss.isDead()) {
-            resetLevel();
+            update();
         }
 
         if(monsterList.size()== 0) {
-            resetLevel();
+            update();
         }
 
         if(hero.isDead()) {
-            resetLevel();
+            reset();
         }
     }
 
-    private void resetLevel() {
+    private void reset() {
         monsterList = new ArrayList<>();
         keyMonster = new Monster(new Random().nextInt(10), new Random().nextInt(11),true);
         boss = new BossMonster(new Random().nextInt(10), new Random().nextInt(11));
         for(int i = 0; i < monsterNum - 1; i ++) {
-            monsterList.add(new Monster(new Random().nextInt(10), new Random().nextInt(11),false));
+            monsterList.add(new Monster(new Random().nextInt(10), new Random().nextInt(11), false));
         }
         monsterList.add(keyMonster);
         monsterList.add(boss);
         map = new Map();
         hero = new Hero();
+    }
+
+    public void update() {
+        hero.updateLevel();
+        hero.levelUp();
+        hero.initCharacter();
+
+        keyMonster = new Monster(new Random().nextInt(10), new Random().nextInt(11),true);
+        boss = new BossMonster(new Random().nextInt(10), new Random().nextInt(11));
+        for(int i = 0; i < monsterNum - 1; i ++) {
+            monsterList.add(new Monster(new Random().nextInt(10), new Random().nextInt(11), false));
+        }
+        monsterList.add(keyMonster);
+        monsterList.add(boss);
+
+        for(int i = 0; i < monsterList.size(); i ++) {
+            monsterList.get(i).levelUp();
+        }
+
     }
 
     public void keyReleased(KeyEvent e) {

@@ -12,11 +12,10 @@ public class Hero extends Character {
     }
 
     Hero() {
-        maxHealthPoint = 30 + 3 * d6.getRandomDice();
+        maxHealthPoint = 20 + 3 * d6.getRandomDice();
         defendPoint = 2 * d6.getRandomDice();
         strikePoint = 5 + d6.getRandomDice();
         currentHealthPoint = maxHealthPoint;
-        level = 1;
         initCharacter();
     }
 
@@ -60,7 +59,7 @@ public class Hero extends Character {
         }
     }
 
-    public void levelUp(int x){
+    public void levelUp(){
         int chance = new Random().nextInt(10);
         if(chance == 0) {
             currentHealthPoint = maxHealthPoint;

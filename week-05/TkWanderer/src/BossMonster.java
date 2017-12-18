@@ -6,9 +6,8 @@ public class BossMonster extends Monster{
     BossMonster(int xc, int yc) {
         maxHealthPoint = 20 * getLevel() * d6.getRandomDice() + d6.getRandomDice();
         defendPoint = getLevel()/2 * d6.getRandomDice() + d6.getRandomDice()/2;
-        strikePoint = getLevel()*d6.getRandomDice() + getLevel();
+        strikePoint = getLevel() * d6.getRandomDice() + getLevel();
         currentHealthPoint = maxHealthPoint;
-        level = 1;
         initCharacter(xc,yc);
     }
 

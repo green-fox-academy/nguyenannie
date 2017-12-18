@@ -8,7 +8,7 @@ public class Character {
     protected int currentHealthPoint;
     protected int defendPoint;
     protected int strikePoint;
-    protected int level;
+    protected int level = 1;
     protected Dice d6 = new Dice();
 
     protected Image image;
@@ -30,6 +30,10 @@ public class Character {
 
     public void move() {
 
+    }
+
+    public void updateLevel() {
+        level ++;
     }
 
     public int getLevel() {
