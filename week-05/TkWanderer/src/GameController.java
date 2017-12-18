@@ -107,16 +107,6 @@ public class GameController {
         }
     }
 
- /*
-    public String getKeyInfo(Monster m){
-        if(m.getHasKey()){
-            return "K";
-        } else {
-            return "";
-        }
-    }
-*/
-
     public void drawInfo(Graphics g) {
         g.setColor(Color.white);
         g.setFont(new Font("Serif", Font.PLAIN, 15));

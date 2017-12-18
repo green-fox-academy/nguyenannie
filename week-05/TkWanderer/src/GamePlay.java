@@ -10,7 +10,9 @@ public class GamePlay extends JFrame {
     }
 
     private void initUI() {
-        add(board, BorderLayout.CENTER);
+        add(board);
+        board.start();
+        board.run();
 
         setSize(10 * Tile.tileSize,11 * Tile.tileSize + 23);
         setResizable(false);

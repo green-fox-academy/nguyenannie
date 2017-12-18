@@ -12,6 +12,9 @@ public class Board extends JPanel implements ActionListener {
     private GameController gc;
     private final int DELAY = 100;
 
+    private Thread thread;
+    private boolean running = false;
+
     public Board() {
         initBoard();
     }
@@ -34,6 +37,20 @@ public class Board extends JPanel implements ActionListener {
         super.paintComponent(g);
         gc.doDrawing(g);
         Toolkit.getDefaultToolkit().sync();
+    }
+
+    public synchronized void start() {
+        if(running) {
+            return;
+        }
+
+        running = true;
+        thread = new Thread();
+        thread.start();
+    }
+
+    public void run(){
+        System.out.println("hello");
     }
 
 
