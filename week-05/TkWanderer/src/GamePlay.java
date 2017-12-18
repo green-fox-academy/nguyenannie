@@ -23,13 +23,10 @@ public class GamePlay extends JFrame {
     public static void main(String[] args) {
         Board board = new Board();
 
-        EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
+        EventQueue.invokeLater(() -> {
 
-                GamePlay gamePlay = new GamePlay();
-                gamePlay.setVisible(true);
-            }
+            GamePlay gamePlay = new GamePlay();
+            gamePlay.setVisible(true);
         });
     }
 }

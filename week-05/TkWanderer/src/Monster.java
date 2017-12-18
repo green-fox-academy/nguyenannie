@@ -16,6 +16,7 @@ public class Monster extends Character {
         strikePoint = getLevel() * d6.getRandomDice();
         currentHealthPoint = maxHealthPoint;
         this.hasKey = hasKey;
+        level = 1;
         initCharacter(xc,yc);
     }
 
@@ -36,7 +37,7 @@ public class Monster extends Character {
     }
 
     public void takeTurn(){
-        if(cantMove == false) {
+        if(!cantMove) {
             move();
             cantMove = true;
         } else {
@@ -56,6 +57,10 @@ public class Monster extends Character {
         image = icon.getImage();
         x = xc;
         y = yc;
+    }
+
+    public void updateLevel(int x) {
+        this.level = x;
     }
 
 }

@@ -8,7 +8,7 @@ public class Character {
     protected int currentHealthPoint;
     protected int defendPoint;
     protected int strikePoint;
-    protected int level = 1;
+    protected int level;
     protected Dice d6 = new Dice();
 
     protected Image image;
@@ -32,12 +32,12 @@ public class Character {
 
     }
 
-    public void updateLevel() {
-        level ++;
-    }
-
     public int getLevel() {
         return level;
+    }
+
+    public void updateLevel() {
+        level ++;
     }
 
     public int getX() {
@@ -103,10 +103,6 @@ public class Character {
         maxHealthPoint += d6.getRandomDice();
         defendPoint += d6.getRandomDice();
         strikePoint += d6.getRandomDice();
-    }
-
-    public void levelUp() {
-
     }
 
     public Rectangle getBounds(){
