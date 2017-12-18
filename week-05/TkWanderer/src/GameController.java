@@ -107,6 +107,7 @@ public class GameController {
         }
     }
 
+ /*
     public String getKeyInfo(Monster m){
         if(m.getHasKey()){
             return "K";
@@ -114,33 +115,46 @@ public class GameController {
             return "";
         }
     }
+*/
 
     public void drawInfo(Graphics g) {
         g.setColor(Color.white);
-        g.setFont(new Font("Serif", Font.BOLD, 24));
-        String statusText;
-        String statusText2 = "";
-        g.fillRect(480, 8, 240, 30);
-        g.setColor(Color.blue);
+        g.setFont(new Font("Serif", Font.PLAIN, 15));
+
+        String statusTextHero;
+        String statusTextMonster = "";
+
+        g.fillRect(430, 0, 280, 20);
+        g.setColor(Color.black);
+
         if(hero.isDead()) {
-            statusText = "DEAD";
+            statusTextHero = "DEAD";
         } else {
-            statusText = "HP: " + hero.currentHealthPoint + "  SP: " + hero.strikePoint + "  DP: "+ hero.defendPoint;
+            statusTextHero = "Hero (Level " + hero.getLevel() + ") HP:  " + hero.currentHealthPoint + "/" + hero.maxHealthPoint
+                             + " | SP:  " + hero.strikePoint
+                             + " | DP:  "+ hero.defendPoint;
+
             for(int i = 0; i < monsterList.size(); i ++){
                 if(hero.x == monsterList.get(i).x && hero.y == monsterList.get(i).y){
-                    statusText = "HP: " + hero.currentHealthPoint + "  SP: " + hero.strikePoint + "  DP: "+ hero.defendPoint;
-                    statusText2 = "HP: " + monsterList.get(i).currentHealthPoint
-                                 + "  SP: " + monsterList.get(i).strikePoint
-                                 + "  DP: "+ monsterList.get(i).defendPoint;
+                    statusTextHero = "Hero (Level " + hero.getLevel() + ") HP: " + hero.currentHealthPoint + "/" + hero.maxHealthPoint
+                                     + " | SP: " + hero.strikePoint
+                                     + " | DP: "+ hero.defendPoint;
+
+                    statusTextMonster = "Monster (Level " + monsterList.get(i).getLevel() + ") HP: "
+                                       + monsterList.get(i).currentHealthPoint + "/" + monsterList.get(i).maxHealthPoint
+                                       + " | SP: " + monsterList.get(i).strikePoint
+                                       + " | DP: "+ monsterList.get(i).defendPoint;
                 }
             }
         }
-        g.drawString(statusText, 480, 30);
-        if(statusText2.length() > 0){
+
+        g.drawString(statusTextHero, 430, 15);
+
+        if(statusTextMonster.length() > 0){
             g.setColor(Color.white);
-            g.fillRect(480, 38, 240, 30);
+            g.fillRect(430, 20, 280, 20);
         }
-        g.setColor(Color.blue);
-        g.drawString(statusText2,480,60);
+        g.setColor(Color.black);
+        g.drawString(statusTextMonster,430,30);
     }
 }

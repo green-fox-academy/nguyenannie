@@ -3,7 +3,6 @@ import java.awt.event.KeyEvent;
 import java.util.Random;
 
 public class Monster extends Character {
-    protected int level = 1;
     protected final String monsterImage = "skeleton.gif";
     boolean cantMove;
     private boolean hasKey;
@@ -54,10 +53,6 @@ public class Monster extends Character {
 
     public void setLevel(int level) {
         this.level = level;
-    }
-
-    public int getLevel() {
-        return level;
     }
 
     public void initCharacter(int xc,int yc){

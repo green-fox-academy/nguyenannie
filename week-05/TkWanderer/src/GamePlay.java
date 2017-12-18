@@ -15,7 +15,7 @@ public class GamePlay extends JFrame {
         setSize(10 * Tile.tileSize,11 * Tile.tileSize + 23);
         setResizable(false);
 
-        setTitle("Game Plays");
+        setTitle("TKWanderer");
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }

@@ -14,7 +14,6 @@ public class Board extends JPanel implements ActionListener {
 
     public Board() {
         initBoard();
-        //add(new ScoreDisplay());
     }
 
     private void initBoard() {
@@ -33,9 +32,7 @@ public class Board extends JPanel implements ActionListener {
     public void paintComponent(Graphics g) {
 
         super.paintComponent(g);
-
         doDrawing(g);
-
         Toolkit.getDefaultToolkit().sync();
     }
 
@@ -46,7 +43,6 @@ public class Board extends JPanel implements ActionListener {
         }
         gc.getHero().drawCharacter(g);
         gc.drawInfo(g);
-        //System.out.println(gc.getHero().currentHealthPoint + " " + gc.getHero().strikePoint + " " + gc.getMonster(0).currentHealthPoint);
     }
 
     @Override

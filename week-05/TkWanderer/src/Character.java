@@ -9,6 +9,7 @@ public class Character {
     protected int currentHealthPoint;
     protected int defendPoint;
     protected int strikePoint;
+    protected int level = 1;
     protected Dice d6 = new Dice();
 
     protected Image image;
@@ -32,6 +33,9 @@ public class Character {
 
     }
 
+    public int getLevel() {
+        return level;
+    }
 
     public int getX() {
         return x;
@@ -79,17 +83,16 @@ public class Character {
     }
 
     public void attack(Character enemy) {
-        System.out.println("attacking " + enemy.x + ", " + enemy.y);
         if(enemy.isDead() || this.isDead()) {
             System.out.println("target dead");
         } else {
-            System.out.println("hp before " + enemy.currentHealthPoint + " hp hero " + this.currentHealthPoint);
             if (attackSucceeds(enemy)) {
                 enemy.currentHealthPoint -= this.calculateStrikeValue() - enemy.defendPoint;
+                this.leveling();
             } else {
                 this.currentHealthPoint -= enemy.calculateStrikeValue() - this.defendPoint;
+                enemy.leveling();
             }
-            System.out.println("hp after " + enemy.currentHealthPoint + " hp hero " + this.currentHealthPoint);
         }
     }
 
@@ -127,4 +130,7 @@ public class Character {
 0111000010
 0001011010
 0101010000
+System.out.println("attacking " + enemy.x + ", " + enemy.y);
+System.out.println("hp before " + enemy.currentHealthPoint + " hp hero " + this.currentHealthPoint);
+System.out.println("hp after " + enemy.currentHealthPoint + " hp hero " + this.currentHealthPoint);
  */
