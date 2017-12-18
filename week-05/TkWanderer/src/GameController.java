@@ -97,24 +97,20 @@ public class GameController {
 
     private void reset() {
         monsterNum = 3;
-        monsterList = new ArrayList<>();
-        keyMonster = new Monster(new Random().nextInt(10), new Random().nextInt(11),true);
-        boss = new BossMonster(new Random().nextInt(10), new Random().nextInt(11));
-        for(int i = 0; i < monsterNum - 2; i ++) {
-            monsterList.add(new Monster(new Random().nextInt(10), new Random().nextInt(11), false));
-        }
-        monsterList.add(keyMonster);
-        monsterList.add(boss);
-        map = new Map();
-        hero = new Hero();
+        createGame();
     }
 
     public void update() {
         hero.updateLevel();
         hero.levelUp();
         hero.initCharacter();
-        monsterNum = (int)(Math.random() * 3) + 3;
+        monsterNum = 4 + (int)(Math.random() * 2);
 
+        createGame();
+    }
+
+    public void createGame() {
+        monsterList = new ArrayList<>();
         for(int i = 0; i < monsterNum - 2; i ++) {
             monsterList.add(new Monster(new Random().nextInt(10), new Random().nextInt(11), false));
         }
@@ -122,6 +118,8 @@ public class GameController {
         boss = new BossMonster(new Random().nextInt(10), new Random().nextInt(11));
         monsterList.add(keyMonster);
         monsterList.add(boss);
+        map = new Map();
+        hero = new Hero();
     }
 
     public void keyReleased(KeyEvent e) {
