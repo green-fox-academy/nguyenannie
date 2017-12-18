@@ -68,9 +68,6 @@ public class Hero extends Character {
         } else {
             currentHealthPoint += maxHealthPoint/10;
         }
-
-
-
     }
 
 }
