@@ -6,8 +6,8 @@ public class Character {
 
     protected int maxHealthPoint;
     protected int currentHealthPoint;
-    protected double defendPoint;
-    protected double strikePoint;
+    protected int defendPoint;
+    protected int strikePoint;
     protected int level = 1;
     protected Dice d6 = new Dice();
 
