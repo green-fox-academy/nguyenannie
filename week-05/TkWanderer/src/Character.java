@@ -1,5 +1,4 @@
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 
 public class Character {
@@ -9,7 +8,7 @@ public class Character {
     protected int currentHealthPoint;
     protected int defendPoint;
     protected int strikePoint;
-    protected int level = 1;
+    protected int level;
     protected Dice d6 = new Dice();
 
     protected Image image;
@@ -88,18 +87,22 @@ public class Character {
         } else {
             if (attackSucceeds(enemy)) {
                 enemy.currentHealthPoint -= this.calculateStrikeValue() - enemy.defendPoint;
-                this.leveling();
+                this.getStronger();
             } else {
                 this.currentHealthPoint -= enemy.calculateStrikeValue() - this.defendPoint;
-                enemy.leveling();
+                enemy.getStronger();
             }
         }
     }
 
-    public void leveling(){
+    public void getStronger(){
         maxHealthPoint += d6.getRandomDice();
         defendPoint += d6.getRandomDice();
         strikePoint += d6.getRandomDice();
+    }
+
+    public void levelUp() {
+
     }
 
     public Rectangle getBounds(){

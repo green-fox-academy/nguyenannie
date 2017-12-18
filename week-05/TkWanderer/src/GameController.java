@@ -105,7 +105,7 @@ public class GameController {
         map = new Map();
         hero = new Hero();
     }
-    
+
     public void keyReleased(KeyEvent e) {
 
         int key = e.getKeyCode();

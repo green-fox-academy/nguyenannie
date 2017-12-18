@@ -1,4 +1,5 @@
 import java.awt.event.KeyEvent;
+import java.util.Random;
 
 public class Hero extends Character {
     private String faceDown = "hero-down.gif";
@@ -15,6 +16,7 @@ public class Hero extends Character {
         defendPoint = 2 * d6.getRandomDice();
         strikePoint = 5 + d6.getRandomDice();
         currentHealthPoint = maxHealthPoint;
+        level = 1;
         initCharacter();
     }
 
@@ -56,6 +58,20 @@ public class Hero extends Character {
 
         if(map.getTile(newX,newY).isSolid) {
         }
+    }
+
+    public void levelUp(int x){
+        int chance = new Random().nextInt(10);
+        if(chance == 0) {
+            currentHealthPoint = maxHealthPoint;
+        } else if(chance >= 1 && chance <= 4) {
+            currentHealthPoint += maxHealthPoint/3;
+        } else {
+            currentHealthPoint += maxHealthPoint/10;
+        }
+
+
+
     }
 
 }
