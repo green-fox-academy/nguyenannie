@@ -9,7 +9,6 @@ abstract class Character {
     protected int defendPoint;
     protected int strikePoint;
     protected int level = 1;
-    protected Dice d6 = new Dice();
 
     protected Image image;
 
@@ -67,8 +66,11 @@ abstract class Character {
         return healthPoint <= 0;
     }
 
+    int rollDice() {
+        return (int)(Math.random() * 5) + 1;
+    }
     private double calculateStrikeValue(){
-        return 2 * d6.rollDice() + this.strikePoint;
+        return 2 * rollDice() + this.strikePoint;
     }
 
     void attack(Character enemy) {
@@ -83,8 +85,8 @@ abstract class Character {
     }
 
     void getStronger(){
-        maxHealthPoint += d6.rollDice();
-        defendPoint += d6.rollDice();
-        strikePoint += d6.rollDice();
+        maxHealthPoint += rollDice();
+        defendPoint += rollDice();
+        strikePoint += rollDice();
     }
 }

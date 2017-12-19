@@ -38,7 +38,7 @@ class Board extends JPanel implements ActionListener {
             controller.getMonster(i).drawCharacter(g);
         }
         controller.getHero().drawCharacter(g);
-        controller.drawInfo(g);
+        controller.displayStat(g);
     }
 
     @Override

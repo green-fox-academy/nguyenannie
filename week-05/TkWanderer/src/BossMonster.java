@@ -5,9 +5,9 @@ class BossMonster extends Monster{
 
     BossMonster(int xc, int yc, int level) {
         this.level = level;
-        maxHealthPoint = 2 * level * d6.rollDice() + d6.rollDice();
-        defendPoint = (int)Math.ceil(level/2.0 * d6.rollDice() + d6.rollDice()/2.0);
-        strikePoint = level * d6.rollDice() + getLevel();
+        maxHealthPoint = 2 * level * rollDice() + rollDice();
+        defendPoint = (int)Math.ceil(level/2.0 * rollDice() + rollDice()/2.0);
+        strikePoint = level * rollDice() + getLevel();
         healthPoint = maxHealthPoint;
         initCharacter(xc,yc);
     }

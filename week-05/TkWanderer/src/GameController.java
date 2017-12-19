@@ -141,16 +141,6 @@ class GameController {
         }
     }
 
-    private void nextLevel() {
-        maze.generate();
-        hero.updateLevel();
-        hero.levelUp();
-        hero.initCharacter();
-        monsterAmount = (int)(Math.random() * 3) + 3;
-
-        initGame();
-    }
-
     void keyReleased(KeyEvent e) {
         int key = e.getKeyCode();
 
@@ -173,17 +163,17 @@ class GameController {
         }
     }
 
-    private void gameOver(Graphics g) {
-        g.setColor(Color.white);
-        g.fillRect(GAMEOVER_BOX_POSX, GAMEOVER_BOX_POSY, GAMEOVER_BOX_WIDTH, GAMEOVER_BOX_HEIGHT);
+    private void nextLevel() {
+        maze.generate();
+        hero.updateLevel();
+        hero.levelUp();
+        hero.initCharacter();
+        monsterAmount = (int)(Math.random() * 3) + 3;
 
-        g.setColor(Color.RED);
-        g.setFont(new Font("Courier", Font.PLAIN, GAMEOVER_SIZE));
-        g.drawString("You are Dead!!!", GAMEOVER_POSX, GAMEOVER_POSY);
-
+        initGame();
     }
 
-    void drawInfo(Graphics g) {
+    void displayStat(Graphics g) {
         g.setColor(Color.white);
         g.setFont(new Font("Courier", Font.PLAIN, STAT_SIZE));
 
@@ -226,5 +216,15 @@ class GameController {
 
         g.setColor(Color.black);
         g.drawString(statusTextMonster, STAT_POSX, STAT_MONSTER_POSY);
+    }
+
+    private void gameOver(Graphics g) {
+        g.setColor(Color.white);
+        g.fillRect(GAMEOVER_BOX_POSX, GAMEOVER_BOX_POSY, GAMEOVER_BOX_WIDTH, GAMEOVER_BOX_HEIGHT);
+
+        g.setColor(Color.RED);
+        g.setFont(new Font("Courier", Font.PLAIN, GAMEOVER_SIZE));
+        g.drawString("You are Dead!!!", GAMEOVER_POSX, GAMEOVER_POSY);
+
     }
 }
