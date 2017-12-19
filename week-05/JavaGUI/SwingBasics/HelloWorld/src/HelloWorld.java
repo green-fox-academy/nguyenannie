@@ -7,9 +7,10 @@ public class HelloWorld extends JFrame {
     }
 
     public HelloWorld() {
-        this.setSize(1000,500);
+        this.setSize(400,400);
         this.setTitle("Hello World");
         this.setVisible(true);
+        this.setResizable(false);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         Toolkit tk = Toolkit.getDefaultToolkit();
