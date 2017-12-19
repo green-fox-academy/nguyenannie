@@ -117,16 +117,12 @@ public class GameController {
             }
         }
 
-        if(keyMonster.isDead() && boss.isDead()) {
-            update();
-        }
-
-        if(monsterList.size() == 0) {
-            update();
+        if((keyMonster.isDead() && boss.isDead()) || monsterList.size() == 0) {
+            nextLevel();
         }
     }
 
-    public void update() {
+    public void nextLevel() {
         hero.updateLevel();
         hero.levelUp();
         hero.initCharacter();
