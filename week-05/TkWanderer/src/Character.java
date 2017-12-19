@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.util.Random;
 import javax.swing.ImageIcon;
 
 abstract class Character {
@@ -67,8 +68,9 @@ abstract class Character {
     }
 
     int rollDice() {
-        return (int)(Math.random() * 5) + 1;
+        return new Random().nextInt(6) + 1;
     }
+
     private double calculateStrikeValue(){
         return 2 * rollDice() + this.strikePoint;
     }

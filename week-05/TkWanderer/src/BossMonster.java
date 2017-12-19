@@ -12,10 +12,10 @@ class BossMonster extends Monster{
         initCharacter(xc,yc);
     }
 
-    void initCharacter(int posX, int posY){
+    void initCharacter(int xPos, int yPos){
         ImageIcon icon = new ImageIcon(bossImage);
         image = icon.getImage();
-        x = posX;
-        y = posY;
+        x = xPos;
+        y = yPos;
     }
 }

@@ -2,7 +2,6 @@ import java.awt.*;
 import java.util.Optional;
 
 class Maze {
-
     static final Tile WALL = new Tile("wall.gif",true);
     static final Tile FLOOR = new Tile("floor.gif",false);
 

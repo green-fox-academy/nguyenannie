@@ -9,14 +9,14 @@ class Monster extends Character {
     Monster(){
     }
 
-    Monster(int posX, int posY, int level, boolean hasKey) {
+    Monster(int xPos, int yPos, int level, boolean hasKey) {
         this.level = level;
         maxHealthPoint = 2 * level * rollDice();
         defendPoint = (int)Math.ceil(level * rollDice() / 2.0);
         strikePoint = level * rollDice();
         healthPoint = maxHealthPoint;
         this.hasKey = hasKey;
-        initCharacter(posX,posY);
+        initCharacter(xPos,yPos);
     }
 
     private void move(Maze maze){
@@ -45,10 +45,10 @@ class Monster extends Character {
         return r - 1;
     }
 
-    void initCharacter(int posX,int posY){
+    void initCharacter(int xPos,int yPos){
         ImageIcon icon = new ImageIcon(monsterImage);
         image = icon.getImage();
-        x = posX;
-        y = posY;
+        x = xPos;
+        y = yPos;
     }
 }
