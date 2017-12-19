@@ -186,19 +186,19 @@ class GameController {
         if(hero.isDead()) {
             gameOver(g);
         } else {
-            statusTextHero = "Hero(Level" + hero.getLevel() + ")HP:" + hero.healthPoint
+            statusTextHero = "Hero(Level_" + hero.getLevel() + ")HP:" + hero.healthPoint
                              + "/" + hero.maxHealthPoint
                              + "|SP:" + hero.strikePoint
                              + "|DP:"+ hero.defendPoint;
 
             for(Monster monster : monsterList){
                 if(hero.x == monster.x && hero.y == monster.y){
-                    statusTextHero = "Hero(Level" + hero.getLevel() + ") HP:" + hero.healthPoint
+                    statusTextHero = "Hero(Level_" + hero.getLevel() + ") HP:" + hero.healthPoint
                                      + "/" + hero.maxHealthPoint
                                      + "|SP:" + hero.strikePoint
                                      + "|DP:"+ hero.defendPoint;
 
-                    statusTextMonster = "Monster(Level" + monster.getLevel() + ")HP:"
+                    statusTextMonster = "Monster(Level_" + monster.getLevel() + ")HP:"
                                        + monster.healthPoint + "/" + monster.maxHealthPoint
                                        + "|SP:" + monster.strikePoint
                                        + "|DP:"+ monster.defendPoint;
