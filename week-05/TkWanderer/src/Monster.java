@@ -1,10 +1,9 @@
 import javax.swing.*;
-import java.awt.event.KeyEvent;
 import java.util.Random;
 
 public class Monster extends Character {
     protected final String monsterImage = "skeleton.gif";
-    boolean cantMove;
+    private boolean moveLastRound;
     private boolean hasKey;
 
     public Monster(){
@@ -37,13 +36,12 @@ public class Monster extends Character {
     }
 
     public void takeTurn(){
-        if(!cantMove) {
+        if(!moveLastRound) {
             move();
-            cantMove = true;
+            moveLastRound = true;
         } else {
-            cantMove = false;
+            moveLastRound = false;
         }
-
     }
 
     public int ranStep(){
