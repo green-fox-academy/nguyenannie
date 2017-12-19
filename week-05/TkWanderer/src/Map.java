@@ -9,13 +9,16 @@ public class Map {
     private Tile[][] map = new Tile[10][11];
     private Path mapPath;
     private List<String> mapData;
+    private final String path = "/Users/annie/greenfox/nguyenannie/week-05/TkWanderer/src/MapData";
 
     public Map(){
-        mapPath = Paths.get("/Users/annie/greenfox/nguyenannie/week-05/TkWanderer/src/MapData");
+        mapPath = Paths.get(path);
         mapData = new ArrayList<>();
         getMapData();
+
         Tile wall = new Tile("wall.gif",true);
         Tile floor = new Tile("floor.gif",false);
+
         for(int i = 0; i < 10; i ++){
             for(int j = 0; j < 11; j ++){
                 if(getMapData().get(i).charAt(j) == '0'){

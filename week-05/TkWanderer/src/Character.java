@@ -1,7 +1,7 @@
 import java.awt.*;
 import javax.swing.ImageIcon;
 
-public class Character {
+public abstract class Character {
     protected final int step = Tile.tileSize;
 
     protected int maxHealthPoint;
@@ -17,10 +17,7 @@ public class Character {
     protected int x;
     protected int y;
 
-    Map map = new Map();
-
     public Character() {
-
         initCharacter();
     }
 

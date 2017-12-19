@@ -25,7 +25,7 @@ public class Hero extends Character {
         y = 0;
     }
 
-    public void move(Directions dir){
+    public void move(Maze maze, Directions dir){
         int newX = x, newY = y;
 
         switch (dir) {
@@ -50,12 +50,12 @@ public class Hero extends Character {
                 break;
         }
 
-        if(!map.getTile(newX,newY).isSolid && !this.isDead()){
+        if(!maze.getTile(newX,newY).orElse(Maze.WALL).isSolid && !this.isDead()){
             x = newX;
             y = newY;
         }
 
-        if(map.getTile(newX,newY).isSolid) {
+        if(maze.getTile(newX,newY).orElse(Maze.WALL).isSolid) {
         }
     }
 

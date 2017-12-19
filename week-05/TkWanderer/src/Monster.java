@@ -23,21 +23,21 @@ public class Monster extends Character {
         return this.hasKey;
     }
 
-    public void move(){
+    public void move(Maze maze){
         int newX, newY;
 
         do {
             newX = x + ranStep();
             newY = y + ranStep();
-        } while(map.getTile(newX,newY).isSolid);
+        } while(maze.getTile(newX,newY).orElse(Maze.WALL).isSolid);
 
         x = newX;
         y = newY;
     }
 
-    public void takeTurn(){
+    public void takeTurn(Maze maze){
         if(!moveLastRound) {
-            move();
+            move(maze);
             moveLastRound = true;
         } else {
             moveLastRound = false;

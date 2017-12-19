@@ -10,7 +10,7 @@ public class GamePlay extends JFrame {
     private void initUI() {
         add(new Board());
 
-        setSize(10 * Tile.tileSize,11 * Tile.tileSize + 23);
+        setSize(Maze.MAZE_WIDTH * Tile.tileSize,Maze.MAZE_HEIGHT * Tile.tileSize + 23);
         setResizable(false);
 
         setTitle("TKWanderer");

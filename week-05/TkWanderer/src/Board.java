@@ -3,7 +3,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.image.BufferStrategy;
 import javax.swing.*;
 
 
@@ -39,7 +38,7 @@ public class Board extends JPanel implements ActionListener {
     }
 
     void doDrawing(Graphics g) {
-        gc.getMap().drawBackground(g);
+        gc.getMaze().drawBackground(g);
         for(int i = 0; i < gc.getMonsterList().size(); i ++){
             gc.getMonster(i).drawCharacter(g);
         }

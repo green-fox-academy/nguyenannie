@@ -12,11 +12,14 @@ public class GameController {
 
     private Random random = new Random();
 
-    Map map;
+    //Map map;
+    Maze maze;
 
     public GameController(){
         monsterNum = 3;
-        map = new Map();
+        //map = new Map();
+        maze = new Maze();
+        maze.generate();
         hero = new Hero();
         initGame();
     }
@@ -46,11 +49,10 @@ public class GameController {
         do {
             pos[0] = random.nextInt(10);
             pos[1] = random.nextInt(11);
-        } while(map.getTile(pos[0], pos[1]).isSolid);
+        } while(getMaze().getTile(pos[0], pos[1]).orElse(Maze.WALL).isSolid);
 
         return pos;
     }
-
 
     public Hero getHero() {
         return hero;
@@ -63,8 +65,8 @@ public class GameController {
         return monsterList;
     }
 
-    public Map getMap() {
-        return map;
+    public Maze getMaze() {
+        return maze;
     }
 
     public void keyPressed(KeyEvent e) {
@@ -75,25 +77,25 @@ public class GameController {
         switch (key) {
             case KeyEvent.VK_LEFT:
             case KeyEvent.VK_A:
-                hero.move(Hero.Directions.LEFT);
+                hero.move(maze, Hero.Directions.LEFT);
                 heroMoved = true;
                 break;
 
             case KeyEvent.VK_RIGHT:
             case KeyEvent.VK_D:
-                hero.move(Hero.Directions.RIGHT);
+                hero.move(maze, Hero.Directions.RIGHT);
                 heroMoved = true;
                 break;
 
             case KeyEvent.VK_UP:
             case KeyEvent.VK_W:
-                hero.move(Hero.Directions.UP);
+                hero.move(maze, Hero.Directions.UP);
                 heroMoved = true;
                 break;
 
             case KeyEvent.VK_DOWN:
             case KeyEvent.VK_S:
-                hero.move(Hero.Directions.DOWN);
+                hero.move(maze, Hero.Directions.DOWN);
                 heroMoved = true;
                 break;
 
@@ -113,7 +115,7 @@ public class GameController {
 
         if(heroMoved){
             for (int i = 0; i < monsterList.size(); i++) {
-                monsterList.get(i).takeTurn();
+                monsterList.get(i).takeTurn(maze);
             }
         }
 
@@ -123,6 +125,7 @@ public class GameController {
     }
 
     public void nextLevel() {
+        maze.generate();
         hero.updateLevel();
         hero.levelUp();
         hero.initCharacter();
