@@ -2,15 +2,13 @@ import java.awt.*;
 import javax.swing.*;
 
 public class GamePlay extends JFrame {
-    Board board = new Board();
-
     public GamePlay() {
 
         initUI();
     }
 
     private void initUI() {
-        add(board);
+        add(new Board());
 
         setSize(10 * Tile.tileSize,11 * Tile.tileSize + 23);
         setResizable(false);
@@ -21,7 +19,6 @@ public class GamePlay extends JFrame {
     }
 
     public static void main(String[] args) {
-        Board board = new Board();
 
         EventQueue.invokeLater(() -> {
 
