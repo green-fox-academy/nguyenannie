@@ -68,7 +68,7 @@ public abstract class Character {
     }
 
     private double calculateStrikeValue(){
-        return 2 * d6.getRandomDice() + this.strikePoint;
+        return 2 * d6.rollDice() + this.strikePoint;
     }
 
     void attack(Character enemy) {
@@ -83,8 +83,8 @@ public abstract class Character {
     }
 
     void getStronger(){
-        maxHealthPoint += d6.getRandomDice();
-        defendPoint += d6.getRandomDice();
-        strikePoint += d6.getRandomDice();
+        maxHealthPoint += d6.rollDice();
+        defendPoint += d6.rollDice();
+        strikePoint += d6.rollDice();
     }
 }
