@@ -8,7 +8,7 @@ class Maze {
     private Tile[][] data;
     private java.util.Random rand = new java.util.Random();
 
-    static final int MAZE_WIDTH = 13;
+    static final int MAZE_WIDTH = 15;
     static final int MAZE_HEIGHT = 9;
 
     public Maze() {
