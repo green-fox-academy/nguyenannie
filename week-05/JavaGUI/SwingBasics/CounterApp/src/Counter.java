@@ -1,16 +1,12 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class Counter extends JFrame {
-    int clicks = 0;
-    JLabel label;
-    JButton counterButton, resetButton;
+class Counter extends JFrame {
+    private int clicks = 0;
+    private JLabel label;
+    private JButton counterButton, resetButton;
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new Counter());
-    }
-
-    public Counter() {
+    Counter() {
         Toolkit tk = Toolkit.getDefaultToolkit();
         Dimension dim = tk.getScreenSize();
 
@@ -26,7 +22,7 @@ public class Counter extends JFrame {
         display();
     }
 
-    public void display() {
+    void display() {
         JPanel panel = new JPanel();
         add(panel);
         label = new JLabel();
@@ -50,5 +46,9 @@ public class Counter extends JFrame {
 
     private void updateCounter() {
         label.setText("Numbers of clicks: " + clicks);
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> new Counter());
     }
 }
