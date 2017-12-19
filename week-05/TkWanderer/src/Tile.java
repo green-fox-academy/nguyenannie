@@ -7,17 +7,17 @@ public class Tile {
     protected Image texture;
     protected boolean isSolid;
 
-    public Tile(String filePath, boolean isSolid) {
+    Tile(String filePath, boolean isSolid) {
         this.isSolid = isSolid;
         setTexture(filePath);
     }
 
-    public void setTexture(String fileName) {
+    void setTexture(String fileName) {
         ImageIcon icon = new ImageIcon(fileName);
         this.texture = icon.getImage();
     }
 
-    public Image getTexture() {
+    Image getTexture() {
         return texture;
     }
 }

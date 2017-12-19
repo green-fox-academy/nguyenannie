@@ -19,10 +19,6 @@ public class Monster extends Character {
         initCharacter(xc,yc);
     }
 
-    public boolean getHasKey(){
-        return this.hasKey;
-    }
-
     public void move(Maze maze){
         int newX, newY;
 
@@ -46,7 +42,6 @@ public class Monster extends Character {
 
     public int ranStep(){
         int r = new Random().nextInt(3);
-
         return r - 1;
     }
 
@@ -56,9 +51,4 @@ public class Monster extends Character {
         x = xc;
         y = yc;
     }
-
-    public void updateLevel(int x) {
-        this.level = x;
-    }
-
 }

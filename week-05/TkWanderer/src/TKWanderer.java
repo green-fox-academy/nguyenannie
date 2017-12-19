@@ -1,9 +1,8 @@
 import java.awt.*;
 import javax.swing.*;
 
-public class GamePlay extends JFrame {
-    public GamePlay() {
-
+public class TKWanderer extends JFrame {
+    public TKWanderer() {
         initUI();
     }
 
@@ -22,8 +21,8 @@ public class GamePlay extends JFrame {
 
         EventQueue.invokeLater(() -> {
 
-            GamePlay gamePlay = new GamePlay();
-            gamePlay.setVisible(true);
+            TKWanderer wanderer = new TKWanderer();
+            wanderer.setVisible(true);
         });
     }
 }

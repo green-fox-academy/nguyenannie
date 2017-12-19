@@ -18,7 +18,6 @@ public class Board extends JPanel implements ActionListener {
     }
 
     private void initBoard() {
-
         addKeyListener(new TAdapter());
         setFocusable(true);
         setBackground(Color.WHITE);
@@ -33,11 +32,11 @@ public class Board extends JPanel implements ActionListener {
     public void paintComponent(Graphics g) {
 
         super.paintComponent(g);
-        doDrawing(g);
+        draw(g);
         Toolkit.getDefaultToolkit().sync();
     }
 
-    void doDrawing(Graphics g) {
+    void draw(Graphics g) {
         gc.getMaze().drawBackground(g);
         for(int i = 0; i < gc.getMonsterList().size(); i ++){
             gc.getMonster(i).drawCharacter(g);
@@ -45,7 +44,6 @@ public class Board extends JPanel implements ActionListener {
         gc.getHero().drawCharacter(g);
         gc.drawInfo(g);
     }
-
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -65,6 +63,4 @@ public class Board extends JPanel implements ActionListener {
 
         }
     }
-
-
 }

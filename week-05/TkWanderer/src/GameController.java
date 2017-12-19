@@ -30,7 +30,7 @@ public class GameController {
 
     private Random random = new Random();
 
-    Maze maze;
+    private Maze maze;
 
     public GameController(){
         monsterNum = 3;

@@ -34,7 +34,7 @@ public class Map {
         try {
             mapData = Files.readAllLines(mapPath);
         } catch (Exception e){
-            System.out.println(e);
+            e.getStackTrace();
         }
         return mapData;
     }
