@@ -1,7 +1,7 @@
 import java.awt.*;
 import javax.swing.*;
 
-public class TKWanderer extends JFrame {
+class TKWanderer extends JFrame {
     private TKWanderer() {
         initUI();
     }

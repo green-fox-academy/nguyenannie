@@ -1,7 +1,7 @@
 import java.awt.*;
 import javax.swing.ImageIcon;
 
-public abstract class Character {
+abstract class Character {
     protected final int step = Tile.tileSize;
 
     protected int maxHealthPoint;
@@ -16,7 +16,7 @@ public abstract class Character {
     protected int x;
     protected int y;
 
-    public Character() {
+    Character() {
         initCharacter();
     }
 
@@ -24,7 +24,7 @@ public abstract class Character {
 
     }
 
-    public void move() {}
+    void move() {}
 
     int getLevel() {
         return level;

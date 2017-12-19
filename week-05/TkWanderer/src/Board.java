@@ -5,7 +5,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.*;
 
-public class Board extends JPanel implements ActionListener {
+class Board extends JPanel implements ActionListener {
     private GameController controller;
     private final int DELAY = 100;
 
