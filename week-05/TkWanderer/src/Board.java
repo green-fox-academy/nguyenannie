@@ -5,15 +5,11 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.*;
 
-
 public class Board extends JPanel implements ActionListener {
-
-    private Timer timer;
-    private GameController gc;
+    private GameController controller;
     private final int DELAY = 100;
 
-
-    public Board() {
+    Board() {
         initBoard();
     }
 
@@ -22,9 +18,9 @@ public class Board extends JPanel implements ActionListener {
         setFocusable(true);
         setBackground(Color.WHITE);
 
-        gc = new GameController();
+        controller = new GameController();
 
-        timer = new Timer(DELAY, this);
+        Timer timer = new Timer(DELAY, this);
         timer.start();
     }
 
@@ -36,13 +32,13 @@ public class Board extends JPanel implements ActionListener {
         Toolkit.getDefaultToolkit().sync();
     }
 
-    void draw(Graphics g) {
-        gc.getMaze().drawBackground(g);
-        for(int i = 0; i < gc.getMonsterList().size(); i ++){
-            gc.getMonster(i).drawCharacter(g);
+    private void draw(Graphics g) {
+        controller.getMaze().drawBackground(g);
+        for(int i = 0; i < controller.getMonsterList().size(); i++) {
+            controller.getMonster(i).drawCharacter(g);
         }
-        gc.getHero().drawCharacter(g);
-        gc.drawInfo(g);
+        controller.getHero().drawCharacter(g);
+        controller.drawInfo(g);
     }
 
     @Override
@@ -51,15 +47,14 @@ public class Board extends JPanel implements ActionListener {
     }
 
     private class TAdapter extends KeyAdapter {
-
         @Override
         public void keyReleased(KeyEvent e) {
-            gc.keyReleased(e);
+            controller.keyReleased(e);
         }
 
         @Override
         public void keyPressed(KeyEvent e) {
-            gc.keyPressed(e);
+            controller.keyPressed(e);
 
         }
     }

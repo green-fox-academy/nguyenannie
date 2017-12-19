@@ -1,37 +1,37 @@
 import javax.swing.*;
 import java.util.Random;
 
-public class Monster extends Character {
-    protected final String monsterImage = "skeleton.gif";
+class Monster extends Character {
+    private final String monsterImage = "skeleton.gif";
     private boolean moveLastRound;
     private boolean hasKey;
 
-    public Monster(){
+    Monster(){
     }
 
-    Monster(int xc, int yc, int level, boolean hasKey) {
+    Monster(int posX, int posY, int level, boolean hasKey) {
         this.level = level;
         maxHealthPoint = 2 * level * d6.getRandomDice();
         defendPoint = (int)Math.ceil(level * d6.getRandomDice() / 2.0);
         strikePoint = level * d6.getRandomDice();
-        currentHealthPoint = maxHealthPoint;
+        healthPoint = maxHealthPoint;
         this.hasKey = hasKey;
-        initCharacter(xc,yc);
+        initCharacter(posX,posY);
     }
 
-    public void move(Maze maze){
+    private void move(Maze maze){
         int newX, newY;
 
         do {
-            newX = x + ranStep();
-            newY = y + ranStep();
+            newX = x + stepRandom();
+            newY = y + stepRandom();
         } while(maze.getTile(newX,newY).orElse(Maze.WALL).isSolid);
 
         x = newX;
         y = newY;
     }
 
-    public void takeTurn(Maze maze){
+    void takeTurn(Maze maze){
         if(!moveLastRound) {
             move(maze);
             moveLastRound = true;
@@ -40,15 +40,15 @@ public class Monster extends Character {
         }
     }
 
-    public int ranStep(){
+    private int stepRandom(){
         int r = new Random().nextInt(3);
         return r - 1;
     }
 
-    public void initCharacter(int xc,int yc){
+    void initCharacter(int posX,int posY){
         ImageIcon icon = new ImageIcon(monsterImage);
         image = icon.getImage();
-        x = xc;
-        y = yc;
+        x = posX;
+        y = posY;
     }
 }

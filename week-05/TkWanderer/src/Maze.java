@@ -2,6 +2,7 @@ import java.awt.*;
 import java.util.Optional;
 
 class Maze {
+
     static final Tile WALL = new Tile("wall.gif",true);
     static final Tile FLOOR = new Tile("floor.gif",false);
 
@@ -11,7 +12,7 @@ class Maze {
     static final int MAZE_WIDTH = 15;
     static final int MAZE_HEIGHT = 9;
 
-    public Maze() {
+    Maze() {
         data = new Tile[MAZE_WIDTH][MAZE_HEIGHT];
     }
 
@@ -39,7 +40,7 @@ class Maze {
         }
     }
 
-    public void generate() {
+    void generate() {
         for(int x = 0; x < MAZE_WIDTH; x++) {
             data[x] = new Tile[MAZE_HEIGHT];
             for(int y = 0; y < MAZE_HEIGHT; y++) {
@@ -51,7 +52,7 @@ class Maze {
         carve(0, 0);
     }
 
-    public Optional<Tile> getTile(int x, int y){
+    Optional<Tile> getTile(int x, int y) {
         if(x < 0 || x > MAZE_WIDTH - 1 || y < 0 || y > MAZE_HEIGHT - 1) {
             return Optional.empty();
         } else {
@@ -59,14 +60,13 @@ class Maze {
         }
     }
 
-    public void drawBackground(Graphics g){
-        for(int i = 0; i < MAZE_WIDTH; i ++){
-            for (int j = 0; j < MAZE_HEIGHT; j ++){
+    void drawBackground(Graphics g) {
+        for(int i = 0; i < MAZE_WIDTH; i ++) {
+            for (int j = 0; j < MAZE_HEIGHT; j ++) {
                 Graphics2D g2d = (Graphics2D) g;
-                g2d.drawImage(getTile(i,j).orElse(FLOOR).getTexture(),i * Tile.tileSize ,j * Tile.tileSize , null);
+                g2d.drawImage(getTile(i,j).orElse(FLOOR).getTileType(),i * Tile.tileSize ,j * Tile.tileSize , null);
             }
         }
     }
-
 }
 

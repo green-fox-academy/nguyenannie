@@ -1,23 +1,23 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class Tile {
+class Tile {
     static final int tileSize = 72;
 
-    protected Image texture;
-    protected boolean isSolid;
+    private Image tileType;
+    boolean isSolid;
 
     Tile(String filePath, boolean isSolid) {
         this.isSolid = isSolid;
-        setTexture(filePath);
+        setTileType(filePath);
     }
 
-    void setTexture(String fileName) {
+    private void setTileType(String fileName) {
         ImageIcon icon = new ImageIcon(fileName);
-        this.texture = icon.getImage();
+        this.tileType = icon.getImage();
     }
 
-    Image getTexture() {
-        return texture;
+    Image getTileType() {
+        return tileType;
     }
 }

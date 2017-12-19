@@ -5,7 +5,7 @@ public abstract class Character {
     protected final int step = Tile.tileSize;
 
     protected int maxHealthPoint;
-    protected int currentHealthPoint;
+    protected int healthPoint;
     protected int defendPoint;
     protected int strikePoint;
     protected int level = 1;
@@ -34,11 +34,11 @@ public abstract class Character {
         level ++;
     }
 
-    int getX() {
+    private int getX() {
         return x;
     }
 
-    int getY() {
+    private int getY() {
         return y;
     }
 
@@ -47,7 +47,7 @@ public abstract class Character {
         this.image = icon.getImage();
     }
 
-    Image getImage() {
+    private Image getImage() {
         return image;
     }
 
@@ -56,18 +56,18 @@ public abstract class Character {
         g2d.drawImage(getImage(),getX() * step,getY() * step,null);
     }
 
-    void setCurrentHealthPoint(int healthPoints) {
-        this.currentHealthPoint = healthPoints;
-        if(this.currentHealthPoint > this.maxHealthPoint) {
-            this.currentHealthPoint = this.maxHealthPoint;
+    void setHealthPoint(int healthPoint) {
+        this.healthPoint = healthPoint;
+        if(this.healthPoint > this.maxHealthPoint) {
+            this.healthPoint = this.maxHealthPoint;
         }
     }
 
     boolean isDead() {
-        return currentHealthPoint <= 0;
+        return healthPoint <= 0;
     }
 
-    double calculateStrikeValue(){
+    private double calculateStrikeValue(){
         return 2 * d6.getRandomDice() + this.strikePoint;
     }
 
@@ -77,7 +77,7 @@ public abstract class Character {
         } else {
             double strikeValue = this.calculateStrikeValue();
             if (strikeValue > enemy.defendPoint) {
-                enemy.currentHealthPoint -= strikeValue - enemy.defendPoint;
+                enemy.healthPoint -= strikeValue - enemy.defendPoint;
             }
         }
     }

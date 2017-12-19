@@ -24,7 +24,7 @@ public class GameController {
 
     private Hero hero;
     private List<Monster> monsterList;
-    private int monsterNum;
+    private int monsterAmount;
     private Monster keyMonster;
     private BossMonster boss;
 
@@ -32,19 +32,19 @@ public class GameController {
 
     private Maze maze;
 
-    public GameController(){
-        monsterNum = 3;
+    GameController() {
+        monsterAmount = 3;
         maze = new Maze();
         maze.generate();
         hero = new Hero();
         initGame();
     }
 
-    public void initGame() {
+    private void initGame() {
         monsterList = new ArrayList<>();
         int[] monsPos;
 
-        for(int i = 0; i < monsterNum - 2; i ++) {
+        for(int i = 0; i < monsterAmount - 2; i ++) {
             monsPos = findEmptyTile();
             monsterList.add(new Monster(monsPos[0], monsPos[1],hero.level, false));
         }
@@ -70,22 +70,23 @@ public class GameController {
         return pos;
     }
 
-    public Hero getHero() {
+    Hero getHero() {
         return hero;
     }
-    public Monster getMonster(int i) {
+
+    Monster getMonster(int i) {
         return monsterList.get(i);
     }
 
-    public List<Monster> getMonsterList() {
+    List<Monster> getMonsterList() {
         return monsterList;
     }
 
-    public Maze getMaze() {
+    Maze getMaze() {
         return maze;
     }
 
-    public void keyPressed(KeyEvent e) {
+    void keyPressed(KeyEvent e) {
 
         int key = e.getKeyCode();
         boolean heroMoved = false;
@@ -129,9 +130,9 @@ public class GameController {
                 }
         }
 
-        if(heroMoved){
-            for (int i = 0; i < monsterList.size(); i++) {
-                monsterList.get(i).takeTurn(maze);
+        if(heroMoved) {
+            for (Monster monster : monsterList) {
+                monster.takeTurn(maze);
             }
         }
 
@@ -140,18 +141,17 @@ public class GameController {
         }
     }
 
-    public void nextLevel() {
+    private void nextLevel() {
         maze.generate();
         hero.updateLevel();
         hero.levelUp();
         hero.initCharacter();
-        monsterNum = (int)(Math.random() * 3) + 3;
+        monsterAmount = (int)(Math.random() * 3) + 3;
 
         initGame();
     }
 
-    public void keyReleased(KeyEvent e) {
-
+    void keyReleased(KeyEvent e) {
         int key = e.getKeyCode();
 
         switch (key) {
@@ -173,7 +173,7 @@ public class GameController {
         }
     }
 
-    public void gameOver(Graphics g) {
+    private void gameOver(Graphics g) {
         g.setColor(Color.white);
         g.fillRect(GAMEOVER_CONTAINER_POSX,GAMEOVER_CONTAINER_POSY,GAMEOVER__CONTAINER_WIDTH,GAMEOVER_CONTAINER_HEIGHT);
 
@@ -183,7 +183,7 @@ public class GameController {
 
     }
 
-    public void drawInfo(Graphics g) {
+    void drawInfo(Graphics g) {
         g.setColor(Color.white);
         g.setFont(new Font("Courier", Font.PLAIN, STATUS_SIZE));
 
@@ -196,33 +196,34 @@ public class GameController {
         if(hero.isDead()) {
             gameOver(g);
         } else {
-            statusTextHero = "Hero(Level" + hero.getLevel() + ")HP:" + hero.currentHealthPoint
+            statusTextHero = "Hero(Level" + hero.getLevel() + ")HP:" + hero.healthPoint
                              + "/" + hero.maxHealthPoint
                              + "|SP:" + hero.strikePoint
                              + "|DP:"+ hero.defendPoint;
 
-            for(int i = 0; i < monsterList.size(); i ++){
-                if(hero.x == monsterList.get(i).x && hero.y == monsterList.get(i).y){
-                    statusTextHero = "Hero(Level" + hero.getLevel() + ") HP:" + hero.currentHealthPoint
+            for(Monster monster : monsterList){
+                if(hero.x == monster.x && hero.y == monster.y){
+                    statusTextHero = "Hero(Level" + hero.getLevel() + ") HP:" + hero.healthPoint
                                      + "/" + hero.maxHealthPoint
                                      + "|SP:" + hero.strikePoint
                                      + "|DP:"+ hero.defendPoint;
 
-                    statusTextMonster = "Monster(Level" + monsterList.get(i).getLevel() + ")HP:"
-                                       + monsterList.get(i).currentHealthPoint + "/" + monsterList.get(i).maxHealthPoint
-                                       + "|SP:" + monsterList.get(i).strikePoint
-                                       + "|DP:"+ monsterList.get(i).defendPoint;
+                    statusTextMonster = "Monster(Level" + monster.getLevel() + ")HP:"
+                                       + monster.healthPoint + "/" + monster.maxHealthPoint
+                                       + "|SP:" + monster.strikePoint
+                                       + "|DP:"+ monster.defendPoint;
                 }
             }
         }
 
         g.drawString(statusTextHero, STATUS_POSX, STATUS_HERO_POSY);
 
-        if(statusTextMonster.length() > 0){
+        if(statusTextMonster.length() > 0) {
             g.setColor(Color.white);
             g.fillRect(STATUS_CONTAINER_POSX, STATUS_CONTAINER_POSY + STATUS_CONTAINER_HEIGHT,
                     STATUS_CONTAINER_WIDTH, STATUS_CONTAINER_HEIGHT);
         }
+
         g.setColor(Color.black);
         g.drawString(statusTextMonster, STATUS_POSX, STATUS_MONSTER_POSY);
     }

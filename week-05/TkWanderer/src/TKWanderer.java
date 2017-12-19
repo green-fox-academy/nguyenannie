@@ -2,7 +2,7 @@ import java.awt.*;
 import javax.swing.*;
 
 public class TKWanderer extends JFrame {
-    public TKWanderer() {
+    private TKWanderer() {
         initUI();
     }
 
@@ -14,7 +14,7 @@ public class TKWanderer extends JFrame {
 
         setTitle("TKWanderer");
         setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 
     public static void main(String[] args) {

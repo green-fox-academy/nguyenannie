@@ -51,7 +51,7 @@ public class Map {
         for(int i = 0; i < 10; i ++){
             for (int j = 0; j < 11; j ++){
                 Graphics2D g2d = (Graphics2D) g;
-                g2d.drawImage(getTile(i,j).getTexture(),i * Tile.tileSize ,j * Tile.tileSize , null);
+                g2d.drawImage(getTile(i,j).getTileType(),i * Tile.tileSize ,j * Tile.tileSize , null);
             }
         }
     }

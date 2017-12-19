@@ -1,10 +1,10 @@
 import java.util.Random;
 
-public class Hero extends Character {
-    private String faceDown = "hero-down.gif";
-    private String faceRight = "hero-right.gif";
-    private String faceLeft = "hero-left.gif";
-    private String faceUp = "hero-up.gif";
+class Hero extends Character {
+    private static final String faceDown = "hero-down.gif";
+    private static final String faceRight = "hero-right.gif";
+    private static final String faceLeft = "hero-left.gif";
+    private static final String faceUp = "hero-up.gif";
 
     enum Directions {
         UP, DOWN, LEFT, RIGHT;
@@ -14,17 +14,17 @@ public class Hero extends Character {
         maxHealthPoint = 20 + 3 * d6.getRandomDice();
         defendPoint = 2 * d6.getRandomDice();
         strikePoint = 5 + d6.getRandomDice();
-        currentHealthPoint = maxHealthPoint;
+        healthPoint = maxHealthPoint;
         initCharacter();
     }
 
-    public void initCharacter(){
+    void initCharacter(){
         setImage(faceDown);
         x = 0;
         y = 0;
     }
 
-    public void move(Maze maze, Directions dir){
+    void move(Maze maze, Directions dir){
         int newX = x, newY = y;
 
         switch (dir) {
@@ -58,14 +58,14 @@ public class Hero extends Character {
         }
     }
 
-    public void levelUp(){
+    void levelUp(){
         int chance = new Random().nextInt(10);
         if(chance == 0) {
-            currentHealthPoint = maxHealthPoint;
+            healthPoint = maxHealthPoint;
         } else if(chance <= 4) {
-            setCurrentHealthPoint(currentHealthPoint + currentHealthPoint / 3);
+            setHealthPoint(healthPoint + healthPoint / 3);
         } else {
-            setCurrentHealthPoint(currentHealthPoint + currentHealthPoint / 10);
+            setHealthPoint(healthPoint + healthPoint / 10);
         }
     }
 

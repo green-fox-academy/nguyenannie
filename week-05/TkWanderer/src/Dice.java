@@ -1,11 +1,8 @@
-public class Dice {
+class Dice {
     private int randomDice;
 
-    Dice(){
+    int getRandomDice() {
         randomDice = (int)(Math.random() * 5) + 1;
-    }
-
-    public int getRandomDice() {
         return randomDice;
     }
 }
