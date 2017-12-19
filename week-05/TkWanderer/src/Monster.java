@@ -25,7 +25,7 @@ public class Monster extends Character {
     }
 
     public void move(){
-        int newX = 0, newY = 0;
+        int newX, newY;
 
         do {
             newX = x + ranStep();
