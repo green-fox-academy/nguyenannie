@@ -175,7 +175,7 @@ public class GameController {
         String statusTextHero = "";
         String statusTextMonster = "";
 
-        g.fillRect(410, 0, 310, 20);
+        g.fillRect(400, 0, 320, 20);
         g.setColor(Color.black);
 
         if(hero.isDead()) {
@@ -199,13 +199,13 @@ public class GameController {
             }
         }
 
-        g.drawString(statusTextHero, 415, 15);
+        g.drawString(statusTextHero, 405, 15);
 
         if(statusTextMonster.length() > 0){
             g.setColor(Color.white);
-            g.fillRect(410, 20, 310, 20);
+            g.fillRect(400, 20, 320, 20);
         }
         g.setColor(Color.black);
-        g.drawString(statusTextMonster,415,35);
+        g.drawString(statusTextMonster,405,35);
     }
 }
