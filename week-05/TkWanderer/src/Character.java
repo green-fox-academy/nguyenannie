@@ -32,6 +32,10 @@ public class Character {
 
     }
 
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
     public int getLevel() {
         return level;
     }
@@ -68,6 +72,13 @@ public class Character {
         g2d.drawImage(getImage(), getX()*step, getY()*step, null);
     }
 
+    public void setCurrentHealthPoint(int healthPoints) {
+        this.currentHealthPoint = healthPoints;
+        if(this.currentHealthPoint > this.maxHealthPoint) {
+            this.currentHealthPoint = this.maxHealthPoint;
+        }
+    }
+
     public boolean isDead() {
         return currentHealthPoint <= 0;
     }
@@ -76,25 +87,13 @@ public class Character {
         return 2 * d6.getRandomDice() + this.strikePoint;
     }
 
-    public boolean attackSucceeds(Character enemy) {
-        if(this.calculateStrikeValue() > enemy.defendPoint) {
-            return true;
-        } else {
-            this.currentHealthPoint -= enemy.calculateStrikeValue() - this.defendPoint;
-            return false;
-        }
-    }
-
     public void attack(Character enemy) {
         if(enemy.isDead() || this.isDead()) {
-            System.out.println("target dead");
+            System.out.println("attack impossible");
         } else {
-            if (attackSucceeds(enemy)) {
-                enemy.currentHealthPoint -= this.calculateStrikeValue() - enemy.defendPoint;
-                this.getStronger();
-            } else {
-                this.currentHealthPoint -= enemy.calculateStrikeValue() - this.defendPoint;
-                enemy.getStronger();
+            double strikeValue = this.calculateStrikeValue();
+            if (strikeValue > enemy.defendPoint) {
+                enemy.currentHealthPoint -= strikeValue - enemy.defendPoint;
             }
         }
     }

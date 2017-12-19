@@ -10,10 +10,11 @@ public class Monster extends Character {
     public Monster(){
     }
 
-    Monster(int xc, int yc, boolean hasKey) {
-        maxHealthPoint = 2 * getLevel() * d6.getRandomDice();
-        defendPoint = (int)(getLevel() * d6.getRandomDice() / 2.0);
-        strikePoint = getLevel() * d6.getRandomDice();
+    Monster(int xc, int yc, int level, boolean hasKey) {
+        this.level = level;
+        maxHealthPoint = 2 * level * d6.getRandomDice();
+        defendPoint = (int)Math.ceil(level * d6.getRandomDice() / 2.0);
+        strikePoint = level * d6.getRandomDice();
         currentHealthPoint = maxHealthPoint;
         this.hasKey = hasKey;
         initCharacter(xc,yc);

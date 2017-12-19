@@ -7,31 +7,48 @@ public class GameController {
     private Hero hero;
     private List<Monster> monsterList;
     private int monsterNum;
-    private int savedMonsterLevel = 0;
     Monster keyMonster;
     BossMonster boss;
+
+    private Random random = new Random();
 
     Map map;
 
     public GameController(){
         monsterNum = 3;
-        initGame();
         map = new Map();
-        hero= new Hero();
+        hero = new Hero();
+        initGame();
     }
 
     public void initGame() {
         monsterList = new ArrayList<>();
+        int[] monsPos;
 
         for(int i = 0; i < monsterNum - 2; i ++) {
-            monsterList.add(new Monster(new Random().nextInt(10), new Random().nextInt(11), false));
+            monsPos = findEmptyTile();
+            monsterList.add(new Monster(monsPos[0], monsPos[1],hero.level, false));
         }
 
-        keyMonster = new Monster(new Random().nextInt(10), new Random().nextInt(11),true);
-        boss = new BossMonster(new Random().nextInt(10), new Random().nextInt(11));
+        monsPos = findEmptyTile();
+        keyMonster = new Monster(monsPos[0], monsPos[1],hero.level,true);
+
+        monsPos = findEmptyTile();
+        boss = new BossMonster(monsPos[0], monsPos[1],hero.level);
 
         monsterList.add(keyMonster);
         monsterList.add(boss);
+    }
+
+    private int[] findEmptyTile() {
+        int[] pos = new int[2];
+
+        do {
+            pos[0] = random.nextInt(10);
+            pos[1] = random.nextInt(11);
+        } while(map.getTile(pos[0], pos[1]).isSolid);
+
+        return pos;
     }
 
 
@@ -85,6 +102,7 @@ public class GameController {
                     if (monsterList.get(i).x == hero.x && monsterList.get(i).y == hero.y) {
                         hero.attack(monsterList.get(i));
                         if(monsterList.get(i).isDead()){
+                            hero.getStronger();
                             monsterList.remove(i);
                         } else {
                             monsterList.get(i).attack(hero);
@@ -100,17 +118,11 @@ public class GameController {
         }
 
         if(keyMonster.isDead() && boss.isDead()) {
-            savedMonsterLevel++;
             update();
         }
 
         if(monsterList.size() == 0) {
-            savedMonsterLevel++;
             update();
-        }
-
-        if(hero.isDead()) {
-           //
         }
     }
 
@@ -121,11 +133,6 @@ public class GameController {
         monsterNum = (int)(Math.random() * 3) + 3;
 
         initGame();
-
-        for(int i = 0; i < monsterList.size(); i ++) {
-            monsterList.get(i).level = savedMonsterLevel;
-            monsterList.get(i).updateLevel();
-        }
     }
 
     public void keyReleased(KeyEvent e) {
@@ -153,21 +160,26 @@ public class GameController {
 
     public void gameOver(Graphics g) {
         g.setColor(Color.white);
-        g.fillRect(200,200,300,300);
+        g.fillRect(140,320,460,70);
+
+        g.setColor(Color.RED);
+        g.setFont(new Font("Courier", Font.PLAIN, 50));
+        g.drawString("You are Dead!!!", 150, 370);
+
     }
 
     public void drawInfo(Graphics g) {
         g.setColor(Color.white);
         g.setFont(new Font("Courier", Font.PLAIN, 15));
 
-        String statusTextHero;
+        String statusTextHero = "";
         String statusTextMonster = "";
 
         g.fillRect(410, 0, 310, 20);
         g.setColor(Color.black);
 
         if(hero.isDead()) {
-            statusTextHero = "DEAD";
+            gameOver(g);
         } else {
             statusTextHero = "Hero(Level" + hero.getLevel() + ")HP:" + hero.currentHealthPoint + "/" + hero.maxHealthPoint
                              + "|SP:" + hero.strikePoint

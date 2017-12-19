@@ -50,7 +50,7 @@ public class Hero extends Character {
                 break;
         }
 
-        if(!map.getTile(newX,newY).isSolid){
+        if(!map.getTile(newX,newY).isSolid && !this.isDead()){
             x = newX;
             y = newY;
         }
@@ -63,10 +63,10 @@ public class Hero extends Character {
         int chance = new Random().nextInt(10);
         if(chance == 0) {
             currentHealthPoint = maxHealthPoint;
-        } else if(chance >= 1 && chance <= 4) {
-            currentHealthPoint += maxHealthPoint/3;
+        } else if(chance <= 4) {
+            setCurrentHealthPoint(currentHealthPoint + currentHealthPoint / 3);
         } else {
-            currentHealthPoint += maxHealthPoint/10;
+            setCurrentHealthPoint(currentHealthPoint + currentHealthPoint / 10);
         }
     }
 

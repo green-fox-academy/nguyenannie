@@ -45,6 +45,7 @@ public class Board extends JPanel implements ActionListener {
         }
         gc.getHero().drawCharacter(g);
         gc.drawInfo(g);
+        //System.out.println(gc.boss.defendPoint);
     }
 
 
