@@ -4,8 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class WrapperApp extends JFrame {
-    JMenuBar menuBar;
-    JMenu menu;
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new WrapperApp());
@@ -24,24 +22,47 @@ public class WrapperApp extends JFrame {
         int yPos = (dim.height - getHeight()) / 2;
         setLocation(xPos, yPos);
 
-        menu = new JMenu("I am menu");
-        add(menu);
+        createImage();
 
-        menuBar = new JMenuBar();
+        JMenu menu1 = new JMenu("Welcome");
+        JMenu menu2 = new JMenu("More details");
+
+        JMenuBar menuBar = new JMenuBar();
         setJMenuBar(menuBar);
-        menuBar.add(menu);
+        menuBar.add(menu1);
+        menuBar.add(menu2);
 
         JMenuItem menuItem1 = new JMenuItem("I am an Item");
-        menu.add(menuItem1);
+        menu1.add(menuItem1);
 
-        JMenuItem menuItem2 = new JMenuItem("I am also an Item");
-        menu.add(menuItem2);
-        menuItem2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0);
-            }
-        });
+        JMenuItem menuItem2 = new JMenuItem("Here to exit");
+        menu1.add(menuItem2);
+        menuItem2.addActionListener(e -> System.exit(0));
+
+        JMenuItem menuItem3 = new JMenuItem("Detail 1");
+        menu2.add(menuItem3);
+    }
+
+    private void createImage() {
+        add(new ImagePanel(){@Override
+        public void paintComponent(Graphics graphics) {
+            super.paintComponent(graphics);
+            requestFocus();
+            graphics.drawImage(image, 0, 25, this);
+
+            graphics.setColor(Color.RED);
+            graphics.setFont(new Font("Courier", Font.BOLD, 35));
+            graphics.drawString("MERRY CHRISTMAS", 160, 330);
+
+            graphics.setColor(Color.WHITE);
+            graphics.fillOval(230,130,30,30);
+
+            graphics.setColor(Color.WHITE);
+            graphics.fillOval(320,130,30,30);
+
+            graphics.setColor(Color.RED.WHITE);
+            graphics.fillRect(250,180,85,15);
+        }});
     }
 
 }
