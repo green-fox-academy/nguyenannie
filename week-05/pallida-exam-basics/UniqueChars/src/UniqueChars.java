@@ -9,8 +9,8 @@ public class UniqueChars {
         for(int i = 0; i < str.length(); i++) {
             char x = str.charAt(i);
             boolean b = true;
-            for(int j = i + 1; j < str.length(); j++) {
-                if(x == str.charAt(j)) {
+            for(int j = 0; j < str.length(); j++) {
+                if(x == str.charAt(j) && i != j) {
                     b = false;
                     break;
                 }
