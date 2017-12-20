@@ -2,27 +2,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UniqueChars {
-    public List<String> findUniques(String str) {
-        List<String> result = new ArrayList<>();
-        for(int i = 0; i < str.length(); i++) {
-            result.add(String.valueOf(str.charAt(i)));
-        }
 
-        for(int i = 0; i < result.size(); i++) {
-            String x = result.get(i);
-            for(int j = i + 1; j < result.size(); j++) {
-                if(x.equals(result.get(j))) {
-                    result.remove(j);
+    public static List<String> findUniques(String str) {
+        List<String> result = new ArrayList<>();
+
+        for(int i = 0; i < str.length(); i++) {
+            char x = str.charAt(i);
+            boolean b = true;
+            for(int j = i + 1; j < str.length(); j++) {
+                if(x == str.charAt(j)) {
+                    b = false;
+                    break;
                 }
             }
-        }
-
-        for(int i = 0; i < result.size(); i++) {
-            if(result.get(i).equals(" ")) {
-                result.remove(" ");
+            if(b) {
+                result.add(String.valueOf(x));
             }
         }
-
         return result;
     }
 }
