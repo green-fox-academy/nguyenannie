@@ -6,8 +6,10 @@ import java.awt.event.ActionListener;
 
 class UIControls extends JFrame{
     private JTextField textField;
-    private JLabel showLabel, memoryLabel;
+    private JTextArea showLabel, memoryLabel;
     private String memmory;
+    private JButton clearMemory;
+    private JPanel panel;
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new UIControls());
@@ -17,7 +19,7 @@ class UIControls extends JFrame{
         Toolkit tk = Toolkit.getDefaultToolkit();
         Dimension dim = tk.getScreenSize();
 
-        setSize(400,200);
+        setSize(500,600);
         int xPos = (dim.width - this.getWidth()) / 2;
         int yPos = (dim.height - this.getHeight()) / 2;
         setLocation(xPos, yPos);
@@ -30,7 +32,7 @@ class UIControls extends JFrame{
     }
 
     void display() {
-        JPanel panel = new JPanel();
+        panel = new JPanel();
         add(panel);
         panel.setBorder(new EmptyBorder(2, 3, 2, 3));
         panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
@@ -46,21 +48,23 @@ class UIControls extends JFrame{
             textField.setText("");
 
         });
+
         textField.setAlignmentX(Component.CENTER_ALIGNMENT);
         panel.add(textField);
         panel.add(Box.createRigidArea(new Dimension(0, 20)));
 
-        showLabel = new JLabel();
-        showLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        panel.add(showLabel);
-        panel.add(Box.createRigidArea(new Dimension(0, 15)));
+        showLabel = new JTextArea();
+        labelDisplay(showLabel);
 
-        memoryLabel = new JLabel();
-        memoryLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        panel.add(memoryLabel);
-        panel.add(Box.createRigidArea(new Dimension(0, 15)));
+        memoryLabel = new JTextArea();
+        labelDisplay(memoryLabel);
 
     }
 
-
+    void labelDisplay(JTextArea textArea) {
+        textArea.setAlignmentX(Component.CENTER_ALIGNMENT);
+        textArea.setLineWrap(true);
+        panel.add(textArea);
+        panel.add(Box.createRigidArea(new Dimension(0, 15)));
+    }
 }
