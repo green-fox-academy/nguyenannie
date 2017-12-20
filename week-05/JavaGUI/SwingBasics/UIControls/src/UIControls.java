@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -31,12 +32,8 @@ class UIControls extends JFrame{
     void display() {
         JPanel panel = new JPanel();
         add(panel);
-
-        showLabel = new JLabel();
-        panel.add(showLabel);
-
-        memoryLabel = new JLabel();
-        panel.add(memoryLabel);
+        panel.setBorder(new EmptyBorder(2, 3, 2, 3));
+        panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
 
         textField = new JTextField(15);
         memmory = "";
@@ -44,13 +41,25 @@ class UIControls extends JFrame{
         textField.addActionListener(e -> {
             String input = textField.getText();
             showLabel.setText(input);
-            memmory += input;
-            System.out.println(memmory);
+            memmory += " " + input;
             memoryLabel.setText(memmory.substring(0, memmory.length() - input.length()));
             textField.setText("");
 
         });
+        textField.setAlignmentX(Component.CENTER_ALIGNMENT);
         panel.add(textField);
+        panel.add(Box.createRigidArea(new Dimension(0, 20)));
+
+        showLabel = new JLabel();
+        showLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        panel.add(showLabel);
+        panel.add(Box.createRigidArea(new Dimension(0, 15)));
+
+        memoryLabel = new JLabel();
+        memoryLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        panel.add(memoryLabel);
+        panel.add(Box.createRigidArea(new Dimension(0, 15)));
+
     }
 
 
