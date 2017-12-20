@@ -1,0 +1,6 @@
+bird
+fish
+monkey
+tiger
+cat
+dog
