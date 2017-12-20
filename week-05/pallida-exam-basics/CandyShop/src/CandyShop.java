@@ -30,9 +30,8 @@ class CandyShop {
     }
 
     void raise(double percentage) {
-        for(Sweet sweet:storage) {
-            sweet.raisePrice(percentage);
-        }
+        CANDY.raisePrice(percentage);
+        LOLLIPOP.raisePrice(percentage);
     }
 
     @Override
