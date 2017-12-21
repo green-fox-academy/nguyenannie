@@ -31,8 +31,8 @@ public class Weight_for_Weight {
         }
 
         for(int i = 0; i < list.size() - 1; i++) {
-            if(sumDigit(list.get(i)) == sumDigit(list.get(i + 1))) {
-                if(list.get(i).length() > list.get(i + 1).length()) {
+            if (sumDigit(list.get(i)) == sumDigit(list.get(i + 1))) {
+                if(isAfter(list.get(i), list.get(i + 1))) {
                     temp = list.get(i);
                     list.set(i, list.get(i + 1));
                     list.set(i + 1, temp);
@@ -56,17 +56,22 @@ public class Weight_for_Weight {
         return sum;
     }
 
-    public static
-}
-
- /*
-    for(int i = 0; i < list.size() - 1; i++) {
-            if(sumDigit(list.get(i)) == sumDigit(list.get(i + 1))) {
-                if(list.get(i).length() > list.get(i + 1).length()) {
-                    temp = list.get(i);
-                    list.set(i, list.get(i + 1));
-                    list.set(i + 1, temp);
-                }
+    public static boolean isAfter(String str1, String str2) {
+        int l;
+        boolean result = false;
+        String str = " ";
+        if(str1.length() > str2.length()) {
+            l = str2.length();
+        } else {
+            l = str1.length();
+        }
+        for(int i = 0; i < l; i++) {
+            if (str1.charAt(i) > str2.charAt(i)) {
+                result = true;
+                break;
             }
         }
-     */
+
+        return result;
+    }
+}
