@@ -1,11 +1,11 @@
 public class Domino implements Comparable<Domino>{
     private final int[] values;
 
-    public Domino(int valueA, int valueB) {
+    Domino(int valueA, int valueB) {
         this.values = new int[]{valueA, valueB};
     }
 
-    public int[] getValues() {
+    int[] getValues() {
         return values;
     }
 
