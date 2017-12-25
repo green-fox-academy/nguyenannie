@@ -18,8 +18,8 @@ class Monster extends Character {
         this.hasKey = hasKey;
         initCharacter(xPos,yPos);
     }
-
-    private void move(Maze maze){
+    
+    public void move(Maze maze){
         int newX, newY;
 
         do {

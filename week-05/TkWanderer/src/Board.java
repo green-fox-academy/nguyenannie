@@ -7,6 +7,7 @@ import javax.swing.*;
 
 class Board extends JPanel implements ActionListener {
     private GameController controller;
+    private Display display;
     private final int DELAY = 100;
 
     Board() {
@@ -19,6 +20,7 @@ class Board extends JPanel implements ActionListener {
         setBackground(Color.WHITE);
 
         controller = new GameController();
+        display = new Display();
 
         Timer timer = new Timer(DELAY, this);
         timer.start();
@@ -27,16 +29,16 @@ class Board extends JPanel implements ActionListener {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        draw(g);
+        drawGame(g);
     }
 
-    private void draw(Graphics g) {
-        controller.getMaze().drawBackground(g);
+    private void drawGame(Graphics g) {
+        controller.getMaze().draw(g);
         for(int i = 0; i < controller.getMonsterList().size(); i++) {
-            controller.getMonster(i).drawCharacter(g);
+            controller.getMonster(i).draw(g);
         }
-        controller.getHero().drawCharacter(g);
-        controller.displayStat(g);
+        controller.getHero().draw(g);
+        display.displayStat(g);
     }
 
     @Override

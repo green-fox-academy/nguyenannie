@@ -2,7 +2,7 @@ import java.awt.*;
 import java.util.Random;
 import javax.swing.ImageIcon;
 
-abstract class Character {
+abstract class Character implements Drawable{
     protected final int step = Tile.tileSize;
 
     protected int maxHealthPoint;
@@ -23,8 +23,6 @@ abstract class Character {
     private void initCharacter() {
 
     }
-
-    void move() {}
 
     int getLevel() {
         return level;
@@ -51,7 +49,8 @@ abstract class Character {
         return image;
     }
 
-    void drawCharacter(Graphics g){
+    @Override
+    public void draw(Graphics g){
         Graphics2D g2d = (Graphics2D) g;
         g2d.drawImage(getImage(),getX() * step,getY() * step,null);
     }

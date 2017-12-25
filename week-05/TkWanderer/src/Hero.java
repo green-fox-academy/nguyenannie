@@ -24,7 +24,7 @@ class Hero extends Character {
         y = 0;
     }
 
-    void move(Maze maze, Directions dir){
+    public void move(Maze maze, Directions dir){
         int newX = x, newY = y;
 
         switch (dir) {

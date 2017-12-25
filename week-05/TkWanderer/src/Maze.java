@@ -1,7 +1,7 @@
 import java.awt.*;
 import java.util.Optional;
 
-class Maze {
+class Maze implements Drawable{
     static final Tile WALL = new Tile("wall.gif",true);
     static final Tile FLOOR = new Tile("floor.gif",false);
 
@@ -59,7 +59,8 @@ class Maze {
         }
     }
 
-    void drawBackground(Graphics g) {
+    @Override
+    public void draw(Graphics g) {
         for(int i = 0; i < MAZE_WIDTH; i ++) {
             for (int j = 0; j < MAZE_HEIGHT; j ++) {
                 Graphics2D g2d = (Graphics2D) g;
