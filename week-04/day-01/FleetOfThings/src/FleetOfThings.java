@@ -6,14 +6,14 @@ public class FleetOfThings {
         // 2. [ ] Remove the obstacles
         // 3. [x] Stand up
         // 4. [x] Eat lunch
-        Thing thing1 = new Thing("Get milk");
+        ToDo thing1 = new ToDo("Get milk");
         fleet.add(thing1);
-        Thing thing2 = new Thing("Remove the obstacles");
+        ToDo thing2 = new ToDo("Remove the obstacles");
         fleet.add(thing2);
-        Thing thing3 = new Thing("Stand up");
+        ToDo thing3 = new ToDo("Stand up");
         thing3.complete();
         fleet.add(thing3);
-        Thing thing4 = new Thing("Eat lunch");
+        ToDo thing4 = new ToDo("Eat lunch");
         thing4.complete();
         fleet.add(thing4);
         fleet.toString();

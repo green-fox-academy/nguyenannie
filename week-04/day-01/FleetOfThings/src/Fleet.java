@@ -2,13 +2,13 @@
 import java.util.ArrayList;
 
 public class Fleet {
-    private ArrayList<Thing> things;
+    private ArrayList<ToDo> things;
 
     public Fleet() {
         things = new ArrayList<>();
     }
 
-    public void add(Thing thing) {
+    public void add(ToDo thing) {
         things.add(thing);
     }
 
