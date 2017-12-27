@@ -6,11 +6,9 @@ out
 # if you have a mac
 .DS_Store
 
+*.class
+*.jar
+*.bin
+
 #gradle
-.gradle
-/build
-/buildSrc/build
-/subprojects/*/build
-/subprojects/docs/src/samples/*/*/build
-/subprojects/internal-android-performance-testing/build-android-libs
-.m2
+.gradle/
