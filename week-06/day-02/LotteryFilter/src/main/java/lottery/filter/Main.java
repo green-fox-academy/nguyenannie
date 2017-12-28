@@ -10,7 +10,6 @@ import joptsimple.OptionSet;
 public class Main {
     private static final String CSV_FILE_PATH_READER = "otos.csv";
     private static final String CSV_FILE_PATH_WRITER = "output.csv";
-    private static List<String[]> newContent = new ArrayList<>();
     private static String year = "";
 
     public static void main(String[] args) throws IOException {
@@ -38,7 +37,10 @@ public class Main {
     private static void performTask(String inputFile, String outputFile) throws IOException {
         FileReader fileReader = new FileReader(inputFile);
         FileWriter fileWriter = new FileWriter(outputFile);
+
         List<String[]> allLines = fileReader.readFile();
+        List<String[]> newContent = new ArrayList<>();
+
         for(String[] line : allLines) {
             if(line[0].equals(year)) {
                 newContent.add(line);

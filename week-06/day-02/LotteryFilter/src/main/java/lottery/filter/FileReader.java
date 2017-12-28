@@ -14,36 +14,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FileReader {
-    private String filePath;
     private CSVReader csvReader = null;
+    private File file;
+    private CSVParser parser;
 
     FileReader(String filePath) {
-        this.filePath = filePath;
-    }
-
-    private File file = Paths.get(filePath).toFile();
-
-    private final CSVParser parser =
-            new CSVParserBuilder()
+        file = Paths.get(filePath).toFile();
+        parser = new CSVParserBuilder()
                     .withSeparator(';')
                     .withFieldAsNull(CSVReaderNullFieldIndicator.NEITHER)
                     .build();
-
+    }
 
     public List<String[]> readFile() throws IOException {
-        List<String[]> allRows = new ArrayList<>();
+        List<String[]> allLines = new ArrayList<>();
+
         try {
             csvReader = new CSVReaderBuilder(new java.io.FileReader(file)).withCSVParser(parser).build();
-            allRows = csvReader.readAll();
+            allLines = csvReader.readAll();
         } catch (FileNotFoundException e) {
             System.err.println("Error in reading CSV: " + e.getMessage());
         } catch (IOException e) {
             System.err.println("Error in print Stack Trace: " + e.getMessage());
-        }
-        finally {
+        } finally {
             csvReader.close();
         }
 
-        return allRows;
+        return allLines;
     }
 }
