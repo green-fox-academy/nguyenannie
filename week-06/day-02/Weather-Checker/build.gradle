@@ -23,5 +23,5 @@ jar {
         }
     }
 
-    manifest.attributes "Main-Class" : 'weather.checker.Main'
+    manifest.attributes "Main-Class" : 'weather.checker.WeatherChecker'
 }

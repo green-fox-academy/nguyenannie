@@ -5,7 +5,7 @@ import joptsimple.OptionSet;
 
 import java.io.IOException;
 
-public class Main {
+public class WeatherChecker {
     public static final String INPUT_FILE = "data.csv";
 
     public static void main(String[] args) throws IOException {
