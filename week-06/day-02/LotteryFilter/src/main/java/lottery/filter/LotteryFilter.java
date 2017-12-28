@@ -7,7 +7,7 @@ import java.util.List;
 import joptsimple.OptionParser;
 import joptsimple.OptionSet;
 
-public class Main {
+public class LotteryFilter {
     private static final String CSV_FILE_PATH_READER = "otos.csv";
     private static final String CSV_FILE_PATH_WRITER = "output.csv";
     private static String year = "";
