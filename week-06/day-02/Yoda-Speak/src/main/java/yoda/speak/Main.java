@@ -1,6 +1,5 @@
 package yoda.speak;
 
-import com.mashape.unirest.http.exceptions.UnirestException;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Response;
@@ -9,7 +8,7 @@ import retrofit2.Retrofit;
 import java.io.IOException;
 
 public class Main {
-    public static void main(String[] args) throws IOException, UnirestException {
+    public static void main(String[] args) throws IOException {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://yoda.p.mashape.com/yoda/")
                 .build();
