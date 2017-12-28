@@ -21,16 +21,17 @@ public class FileReader {
         this.filePath = filePath;
     }
 
+    private File file = Paths.get(filePath).toFile();
+
+    private final CSVParser parser =
+            new CSVParserBuilder()
+                    .withSeparator(';')
+                    .withFieldAsNull(CSVReaderNullFieldIndicator.NEITHER)
+                    .build();
+
+
     public List<String[]> readFile() throws IOException {
         List<String[]> allRows = new ArrayList<>();
-        File file = Paths.get(filePath).toFile();
-
-        final CSVParser parser =
-                new CSVParserBuilder()
-                        .withSeparator(';')
-                        .withFieldAsNull(CSVReaderNullFieldIndicator.NEITHER)
-                        .build();
-
         try {
             csvReader = new CSVReaderBuilder(new java.io.FileReader(file)).withCSVParser(parser).build();
             allRows = csvReader.readAll();
