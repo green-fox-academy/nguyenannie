@@ -2,14 +2,12 @@ package com.greenfox.nguyenannie.birthdaycalculator;
 
 import java.time.LocalDate;
 
-public class Main {
+public class BirthdayApp {
     public static final String MY_BIRTHDAY = "1995-05-27";
 
     public static void main(String[] args) {
         BirthdayCalculator<LocalDate> birthdayCalculator = new BirthdayWithLocalDate();
         LocalDate myBirthDate = birthdayCalculator.parseDate(MY_BIRTHDAY);
-
-        System.out.println(args[0]);
 
         System.out.println(birthdayCalculator.printMonthAndDay(myBirthDate));
         System.out.println("Is today my birthday? " + birthdayCalculator.isAnniversaryToday(myBirthDate));
