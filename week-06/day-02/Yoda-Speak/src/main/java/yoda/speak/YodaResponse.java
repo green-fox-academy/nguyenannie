@@ -7,7 +7,7 @@ import retrofit2.Retrofit;
 
 import java.io.IOException;
 
-public class Main {
+public class YodaResponse {
     public static void main(String[] args) throws IOException {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://yoda.p.mashape.com/yoda/")
