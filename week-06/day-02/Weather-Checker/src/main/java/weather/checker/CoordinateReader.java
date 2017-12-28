@@ -8,18 +8,13 @@ import com.opencsv.enums.CSVReaderNullFieldIndicator;
 
 import java.io.*;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
-public class WeatherReader {
+public class CoordinateReader {
     private CSVReader csvReader = null;
-    private String filePath;
     private File file;
     private CSVParser parser;
 
-    WeatherReader(String filePath) throws FileNotFoundException {
-        this.filePath = filePath;
+    CoordinateReader(String filePath) throws FileNotFoundException {
         file = Paths.get(filePath).toFile();
         parser =
                 new CSVParserBuilder()
@@ -28,23 +23,23 @@ public class WeatherReader {
                         .build();
     }
 
-    public void setCsvReader() throws FileNotFoundException {
+    private void setCsvReader() throws FileNotFoundException {
         csvReader = new CSVReaderBuilder(new java.io.FileReader(file)).withCSVParser(parser).build();
     }
 
-    public CSVReader getCsvReader() {
+    private CSVReader getCsvReader() {
         return csvReader;
     }
 
-    public String[] findCoordinate(String countryCode) throws IOException {
+    public Coordinate findCoordinate(String countryCode) throws IOException {
         String[] line;
-        String[] coordinate = new String[2];
+        Coordinate coordinate = new Coordinate(new String[2]);
         setCsvReader();
         try {
             while ((line = getCsvReader().readNext()) != null) {
                 if(line[0].equals(countryCode)) {
-                    coordinate[0] = line[1];
-                    coordinate[1] = line[2];
+                    coordinate.lat = line[1];
+                    coordinate.lng = line[2];
                     break;
                 }
             }
