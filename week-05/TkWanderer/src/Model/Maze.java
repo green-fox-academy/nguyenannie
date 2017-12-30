@@ -1,17 +1,21 @@
+package Model;
+
+import View.Drawable;
+
 import java.awt.*;
 import java.util.Optional;
 
-class Maze implements Drawable{
-    static final Tile WALL = new Tile("wall.gif",true);
+public class Maze implements Drawable {
+    public static final Tile WALL = new Tile("wall.gif",true);
     static final Tile FLOOR = new Tile("floor.gif",false);
 
     private Tile[][] data;
     private java.util.Random rand = new java.util.Random();
 
-    static final int MAZE_WIDTH = 15;
-    static final int MAZE_HEIGHT = 9;
+    public static final int MAZE_WIDTH = 15;
+    public static final int MAZE_HEIGHT = 9;
 
-    Maze() {
+    public Maze() {
         data = new Tile[MAZE_WIDTH][MAZE_HEIGHT];
     }
 
@@ -39,7 +43,7 @@ class Maze implements Drawable{
         }
     }
 
-    void generate() {
+    public void generate() {
         for(int x = 0; x < MAZE_WIDTH; x++) {
             data[x] = new Tile[MAZE_HEIGHT];
             for(int y = 0; y < MAZE_HEIGHT; y++) {
@@ -51,7 +55,7 @@ class Maze implements Drawable{
         carve(0, 0);
     }
 
-    Optional<Tile> getTile(int x, int y) {
+    public Optional<Tile> getTile(int x, int y) {
         if(x < 0 || x > MAZE_WIDTH - 1 || y < 0 || y > MAZE_HEIGHT - 1) {
             return Optional.empty();
         } else {

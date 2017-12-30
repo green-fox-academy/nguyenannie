@@ -1,20 +1,22 @@
-import java.awt.*;
+package Controller;
+
 import java.util.*;
 import java.awt.event.KeyEvent;
 import java.util.List;
+import Model.*;
 
-class GameController {
+public class GameController {
     protected Hero hero;
     protected List<Monster> monsterList;
-    protected int monsterAmount;
-    protected Monster keyMonster;
-    protected BossMonster boss;
+    private int monsterAmount;
+    private Monster keyMonster;
+    private BossMonster boss;
 
     private Random random = new Random();
 
     private Maze maze;
 
-    GameController() {
+    public GameController() {
         monsterAmount = 3;
         maze = new Maze();
         maze.generate();
@@ -52,23 +54,23 @@ class GameController {
         return pos;
     }
 
-    Hero getHero() {
+    public Hero getHero() {
         return hero;
     }
 
-    Monster getMonster(int i) {
+    public Monster getMonster(int i) {
         return monsterList.get(i);
     }
 
-    List<Monster> getMonsterList() {
+    public List<Monster> getMonsterList() {
         return monsterList;
     }
 
-    Maze getMaze() {
+    public Maze getMaze() {
         return maze;
     }
 
-    void keyPressed(KeyEvent e) {
+    public void keyPressed(KeyEvent e) {
 
         int key = e.getKeyCode();
         boolean heroMoved = false;
@@ -123,7 +125,7 @@ class GameController {
         }
     }
 
-    void keyReleased(KeyEvent e) {
+    public void keyReleased(KeyEvent e) {
         int key = e.getKeyCode();
 
         switch (key) {

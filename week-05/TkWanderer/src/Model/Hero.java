@@ -1,16 +1,18 @@
+package Model;
+
 import java.util.Random;
 
-class Hero extends Character {
+public class Hero extends Model.Character {
     private static final String faceDown = "hero-down.gif";
     private static final String faceRight = "hero-right.gif";
     private static final String faceLeft = "hero-left.gif";
     private static final String faceUp = "hero-up.gif";
 
-    enum Directions {
+    public enum Directions {
         UP, DOWN, LEFT, RIGHT;
     }
 
-    Hero() {
+    public Hero() {
         maxHealthPoint = 20 + 3 * rollDice();
         defendPoint = 2 * rollDice();
         strikePoint = 5 + rollDice();
@@ -18,7 +20,7 @@ class Hero extends Character {
         initCharacter();
     }
 
-    void initCharacter(){
+    public void initCharacter(){
         setImage(faceDown);
         x = 0;
         y = 0;
@@ -58,7 +60,7 @@ class Hero extends Character {
         }
     }
 
-    void levelUp(){
+    public void levelUp(){
         int chance = new Random().nextInt(10);
         if(chance == 0) {
             healthPoint = maxHealthPoint;

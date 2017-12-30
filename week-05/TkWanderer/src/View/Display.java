@@ -1,6 +1,13 @@
+package View;
+
+import Controller.GameController;
+import Model.Maze;
+import Model.Monster;
+import Model.Tile;
+
 import java.awt.*;
 
-public class Display extends GameController{
+public class Display extends GameController {
     private static final int STAT_WIDTH = 330;
     private static final int STAT_HEIGHT = 20;
     private static final int STAT_SIZE = 15;
@@ -32,19 +39,19 @@ public class Display extends GameController{
         if(hero.isDead()) {
             gameOver(g);
         } else {
-            statusTextHero = "Hero(Level_" + hero.getLevel() + ")HP:" + hero.healthPoint
+            statusTextHero = "Model.Hero(Level_" + hero.getLevel() + ")HP:" + hero.healthPoint
                     + "/" + hero.maxHealthPoint
                     + "|SP:" + hero.strikePoint
                     + "|DP:"+ hero.defendPoint;
 
             for(Monster monster : monsterList){
                 if(hero.x == monster.x && hero.y == monster.y){
-                    statusTextHero = "Hero(Level_" + hero.getLevel() + ") HP:" + hero.healthPoint
+                    statusTextHero = "Model.Hero(Level_" + hero.getLevel() + ") HP:" + hero.healthPoint
                             + "/" + hero.maxHealthPoint
                             + "|SP:" + hero.strikePoint
                             + "|DP:"+ hero.defendPoint;
 
-                    statusTextMonster = "Monster(Level_" + monster.getLevel() + ")HP:"
+                    statusTextMonster = "Model.Monster(Level_" + monster.getLevel() + ")HP:"
                             + monster.healthPoint + "/" + monster.maxHealthPoint
                             + "|SP:" + monster.strikePoint
                             + "|DP:"+ monster.defendPoint;

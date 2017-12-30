@@ -1,7 +1,9 @@
+package Model;
+
 import javax.swing.*;
 import java.util.Random;
 
-class Monster extends Character {
+public class Monster extends Model.Character {
     private final String monsterImage = "skeleton.gif";
     private boolean moveLastRound;
     private boolean hasKey;
@@ -9,7 +11,7 @@ class Monster extends Character {
     Monster(){
     }
 
-    Monster(int xPos, int yPos, int level, boolean hasKey) {
+    public Monster(int xPos, int yPos, int level, boolean hasKey) {
         this.level = level;
         maxHealthPoint = 2 * level * rollDice();
         defendPoint = (int)Math.ceil(level * rollDice() / 2.0);
@@ -31,7 +33,7 @@ class Monster extends Character {
         y = newY;
     }
 
-    void takeTurn(Maze maze){
+    public void takeTurn(Maze maze){
         if(!moveLastRound) {
             move(maze);
             moveLastRound = true;

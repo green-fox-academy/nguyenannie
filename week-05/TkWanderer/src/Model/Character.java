@@ -1,20 +1,23 @@
+package Model;
+
 import java.awt.*;
 import java.util.Random;
 import javax.swing.ImageIcon;
+import View.*;
 
-abstract class Character implements Drawable{
+public abstract class Character implements Drawable {
     protected final int step = Tile.tileSize;
 
-    protected int maxHealthPoint;
-    protected int healthPoint;
-    protected int defendPoint;
-    protected int strikePoint;
-    protected int level = 1;
+    public int maxHealthPoint;
+    public int healthPoint;
+    public int defendPoint;
+    public int strikePoint;
+    public int level = 1;
 
     protected Image image;
 
-    protected int x;
-    protected int y;
+    public int x;
+    public int y;
 
     Character() {
         initCharacter();
@@ -24,11 +27,11 @@ abstract class Character implements Drawable{
 
     }
 
-    int getLevel() {
+    public int getLevel() {
         return level;
     }
 
-    void updateLevel() {
+    public void updateLevel() {
         level ++;
     }
 
@@ -62,7 +65,7 @@ abstract class Character implements Drawable{
         }
     }
 
-    boolean isDead() {
+    public boolean isDead() {
         return healthPoint <= 0;
     }
 
@@ -74,7 +77,7 @@ abstract class Character implements Drawable{
         return 2 * rollDice() + this.strikePoint;
     }
 
-    void attack(Character enemy) {
+    public void attack(Character enemy) {
         if(enemy.isDead() || this.isDead()) {
             System.out.println("attack impossible");
         } else {
@@ -85,7 +88,7 @@ abstract class Character implements Drawable{
         }
     }
 
-    void getStronger(){
+    public void getStronger(){
         maxHealthPoint += rollDice();
         defendPoint += rollDice();
         strikePoint += rollDice();

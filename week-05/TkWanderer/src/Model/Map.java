@@ -1,3 +1,5 @@
+package Model;
+
 import java.awt.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
