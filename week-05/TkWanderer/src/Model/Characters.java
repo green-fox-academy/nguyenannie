@@ -3,10 +3,9 @@ package Model;
 import java.awt.*;
 import java.util.Random;
 import javax.swing.ImageIcon;
-import View.*;
 
-public abstract class Character implements Drawable {
-    protected final int step = Tile.tileSize;
+public class Characters {
+    public static final int step = Tile.tileSize;
 
     public int maxHealthPoint;
     public int healthPoint;
@@ -19,7 +18,7 @@ public abstract class Character implements Drawable {
     public int x;
     public int y;
 
-    Character() {
+    protected Characters() {
         initCharacter();
     }
 
@@ -35,11 +34,11 @@ public abstract class Character implements Drawable {
         level ++;
     }
 
-    private int getX() {
+    public int getX() {
         return x;
     }
 
-    private int getY() {
+    public int getY() {
         return y;
     }
 
@@ -48,15 +47,18 @@ public abstract class Character implements Drawable {
         this.image = icon.getImage();
     }
 
-    private Image getImage() {
+    public Image getImage() {
         return image;
     }
+    /*
 
     @Override
     public void draw(Graphics g){
         Graphics2D g2d = (Graphics2D) g;
         g2d.drawImage(getImage(),getX() * step,getY() * step,null);
     }
+
+     */
 
     void setHealthPoint(int healthPoint) {
         this.healthPoint = healthPoint;
@@ -77,7 +79,7 @@ public abstract class Character implements Drawable {
         return 2 * rollDice() + this.strikePoint;
     }
 
-    public void attack(Character enemy) {
+    public void attack(Characters enemy) {
         if(enemy.isDead() || this.isDead()) {
             System.out.println("attack impossible");
         } else {

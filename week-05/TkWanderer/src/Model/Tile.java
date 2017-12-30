@@ -19,7 +19,7 @@ public class Tile {
         this.tileType = icon.getImage();
     }
 
-    Image getTileType() {
+    public Image getTileType() {
         return tileType;
     }
 }

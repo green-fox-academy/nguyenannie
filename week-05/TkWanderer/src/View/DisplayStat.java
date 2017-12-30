@@ -7,7 +7,7 @@ import Model.Tile;
 
 import java.awt.*;
 
-public class Display extends GameController {
+public class DisplayStat extends GameController implements Drawable {
     private static final int STAT_WIDTH = 330;
     private static final int STAT_HEIGHT = 20;
     private static final int STAT_SIZE = 15;
@@ -26,7 +26,10 @@ public class Display extends GameController {
     private static final int GAMEOVER_POSX = GAMEOVER_BOX_POSX + 5;
     private static final int GAMEOVER_POSY = GAMEOVER_BOX_POSY + GAMEOVER_SIZE;
 
-    void displayStat(Graphics g) {
+
+    @Override
+    public void draw(Graphics g) {
+
         g.setColor(Color.white);
         g.setFont(new Font("Courier", Font.PLAIN, STAT_SIZE));
 

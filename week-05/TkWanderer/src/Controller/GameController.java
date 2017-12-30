@@ -49,7 +49,7 @@ public class GameController {
         do {
             pos[0] = random.nextInt(10);
             pos[1] = random.nextInt(11);
-        } while(getMaze().getTile(pos[0], pos[1]).orElse(Maze.WALL).isSolid);
+        } while(maze.getTile(pos[0], pos[1]).orElse(Maze.WALL).isSolid);
 
         return pos;
     }

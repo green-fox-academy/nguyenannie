@@ -5,11 +5,11 @@ import View.Drawable;
 import java.awt.*;
 import java.util.Optional;
 
-public class Maze implements Drawable {
+public class Maze {
     public static final Tile WALL = new Tile("wall.gif",true);
-    static final Tile FLOOR = new Tile("floor.gif",false);
+    public static final Tile FLOOR = new Tile("floor.gif",false);
 
-    private Tile[][] data;
+    private static Tile[][] data;
     private java.util.Random rand = new java.util.Random();
 
     public static final int MAZE_WIDTH = 15;
@@ -63,7 +63,8 @@ public class Maze implements Drawable {
         }
     }
 
-    @Override
+    /*
+     @Override
     public void draw(Graphics g) {
         for(int i = 0; i < MAZE_WIDTH; i ++) {
             for (int j = 0; j < MAZE_HEIGHT; j ++) {
@@ -72,5 +73,6 @@ public class Maze implements Drawable {
             }
         }
     }
+     */
 }
 
