@@ -2,7 +2,7 @@ package Model;
 
 import java.util.Random;
 
-public class Hero extends Characters {
+public class Hero extends Character {
     private static final String faceDown = "hero-down.gif";
     private static final String faceRight = "hero-right.gif";
     private static final String faceLeft = "hero-left.gif";

@@ -3,7 +3,7 @@ package Model;
 import javax.swing.*;
 import java.util.Random;
 
-public class Monster extends Characters {
+public class Monster extends Character {
     private final String monsterImage = "skeleton.gif";
     private boolean moveLastRound;
     private boolean hasKey;

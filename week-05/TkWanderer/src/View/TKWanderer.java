@@ -1,11 +1,14 @@
-import Model.Maze;
+package View;
+
 import Model.Tile;
-import View.Board;
 
 import java.awt.*;
 import javax.swing.*;
 
-class TKWanderer extends JFrame {
+public class TKWanderer extends JFrame {
+    public static final int SCREEN_WIDTH = 11 * Tile.tileSize;
+    public static final int SCREEN_HEIGHT = 9 * Tile.tileSize + 23;
+
     private TKWanderer() {
         initUI();
     }
@@ -13,10 +16,10 @@ class TKWanderer extends JFrame {
     private void initUI() {
         add(new Board());
 
-        setSize(Maze.MAZE_WIDTH * Tile.tileSize, Maze.MAZE_HEIGHT * Tile.tileSize + 23);
-        setResizable(false);
+        setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
+        setResizable(true);
 
-        setTitle("TKWanderer");
+        setTitle("View.TKWanderer");
         setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }

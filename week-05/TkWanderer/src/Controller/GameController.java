@@ -6,8 +6,9 @@ import java.util.List;
 import Model.*;
 
 public class GameController {
-    protected Hero hero;
-    protected List<Monster> monsterList;
+    private static final int INITIAL_MONSTER_AMOUNT = 20;
+    private Hero hero;
+    private List<Monster> monsterList;
     private int monsterAmount;
     private Monster keyMonster;
     private BossMonster boss;
@@ -17,7 +18,7 @@ public class GameController {
     private Maze maze;
 
     public GameController() {
-        monsterAmount = 3;
+        monsterAmount = INITIAL_MONSTER_AMOUNT;
         maze = new Maze();
         maze.generate();
         hero = new Hero();
@@ -47,8 +48,8 @@ public class GameController {
         int[] pos = new int[2];
 
         do {
-            pos[0] = random.nextInt(10);
-            pos[1] = random.nextInt(11);
+            pos[0] = random.nextInt(Maze.MAZE_WIDTH);
+            pos[1] = random.nextInt(Maze.MAZE_HEIGHT);
         } while(maze.getTile(pos[0], pos[1]).orElse(Maze.WALL).isSolid);
 
         return pos;
@@ -152,7 +153,7 @@ public class GameController {
         hero.updateLevel();
         hero.levelUp();
         hero.initCharacter();
-        monsterAmount = (int)(Math.random() * 3) + 3;
+        monsterAmount = (int)(Math.random() * 5) + INITIAL_MONSTER_AMOUNT;
 
         initGame();
     }

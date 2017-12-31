@@ -1,17 +1,18 @@
 package View;
 
 import Controller.GameController;
+import Model.Hero;
 import Model.Maze;
 import Model.Monster;
 import Model.Tile;
 
 import java.awt.*;
 
-public class DisplayStat extends GameController implements Drawable {
+public class DrawStat implements Drawable {
     private static final int STAT_WIDTH = 330;
     private static final int STAT_HEIGHT = 20;
     private static final int STAT_SIZE = 15;
-    private static final int STAT_POSX = Maze.MAZE_WIDTH * Tile.tileSize - STAT_WIDTH;
+    private static final int STAT_POSX = TKWanderer.SCREEN_WIDTH - STAT_WIDTH;
     private static final int STAT_HERO_POSY = 15;
     private static final int STAT_MONSTER_POSY = STAT_HERO_POSY + STAT_HEIGHT;
     private static final int STAT_BOX_POSX = STAT_POSX - 5;
@@ -26,10 +27,14 @@ public class DisplayStat extends GameController implements Drawable {
     private static final int GAMEOVER_POSX = GAMEOVER_BOX_POSX + 5;
     private static final int GAMEOVER_POSY = GAMEOVER_BOX_POSY + GAMEOVER_SIZE;
 
+    private GameController gameController;
+
+    public void setGameController(GameController gameController) {
+        this.gameController = gameController;
+    }
 
     @Override
     public void draw(Graphics g) {
-
         g.setColor(Color.white);
         g.setFont(new Font("Courier", Font.PLAIN, STAT_SIZE));
 
@@ -39,22 +44,19 @@ public class DisplayStat extends GameController implements Drawable {
         g.fillRect(STAT_BOX_POSX, STAT_BOX_POSY, STAT_BOX_WIDTH, STAT_BOX_HEIGHT);
         g.setColor(Color.black);
 
-        if(hero.isDead()) {
+        if(gameController.getHero().isDead()) {
             gameOver(g);
         } else {
-            statusTextHero = "Model.Hero(Level_" + hero.getLevel() + ")HP:" + hero.healthPoint
+            Hero hero = gameController.getHero();
+            statusTextHero = "Hero(Level_" + hero.getLevel()
+                    + ")HP:" + hero.healthPoint
                     + "/" + hero.maxHealthPoint
                     + "|SP:" + hero.strikePoint
                     + "|DP:"+ hero.defendPoint;
 
-            for(Monster monster : monsterList){
+            for(Monster monster : gameController.getMonsterList()){
                 if(hero.x == monster.x && hero.y == monster.y){
-                    statusTextHero = "Model.Hero(Level_" + hero.getLevel() + ") HP:" + hero.healthPoint
-                            + "/" + hero.maxHealthPoint
-                            + "|SP:" + hero.strikePoint
-                            + "|DP:"+ hero.defendPoint;
-
-                    statusTextMonster = "Model.Monster(Level_" + monster.getLevel() + ")HP:"
+                    statusTextMonster = "Monster(Level_" + monster.getLevel() + ")HP:"
                             + monster.healthPoint + "/" + monster.maxHealthPoint
                             + "|SP:" + monster.strikePoint
                             + "|DP:"+ monster.defendPoint;

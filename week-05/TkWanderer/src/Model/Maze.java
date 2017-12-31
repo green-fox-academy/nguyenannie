@@ -1,8 +1,5 @@
 package Model;
 
-import View.Drawable;
-
-import java.awt.*;
 import java.util.Optional;
 
 public class Maze {
@@ -12,8 +9,8 @@ public class Maze {
     private static Tile[][] data;
     private java.util.Random rand = new java.util.Random();
 
-    public static final int MAZE_WIDTH = 15;
-    public static final int MAZE_HEIGHT = 9;
+    public static final int MAZE_WIDTH = 35;
+    public static final int MAZE_HEIGHT = 29;
 
     public Maze() {
         data = new Tile[MAZE_WIDTH][MAZE_HEIGHT];
@@ -62,17 +59,5 @@ public class Maze {
             return Optional.of(data[x][y]);
         }
     }
-
-    /*
-     @Override
-    public void draw(Graphics g) {
-        for(int i = 0; i < MAZE_WIDTH; i ++) {
-            for (int j = 0; j < MAZE_HEIGHT; j ++) {
-                Graphics2D g2d = (Graphics2D) g;
-                g2d.drawImage(getTile(i,j).orElse(FLOOR).getTileType(),i * Tile.tileSize ,j * Tile.tileSize , null);
-            }
-        }
-    }
-     */
 }
 

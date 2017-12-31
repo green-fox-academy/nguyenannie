@@ -4,7 +4,7 @@ import java.awt.*;
 import java.util.Random;
 import javax.swing.ImageIcon;
 
-public class Characters {
+public class Character {
     public static final int step = Tile.tileSize;
 
     public int maxHealthPoint;
@@ -18,7 +18,7 @@ public class Characters {
     public int x;
     public int y;
 
-    protected Characters() {
+    protected Character() {
         initCharacter();
     }
 
@@ -50,15 +50,6 @@ public class Characters {
     public Image getImage() {
         return image;
     }
-    /*
-
-    @Override
-    public void draw(Graphics g){
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.drawImage(getImage(),getX() * step,getY() * step,null);
-    }
-
-     */
 
     void setHealthPoint(int healthPoint) {
         this.healthPoint = healthPoint;
@@ -79,7 +70,7 @@ public class Characters {
         return 2 * rollDice() + this.strikePoint;
     }
 
-    public void attack(Characters enemy) {
+    public void attack(Character enemy) {
         if(enemy.isDead() || this.isDead()) {
             System.out.println("attack impossible");
         } else {
