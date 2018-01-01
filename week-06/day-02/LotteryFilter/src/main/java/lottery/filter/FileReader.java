@@ -26,7 +26,7 @@ public class FileReader {
                     .build();
     }
 
-    public List<String[]> readFile() throws IOException {
+    public List<String[]> readFile() {
         List<String[]> allLines = new ArrayList<>();
 
         try {
@@ -37,7 +37,11 @@ public class FileReader {
         } catch (IOException e) {
             System.err.println("Error in print Stack Trace: " + e.getMessage());
         } finally {
-            csvReader.close();
+            try {
+                csvReader.close();
+            } catch (IOException e) {
+                System.err.println("Error in print Stack Trace: " + e.getMessage());
+            }
         }
 
         return allLines;
