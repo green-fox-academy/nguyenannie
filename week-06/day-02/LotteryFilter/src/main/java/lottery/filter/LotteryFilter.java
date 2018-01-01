@@ -1,6 +1,5 @@
 package lottery.filter;
 
-import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +11,7 @@ public class LotteryFilter {
     private static final String CSV_FILE_PATH_WRITER = "output.csv";
     private static String year = "";
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         OptionParser parser = new OptionParser();
         parser.accepts("y").withRequiredArg();
         parser.accepts("f").withRequiredArg();
@@ -34,7 +33,7 @@ public class LotteryFilter {
         }
     }
 
-    private static void performTask(String inputFile, String outputFile) throws IOException {
+    private static void performTask(String inputFile, String outputFile) {
         FileReader fileReader = new FileReader(inputFile);
         FileWriter fileWriter = new FileWriter(outputFile);
 
