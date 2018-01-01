@@ -17,8 +17,14 @@ public class WeatherResponse {
         weatherInfo = retrofit.create(WeatherCheckery.class);
     }
 
-    public String getResponse(String lat, String lng) throws IOException {
+    public String getResponse(String lat, String lng) {
         Call<ResponseBody> responseBodyCall1 = weatherInfo.findWeatherInfo(lat, lng);
-        return responseBodyCall1.execute().body().string();
+        String response = null;
+        try {
+            response = responseBodyCall1.execute().body().string();
+        } catch (IOException e) {
+            System.out.println("Problem with print stack trace: " + e.getMessage());
+        }
+        return response;
     }
 }
