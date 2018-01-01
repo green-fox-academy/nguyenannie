@@ -14,7 +14,7 @@ public class CoordinateReader {
     private File file;
     private CSVParser parser;
 
-    CoordinateReader(String filePath) throws FileNotFoundException {
+    CoordinateReader(String filePath) {
         file = Paths.get(filePath).toFile();
         parser =
                 new CSVParserBuilder()
@@ -23,18 +23,23 @@ public class CoordinateReader {
                         .build();
     }
 
-    private void setCsvReader() throws FileNotFoundException {
-        csvReader = new CSVReaderBuilder(new java.io.FileReader(file)).withCSVParser(parser).build();
+    private void setCsvReader() {
+        try {
+            csvReader = new CSVReaderBuilder(new FileReader(file)).withCSVParser(parser).build();
+        } catch (FileNotFoundException e) {
+            System.out.println("Can not find the file.");
+        }
     }
 
     private CSVReader getCsvReader() {
         return csvReader;
     }
 
-    public Coordinate findCoordinate(String countryCode) throws IOException {
+    public Coordinate findCoordinate(String countryCode) {
         String[] line;
         Coordinate coordinate = new Coordinate(new String[2]);
         setCsvReader();
+
         try {
             while ((line = getCsvReader().readNext()) != null) {
                 if(line[0].equals(countryCode)) {
@@ -48,7 +53,11 @@ public class CoordinateReader {
         } catch (IOException e) {
             System.err.println("Error in printing stack trace: " + e.getMessage());
         } finally {
-            csvReader.close();
+            try {
+                csvReader.close();
+            } catch (IOException e) {
+                System.err.println("Error in printing stack trace: " + e.getMessage());
+            }
         }
         return coordinate;
     }
