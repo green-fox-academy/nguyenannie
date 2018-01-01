@@ -30,13 +30,13 @@ public class Reservations implements Reservationy {
 
     @Override
     public String getCodeBooking() {
-        String result = "";
+        StringBuilder result = new StringBuilder();
         for (int i = 0; i < 8; i++) {
             Random r = new Random();
             int offset = r.nextInt(ALPHANUMERIC_CHARACTERS.length());
-            result += ALPHANUMERIC_CHARACTERS.substring(offset, offset+1);
+            result.append(ALPHANUMERIC_CHARACTERS.substring(offset, offset+1));
         }
-        return result;
+        return result.toString();
     }
 
     void formatPrintOut() {
