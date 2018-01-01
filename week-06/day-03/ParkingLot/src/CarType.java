@@ -1,0 +1,3 @@
+public enum CarType {
+    MPV, SUV, COUPLE, CONVERTIBLE, HATCHBACK, SEDAN;
+}
