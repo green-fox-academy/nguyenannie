@@ -3,12 +3,10 @@ package weather.checker;
 import joptsimple.OptionParser;
 import joptsimple.OptionSet;
 
-import java.io.IOException;
-
 public class WeatherChecker {
     public static final String INPUT_FILE = "data.csv";
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         Coordinate coordinate;
         WeatherResponse weatherResponse = new WeatherResponse();
         CoordinateReader coordinateReader = new CoordinateReader(INPUT_FILE);
