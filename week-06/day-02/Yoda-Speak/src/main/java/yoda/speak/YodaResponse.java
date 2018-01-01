@@ -8,7 +8,7 @@ import retrofit2.Retrofit;
 import java.io.IOException;
 
 public class YodaResponse {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://yoda.p.mashape.com/yoda/")
                 .build();
@@ -17,8 +17,17 @@ public class YodaResponse {
         Call<ResponseBody> responseBodyCall =
                 yoDaSpeak.translate("Rub rub is a bad ket and sonic is the same.");
 
-        Response<ResponseBody> response = responseBodyCall.execute();
+        Response<ResponseBody> response = null;
+        try {
+            response = responseBodyCall.execute();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
 
-        System.out.println(response.body().string());
+        try {
+            System.out.println(response.body().string());
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
