@@ -29,7 +29,6 @@ SELECT Hs1.name, Hs1.grade FROM Highschooler AS Hs1
 	Hs1.ID NOT IN (
 	SELECT ID2 FROM Likes)
 	ORDER BY Hs1.grade, Hs1.name;
-
 /*Q5: For every situation where student A likes student B, but we have no information about whom B likes (that is, B does not appear as an ID1 in the Likes table), return A and B's names and grades. */
 SELECT Hs1.name, Hs1.grade, Hs2.name, Hs2.grade FROM Highschooler AS Hs1
 	LEFT JOIN Likes AS l1 ON Hs1.ID = l1.ID1
@@ -47,12 +46,13 @@ SELECT Highschooler.name, Highschooler.grade FROM Highschooler
 	ORDER BY Highschooler.grade, Highschooler.name;
 	
 /*Q7: For each student A who likes a student B where the two are not friends, find if they have a riend C in common (who can introduce them!). For all such trios, return the name and grade of A, B, and C. */
-SELECT * FROM Highschooler AS Hs1
-	LEFT JOIN Likes AS Lk ON Hs1.ID = Lk.ID1
-	LEFT JOIN Highschooler AS Hs2 ON Hs2.ID = Lk.ID2
-	LEFT JOIN Friend AS Fr ON Hs1.ID = Fr.ID1
-	LEFT JOIN Highschooler AS Hs3 ON Hs3.Id = Fr.ID2
-	WHERE ;
+SELECT Hs1.name, Hs1.grade, Hs2.name, Hs2.grade, Hs3.name, Hs3.grade FROM Likes AS Lk
+	LEFT JOIN Highschooler AS Hs1 ON Lk.ID1 = Hs1.ID
+	LEFT JOIN Highschooler AS Hs2 ON Lk.ID2 = Hs2.ID
+	LEFT JOIN Friend AS Fr1 ON Fr1.ID1 = Hs1.ID
+	LEFT JOIN Friend AS Fr2 ON Fr2.ID2 = Hs2.ID
+	LEFT JOIN Highschooler AS Hs3 ON Fr1.ID2 = Hs3.ID
+	WHERE Hs2.ID NOT IN (SELECT ID2 FROM Friend WHERE ID1 = Hs1.ID) AND Hs3.ID = Fr2.ID1;
 
 /*Q8: Find the difference between the number of students in the school and the number of different first names. */
 SELECT ((SELECT COUNT(Highschooler.name) FROM Highschooler) - (SELECT COUNT(diff_name.hsn) AS c FROM (SELECT DISTINCT Highschooler.name AS hsn FROM Highschooler) AS diff_name)) AS diff_hsn;
@@ -64,4 +64,25 @@ SELECT Hs2.name, Hs2.grade FROM Highschooler AS Hs1
 	GROUP BY Lk.ID2
     HAVING COUNT(Lk.ID2) >= 2
     ORDER BY Hs2.name;
+    
+/*---------------------------------------------------------------------------------------------------------------------------------------------------*/
 
+/*Q1: For every situation where student A likes student B, but student B likes a different student C, return the names and grades of A, B, and C. */
+SELECT Hs1.name, Hs1.grade, Hs2.name, Hs2.grade, Hs3.name, Hs3.grade FROM Likes AS Lk1
+	LEFT JOIN Likes AS Lk2 ON Lk1.ID2 = Lk2.ID1
+	LEFT JOIN Highschooler AS Hs1 ON Lk1.ID1 = Hs1.ID
+	LEFT JOIN Highschooler AS Hs2 ON Lk2.ID1 = Hs2.ID
+	LEFT JOIN Highschooler AS Hs3 ON Lk2.ID2 = Hs3.ID
+	WHERE Lk1.ID1 > Lk2.ID2;
+
+/*Q2: Find those students for whom all of their friends are in different grades from themselves. Return the students' names and grades*/
+SELECT Hs.name, Hs.grade FROM Highschooler as Hs
+WHERE Hs.ID NOT IN (SELECT friend_same_grade.hs1_id FROM
+(SELECT Hs1.ID as hs1_id, Hs2.ID as hs2_id FROM Friend AS Fr
+	LEFT JOIN Highschooler AS Hs1 ON Fr.ID1 = Hs1.ID
+	LEFT JOIN Highschooler AS Hs2 ON Fr.ID2 = Hs2.ID
+	WHERE Hs1.ID > Hs2.ID AND Hs1.grade = Hs2.grade) AS friend_same_grade) AND Hs.ID NOT IN (SELECT friend_same_grade.hs2_id FROM
+(SELECT Hs1.ID as hs1_id, Hs2.ID as hs2_id FROM Friend AS Fr
+	LEFT JOIN Highschooler AS Hs1 ON Fr.ID1 = Hs1.ID
+	LEFT JOIN Highschooler AS Hs2 ON Fr.ID2 = Hs2.ID
+	WHERE Hs1.ID > Hs2.ID AND Hs1.grade = Hs2.grade) AS friend_same_grade);
