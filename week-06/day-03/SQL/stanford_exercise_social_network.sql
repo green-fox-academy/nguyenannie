@@ -86,3 +86,28 @@ WHERE Hs.ID NOT IN (SELECT friend_same_grade.hs1_id FROM
 	LEFT JOIN Highschooler AS Hs1 ON Fr.ID1 = Hs1.ID
 	LEFT JOIN Highschooler AS Hs2 ON Fr.ID2 = Hs2.ID
 	WHERE Hs1.ID > Hs2.ID AND Hs1.grade = Hs2.grade) AS friend_same_grade);
+	
+/*What is the average number of friends per student? (Your result should be just one number.) */
+SELECT AVG(friend_num.fr_count) FROM 
+	(SELECT ID1, COUNT(ID2) AS fr_count FROM Friend
+	GROUP BY ID1) AS friend_num;
+	
+/*Find the number of students who are either friends with Cassandra or are friends of friends of Cassandra. Do not count Cassandra, even though technically she is a friend of a friend. */
+SELECT COUNT(ID2) FROM Friend 
+	WHERE ID2 IN (SELECT tb.b FROM
+		(SELECT Hs1.ID as a, Hs2.ID as b FROM Friend AS Fr
+		JOIN Highschooler AS Hs1 ON Fr.ID1 = Hs1.ID
+		JOIN Highschooler AS Hs2 ON Fr.ID2 = Hs2.ID
+		WHERE Hs1.name = "Cassandra") as tb);
+		
+/*Find the name and grade of the student(s) with the greatest number of friends. */
+SELECT DISTINCT Hs.name, Hs.grade FROM Highschooler AS Hs
+    JOIN Friend AS Fr ON Fr.ID1 = Hs.ID
+    WHERE Hs.ID IN (SELECT tb1.st 
+                    FROM (SELECT ID1 as st, COUNT(ID2) AS c 
+                          FROM Friend
+                          GROUP BY ID1) AS tb1
+                    WHERE c = (SELECT MAX(tb.c) 
+                               FROM (SELECT ID1 as st, COUNT(ID2) AS c 
+                               FROM Friend
+                               GROUP BY st) AS tb));
