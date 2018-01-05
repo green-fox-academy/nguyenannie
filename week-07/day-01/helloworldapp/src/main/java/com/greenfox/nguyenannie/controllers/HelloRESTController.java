@@ -3,7 +3,9 @@ package com.greenfox.nguyenannie.controllers;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -16,8 +18,9 @@ public class HelloRESTController {
 
 	@ResponseBody
 	@RequestMapping(value = "/greeting")
-	public Greeting greeting() {
-		return new Greeting(15, "hello there :D");
+	public Greeting greeting(@RequestParam(value = "name", required = false) String name, Model map) {
+		map.addAttribute("Your name is: " + name);
+		return new Greeting(15, "hello " + name);
 	}
 
 }
