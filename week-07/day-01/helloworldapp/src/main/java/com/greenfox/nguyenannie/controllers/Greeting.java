@@ -5,6 +5,7 @@ import java.util.concurrent.atomic.AtomicLong;
 public class Greeting {
     private long id;
     private String content;
+    private String[] contents ;
 
     AtomicLong atomicLong;
 
@@ -15,6 +16,11 @@ public class Greeting {
         this.id = id;
         this.content = content;
         atomicLong= new AtomicLong(id);
+    }
+
+    public Greeting(long id, String[] contents) {
+        this.id = id;
+        this.contents = contents;
     }
 
     public long next() {
