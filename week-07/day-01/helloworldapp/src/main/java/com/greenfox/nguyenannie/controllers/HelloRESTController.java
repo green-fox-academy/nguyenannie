@@ -8,9 +8,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.concurrent.atomic.AtomicLong;
+
 @Controller
 @SpringBootApplication
 public class HelloRESTController {
+
+	AtomicLong atomicLong = new AtomicLong(0);
 
 	public static void main(String[] args) {
 		SpringApplication.run(HelloRESTController.class, args);
@@ -20,7 +24,6 @@ public class HelloRESTController {
 	@RequestMapping(value = "/greeting")
 	public Greeting greeting(@RequestParam(value = "name", required = false) String name, Model map) {
 		map.addAttribute("Your name is: " + name);
-		return new Greeting(15, "hello " + name);
+		return new Greeting(atomicLong.addAndGet(1), "hello " + name);
 	}
-
 }

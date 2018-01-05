@@ -1,8 +1,12 @@
 package com.greenfox.nguyenannie.controllers;
 
+import java.util.concurrent.atomic.AtomicLong;
+
 public class Greeting {
     private long id;
     private String content;
+
+    AtomicLong atomicLong;
 
     public Greeting() {
     }
@@ -10,6 +14,11 @@ public class Greeting {
     public Greeting(long id, String content) {
         this.id = id;
         this.content = content;
+        atomicLong= new AtomicLong(id);
+    }
+
+    public long next() {
+        return atomicLong.getAndIncrement();
     }
 
     public long getId() {
