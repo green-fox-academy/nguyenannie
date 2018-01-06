@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Controller
@@ -26,11 +28,13 @@ public class HelloWebController {
 
     @ResponseBody
     @RequestMapping(value = "/web/greeting")
-    public Greeting greeting(@RequestParam(value = "name", required = false) String[] names, Model map) {
+    public List<Greeting> greeting(@RequestParam(value = "name", required = false) String[] names, Model map) {
         map.addAttribute("Your name is: " + names);
-        Greeting g = null;
+        List<Greeting> g = new ArrayList<>();
         for(String name : names) {
-            g =  new Greeting(atomicLong.addAndGet(1), name);
+            for(String greet : contents) {
+                g.add(new Greeting(atomicLong.addAndGet(1), greet + " " + name));
+            }
         }
         return g;
     }

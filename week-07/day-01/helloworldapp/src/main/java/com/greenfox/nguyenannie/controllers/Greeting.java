@@ -1,13 +1,13 @@
 package com.greenfox.nguyenannie.controllers;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.concurrent.atomic.AtomicLong;
 
 public class Greeting {
     private long id;
     private String content;
-    private String[] contents ;
-
-    AtomicLong atomicLong;
+    private String foobar;
 
     public Greeting() {
     }
@@ -15,16 +15,7 @@ public class Greeting {
     public Greeting(long id, String content) {
         this.id = id;
         this.content = content;
-        atomicLong= new AtomicLong(id);
-    }
-
-    public Greeting(long id, String[] contents) {
-        this.id = id;
-        this.contents = contents;
-    }
-
-    public long next() {
-        return atomicLong.getAndIncrement();
+        this.foobar = "ANNIE";
     }
 
     public long getId() {
@@ -41,5 +32,24 @@ public class Greeting {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getFoobar() {
+        return foobar;
+    }
+
+    //play with how reflection works in java and how springboot reads getter from a class
+    public  String getfizzbuzz() {
+        String s = "";
+        for(Method m : this.getClass().getDeclaredMethods()) {
+            if(m.getName().startsWith("get") && !m.getName().equals("getfizzbuzz")) {
+                try {
+                    s = s + m.getReturnType().getName() + " " + m.getName() + "() { return " + m.invoke(this).toString() + " } ";
+                } catch(Exception e){
+                    s += e.toString() + " ";
+                }
+            }
+        }
+        return s;
     }
 }
