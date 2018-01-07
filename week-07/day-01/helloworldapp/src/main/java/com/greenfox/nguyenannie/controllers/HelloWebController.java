@@ -5,11 +5,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Controller
@@ -26,16 +29,18 @@ public class HelloWebController {
         SpringApplication.run(HelloRESTController.class, args);
     }
 
-    @ResponseBody
     @RequestMapping(value = "/web/greeting")
-    public List<Greeting> greeting(@RequestParam(value = "name", required = false) String[] names, Model map) {
-        map.addAttribute("Your name is: " + names);
+    public String greeting(@RequestParam(value = "name", required = false) String name, Model model) {
+
         List<Greeting> g = new ArrayList<>();
-        for(String name : names) {
-            for(String greet : contents) {
-                g.add(new Greeting(atomicLong.addAndGet(1), greet + " " + name));
-            }
+        for(String greet : contents) {
+            Random r = new Random();
+            g.add(new Greeting(atomicLong.addAndGet(1), greet + " " + name,
+                    new Color(r.nextInt(255), r.nextInt(255), r.nextInt(255))));
         }
-        return g;
+
+        model.addAttribute("greetings", g);
+
+        return "greeting";
     }
 }

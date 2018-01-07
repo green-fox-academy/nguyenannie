@@ -1,21 +1,21 @@
 package com.greenfox.nguyenannie.controllers;
-
-import java.lang.reflect.InvocationTargetException;
+import java.awt.*;
 import java.lang.reflect.Method;
-import java.util.concurrent.atomic.AtomicLong;
+import java.util.Random;
 
 public class Greeting {
     private long id;
     private String content;
-    private String foobar;
+    private Random r;
+    private Color c;
 
     public Greeting() {
     }
 
-    public Greeting(long id, String content) {
+    public Greeting(long id, String content, Color c) {
         this.id = id;
         this.content = content;
-        this.foobar = "ANNIE";
+        this.c = c;
     }
 
     public long getId() {
@@ -34,8 +34,8 @@ public class Greeting {
         this.content = content;
     }
 
-    public String getFoobar() {
-        return foobar;
+    public Color getC() {
+        return c;
     }
 
     //play with how reflection works in java and how springboot reads getter from a class
