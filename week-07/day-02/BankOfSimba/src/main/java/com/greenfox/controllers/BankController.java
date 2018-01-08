@@ -1,6 +1,6 @@
-package com.greenfox.BankApp;
+package com.greenfox.controllers;
 
-import Model.*;
+import com.greenfox.Model.BankAccount;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;

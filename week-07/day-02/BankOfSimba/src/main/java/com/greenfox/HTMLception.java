@@ -1,4 +1,4 @@
-package HTMLception;
+package com.greenfox;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

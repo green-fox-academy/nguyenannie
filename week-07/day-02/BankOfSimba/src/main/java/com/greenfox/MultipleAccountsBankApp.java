@@ -1,12 +1,11 @@
-package com.greenfox.BankApp;
+package com.greenfox;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BankApp {
-
+public class MultipleAccountsBankApp {
     public static void main(String[] args) {
-        SpringApplication.run(BankApp.class,args);
+        SpringApplication.run(MultipleAccountsBankApp.class, args);
     }
 }

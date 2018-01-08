@@ -1,4 +1,4 @@
-package Model;
+package com.greenfox.Model;
 
 public class BankAccount {
     private String name;
