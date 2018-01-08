@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Thymeleaf Exercise #</title>
+    <link rel="stylesheet" th:href="@{/style.css}" />
+    <meta charset="utf-8" />
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<table width="600px">
+    <tr>
+        <th width="100px">Name</th>
+        <th width="100px">Balance</th>
+        <th width="100px">Animal Type</th>
+        <th width="100px">Index</th>
+        <th width="100px">Title</th>
+        <th width="100px">Guy Type</th>
+    </tr>
+
+    <tr align="center" th:each = "account: ${accounts}" th:object="${account}">
+        <td width="100px" th:text="*{name}">...</td>
+        <td width="100px" th:text="*{balanceDisplay}">...</td>
+        <td width="100px" th:text="*{animalType}">...</td>
+        <td width="100px" th:text="${accountStat.index}">...</td>
+        <td width="100px" th:if ="*{king} == 'King'" style="color: coral; font-style: italic">King</td>
+        <td width="100px" th:if ="*{king} == 'not King'">Not King</td>
+        <!-- Using Switch
+        <td width="100px" th:switch="*{guyType}">
+            <p th:case="'Good One'">Good One</p>
+            <p th:case="'Bad Guy'">Bad Guy</p>
+        </td>
+        -->
+        <td width="100px" th:if ="*{guyType} == 'Good One'" th:text="*{guyType}">...</td>
+        <td width="100px" th:if ="*{guyType} == 'Bad Guy'" th:text="*{guyType}">...</td>
+
+    </tr>
+</table>
+
+</body>
+</html>
