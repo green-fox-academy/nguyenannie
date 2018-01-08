@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Thymeleaf Exercise #</title>
+    <link rel="stylesheet" th:href="@{/style.css}" />
+    <meta charset="utf-8" />
+</head>
+<body th:object="${account}">
+    <p th:text="'Accounts name : ' +  *{name}">...</p>
+    <p th:text="'Accounts balance : ' +  *{balance} + ' Zebra'">...</p>
+    <p th:text="'Animal type : ' +  *{animalType}">...</p>
+</body>
+</html>
