@@ -10,40 +10,64 @@
         }
     </style>
 </head>
+
 <body>
+    <form action="#" th:action="@{/multipleAccounts}" method="post">
+        <table width="100%" height = "300px">
+            <thead>
+                <tr style="background-color: aquamarine; font-size: large; font-family: Courier">
+                    <th>Name</th>
+                    <th>Balance</th>
+                    <th>Animal Type</th>
+                    <th>Index</th>
+                    <th>Title</th>
+                    <th>Guy Type</th>
+                    <th>Raise</th>
+                </tr>
+            </thead>
 
-<table width="1200px" height = "300px">
-    <tr style="background-color: aquamarine; font-size: large; font-family: Courier">
-        <th width="200px">Name</th>
-        <th width="200px">Balance</th>
-        <th width="200px">Animal Type</th>
-        <th width="200px">Index</th>
-        <th width="200px">Title</th>
-        <th width="200px">Guy Type</th>
-    </tr>
-
-    <tr align="center" th:each = "account: ${accounts}" th:object="${account}"
-        style="background-color: lavenderblush; font-family: 'Courier New'">
-        <td width="200px" th:text="*{name}">...</td>
-        <td width="200px" th:text="*{balanceDisplay}">...</td>
-        <td width="200px" th:text="*{animalType}">...</td>
-        <td width="200px" th:text="${accountStat.index}">...</td>
-        <td width="200px" th:if ="*{king} == 'King'" style="color: blue; font-style: italic; background-color: deeppink">King</td>
-        <td width="200px" th:if ="*{king} == 'not King'">Not King</td>
-        <!-- Using Switch
-        <td width="100px" th:switch="*{guyType}">
-            <p th:case="'Good One'">Good One</p>
-            <p th:case="'Bad Guy'">Bad Guy</p>
-        </td>
-        -->
-        <td width="200px" th:if ="*{guyType} == 'Good One'" th:text="*{guyType}">...</td>
-        <td width="200px" th:if ="*{guyType} == 'Bad Guy'" th:text="*{guyType}">...</td>
-
-    </tr>
-</table>
-<form action="#" th:action="@{/multipleAccounts}" th:object="${accounts}" method="post">
-    <input type = "submit" value="raise"/>
-</form>
-
+            <tbody th:object="${accountContainer}">
+                <tr align="center" style="background-color: lavenderblush; font-family: 'Courier New'" th:each = "account: *{bankAccounts}">
+                    <td th:text="${account.name}">...</td>
+                    <td th:text="${#numbers.formatDecimal(account.balance, 0, 'WHITESPACE', 2, 'POINT')} + ' Zebra'">...</td>
+                    <td th:text="${account.animalType}">...</td>
+                    <td th:text="${accountStat.index}">...</td>
+                    <td th:switch="${account.king}">
+                        <p th:case="'King'" style="color: blue; font-style: italic; background-color: deeppink">King</p>
+                        <p th:case="'not King'">Not King</p>
+                        <p th:case="*"> -- </p>
+                    </td>
+                    <td th:switch="${account.guyType}">
+                        <p th:case="'Good One'">Good One</p>
+                        <p th:case="'Bad Guy'">Bad Guy</p>
+                        <p th:case="*"> -- </p>
+                    </td>
+                    <td> <button type="submit" name="accountSubmit"
+                                 th:value="${accountStat.index}">Raise</button>
+                    </td>
+                </tr>
+                <tr>
+                    <button type="submit" name="addAccount">Add Account</button>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Name: <input type="text" th:field="*{bankAccount.name}" /></p>
+                    </td>
+                    <td>
+                        <p>Balance: <input type="text" th:field="*{bankAccount.balance}" /></p>
+                    </td>
+                    <td>
+                        <p>Animal Type: <input type="text" th:field="*{bankAccount.animalType}" /></p>
+                    </td>
+                    <td>
+                        <p>King: <input type="text" th:field="*{bankAccount.king}" /></p>
+                    </td>
+                    <td>
+                        <p>Guy Type: <input type="text" th:field="*{bankAccount.guyType}" /></p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
 </body>
 </html>

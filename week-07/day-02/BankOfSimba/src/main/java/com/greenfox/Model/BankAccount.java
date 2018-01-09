@@ -1,16 +1,20 @@
 package com.greenfox.Model;
 
+import java.util.List;
+
 public class BankAccount {
+
     private String name;
     private double balance;
-    private String balanceDisplay;
     private String animalType;
     private String king;
     private String guyType;
+    private List<BankAccount> accountList;
 
     public BankAccount() {
 
     }
+
     public BankAccount(String name, double balance, String animalType, String king) {
         this.name = name;
         this.balance = balance;
@@ -21,22 +25,21 @@ public class BankAccount {
     public BankAccount(String name, double balance, String animalType,String king, String guyType) {
         this.name = name;
         this.balance = balance;
-        this.balanceDisplay = String.format("%.2f", balance);
         this.animalType = animalType;
         this.guyType = guyType;
         this.king = king;
     }
 
-    public String getBalanceDisplay() {
-        return balanceDisplay;
+    public List<BankAccount> getAccountList() {
+        return accountList;
+    }
+
+    public void setAccountList(List<BankAccount> accountList) {
+        this.accountList = accountList;
     }
 
     public void setBalance(double balance) {
         this.balance = balance;
-    }
-
-    public void setBalanceDisplay(String balanceDisplay) {
-        this.balanceDisplay = balanceDisplay;
     }
 
     public String getGuyType() {
@@ -74,5 +77,4 @@ public class BankAccount {
     public void setAnimalType(String animalType) {
         this.animalType = animalType;
     }
-
 }
