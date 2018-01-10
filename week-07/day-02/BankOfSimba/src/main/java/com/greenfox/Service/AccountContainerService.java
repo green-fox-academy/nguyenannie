@@ -1,5 +1,7 @@
-package com.greenfox.Model;
+package com.greenfox.Service;
 
+import com.greenfox.Repository.AccountContainerRepository;
+import com.greenfox.Model.BankAccount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

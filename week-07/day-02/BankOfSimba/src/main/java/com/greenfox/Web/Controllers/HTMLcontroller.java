@@ -1,4 +1,4 @@
-package com.greenfox.Controllers;
+package com.greenfox.Web.Controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

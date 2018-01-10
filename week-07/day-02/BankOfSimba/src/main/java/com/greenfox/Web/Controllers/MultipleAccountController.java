@@ -1,6 +1,6 @@
-package com.greenfox.Controllers;
+package com.greenfox.Web.Controllers;
 
-import com.greenfox.Model.AccountContainerService;
+import com.greenfox.Service.AccountContainerService;
 import com.greenfox.Model.BankAccount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

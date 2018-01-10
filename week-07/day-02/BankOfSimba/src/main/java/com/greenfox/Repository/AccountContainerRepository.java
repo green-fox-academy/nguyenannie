@@ -1,5 +1,6 @@
-package com.greenfox.Model;
+package com.greenfox.Repository;
 
+import com.greenfox.Model.BankAccount;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;

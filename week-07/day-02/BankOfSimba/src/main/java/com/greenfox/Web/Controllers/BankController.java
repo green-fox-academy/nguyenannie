@@ -1,4 +1,4 @@
-package com.greenfox.Controllers;
+package com.greenfox.Web.Controllers;
 
 import com.greenfox.Model.BankAccount;
 import org.springframework.stereotype.Controller;

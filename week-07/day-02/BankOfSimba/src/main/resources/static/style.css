@@ -1,0 +1,12 @@
+tbody {
+    color: blue;
+    background-color: lavenderblush;
+    font-family: "Courier New", serif;
+    text-align: center;
+}
+
+#king{
+    color: blue;
+    font-style: italic;
+    background-color: deeppink;
+}

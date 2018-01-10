@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Thymeleaf Exercise #</title>
-    <link rel="stylesheet" th:href="@{/style.css}" />
+    <link rel="stylesheet" href="../static/style.css" th:href="@{/style.css}" />
     <meta charset="utf-8" />
     <style>
         table, th, td {
@@ -27,13 +27,13 @@
             </thead>
 
             <tbody>
-                <tr align="center" style="background-color: lavenderblush; font-family: 'Courier New'" th:each = "account: ${allBankAccounts}">
+                <tr th:each = "account: ${allBankAccounts}">
                     <td th:text="${account.name}">...</td>
                     <td th:text="${#numbers.formatDecimal(account.balance, 0, 'WHITESPACE', 2, 'POINT')} + ' Zebra'">...</td>
                     <td th:text="${account.animalType}">...</td>
                     <td th:text="${accountStat.index}">...</td>
                     <td th:switch="${account.king}">
-                        <p th:case="'King'" style="color: blue; font-style: italic; background-color: deeppink">King</p>
+                        <p id = "king" th:case="'King'">King</p>
                         <p th:case="'not King'">Not King</p>
                         <p th:case="*"> -- </p>
                     </td>
