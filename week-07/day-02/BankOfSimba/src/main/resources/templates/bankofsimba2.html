@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <form action="#" th:action="@{/multipleAccounts}" method="post">
+    <form action="#" th:action="@{/multipleAccounts}" method="post" th:object="${allBankAccounts}">
         <table width="100%" height = "300px">
             <thead>
                 <tr style="background-color: aquamarine; font-size: large; font-family: Courier">
@@ -26,8 +26,8 @@
                 </tr>
             </thead>
 
-            <tbody th:object="${accountContainer}">
-                <tr align="center" style="background-color: lavenderblush; font-family: 'Courier New'" th:each = "account: *{bankAccounts}">
+            <tbody>
+                <tr align="center" style="background-color: lavenderblush; font-family: 'Courier New'" th:each = "account: ${allBankAccounts}">
                     <td th:text="${account.name}">...</td>
                     <td th:text="${#numbers.formatDecimal(account.balance, 0, 'WHITESPACE', 2, 'POINT')} + ' Zebra'">...</td>
                     <td th:text="${account.animalType}">...</td>
@@ -42,32 +42,34 @@
                         <p th:case="'Bad Guy'">Bad Guy</p>
                         <p th:case="*"> -- </p>
                     </td>
-                    <td> <button type="submit" name="accountSubmit"
+                    <td> <button type="submit" name="raise"
                                  th:value="${accountStat.index}">Raise</button>
-                    </td>
-                </tr>
-                <tr>
-                    <button type="submit" name="addAccount">Add Account</button>
-                </tr>
-                <tr>
-                    <td>
-                        <p>Name: <input type="text" th:field="*{bankAccount.name}" /></p>
-                    </td>
-                    <td>
-                        <p>Balance: <input type="text" th:field="*{bankAccount.balance}" /></p>
-                    </td>
-                    <td>
-                        <p>Animal Type: <input type="text" th:field="*{bankAccount.animalType}" /></p>
-                    </td>
-                    <td>
-                        <p>King: <input type="text" th:field="*{bankAccount.king}" /></p>
-                    </td>
-                    <td>
-                        <p>Guy Type: <input type="text" th:field="*{bankAccount.guyType}" /></p>
                     </td>
                 </tr>
             </tbody>
         </table>
+        <table>
+                <tr th:object="${bankAccount}">
+                    <td>
+                        <p>Name: <input type="text" th:field="*{name}" /></p>
+                    </td>
+                    <td>
+                        <p>Balance: <input type="text" th:field="*{balance}" /></p>
+                    </td>
+                    <td>
+                        <p>Animal Type: <input type="text" th:field="*{animalType}" /></p>
+                    </td>
+                    <td>
+                        <p>King: <input type="text" th:field="*{king}" /></p>
+                    </td>
+                    <td>
+                        <p>Guy Type: <input type="text" th:field="*{guyType}" /></p>
+                    </td>
+                </tr>
+        </table>
+        <div>
+            <button type="submit" name="add" style="height:50px;width:200px; background-color: darkorange">Add Account</button>
+        </div>
     </form>
 </body>
 </html>
