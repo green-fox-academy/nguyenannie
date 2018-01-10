@@ -10,8 +10,6 @@ public class AccountContainerRepository {
 
     private final List<BankAccount> bankAccounts = new ArrayList<>();
 
-
-
     public AccountContainerRepository() {
         super();
         bankAccounts.add(new BankAccount("Mufasa", 2500, "lion", "King", "Good One"));
@@ -21,17 +19,12 @@ public class AccountContainerRepository {
         bankAccounts.add(new BankAccount("Nala", 2700, "lion", "not King", "Bad Guy"));
     }
 
-
-
     public List<BankAccount> findAll() {
         return this.bankAccounts;
     }
 
-
     public void add(final BankAccount bankAccount) {
         this.bankAccounts.add(bankAccount);
     }
-
-
 
 }

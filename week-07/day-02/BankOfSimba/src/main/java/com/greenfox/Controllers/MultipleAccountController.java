@@ -1,11 +1,9 @@
-package com.greenfox.controllers;
+package com.greenfox.Controllers;
 
-import com.greenfox.Model.AccountContainer;
 import com.greenfox.Model.AccountContainerService;
 import com.greenfox.Model.BankAccount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +12,7 @@ import java.util.List;
 
 @Controller
 public class MultipleAccountController {
+
     @Autowired
     private AccountContainerService accountContainerService;
 
@@ -57,5 +56,6 @@ public class MultipleAccountController {
 
         return "bankofsimba2";
     }
+
 }
 

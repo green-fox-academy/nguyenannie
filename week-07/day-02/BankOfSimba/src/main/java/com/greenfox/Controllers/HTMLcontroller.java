@@ -1,4 +1,4 @@
-package com.greenfox.controllers;
+package com.greenfox.Controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,4 +13,5 @@ public class HTMLcontroller {
         model.addAttribute("tagtext", str);
         return "htmlception";
     }
+
 }

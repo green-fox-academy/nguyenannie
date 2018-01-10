@@ -15,13 +15,6 @@ public class BankAccount {
 
     }
 
-    public BankAccount(String name, double balance, String animalType, String king) {
-        this.name = name;
-        this.balance = balance;
-        this.animalType = animalType;
-        this.king = king;
-    }
-
     public BankAccount(String name, double balance, String animalType,String king, String guyType) {
         this.name = name;
         this.balance = balance;
@@ -34,36 +27,20 @@ public class BankAccount {
         return accountList;
     }
 
-    public void setAccountList(List<BankAccount> accountList) {
-        this.accountList = accountList;
-    }
-
-    public void setBalance(double balance) {
-        this.balance = balance;
-    }
-
     public String getGuyType() {
         return this.guyType;
-    }
-
-    public void setGuyType(String guyType) {
-        this.guyType = guyType;
     }
 
     public String getKing() {
         return king;
     }
 
-    public void setKing(String king) {
-        this.king = king;
-    }
-
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setGuyType(String guyType) {
+        this.guyType = guyType;
     }
 
     public double getBalance() {
@@ -74,7 +51,24 @@ public class BankAccount {
         return animalType;
     }
 
+    public void setAccountList(List<BankAccount> accountList) {
+        this.accountList = accountList;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
+    public void setKing(String king) {
+        this.king = king;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public void setAnimalType(String animalType) {
         this.animalType = animalType;
     }
+
 }
