@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Thymeleaf Exercise #</title>
+    <link rel="stylesheet" th:href="@{/style.css}" />
+    <meta charset="utf-8" />
+</head>
+<body>
+    <div th:each="util: ${utils}">
+        <a th:text="${util} + ' background'" th:href="@{/useful/{path}(path = ${util})}" ></a>
+    </div>
+    <a th:href="@{/useful/colored}">Random Colored BackGround</a>
+</body>
+</html>
