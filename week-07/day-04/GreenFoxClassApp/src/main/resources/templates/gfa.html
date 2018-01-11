@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Thymeleaf Exercise #</title>
+    <link rel="stylesheet" th:href="@{/style.css}" />
+    <meta charset="utf-8" />
+</head>
+<body>
+    <p th:text="'Student counter: ' + ${student.counter}"></p>
+    <ul>
+        <li><a th:href="@{/gfa/list}">Student List</a></li>
+        <li><a th:href="@{/gfa/add}">Add Student</a></li>
+        <li><a th:href="@{/gfa/check}">Check Student</a></li>
+    </ul>
+</body>
+</html>
