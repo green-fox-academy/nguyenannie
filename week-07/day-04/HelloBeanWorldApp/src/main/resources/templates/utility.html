@@ -5,10 +5,36 @@
     <link rel="stylesheet" th:href="@{/style.css}" />
     <meta charset="utf-8" />
 </head>
-<body>
+<body th:bgcolor="${util1}">
     <div th:each="util: ${utils}">
         <a th:text="${util} + ' background'" th:href="@{/useful/{path}(path = ${util})}" ></a>
     </div>
+
     <a th:href="@{/useful/colored}">Random Colored BackGround</a>
+
+    <hr/>
+
+    <form action="#" th:action="@{useful/email}" method="get">
+        <p>Email: <input type="text" name="email" /></p>
+        <button type="submit">Submit</button>
+    </form>
+
+    <hr/>
+
+    <form action="#" th:action="@{useful/encoding}" method="get">
+        <p>Text: <input type="text" name="text" /></p>
+        <p>Number: <input type="text" name="number" /></p>
+        <button type="submit">Encode</button>
+    </form>
+
+    <hr/>
+
+    <form action="#" th:action="@{useful/decoding}" method="get">
+        <p>Text: <input type="text" name="text" /></p>
+        <p>Number: <input type="text" name="number" /></p>
+        <button type="submit">Decode</button>
+    </form>
+
+
 </body>
 </html>

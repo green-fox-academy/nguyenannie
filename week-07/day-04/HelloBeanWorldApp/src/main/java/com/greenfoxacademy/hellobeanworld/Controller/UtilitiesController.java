@@ -29,14 +29,16 @@ public class UtilitiesController {
                 break;
             }
         }
-        model.addAttribute("util", utilityService.getColors().get(index));
-        return "color";
+        model.addAttribute("utils", utilityService.getColors());
+        model.addAttribute("util1", utilityService.getColors().get(index));
+        return "utility";
     }
 
     @RequestMapping(value = "/useful/colored")
     public String displayColoredPage(Model model) {
-        model.addAttribute("util", utilityService.randomColor());
-        return "color";
+        model.addAttribute("utils", utilityService.getColors());
+        model.addAttribute("util1", utilityService.randomColor());
+        return "utility";
     }
 
     @RequestMapping(value = "useful/email")
@@ -57,7 +59,7 @@ public class UtilitiesController {
 
     @RequestMapping(value = "/useful/decoding")
     public String caesarDecode(@RequestParam(value = "text") String text, @RequestParam(value = "number") int number, Model model) {
-        model.addAttribute("uceasar", utilityService.caesar(text,number));
+        model.addAttribute("uceasar", utilityService.caesar(text,-number));
         return "de-encodingpage";
     }
 }
