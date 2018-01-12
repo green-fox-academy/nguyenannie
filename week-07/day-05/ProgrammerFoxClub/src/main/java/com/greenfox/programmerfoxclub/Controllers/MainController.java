@@ -113,12 +113,16 @@ public class MainController {
     @PostMapping(value = "foxclub/{foxname}/trickCenter")
     public String postTricks(Model model, @PathVariable String foxname, HttpServletRequest req) {
         String result = "alreadylearned";
+
         if(!foxService.findOne(foxname).existed(req.getParameter("addtrickhere"))) {
-            foxService.findOne(foxname).addTrick(req.getParameter("addtrickhere"));
             history.add(LocalDateTime.now() + " Learned to " + req.getParameter("addtrickhere"));
+            foxService.findOne(foxname).addTrick(req.getParameter("addtrickhere"));
+            foxService.findOne(foxname).addLearnedTrick(req.getParameter("addtrickhere"));
             result = "redirect:/foxclub/" + foxname;
         }
+
         model.addAttribute("fox", foxService.findOne(foxname));
+        model.addAttribute("learnedTricks", foxService.findOne(foxname).getLearnedTricks());
         return result;
     }
 

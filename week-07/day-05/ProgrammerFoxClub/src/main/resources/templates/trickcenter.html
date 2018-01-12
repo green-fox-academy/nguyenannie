@@ -29,6 +29,11 @@
 
         <button type="submit" name = "changetrick">Submit</button>
 
+        <div>Learned tricks:</div>
+        <ul th:each="learnedTrick : ${fox.learnedTricks}">
+            <li th:text="${learnedTrick}"></li>
+        </ul>
+
     </form>
 </body>
 </html>

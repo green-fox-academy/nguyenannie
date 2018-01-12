@@ -7,6 +7,7 @@ public class Fox {
 
     private String name;
     private ArrayList<String> tricks;
+    private ArrayList<String> learnedTricks = new ArrayList<>();
     private String food;
     private String drink;
     private int trickNum;
@@ -67,6 +68,14 @@ public class Fox {
         return tricks;
     }
 
+    public ArrayList<String> getLearnedTricks() {
+        return learnedTricks;
+    }
+
+    public void setLearnedTricks(ArrayList<String> learnedTricks) {
+        this.learnedTricks = learnedTricks;
+    }
+
     public int getTrickNum() {
         trickNum = getTricks().size();
         return trickNum;
@@ -85,5 +94,18 @@ public class Fox {
             return true;
         }
         return false;
+    }
+
+    public void removeTrick(String inputTrick) {
+        for(String t : getTricks()) {
+            if(t.equals(inputTrick)) {
+                getTricks().remove(t);
+                break;
+            }
+        }
+    }
+
+    public void addLearnedTrick(String learnedtrick) {
+        getLearnedTricks().add(learnedtrick);
     }
 }
