@@ -6,15 +6,20 @@
     <meta charset="utf-8" />
 </head>
 <body>
-    <ul>
-        <li><a th:href="@{/}">Information</a></li>
-    </ul>
-    <img src="images/greenfox.jpeg"/>
+
+    <img src="/images/greenfox.jpeg"/>
+
     <p th:text="'This is ' + ${fox.name} +'. Currently living on ' + ${fox.food}
             + ' and ' + ${fox.drink} + ' He knows ' + ${fox.trickNum} + ' trick(s)'">...</p>
     <h1>Known Tricks</h1>
     <ul>
         <li><p th:text="${fox.tricks}"></p></li>
     </ul>
+
+    <ul>
+        <li><a th:href="@{'/foxclub/' + ${fox.name}}">Information</a></li>
+        <li><a th:href="@{'/foxclub/' + ${fox.name} + '/nutritionStore'}">Nutrition Store</a></li>
+    </ul>
+
 </body>
 </html>

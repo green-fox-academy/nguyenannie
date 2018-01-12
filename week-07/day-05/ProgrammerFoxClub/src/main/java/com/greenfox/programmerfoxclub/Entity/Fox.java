@@ -1,4 +1,4 @@
-package com.greenfox.programmerfoxclub.Model;
+package com.greenfox.programmerfoxclub.Entity;
 
 import java.util.List;
 
@@ -16,6 +16,13 @@ public class Fox {
 
     public Fox() {
 
+    }
+
+    public Fox(String name, String food, String drink, List<String> tricks) {
+        this.name = name;
+        this.food = food;
+        this.drink = drink;
+        this.tricks = tricks;
     }
 
     public Fox(String name) {

@@ -1,22 +1,31 @@
 package com.greenfox.programmerfoxclub.Controllers;
 
+import com.greenfox.programmerfoxclub.Entity.Food;
+import com.greenfox.programmerfoxclub.Entity.Fox;
 import com.greenfox.programmerfoxclub.Service.FoxService;
+import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @Controller
 public class MainController {
 
-    @Autowired
-    private FoxService foxService;
+    private final FoxService foxService;
 
-    @RequestMapping(value = "/")
-    public String mainPage() {
+    @Autowired
+    MainController(FoxService foxService){
+        this.foxService = foxService;
+    }
+
+    @RequestMapping(value = "/foxclub/{foxname}")
+    public String mainPage(Model model, @PathVariable String foxname) {
+        model.addAttribute("fox", foxService.findOne(foxname));
         return "index";
     }
 
@@ -26,19 +35,48 @@ public class MainController {
     }
 
     @PostMapping(value = "/login")
-    public String postLoginPage(@RequestParam(value = "name") String petname, Model model) {
-        int index = 0;
-        String result = "error";
-
-        for(int i = 0; i < foxService.findAll().size(); i++) {
-            if(foxService.findAll().get(i).getName().equals(petname)) {
-                index = i;
-                result = "index";
-                break;
-            }
+    public String postLoginPage(@RequestParam(value = "foxname") String foxname, Model model) {
+        String result;
+        if(foxService.IsExisted(foxname)) {
+            result = "redirect:/foxclub/" + foxname;
+            model.addAttribute("fox", foxService.findOne(foxname));
+        } else {
+            result = "wannasignup";
         }
-
-        model.addAttribute("fox", foxService.findAll().get(index));
         return result;
+    }
+
+    @GetMapping(value = "/register")
+    public String getRegisterPage() {
+        return "register";
+    }
+
+    @PostMapping(value = "/register")
+    public String postRegisterPage(Model model, HttpServletRequest req) {
+        String name = req.getParameter("setname");
+        String food = req.getParameter("setfood");
+        String drink = req.getParameter("setdrink");
+        String trick = req.getParameter("settrick");
+        Fox newFox = new Fox(name, food, drink, new ArrayList<>(Arrays.asList(trick)));
+        foxService.add(newFox);
+        model.addAttribute("fox", newFox);
+        return "redirect:/foxclub/" + newFox.getName();
+    }
+
+
+    @GetMapping("foxclub/{foxname}/nutritionStore")
+    public String getNutrition(Model model, @PathVariable String foxname){
+        model.addAttribute("fox",foxService.findOne(foxname));
+        model.addAttribute("foods", foxService.getFoodValues());
+        model.addAttribute("drinks", foxService.getDrinkValues());
+        return "nutritionStore";
+    }
+
+    @PostMapping(value = "foxclub/{foxname}/nutritionStore")
+    public String nutrition(Model model, @PathVariable String foxname, HttpServletRequest req) {
+        foxService.findOne(foxname).setDrink(req.getParameter("adddrinkhere"));
+        foxService.findOne(foxname).setFood(req.getParameter("addfoodhere"));
+        model.addAttribute("fox", foxService.findOne(foxname));
+        return "redirect:/foxclub/" + foxname;
     }
 }

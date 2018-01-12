@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Thymeleaf Exercise #</title>
+    <link rel="stylesheet" th:href="@{/style.css}" />
+    <meta charset="utf-8" />
+</head>
+<body>
+    <form action="#" th:action="@{'/foxclub/' + ${fox.name} + '/nutritionStore'}" method="post">
+
+        Drink :
+        <select th:object="${fox}" name ="adddrinkhere">
+            <option th:each="drink:${drinks}" th:value="${drink}" th:selected="*{drink} == ${drink}" th:text="${drink}"></option>
+        </select>
+
+        Food :
+        <select th:object="${fox}" name ="addfoodhere">
+            <option th:each="food:${foods}" th:value="${food}" th:selected="*{food} == ${food}" th:text="${food}"></option>
+        </select>
+
+        <button type="submit" name = "changedrink">Submit</button>
+
+    </form>
+    <ul>
+        <li><a th:href="@{'/foxclub/' + ${fox.name}}">Back</a></li>
+    </ul>
+</body>
+</html>
