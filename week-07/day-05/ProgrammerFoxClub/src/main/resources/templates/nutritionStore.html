@@ -6,6 +6,20 @@
     <meta charset="utf-8" />
 </head>
 <body>
+    <ul>
+        <li>
+            <a th:href="@{'/foxclub/' + ${fox.name}}">Information</a>
+        </li>
+        <li>
+            <a th:href="@{'/foxclub/' + ${fox.name} + '/nutritionStore'}">Nutrition Store</a>
+        </li>
+        <li>
+            <a th:href="@{'/foxclub/' + ${fox.name} + '/trickCenter'}">Trick Center</a>
+        </li>
+        <li>
+            <a>Action History</a>
+        </li>
+    </ul>
     <form action="#" th:action="@{'/foxclub/' + ${fox.name} + '/nutritionStore'}" method="post">
 
         Drink :

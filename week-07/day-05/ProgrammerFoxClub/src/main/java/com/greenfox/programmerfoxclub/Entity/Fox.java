@@ -1,24 +1,22 @@
 package com.greenfox.programmerfoxclub.Entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Fox {
-    enum trickList{};
-    enum nameList{};
-    enum foodList{};
-    enum drinkList{};
 
     private String name;
-    private List<String> tricks;
+    private ArrayList<String> tricks;
     private String food;
     private String drink;
     private int trickNum;
+    private String trick;
 
     public Fox() {
 
     }
 
-    public Fox(String name, String food, String drink, List<String> tricks) {
+    public Fox(String name, String food, String drink, ArrayList<String> tricks) {
         this.name = name;
         this.food = food;
         this.drink = drink;
@@ -53,7 +51,15 @@ public class Fox {
         return drink;
     }
 
-    public void setTricks(List<String> tricks) {
+    public void setTrick(String trick) {
+        this.trick = trick;
+    }
+
+    public String getTrick() {
+        return trick;
+    }
+
+    public void setTricks(ArrayList<String> tricks) {
         this.tricks = tricks;
     }
 
@@ -64,5 +70,20 @@ public class Fox {
     public int getTrickNum() {
         trickNum = getTricks().size();
         return trickNum;
+    }
+
+    public void setTrickNum(int trickNum) {
+        this.trickNum = trickNum;
+    }
+
+    public void addTrick(String newtrick) {
+        getTricks().add(newtrick);
+    }
+
+    public boolean existed(String newtrick) {
+        if(getTricks().contains(newtrick)) {
+            return true;
+        }
+        return false;
     }
 }

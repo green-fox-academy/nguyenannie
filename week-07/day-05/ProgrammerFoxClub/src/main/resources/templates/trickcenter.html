@@ -21,15 +21,14 @@
         </li>
     </ul>
 
-    <img src="/images/greenfox.jpeg"/>
+    <form action="#" th:action="@{'/foxclub/' + ${fox.name} + '/trickCenter'}" method="post">
+        Tricks :
+        <select th:object="${fox}" name ="addtrickhere">
+            <option th:each="trick:${tricks}" th:value="${trick}" th:selected="*{trick} == ${trick}" th:text="${trick}"></option>
+        </select>
 
-    <p th:text="'This is ' + ${fox.name} +'. Currently living on ' + ${fox.food}
-            + ' and ' + ${fox.drink} + '. He knows ' + ${fox.trickNum} + ' trick(s)'">...</p>
+        <button type="submit" name = "changetrick">Submit</button>
 
-    <h1>Known Tricks</h1>
-    <ul th:each="trick:${fox.tricks}">
-        <li><p th:text="${trick}"></p></li>
-    </ul>
-
+    </form>
 </body>
 </html>

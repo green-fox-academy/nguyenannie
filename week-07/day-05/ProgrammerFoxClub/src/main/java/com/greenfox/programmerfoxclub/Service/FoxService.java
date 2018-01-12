@@ -3,6 +3,7 @@ package com.greenfox.programmerfoxclub.Service;
 import com.greenfox.programmerfoxclub.Entity.Drink;
 import com.greenfox.programmerfoxclub.Entity.Food;
 import com.greenfox.programmerfoxclub.Entity.Fox;
+import com.greenfox.programmerfoxclub.Entity.Trick;
 import com.greenfox.programmerfoxclub.Repository.FoxRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,5 +42,9 @@ public class FoxService {
 
     public List<Drink> getDrinkValues() {
         return foxRepository.getDrinkValues();
+    }
+
+    public List<Trick> getTrickValues() {
+        return foxRepository.getTrickValues();
     }
 }

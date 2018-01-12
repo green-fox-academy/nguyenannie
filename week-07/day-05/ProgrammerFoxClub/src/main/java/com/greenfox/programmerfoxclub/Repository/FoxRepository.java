@@ -1,14 +1,12 @@
 package com.greenfox.programmerfoxclub.Repository;
 
-import com.greenfox.programmerfoxclub.Entity.Drink;
-import com.greenfox.programmerfoxclub.Entity.Food;
-import com.greenfox.programmerfoxclub.Entity.Fox;
-import com.greenfox.programmerfoxclub.Entity.Name;
+import com.greenfox.programmerfoxclub.Entity.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.TreeMap;
 
 @Repository
 public class FoxRepository {
@@ -16,6 +14,7 @@ public class FoxRepository {
     private final List<Fox> foxes = new ArrayList<>();
     private List<Food> foodValues = Arrays.asList(Food.values());
     private List<Drink> drinkValues = Arrays.asList(Drink.values());
+    private List<Trick> trickValues = Arrays.asList(Trick.values());
 
     public FoxRepository() {
         super();
@@ -69,5 +68,9 @@ public class FoxRepository {
 
     public List<Drink> getDrinkValues() {
         return drinkValues;
+    }
+
+    public List<Trick> getTrickValues() {
+        return trickValues;
     }
 }

@@ -1,6 +1,5 @@
 package com.greenfox.programmerfoxclub.Controllers;
 
-import com.greenfox.programmerfoxclub.Entity.Food;
 import com.greenfox.programmerfoxclub.Entity.Fox;
 import com.greenfox.programmerfoxclub.Service.FoxService;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
@@ -10,8 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+
+import static java.util.Arrays.asList;
 
 @Controller
 public class MainController {
@@ -57,12 +56,11 @@ public class MainController {
         String food = req.getParameter("setfood");
         String drink = req.getParameter("setdrink");
         String trick = req.getParameter("settrick");
-        Fox newFox = new Fox(name, food, drink, new ArrayList<>(Arrays.asList(trick)));
+        Fox newFox = new Fox(name, food, drink, new ArrayList<>(asList(trick)));
         foxService.add(newFox);
         model.addAttribute("fox", newFox);
         return "redirect:/foxclub/" + newFox.getName();
     }
-
 
     @GetMapping("foxclub/{foxname}/nutritionStore")
     public String getNutrition(Model model, @PathVariable String foxname){
@@ -78,5 +76,23 @@ public class MainController {
         foxService.findOne(foxname).setFood(req.getParameter("addfoodhere"));
         model.addAttribute("fox", foxService.findOne(foxname));
         return "redirect:/foxclub/" + foxname;
+    }
+
+    @GetMapping("foxclub/{foxname}/trickCenter")
+    public String getTricks(Model model, @PathVariable String foxname){
+        model.addAttribute("fox",foxService.findOne(foxname));
+        model.addAttribute("tricks", foxService.getTrickValues());
+        return "trickcenter";
+    }
+
+    @PostMapping(value = "foxclub/{foxname}/trickCenter")
+    public String postTricks(Model model, @PathVariable String foxname, HttpServletRequest req) {
+        String result = "alreadylearned";
+        if(!foxService.findOne(foxname).existed(req.getParameter("addtrickhere"))) {
+            foxService.findOne(foxname).addTrick(req.getParameter("addtrickhere"));
+            result = "redirect:/foxclub/" + foxname;
+        }
+        model.addAttribute("fox", foxService.findOne(foxname));
+        return result;
     }
 }
