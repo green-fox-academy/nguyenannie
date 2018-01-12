@@ -8,7 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 import static java.util.Arrays.asList;
 
@@ -16,6 +18,17 @@ import static java.util.Arrays.asList;
 public class MainController {
 
     private final FoxService foxService;
+    private List<String> history = new ArrayList<>();
+
+    @ModelAttribute("allHistory")
+    public List<String> populateHsitory() {
+        return history;
+    }
+
+    @ModelAttribute("historysize")
+    public int returnSize() {
+        return history.size();
+    }
 
     @Autowired
     MainController(FoxService foxService){
@@ -72,8 +85,20 @@ public class MainController {
 
     @PostMapping(value = "foxclub/{foxname}/nutritionStore")
     public String nutrition(Model model, @PathVariable String foxname, HttpServletRequest req) {
+
+        if(!foxService.findOne(foxname).getFood().equals(req.getParameter("addfoodhere"))){
+            history.add(LocalDateTime.now() + " Food has been change from "
+                    + foxService.findOne(foxname).getFood() + " to " + req.getParameter("addfoodhere"));
+        }
+
+        if(!foxService.findOne(foxname).getDrink().equals(req.getParameter("adddrinkhere"))) {
+            history.add(LocalDateTime.now() + " Drink has been change from "
+                    + foxService.findOne(foxname).getDrink() + " to " + req.getParameter("adddrinkhere"));
+        }
+
         foxService.findOne(foxname).setDrink(req.getParameter("adddrinkhere"));
         foxService.findOne(foxname).setFood(req.getParameter("addfoodhere"));
+
         model.addAttribute("fox", foxService.findOne(foxname));
         return "redirect:/foxclub/" + foxname;
     }
@@ -90,9 +115,16 @@ public class MainController {
         String result = "alreadylearned";
         if(!foxService.findOne(foxname).existed(req.getParameter("addtrickhere"))) {
             foxService.findOne(foxname).addTrick(req.getParameter("addtrickhere"));
+            history.add(LocalDateTime.now() + " Learned to " + req.getParameter("addtrickhere"));
             result = "redirect:/foxclub/" + foxname;
         }
         model.addAttribute("fox", foxService.findOne(foxname));
         return result;
+    }
+
+    @GetMapping(value = "foxclub/{foxname}/actionhistory")
+    public String getHistory(Model model, @PathVariable String foxname){
+        model.addAttribute("fox",foxService.findOne(foxname));
+        return "actionhistory";
     }
 }
