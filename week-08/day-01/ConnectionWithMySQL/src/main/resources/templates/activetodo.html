@@ -14,20 +14,20 @@
 <h2>ToDos for today: </h2>
 <table>
     <thead>
-        <tr>
-            <td>Id</td>
-            <td>Action</td>
-            <td>Done</td>
-            <td>Urgent</td>
-        </tr>
+    <tr>
+        <td>Id</td>
+        <td>Action</td>
+        <td>Done</td>
+        <td>Urgent</td>
+    </tr>
     </thead>
     <tbody th:each="todo:${todos}">
-        <tr>
-            <td th:text="${todo.Id}"></td>
-            <td th:text="${todo.title}"></td>
-            <td th:text="${todo.done}"></td>
-            <td th:text="${todo.urgent}"></td>
-        </tr>
+    <tr>
+        <td th:text="${todo.Id}"></td>
+        <td th:text="${todo.title}"></td>
+        <td th:text="${todo.done}"></td>
+        <td th:text="${todo.urgent}"></td>
+    </tr>
     </tbody>
 </table>
 </body>

@@ -12,8 +12,8 @@ public class ToDo {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String title;
-    private boolean isUrgent;
-    private boolean isDone;
+    private boolean urgent;
+    private boolean done;
 
     protected ToDo() {
 
@@ -21,8 +21,8 @@ public class ToDo {
 
     public ToDo(String title) {
         this.title = title;
-        isUrgent = false;
-        isDone = false;
+        urgent = false;
+        done = false;
     }
 
     public void setId(int id) {
@@ -33,12 +33,12 @@ public class ToDo {
         return id;
     }
 
-    public boolean isDone() {
-        return isDone;
+    public boolean isUrgent() {
+        return urgent;
     }
 
-    public boolean isUrgent() {
-        return isUrgent;
+    public boolean isDone() {
+        return done;
     }
 
     public String getTitle() {
@@ -49,16 +49,11 @@ public class ToDo {
         this.title = title;
     }
 
-    public void setDone(boolean done) {
-        isDone = done;
-    }
-
     public void setUrgent(boolean urgent) {
-        isUrgent = urgent;
+        this.urgent = urgent;
     }
 
-    @Override
-    public String toString() {
-        return String.format("Todo[id=%d, title = %s, is urgent? %b, is done? %b]", id, title, isUrgent, isDone);
+    public void setDone(boolean done) {
+        this.done = done;
     }
 }

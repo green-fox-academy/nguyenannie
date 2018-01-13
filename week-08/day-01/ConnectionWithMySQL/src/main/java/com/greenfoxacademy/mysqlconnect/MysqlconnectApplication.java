@@ -22,14 +22,9 @@ public class MysqlconnectApplication {
 	@Bean
 	public CommandLineRunner demo(ToDoRepository toDoRepository) {
 		return (String... args) -> {
-			toDoRepository.save(new ToDo("Learn how to connect Java object and Database"));
-			toDoRepository.save(new ToDo("Learn how to use Spring JPA"));
-			toDoRepository.save(new ToDo("Understand bean"));
-			toDoRepository.save(new ToDo("Finish the exercises"));
-
 			log.info("AnnieHouseMember found with findAll():");
 			log.info("------------------------------");
-			for(ToDo todo : toDoRepository.findAll()) {
+			for(ToDo todo : toDoRepository.findByDoneFalse()) {
 				log.info(todo.toString());
 			}
 			log.info("");
