@@ -13,23 +13,27 @@
 <body>
     <a th:href="@{/todo/add}">Add a new ToDo</a>
     <h2>ToDos for today: </h2>
-    <table>
-        <thead>
-            <tr>
-                <td>Id</td>
-                <td>Action</td>
-                <td>Done</td>
-                <td>Urgent</td>
-            </tr>
-        </thead>
-        <tbody th:each="todo:${todos}">
-            <tr>
-                <td th:text="${todo.Id}"></td>
-                <td th:text="${todo.title}"></td>
-                <td th:text="${todo.done}"></td>
-                <td th:text="${todo.urgent}"></td>
-            </tr>
-        </tbody>
-    </table>
+        <table>
+            <thead>
+                <tr>
+                    <td>Id</td>
+                    <td>Action</td>
+                    <td>Done</td>
+                    <td>Urgent</td>
+                    <td>Delete</td>
+                </tr>
+            </thead>
+            <tbody th:each="todo:${todos}">
+            <form action="#" th:action="@{'/' + ${todo.id} + '/delete'}" method="post">
+                <tr>
+                    <td th:text="${todo.id}"></td>
+                    <td th:text="${todo.title}"></td>
+                    <td th:text="${todo.done}"></td>
+                    <td th:text="${todo.urgent}"></td>
+                    <td><button type="submit" name="delete" th:value="${todo.id}">Delete</button></td>
+                </tr>
+            </form>
+            </tbody>
+        </table>
 </body>
 </html>

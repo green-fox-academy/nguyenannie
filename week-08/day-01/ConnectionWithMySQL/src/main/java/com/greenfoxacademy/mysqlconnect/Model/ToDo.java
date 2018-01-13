@@ -10,7 +10,7 @@ public class ToDo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private long id;
     private String title;
     private boolean urgent;
     private boolean done = false;
@@ -31,11 +31,11 @@ public class ToDo {
         this.done= done;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 

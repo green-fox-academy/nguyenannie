@@ -6,10 +6,9 @@ import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.logging.Logger;
 
 @Controller
 public class ToDoController {
@@ -43,6 +42,13 @@ public class ToDoController {
     public String add(Model model, HttpServletRequest req) {
         ToDo newTodo = new ToDo(req.getParameter("addNewOne"));
         toDoRepository.save(newTodo);
+        model.addAttribute("todos", toDoRepository.findAll());
+        return "redirect:/mainpage";
+    }
+
+    @PostMapping(value = "/{id}/delete")
+    public String delete(Model model, @PathVariable(value="id") long id) {
+        toDoRepository.delete(id);
         model.addAttribute("todos", toDoRepository.findAll());
         return "redirect:/mainpage";
     }
