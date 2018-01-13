@@ -13,7 +13,7 @@ public class ToDo {
     private int id;
     private String title;
     private boolean urgent;
-    private boolean done;
+    private boolean done = false;
 
     protected ToDo() {
 
@@ -23,6 +23,12 @@ public class ToDo {
         this.title = title;
         urgent = false;
         done = false;
+    }
+
+    public ToDo(String title, boolean urgent, boolean done) {
+        this.title = title;
+        this.urgent = urgent;
+        this.done= done;
     }
 
     public void setId(int id) {

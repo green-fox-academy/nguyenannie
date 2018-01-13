@@ -22,9 +22,10 @@ public class MysqlconnectApplication {
 	@Bean
 	public CommandLineRunner demo(ToDoRepository toDoRepository) {
 		return (String... args) -> {
+
 			log.info("AnnieHouseMember found with findAll():");
 			log.info("------------------------------");
-			for(ToDo todo : toDoRepository.findByDoneFalse()) {
+			for(ToDo todo : toDoRepository.findAll()) {
 				log.info(todo.toString());
 			}
 			log.info("");
