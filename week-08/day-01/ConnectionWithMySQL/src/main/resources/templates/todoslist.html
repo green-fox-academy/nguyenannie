@@ -21,6 +21,7 @@
                     <td>Done</td>
                     <td>Urgent</td>
                     <td>Delete</td>
+                    <td>Edit</td>
                 </tr>
             </thead>
             <tbody th:each="todo:${todos}">
@@ -31,6 +32,7 @@
                     <td th:text="${todo.done}"></td>
                     <td th:text="${todo.urgent}"></td>
                     <td><button type="submit" name="delete" th:value="${todo.id}">Delete</button></td>
+                    <td><a th:href="@{'/todo/' + ${todo.id} + '/edit'}">Edit</a></td>
                 </tr>
             </form>
             </tbody>

@@ -1,14 +1,18 @@
 package com.greenfoxacademy.mysqlconnect.Controller;
 
+
 import com.greenfoxacademy.mysqlconnect.Model.ToDo;
 import com.greenfoxacademy.mysqlconnect.Repository.ToDoRepository;
+import com.sun.xml.internal.bind.v2.TODO;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.logging.Logger;
+import com.greenfoxacademy.mysqlconnect.Model.ToDo;
+
+import java.awt.*;
 
 @Controller
 public class ToDoController {
@@ -50,6 +54,23 @@ public class ToDoController {
     public String delete(Model model, @PathVariable(value="id") long id) {
         toDoRepository.delete(id);
         model.addAttribute("todos", toDoRepository.findAll());
+        return "redirect:/mainpage";
+    }
+
+    @GetMapping(value = {"/todo/{id}/edit"})
+    public String showEditoDo(Model model, @PathVariable(value="id") long id) {
+        model.addAttribute("todo", toDoRepository.findOne(id));
+        return "edittodo";
+    }
+
+    @PostMapping(value = {"/todo/{id}/edit"})
+    public String editTodo(Model model, @PathVariable(value="id") long id, HttpServletRequest req) {
+        ToDo needtoedittodo = toDoRepository.findOne(id);
+        needtoedittodo.setTitle(req.getParameter("settitle"));
+        needtoedittodo.setDone(Boolean.parseBoolean(req.getParameter("setdone")));
+        needtoedittodo.setUrgent(Boolean.parseBoolean(req.getParameter("seturgent")));
+        toDoRepository.save(needtoedittodo);
+        model.addAttribute("todo", toDoRepository.findOne(id));
         return "redirect:/mainpage";
     }
 }
