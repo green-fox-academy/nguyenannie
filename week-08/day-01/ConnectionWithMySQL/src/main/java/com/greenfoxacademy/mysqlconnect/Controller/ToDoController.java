@@ -38,7 +38,10 @@ public class ToDoController {
 
     @PostMapping(value = {"/todo/add"})
     public String add(Model model, HttpServletRequest req) {
-        ToDo newTodo = new ToDo(req.getParameter("addNewOne"));
+        ToDo newTodo = new ToDo();
+        newTodo.setTitle(req.getParameter("addtitle"));
+        newTodo.setDone(Boolean.parseBoolean(req.getParameter("adddone")));
+        newTodo.setUrgent(Boolean.parseBoolean(req.getParameter("addurgent")));
         toDoRepository.save(newTodo);
         model.addAttribute("todos", toDoRepository.findAll());
         return "redirect:/mainpage";

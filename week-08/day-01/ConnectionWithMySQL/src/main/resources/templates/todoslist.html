@@ -2,44 +2,78 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>ToDo CRUD App #</title>
-    <link rel="stylesheet" th:href="@{/style.css}" />
+    <link href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../static/css/style.css" rel="stylesheet" th:href="@{/css/style.css}"/>
     <meta charset="utf-8" />
-    <style>
-        table, th, td {
-            border: 1px solid black;
-        }
-    </style>
 </head>
 <body>
-    <div><a th:href="@{/todo/add}">Add a new ToDo</a></div>
-    <div><a th:href="@{/todo?isActive=true}">Active Todos</a></div>
-    <div><a th:href="@{/todo?isActive=false}">Inactive Todos</a></div>
-    <h2>ToDos for today: </h2>
-        <table>
-            <thead>
-                <tr>
-                    <td>Id</td>
-                    <td>Action</td>
-                    <td>Done</td>
-                    <td>Urgent</td>
-                    <td>Creation Time</td>
-                    <td>Delete</td>
-                    <td>Edit</td>
-                </tr>
-            </thead>
-            <tbody th:each="todo:${todos}">
-            <form action="#" th:action="@{'/' + ${todo.id} + '/delete'}" method="post">
-                <tr>
-                    <td th:text="${todo.id}"></td>
-                    <td th:text="${todo.title}"></td>
-                    <td th:text="${todo.done}"></td>
-                    <td th:text="${todo.urgent}"></td>
-                    <td th:text="${todo.creation_time}"></td>
-                    <td><button type="submit" name="delete" th:value="${todo.id}">Delete</button></td>
-                    <td><a th:href="@{'/todo/' + ${todo.id} + '/edit'}">Edit</a></td>
-                </tr>
-            </form>
-            </tbody>
-        </table>
+    <header>
+        <nav class="navbar navbar-inverse">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" th:href="@{/mainpage}">ToDos</a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active">
+                            <a class="nav-link" th:href="@{/mainpage}">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li>
+                            <a th:href="@{/todo/add}">Add ToDo</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/todo?isActive=true}">Active ToDos</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/todo?isActive=false}">Inactive Todos</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container-fluid">
+        <main role="main">
+            <h1>ToDos for today: </h1>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Action</th>
+                        <th>Done</th>
+                        <th>Urgent</th>
+                        <th>Creation Time</th>
+                        <th>Delete</th>
+                        <th>Edit</th>
+                    </tr>
+                    </thead>
+                    <tbody th:each="todo:${todos}">
+                    <form action="#" th:action="@{'/' + ${todo.id} + '/delete'}" method="post">
+                        <tr>
+                            <td th:text="${todo.id}"></td>
+                            <td th:text="${todo.title}"></td>
+                            <td th:if="${todo.done}"><span class="glyphicon glyphicon-ok"></span></td>
+                            <td th:unless="${todo.done}"><span class="glyphicon glyphicon-remove"></span></td>
+                            <td th:if="${todo.urgent}"><span class="glyphicon glyphicon-ok"></span></td>
+                            <td th:unless="${todo.urgent}"><span class="glyphicon glyphicon-remove"></span></td>
+                            <td th:text="${todo.creation_time}"></td>
+                            <td><button class="btn btn-danger" type="submit" name="delete" th:value="${todo.id}">Delete</button></td>
+                            <td><a class="btn btn-info" role="button" th:href="@{'/todo/' + ${todo.id} + '/edit'}">Edit</a></td>
+                        </tr>
+                    </form>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+    <script src="webjars/jquery/1.11.1/jquery.min.js"></script>
+    <script src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
 </body>
 </html>

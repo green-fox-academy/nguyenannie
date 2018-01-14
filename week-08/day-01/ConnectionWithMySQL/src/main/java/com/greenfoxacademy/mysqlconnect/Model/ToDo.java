@@ -18,8 +18,8 @@ public class ToDo {
     private boolean done = false;
     private String creation_time;
 
-    protected ToDo() {
-
+    public ToDo() {
+        creation_time = String.valueOf(LocalDate.now());
     }
 
     public ToDo(String title) {

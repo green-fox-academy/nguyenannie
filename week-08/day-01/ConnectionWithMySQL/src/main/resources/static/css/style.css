@@ -1,0 +1,58 @@
+body {
+    padding-bottom: 30px;
+}
+
+main {
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.table-responsive {
+    margin-top: 50px;
+}
+
+h1 {
+    text-align: center;
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-control {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+}
+
+input[type=text] {
+    width: 300px;
+    height:30px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 1px solid;
+    border-radius: 4px;
+}
+
+.edittodo {
+    text-align: center;
+}
+
+.addtodo {
+    text-align: center;
+}
+
+div .checkbox {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.back {
+    margin-top: 10px;
+}
+
+
