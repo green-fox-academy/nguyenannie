@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 public class ToDo {
@@ -14,6 +16,7 @@ public class ToDo {
     private String title;
     private boolean urgent;
     private boolean done = false;
+    private String creation_time;
 
     protected ToDo() {
 
@@ -23,12 +26,14 @@ public class ToDo {
         this.title = title;
         urgent = false;
         done = false;
+        creation_time = String.valueOf(LocalDate.now());
     }
 
     public ToDo(String title, boolean urgent, boolean done) {
         this.title = title;
         this.urgent = urgent;
         this.done= done;
+        creation_time = String.valueOf(LocalDate.now());
     }
 
     public void setId(long id) {
@@ -37,6 +42,14 @@ public class ToDo {
 
     public long getId() {
         return id;
+    }
+
+    public String getCreation_time() {
+        return creation_time;
+    }
+
+    public void setCreation_time(String creation_time) {
+        this.creation_time = creation_time;
     }
 
     public boolean isUrgent() {

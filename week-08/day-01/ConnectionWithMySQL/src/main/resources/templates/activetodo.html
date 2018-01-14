@@ -19,6 +19,7 @@
         <td>Action</td>
         <td>Done</td>
         <td>Urgent</td>
+        <td>Creation Time</td>
     </tr>
     </thead>
     <tbody th:each="todo:${todos}">
@@ -27,8 +28,11 @@
         <td th:text="${todo.title}"></td>
         <td th:text="${todo.done}"></td>
         <td th:text="${todo.urgent}"></td>
+        <td th:text="${todo.creation_time}"></td>
     </tr>
     </tbody>
 </table>
+
+<div><a th:href="@{/mainpage}">Back</a></div>
 </body>
 </html>

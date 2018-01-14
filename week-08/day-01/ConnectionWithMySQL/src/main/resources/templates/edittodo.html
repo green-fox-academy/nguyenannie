@@ -9,6 +9,7 @@
     <h1>Edit your ToDo</h1>
     <form action="#" th:action="@{'/todo/' + ${todo.id} + '/edit'}" method="post">
         <div>Title <input type="text" name="settitle"/></div>
+        <div>Date <input type="text" name="setdate"/></div>
         <div>Urgent <input type="checkbox" value = "true" name="seturgent"/></div>
         <div>Done <input type="checkbox" value="true" name="setdone"/></div>
         <div><button type="submit">Submit</button>   <button type="reset">Cancel</button></div>

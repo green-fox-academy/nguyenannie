@@ -1,18 +1,12 @@
 package com.greenfoxacademy.mysqlconnect.Controller;
 
-
 import com.greenfoxacademy.mysqlconnect.Model.ToDo;
 import com.greenfoxacademy.mysqlconnect.Repository.ToDoRepository;
-import com.sun.xml.internal.bind.v2.TODO;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import com.greenfoxacademy.mysqlconnect.Model.ToDo;
-
-import java.awt.*;
 
 @Controller
 public class ToDoController {
@@ -67,6 +61,7 @@ public class ToDoController {
     public String editTodo(Model model, @PathVariable(value="id") long id, HttpServletRequest req) {
         ToDo needtoedittodo = toDoRepository.findOne(id);
         needtoedittodo.setTitle(req.getParameter("settitle"));
+        needtoedittodo.setCreation_time(req.getParameter("setdate"));
         needtoedittodo.setDone(Boolean.parseBoolean(req.getParameter("setdone")));
         needtoedittodo.setUrgent(Boolean.parseBoolean(req.getParameter("seturgent")));
         toDoRepository.save(needtoedittodo);

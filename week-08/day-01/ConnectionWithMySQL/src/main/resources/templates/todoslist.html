@@ -11,7 +11,9 @@
     </style>
 </head>
 <body>
-    <a th:href="@{/todo/add}">Add a new ToDo</a>
+    <div><a th:href="@{/todo/add}">Add a new ToDo</a></div>
+    <div><a th:href="@{/todo?isActive=true}">Active Todos</a></div>
+    <div><a th:href="@{/todo?isActive=false}">Inactive Todos</a></div>
     <h2>ToDos for today: </h2>
         <table>
             <thead>
@@ -20,6 +22,7 @@
                     <td>Action</td>
                     <td>Done</td>
                     <td>Urgent</td>
+                    <td>Creation Time</td>
                     <td>Delete</td>
                     <td>Edit</td>
                 </tr>
@@ -31,6 +34,7 @@
                     <td th:text="${todo.title}"></td>
                     <td th:text="${todo.done}"></td>
                     <td th:text="${todo.urgent}"></td>
+                    <td th:text="${todo.creation_time}"></td>
                     <td><button type="submit" name="delete" th:value="${todo.id}">Delete</button></td>
                     <td><a th:href="@{'/todo/' + ${todo.id} + '/edit'}">Edit</a></td>
                 </tr>
