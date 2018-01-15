@@ -17,7 +17,7 @@ public class TKWanderer extends JFrame {
         add(new Board());
 
         setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
-        setResizable(true);
+        setResizable(false);
 
         setTitle("View.TKWanderer");
         setLocationRelativeTo(null);

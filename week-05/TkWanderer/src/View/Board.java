@@ -55,14 +55,15 @@ public class Board extends JPanel implements ActionListener {
         int boundBottom = MAZE_HEIGHT * tileSize - TKWanderer.SCREEN_HEIGHT / 2;
 
         int camXPos = clamp(controller.getHero().getX() * tileSize, boundLeft, boundRight);
-        int camYPos = clamp(controller.getHero().getY() * tileSize, boundTop, boundBottom);
+        int camYPos = clamp( controller.getHero().getY() * tileSize, boundTop, boundBottom);
 
-        int offSetX = -camXPos + TKWanderer.SCREEN_WIDTH/2;
-        int offSetY = -camYPos + TKWanderer.SCREEN_HEIGHT/2;
+        int offSetX = - camXPos + TKWanderer.SCREEN_WIDTH/2;
+        int offSetY = - camYPos + TKWanderer.SCREEN_HEIGHT/2 ;
 
         g.translate(offSetX, offSetY);
 
         drawMaze.draw(g);
+
         for(int i = 0; i < controller.getMonsterList().size(); i++) {
             drawCharacter.setCharacter(controller.getMonster(i));
             drawCharacter.draw(g);
