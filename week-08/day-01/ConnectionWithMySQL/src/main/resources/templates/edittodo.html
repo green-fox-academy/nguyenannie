@@ -54,7 +54,11 @@
                 <div><input class="form-control" placeholder="Date" type="text" name="setdate"/></div>
                 <div><input class="checkbox-inline" type="checkbox" value="true" name="seturgent"/> Urgent</div>
                 <div><input class="checkbox-inline" type="checkbox" value="true" name="setdone"/> Done</div>
-                <div><button class="btn btn-info" type="submit">Submit</button>
+                <div><select name ="assignhere">
+                    <option th:each="assignee:${assignees}" th:value="${assignee.id}"
+                            th:selected="${todo.assignee} == ${assignee}" th:text="${assignee.name}"></option>
+                    </select></div>
+                <div><button class="btn btn-info" type="submit">Edit</button>
                     <a class="btn btn-danger" role="button" th:href="@{/mainpage}">Cancel</a></div>
             </form>
         </div>

@@ -22,9 +22,6 @@ public class MysqlconnectApplication {
 	@Bean
 	public CommandLineRunner demo(AssigneeService assigneeService, ToDoServiceDBImpl toDoServiceDB) {
     	return (String... args) -> {
-    	    Todo todo = toDoServiceDB.getToDo(6);
-		    todo.setAssignee(assigneeService.getAssignee(5));
-		    toDoServiceDB.save(todo);
 		};
 	}
 }

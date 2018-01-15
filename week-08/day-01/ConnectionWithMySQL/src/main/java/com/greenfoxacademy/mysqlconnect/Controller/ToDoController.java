@@ -27,6 +27,7 @@ public class ToDoController {
 
     @RequestMapping(value = {"/mainpage"})
     public String list(Model model) {
+        model.addAttribute("assignees", assigneeServiceDB.getAllAssignees());
         model.addAttribute("todos", toDoServiceDB.getAllTodos());
         return "todoslist";
     }
@@ -82,18 +83,25 @@ public class ToDoController {
     @GetMapping(value = {"/todo/{id}/edit"})
     public String showEditoDo(Model model, @PathVariable(value="id") long id) {
         model.addAttribute("todo", toDoServiceDB.getToDo(id));
+        model.addAttribute("assignees", assigneeServiceDB.getAllAssignees());
         return "edittodo";
     }
 
     @PostMapping(value = {"/todo/{id}/edit"})
     public String editTodo(Model model, @PathVariable(value="id") long id, HttpServletRequest req) {
         Todo needtoedittodo = toDoServiceDB.getToDo(id);
+        Assignee willbeassigned = assigneeServiceDB.getAssignee(Long.parseLong(req.getParameter("assignhere")));
+
+        needtoedittodo.setAssignee(willbeassigned);
         needtoedittodo.setTitle(req.getParameter("settitle"));
         needtoedittodo.setCreation_time(req.getParameter("setdate"));
         needtoedittodo.setDone(Boolean.parseBoolean(req.getParameter("setdone")));
         needtoedittodo.setUrgent(Boolean.parseBoolean(req.getParameter("seturgent")));
+
         toDoServiceDB.save(needtoedittodo);
         model.addAttribute("todo", toDoServiceDB.getToDo(id));
+        model.addAttribute("assignees", assigneeServiceDB.getAllAssignees());
+
         return "redirect:/mainpage";
     }
 
