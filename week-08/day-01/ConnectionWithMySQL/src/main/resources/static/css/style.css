@@ -28,31 +28,44 @@ table {
     font-size: 16px;
 }
 
-input[type=text] {
-    width: 300px;
+div .checkbox {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+input[type=text]{
+    width: 500px;
     height:30px;
     padding: 12px 20px;
-    margin: 8px 0;
+    margin: auto;
     box-sizing: border-box;
     border: 1px solid;
     border-radius: 4px;
 }
 
-.edittodo {
+.checkbox-inline {
+    margin: 10px 0;
+    padding: 20px 0;
+}
+
+input[type=submit] {
+    padding: 12px 20px;
+    margin: 8px 0;
+}
+
+input[type=reset] {
+    padding: 12px 20px;
+    margin: 8px 0;
+}
+
+form {
+    margin-top: 10px;
     text-align: center;
 }
 
-.addtodo {
-    text-align: center;
+form div {
+    margin: 10px 10px;
 }
 
-div .checkbox {
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-.back {
-    margin-top: 10px;
-}
 
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Todo Info #</title>
+    <title>Edit Assignee #</title>
     <link href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="../static/css/style.css" rel="stylesheet" th:href="@{/css/style.css}"/>
     <meta charset="utf-8" />
@@ -42,35 +42,17 @@
         </div>
     </nav>
 </header>
-<div class="container-fluid">
-    <main role="main">
-        <h1>ToDos: </h1>
-        <div class="table-responsive">
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Action</th>
-                    <th>Done</th>
-                    <th>Urgent</th>
-                    <th>Creation Time</th>
-                </tr>
-                </thead>
-                <tbody th:each="todo:${todos}">
-                    <tr>
-                        <td th:text="${todo.id}"></td>
-                        <td th:text="${todo.title}"></td>
-                        <td th:if="${todo.done}"><span class="glyphicon glyphicon-ok"></span></td>
-                        <td th:unless="${todo.done}"><span class="glyphicon glyphicon-remove"></span></td>
-                        <td th:if="${todo.urgent}"><span class="glyphicon glyphicon-ok"></span></td>
-                        <td th:unless="${todo.urgent}"><span class="glyphicon glyphicon-remove"></span></td>
-                        <td th:text="${todo.creation_time}"></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </main>
-</div>
+<main class="editassignee">
+    <div class="container-fluid">
+        <h1>Edit Assignee</h1>
+        <form action="#" th:action="@{'/assignee/' + ${ass.id} + '/edit'}" method="post">
+            <div><input class="form-control" placeholder="Name..." type="text" name="setname"/></div>
+            <div><input class="form-control" placeholder="Email" type="text" name="setemail"/></div>
+            <div><button class="btn btn-info" type="submit">Submit</button>
+                <a class="btn btn-danger" role="button" th:href="@{/assigneelist}">Cancel</a></div>
+        </form>
+    </div>
+</main>
 <script src="/webjars/jquery/1.11.1/jquery.min.js"></script>
 <script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
 </body>

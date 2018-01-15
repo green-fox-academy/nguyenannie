@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Todo Info #</title>
+    <title>Search Result #</title>
     <link href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="../static/css/style.css" rel="stylesheet" th:href="@{/css/style.css}"/>
     <meta charset="utf-8" />
@@ -56,16 +56,16 @@
                     <th>Creation Time</th>
                 </tr>
                 </thead>
-                <tbody th:each="todo:${todos}">
-                    <tr>
-                        <td th:text="${todo.id}"></td>
-                        <td th:text="${todo.title}"></td>
-                        <td th:if="${todo.done}"><span class="glyphicon glyphicon-ok"></span></td>
-                        <td th:unless="${todo.done}"><span class="glyphicon glyphicon-remove"></span></td>
-                        <td th:if="${todo.urgent}"><span class="glyphicon glyphicon-ok"></span></td>
-                        <td th:unless="${todo.urgent}"><span class="glyphicon glyphicon-remove"></span></td>
-                        <td th:text="${todo.creation_time}"></td>
-                    </tr>
+                <tbody>
+                <tr>
+                    <td th:text="${searchtodo.id}"></td>
+                    <td th:text="${searchtodo.title}"></td>
+                    <td th:if="${searchtodo.done}"><span class="glyphicon glyphicon-ok"></span></td>
+                    <td th:unless="${searchtodo.done}"><span class="glyphicon glyphicon-remove"></span></td>
+                    <td th:if="${searchtodo.urgent}"><span class="glyphicon glyphicon-ok"></span></td>
+                    <td th:unless="${searchtodo.urgent}"><span class="glyphicon glyphicon-remove"></span></td>
+                    <td th:text="${searchtodo.creation_time}"></td>
+                </tr>
                 </tbody>
             </table>
         </div>

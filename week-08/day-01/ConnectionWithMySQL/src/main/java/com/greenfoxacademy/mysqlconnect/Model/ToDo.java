@@ -1,14 +1,11 @@
 package com.greenfoxacademy.mysqlconnect.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Entity
-public class ToDo {
+@Table
+public class Todo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -18,18 +15,22 @@ public class ToDo {
     private boolean done = false;
     private String creation_time;
 
-    public ToDo() {
+    @ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+    @JoinColumn(name = "assignee_id")
+    private Assignee assignee;
+
+    public Todo() {
         creation_time = String.valueOf(LocalDate.now());
     }
 
-    public ToDo(String title) {
+    public Todo(String title) {
         this.title = title;
         urgent = false;
         done = false;
         creation_time = String.valueOf(LocalDate.now());
     }
 
-    public ToDo(String title, boolean urgent, boolean done) {
+    public Todo(String title, boolean urgent, boolean done) {
         this.title = title;
         this.urgent = urgent;
         this.done= done;
@@ -74,5 +75,13 @@ public class ToDo {
 
     public void setDone(boolean done) {
         this.done = done;
+    }
+
+    public Assignee getAssignee() {
+        return assignee;
+    }
+
+    public void setAssignee(Assignee assignee) {
+        this.assignee = assignee;
     }
 }

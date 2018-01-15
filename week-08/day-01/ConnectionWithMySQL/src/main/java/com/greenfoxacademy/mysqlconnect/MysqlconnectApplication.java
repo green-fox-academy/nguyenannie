@@ -1,34 +1,30 @@
 package com.greenfoxacademy.mysqlconnect;
 
-import com.greenfoxacademy.mysqlconnect.Model.ToDo;
-import com.greenfoxacademy.mysqlconnect.Repository.ToDoRepository;
-import javafx.application.Application;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.greenfoxacademy.mysqlconnect.Model.Assignee;
+import com.greenfoxacademy.mysqlconnect.Model.Todo;
+import com.greenfoxacademy.mysqlconnect.Service.AssigneeService;
+import com.greenfoxacademy.mysqlconnect.Service.ToDoServiceDBImpl;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
+@ComponentScan
 public class MysqlconnectApplication {
-
-	private static final Logger log = LoggerFactory.getLogger(Application.class);
 
 	public static void main(String[] args) {
 		SpringApplication.run(MysqlconnectApplication.class, args);
 	}
 
 	@Bean
-	public CommandLineRunner demo(ToDoRepository toDoRepository) {
-		return (String... args) -> {
-
-			log.info("AnnieHouseMember found with findAll():");
-			log.info("------------------------------");
-			for(ToDo todo : toDoRepository.findAll()) {
-				log.info(todo.toString());
-			}
-			log.info("");
+	public CommandLineRunner demo(AssigneeService assigneeService, ToDoServiceDBImpl toDoServiceDB) {
+    	return (String... args) -> {
+    	    Todo todo = toDoServiceDB.getToDo(6);
+		    todo.setAssignee(assigneeService.getAssignee(5));
+		    toDoServiceDB.save(todo);
 		};
 	}
 }
