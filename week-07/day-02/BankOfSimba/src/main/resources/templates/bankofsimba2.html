@@ -12,10 +12,12 @@
 </head>
 
 <body>
+    <h1>Welcome to Bank of Simba</h1>
+    <h3>We are proud to be the best bank in the world for animal</h3>
     <form action="#" th:action="@{/multipleAccounts}" method="post" th:object="${allBankAccounts}">
-        <table width="100%" height = "300px">
+        <table class="outputtable">
             <thead>
-                <tr style="background-color: aquamarine; font-size: large; font-family: Courier">
+                <tr>
                     <th>Name</th>
                     <th>Balance</th>
                     <th>Animal Type</th>
@@ -48,7 +50,8 @@
                 </tr>
             </tbody>
         </table>
-        <table>
+        <h3>Join our bank by filling your own account :D</h3>
+        <table class="inputtable">
                 <tr th:object="${bankAccount}">
                     <td>
                         <p>Name: <input type="text" th:field="*{name}" /></p>
@@ -68,7 +71,7 @@
                 </tr>
         </table>
         <div>
-            <button type="submit" name="add" style="height:50px;width:200px; background-color: darkorange">Add Account</button>
+            <button id = "add" type="submit" name="add">Add Account</button>
         </div>
     </form>
 </body>

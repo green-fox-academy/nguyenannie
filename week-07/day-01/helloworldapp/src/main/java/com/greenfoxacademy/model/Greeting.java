@@ -1,4 +1,4 @@
-package com.greenfox.nguyenannie.controllers;
+package com.greenfoxacademy.model;
 import java.awt.*;
 import java.lang.reflect.Method;
 import java.util.Random;
@@ -44,7 +44,8 @@ public class Greeting {
         for(Method m : this.getClass().getDeclaredMethods()) {
             if(m.getName().startsWith("get") && !m.getName().equals("getfizzbuzz")) {
                 try {
-                    s = s + m.getReturnType().getName() + " " + m.getName() + "() { return " + m.invoke(this).toString() + " } ";
+                    s = s + m.getReturnType().getName() + " "
+                            + m.getName() + "() { return " + m.invoke(this).toString() + " } ";
                 } catch(Exception e){
                     s += e.toString() + " ";
                 }

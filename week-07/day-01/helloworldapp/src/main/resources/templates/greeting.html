@@ -7,7 +7,10 @@
 <body>
 <th:block th:each="greeting : ${greetings}">
         <p th:text="${greeting.id}">...</p>
-        <p th:style = "'color:rgb(' + ${greeting.c.red} + ',' + ${greeting.c.green} + ',' + ${greeting.c.blue} + ');'" th:text="${greeting.content}">...</p>
+        <p th:style = "'color:rgb(' + ${greeting.c.red} + ','
+                                    + ${greeting.c.green} + ','
+                                    + ${greeting.c.blue} + ');'
+                      " th:text="${greeting.content}">...</p>
 </th:block>
 </body>
 </html>

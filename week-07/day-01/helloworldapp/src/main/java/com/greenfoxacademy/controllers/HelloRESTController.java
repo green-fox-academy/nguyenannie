@@ -1,5 +1,6 @@
-package com.greenfox.nguyenannie.controllers;
+package com.greenfoxacademy.controllers;
 
+import com.greenfoxacademy.model.Greeting;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.awt.*;
 import java.util.concurrent.atomic.AtomicLong;
+
 
 @Controller
 @SpringBootApplication

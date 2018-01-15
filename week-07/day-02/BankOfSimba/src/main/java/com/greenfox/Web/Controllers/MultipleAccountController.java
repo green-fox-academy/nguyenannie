@@ -1,6 +1,6 @@
 package com.greenfox.Web.Controllers;
 
-import com.greenfox.Service.AccountContainerService;
+import com.greenfox.Service.AccountService;
 import com.greenfox.Model.BankAccount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,16 +13,17 @@ import java.util.List;
 @Controller
 public class MultipleAccountController {
 
-    @Autowired
-    private AccountContainerService accountContainerService;
+    private final AccountService accountService;
 
-    MultipleAccountController() {
+    @Autowired
+    MultipleAccountController(AccountService accountContainerService) {
         super();
+        this.accountService = accountContainerService;
     }
 
     @ModelAttribute("allBankAccounts")
     public List<BankAccount> populateBankAccounts() {
-        return this.accountContainerService.findAll();
+        return this.accountService.findAll();
     }
 
     @RequestMapping({"/multipleAccounts"})
@@ -33,9 +34,10 @@ public class MultipleAccountController {
     @RequestMapping(value = "/multipleAccounts", params = {"add"})
     public String addAccount(final BankAccount bankAccount, final BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "bankofsimba2";
+            bindingResult.getAllErrors().get(0).getDefaultMessage();
+            return "error";
         }
-        this.accountContainerService.add(bankAccount);
+        this.accountService.add(bankAccount);
         return "bankofsimba2";
     }
 
@@ -43,17 +45,7 @@ public class MultipleAccountController {
     public String submitAccount(final BankAccount bankAccount, final BindingResult bindingResult,
             final HttpServletRequest req) {
         final Integer accountIndex = Integer.valueOf(req.getParameter("raise"));
-
-        BankAccount account = accountContainerService.findAll().get(accountIndex);
-        double t = account.getBalance();
-
-        if (account.getKing().equals("King")) {
-            t += 100;
-        } else {
-            t += 10;
-        }
-        account.setBalance(t);
-
+        accountService.raiseBalance(accountIndex);
         return "bankofsimba2";
     }
 

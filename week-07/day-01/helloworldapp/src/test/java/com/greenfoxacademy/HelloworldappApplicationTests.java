@@ -1,4 +1,4 @@
-package com.greenfox.nguyenannie.controllers;
+package com.greenfoxacademy;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
