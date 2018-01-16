@@ -39,7 +39,7 @@
                         </li>
                     </ul>
                     <form class="form-inline my-2 my-lg-0 pull-right" action="#" th:action="@{/search}" method="post">
-                        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="titlesearch"/>
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="titlesearch"/>
                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                     </form>
                 </div>
@@ -58,6 +58,7 @@
                         <th>Done</th>
                         <th>Urgent</th>
                         <th>Creation Time</th>
+                        <th>Due Date</th>
                         <th>Delete</th>
                         <th>Edit</th>
                     </tr>
@@ -66,12 +67,13 @@
                         <tr>
                             <form action="#" th:action="@{'/' + ${todo.id} + '/delete'}" method="post">
                                 <td th:text="${todo.id}"></td>
-                                <td th:text="${todo.title}"></td>
+                                <td><a th:href="@{'/todo/' + ${todo.id}}" th:text="${todo.title}"></a></td>
                                 <td th:if="${todo.done}"><span class="glyphicon glyphicon-ok"></span></td>
                                 <td th:unless="${todo.done}"><span class="glyphicon glyphicon-remove"></span></td>
                                 <td th:if="${todo.urgent}"><span class="glyphicon glyphicon-ok"></span></td>
                                 <td th:unless="${todo.urgent}"><span class="glyphicon glyphicon-remove"></span></td>
-                                <td th:text="${todo.creation_time}"></td>
+                                <td th:text="${todo.creationTime}"></td>
+                                <td th:text="${todo.duedate}"></td>
                                 <td><button class="btn btn-danger" type="submit" name="delete" th:value="${todo.id}">Delete</button></td>
                                 <td><a class="btn btn-info" role="button" th:href="@{'/todo/' + ${todo.id} + '/edit'}">Edit</a></td>
                             </form>

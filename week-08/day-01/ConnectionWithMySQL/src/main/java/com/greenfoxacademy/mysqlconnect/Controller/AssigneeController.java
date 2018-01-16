@@ -81,4 +81,10 @@ public class AssigneeController {
         assigneeServiceDB.save(newAssignee);
         return "redirect:/assigneelist";
     }
+
+    @GetMapping(value = {"/assignee/{id}"})
+    public String getAssignee(Model model, @PathVariable(value="id") long id) {
+        model.addAttribute("assignee", assigneeServiceDB.getAssignee(id));
+        return "assigneedetail";
+    }
 }

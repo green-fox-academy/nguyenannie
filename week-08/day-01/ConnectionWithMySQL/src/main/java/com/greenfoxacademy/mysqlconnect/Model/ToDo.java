@@ -13,28 +13,29 @@ public class Todo {
     private String title;
     private boolean urgent;
     private boolean done = false;
-    private String creation_time;
-
+    private String creationTime;
+    private String description;
+    private String duedate;
     @ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
     @JoinColumn(name = "assignee_id")
     private Assignee assignee;
 
     public Todo() {
-        creation_time = String.valueOf(LocalDate.now());
+        creationTime = String.valueOf(LocalDate.now());
     }
 
     public Todo(String title) {
         this.title = title;
         urgent = false;
         done = false;
-        creation_time = String.valueOf(LocalDate.now());
+        creationTime = String.valueOf(LocalDate.now());
     }
 
     public Todo(String title, boolean urgent, boolean done) {
         this.title = title;
         this.urgent = urgent;
         this.done= done;
-        creation_time = String.valueOf(LocalDate.now());
+        creationTime = String.valueOf(LocalDate.now());
     }
 
     public void setId(long id) {
@@ -45,12 +46,12 @@ public class Todo {
         return id;
     }
 
-    public String getCreation_time() {
-        return creation_time;
+    public String getCreationTime() {
+        return creationTime;
     }
 
-    public void setCreation_time(String creation_time) {
-        this.creation_time = creation_time;
+    public void setCreationTime(String creationTime) {
+        this.creationTime = creationTime;
     }
 
     public boolean isUrgent() {
@@ -83,5 +84,26 @@ public class Todo {
 
     public void setAssignee(Assignee assignee) {
         this.assignee = assignee;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getDuedate() {
+        return duedate;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setDuedate(String duedate) {
+        this.duedate = duedate;
+    }
+
+    @Override
+    public String toString() {
+        return this.getTitle();
     }
 }

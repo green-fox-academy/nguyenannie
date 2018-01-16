@@ -1,5 +1,6 @@
 package com.greenfoxacademy.mysqlconnect.Service;
 
+import com.greenfoxacademy.mysqlconnect.Model.Assignee;
 import com.greenfoxacademy.mysqlconnect.Model.Todo;
 import org.springframework.stereotype.Service;
 
@@ -16,4 +17,7 @@ public interface ToDoService {
     List<Todo> findByDoneFalse();
     List<Todo> findByDoneTrue();
     Todo searchByTitle(String title);
+    List<Todo> searchByCreationtime(String creationTime);
+    List<Todo> searchByAssignee(Assignee assignee);
+    List<Todo> searchByDuedate(String dueDate);
 }

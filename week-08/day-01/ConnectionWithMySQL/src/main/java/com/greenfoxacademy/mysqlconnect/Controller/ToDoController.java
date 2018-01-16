@@ -4,7 +4,9 @@ import com.greenfoxacademy.mysqlconnect.Model.Assignee;
 import com.greenfoxacademy.mysqlconnect.Model.Todo;
 import com.greenfoxacademy.mysqlconnect.Service.AssigneeServiceDBImpl;
 import com.greenfoxacademy.mysqlconnect.Service.ToDoServiceDBImpl;
+import com.sun.corba.se.impl.oa.toa.TOA;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
+import org.hibernate.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -83,6 +85,7 @@ public class ToDoController {
             result = "redirect:/mainpage";
         }
         model.addAttribute("searchtodo", searchToDo);
+        model.addAttribute("todos", toDoServiceDB.getAllTodos());
         return result;
     }
 
@@ -99,7 +102,9 @@ public class ToDoController {
 
         needtoedittodo.setAssignee(willbeassigned);
         needtoedittodo.setTitle(req.getParameter("settitle"));
-        needtoedittodo.setCreation_time(req.getParameter("setdate"));
+        needtoedittodo.setCreationTime(req.getParameter("setdate"));
+        needtoedittodo.setDuedate(req.getParameter("setdue"));
+        needtoedittodo.setDescription(req.getParameter("setdescription"));
         needtoedittodo.setDone(Boolean.parseBoolean(req.getParameter("setdone")));
         needtoedittodo.setUrgent(Boolean.parseBoolean(req.getParameter("seturgent")));
 
@@ -107,5 +112,11 @@ public class ToDoController {
         model.addAttribute("todo", toDoServiceDB.getToDo(id));
 
         return "redirect:/mainpage";
+    }
+
+    @GetMapping(value = {"/todo/{id}"})
+    public String getTodo(Model model, @PathVariable(value="id") long id) {
+        model.addAttribute("todo", toDoServiceDB.getToDo(id));
+        return "tododetail";
     }
 }

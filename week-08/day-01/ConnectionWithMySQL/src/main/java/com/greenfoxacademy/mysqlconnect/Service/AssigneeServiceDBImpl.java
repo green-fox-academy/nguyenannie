@@ -1,7 +1,6 @@
 package com.greenfoxacademy.mysqlconnect.Service;
 
 import com.greenfoxacademy.mysqlconnect.Model.Assignee;
-import com.greenfoxacademy.mysqlconnect.Model.Todo;
 import com.greenfoxacademy.mysqlconnect.Repository.AssigneeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

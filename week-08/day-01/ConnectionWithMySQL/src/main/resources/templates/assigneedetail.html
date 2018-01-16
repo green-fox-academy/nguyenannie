@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Edit ToDo #</title>
+    <title>Add new ToDo #</title>
     <link href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="../static/css/style.css" rel="stylesheet" th:href="@{/css/style.css}"/>
     <meta charset="utf-8" />
@@ -46,26 +46,32 @@
         </div>
     </nav>
 </header>
-    <main class="edittodo">
-        <div class="container-fluid">
-            <h1>Edit your ToDo</h1>
-            <form action="#" th:action="@{'/todo/' + ${todo.id} + '/edit'}" method="post">
-                <div id = "titlein"><input class="form-control" placeholder="Title..." type="text" name="settitle"/></div>
-                <div><input class="form-control" placeholder="Description..." type="text" name="setdescription"/></div>
-                <div><input class="form-control" placeholder="Creation time" type="text" name="setdate"/></div>
-                <div><input class="form-control" placeholder="Due date" type="text" name="setdue"/></div>
-                <div><input class="checkbox-inline" type="checkbox" value="true" name="seturgent"/> Urgent</div>
-                <div><input class="checkbox-inline" type="checkbox" value="true" name="setdone"/> Done</div>
-                <div><select name ="assignhere">
-                    <option th:each="assignee:${assignees}" th:value="${assignee.id}"
-                            th:selected="${todo.assignee} == ${assignee}" th:text="${assignee.name}"></option>
-                    </select></div>
-                <div><button class="btn btn-info" type="submit">Edit</button>
-                    <a class="btn btn-danger" role="button" th:href="@{/mainpage}">Cancel</a></div>
-            </form>
-        </div>
-        </main>
-    <script src="/webjars/jquery/1.11.1/jquery.min.js"></script>
-    <script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+<main class="tododetail">
+    <div class="container-fluid">
+        <h1>Assignee Detail</h1>
+        <table class="table table-striped">
+            <tr>
+                <th>Id</th>
+                <td th:text="${assignee.id}"></td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td th:text="${assignee.name}"></td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td th:text="${assignee.email}"></td>
+            </tr>
+            <tr>
+                <th>Todos</th>
+                <div th:each="assigneetodo:${assignee.toDos}">
+                    <td th:text="${assigneetodo}"></td>
+                </div>
+            </tr>
+        </table>
+    </div>
+</main>
+<script src="/webjars/jquery/1.11.1/jquery.min.js"></script>
+<script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -64,7 +64,7 @@
                         <td th:unless="${todo.done}"><span class="glyphicon glyphicon-remove"></span></td>
                         <td th:if="${todo.urgent}"><span class="glyphicon glyphicon-ok"></span></td>
                         <td th:unless="${todo.urgent}"><span class="glyphicon glyphicon-remove"></span></td>
-                        <td th:text="${todo.creation_time}"></td>
+                        <td th:text="${todo.creationTime}"></td>
                     </tr>
                 </tbody>
             </table>

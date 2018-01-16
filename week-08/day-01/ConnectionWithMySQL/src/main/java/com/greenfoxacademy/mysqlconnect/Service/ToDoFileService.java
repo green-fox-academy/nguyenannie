@@ -1,5 +1,6 @@
 package com.greenfoxacademy.mysqlconnect.Service;
 
+import com.greenfoxacademy.mysqlconnect.Model.Assignee;
 import com.greenfoxacademy.mysqlconnect.Model.Todo;
 import org.springframework.stereotype.Service;
 
@@ -49,6 +50,21 @@ public class ToDoFileService implements ToDoService {
 
     @Override
     public Todo searchByTitle(String title) {
+        return null;
+    }
+
+    @Override
+    public List<Todo> searchByCreationtime(String creationTime) {
+        return null;
+    }
+
+    @Override
+    public List<Todo> searchByAssignee(Assignee assignee) {
+        return null;
+    }
+
+    @Override
+    public List<Todo> searchByDuedate(String dueDate) {
         return null;
     }
 }

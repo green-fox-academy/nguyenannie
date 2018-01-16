@@ -61,7 +61,7 @@
                     <form action="#" th:action="@{'/' + ${assignee.id} + '/removeassigne'}" method="post">
                         <tr>
                             <td th:text="${assignee.id}"></td>
-                            <td th:text="${assignee.name}"></td>
+                            <td><a th:href="@{'/assignee/' + ${assignee.id}}" th:text="${assignee.name}"></a></td>
                             <td th:text="${assignee.email}"></td>
                             <td><button class="btn btn-danger" type="submit" name="remove" th:value="${assignee.id}">Remove</button></td>
                             <td><a class="btn btn-info" role="button" th:href="@{'/assignee/' + ${assignee.id} + '/edit'}">Edit</a></td>

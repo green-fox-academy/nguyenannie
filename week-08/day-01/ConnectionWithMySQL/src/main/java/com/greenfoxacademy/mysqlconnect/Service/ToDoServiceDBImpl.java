@@ -1,5 +1,6 @@
 package com.greenfoxacademy.mysqlconnect.Service;
 
+import com.greenfoxacademy.mysqlconnect.Model.Assignee;
 import com.greenfoxacademy.mysqlconnect.Model.Todo;
 import com.greenfoxacademy.mysqlconnect.Repository.ToDoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +45,7 @@ public class ToDoServiceDBImpl implements ToDoService {
     @Override
     public void postpone(long id, String newDate) {
         Todo toDo = toDoRepository.findOne(id);
-        toDo.setCreation_time(newDate);
+        toDo.setCreationTime(newDate);
         toDoRepository.save(toDo);
     }
 
@@ -70,5 +71,20 @@ public class ToDoServiceDBImpl implements ToDoService {
     @Override
     public Todo searchByTitle(String title) {
         return toDoRepository.findByTitle(title);
+    }
+
+    @Override
+    public List<Todo> searchByCreationtime(String creationTime) {
+        return toDoRepository.findByCreationTime(creationTime);
+    }
+
+    @Override
+    public List<Todo> searchByAssignee(Assignee assignee) {
+        return toDoRepository.findByAssignee(assignee);
+    }
+
+    @Override
+    public List<Todo> searchByDuedate(String dueDate) {
+        return toDoRepository.findByDuedate(dueDate);
     }
 }

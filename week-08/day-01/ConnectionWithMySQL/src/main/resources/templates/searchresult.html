@@ -51,20 +51,24 @@
                 <tr>
                     <th>Id</th>
                     <th>Action</th>
+                    <th>Description</th>
                     <th>Done</th>
                     <th>Urgent</th>
                     <th>Creation Time</th>
+                    <th>Due Date</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
                     <td th:text="${searchtodo.id}"></td>
                     <td th:text="${searchtodo.title}"></td>
+                    <td th:text="${searchtodo.description}"></td>
                     <td th:if="${searchtodo.done}"><span class="glyphicon glyphicon-ok"></span></td>
                     <td th:unless="${searchtodo.done}"><span class="glyphicon glyphicon-remove"></span></td>
                     <td th:if="${searchtodo.urgent}"><span class="glyphicon glyphicon-ok"></span></td>
                     <td th:unless="${searchtodo.urgent}"><span class="glyphicon glyphicon-remove"></span></td>
-                    <td th:text="${searchtodo.creation_time}"></td>
+                    <td th:text="${searchtodo.creationTime}"></td>
+                    <td th:text="${searchtodo.duedate}"></td>
                 </tr>
                 </tbody>
             </table>

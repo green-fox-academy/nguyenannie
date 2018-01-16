@@ -51,6 +51,8 @@
         <h1>Add new Todo</h1>
         <form class="formthing" action="#" th:action="@{/todo/add}" method="post">
             <div><input class="form-control" placeholder="Title..." type="text" name="addtitle"/></div>
+            <div><input class="form-control" placeholder="Description..." type="text" name="adddescription"/></div>
+            <div><input class="form-control" placeholder="Due date" type="text" name="adddue"/></div>
             <div><input class="checkbox-inline" type="checkbox" value="true" name="addurgent"/> Urgent</div>
             <div><input class="checkbox-inline" type="checkbox" value="true" name="adddone"/> Done</div>
             <div><button class="btn btn-info" type="submit">Submit</button>
