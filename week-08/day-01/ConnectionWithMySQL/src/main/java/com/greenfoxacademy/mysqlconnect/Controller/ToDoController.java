@@ -108,45 +108,4 @@ public class ToDoController {
 
         return "redirect:/mainpage";
     }
-
-    @GetMapping(value = "/assigneelist")
-    public String showList(Model model) {
-        return "assigneelist";
-    }
-
-    @PostMapping(value = "/{id}/removeassignee")
-    public String removeAssignee(Model model, @PathVariable(value="id") long id) {
-        assigneeServiceDB.delete(id);
-        return "redirect:/assigneelist";
-    }
-
-    @GetMapping(value = {"/assignee/{id}/edit"})
-    public String showEdiAssignee(Model model, @PathVariable(value="id") long id) {
-        model.addAttribute("ass", assigneeServiceDB.getAssignee(id));
-        return "editassignee";
-    }
-
-    @PostMapping(value = {"/assignee/{id}/edit"})
-    public String editAssignee(Model model, @PathVariable(value="id") long id, HttpServletRequest req) {
-        Assignee needToEditAssignee = assigneeServiceDB.getAssignee(id);
-        needToEditAssignee.setName(req.getParameter("setname"));
-        needToEditAssignee.setEmail(req.getParameter("setemail"));
-        assigneeServiceDB.save(needToEditAssignee);
-        model.addAttribute("ass", assigneeServiceDB.getAssignee(id));
-        return "redirect:/assigneelist";
-    }
-
-    @GetMapping(value = {"/assignee/add"})
-    public String showaddAssignee(Model model) {
-        return "addassignee";
-    }
-
-    @PostMapping(value = {"/assignee/add"})
-    public String addAssignee(Model model, HttpServletRequest req) {
-        Assignee newAssignee = new Assignee();
-        newAssignee.setName(req.getParameter("addname"));
-        newAssignee.setEmail(req.getParameter("addemail"));
-        assigneeServiceDB.save(newAssignee);
-        return "redirect:/assigneelist";
-    }
 }
