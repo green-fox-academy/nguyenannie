@@ -64,9 +64,11 @@
             </tr>
             <tr>
                 <th>Todos</th>
-                <div th:each="assigneetodo:${assignee.toDos}">
-                    <td th:text="${assigneetodo}"></td>
-                </div>
+                <td>
+                <ul th:each="assigneetodo:${assignee.toDos}">
+                    <li th:text="${assigneetodo}"></li>
+                </ul>
+                </td>
             </tr>
         </table>
     </div>

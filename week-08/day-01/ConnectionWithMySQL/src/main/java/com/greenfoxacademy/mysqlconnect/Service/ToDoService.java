@@ -20,4 +20,6 @@ public interface ToDoService {
     List<Todo> searchByCreationtime(String creationTime);
     List<Todo> searchByAssignee(Assignee assignee);
     List<Todo> searchByDuedate(String dueDate);
+    List<Todo> searchAllByTitle(String title);
+    List<Todo> searchAllByAssigneeName(String assigneeName);
 }

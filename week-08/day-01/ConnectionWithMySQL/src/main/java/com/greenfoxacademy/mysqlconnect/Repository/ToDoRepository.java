@@ -13,4 +13,6 @@ public interface ToDoRepository extends CrudRepository<Todo, Long> {
     List<Todo> findByAssignee(Assignee assignee);
     List<Todo> findByDuedate(String duedate);
     List<Todo> findByCreationTime(String creationtime);
+    List<Todo> findAllByTitle(String title);
+    List<Todo> findAllByAssigneeName(String assigneeName);
 }

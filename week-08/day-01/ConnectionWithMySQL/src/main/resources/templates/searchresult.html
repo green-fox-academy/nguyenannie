@@ -59,7 +59,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
+                <tr th:each="searchtodo:${searchtodos}">
                     <td th:text="${searchtodo.id}"></td>
                     <td th:text="${searchtodo.title}"></td>
                     <td th:text="${searchtodo.description}"></td>

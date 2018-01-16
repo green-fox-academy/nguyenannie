@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Register #</title>
+    <link rel="stylesheet" th:href="@{/style.css}" />
+    <meta charset="utf-8" />
+</head>
+<body>
+<h1>Welcome to our Green Fox Tamagochi</h1>
+<h3>Let's create your own fox</h3>
+<form action="#" th:action="@{/register}" method="post">
+       <div>
+           <p>Name <input type="text" name="setname"/> </p>
+       </div>
+        <div>
+            <p>Password <input type="text" name="setpassword"/></p>
+        </div>
+        <div>
+            <p>Confirm Password <input type="text" name="confirmpassword"/></p>
+        </div>
+        <div>Set your fox's name <input type="text" name="setfoxname"/></div>
+    <button type="submit" name="adduser">Register</button>
+</form>
+</body>
+</html>

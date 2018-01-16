@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Greenfox Tamagochi #</title>
+    <link rel="stylesheet" th:href="@{/style.css}" />
+    <meta charset="utf-8" />
+</head>
+<body>
+<h1>Welcome to Green Fox Tamagochi</h1>
+<p>Please provide your info so we can connect you it with your pet.</p>
+<form action="#" th:action="@{/login}" method="post">
+    <div>Name<input type="text" name="username"/></div>
+    <div>Password<input type="text" name="password"/></div>
+    <button type="submit">Go</button>
+</form>
+</body>
+</html>

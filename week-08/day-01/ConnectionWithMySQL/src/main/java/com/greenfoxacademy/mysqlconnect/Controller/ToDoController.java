@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -78,13 +79,17 @@ public class ToDoController {
     @PostMapping(value = "/search")
     public String search(Model model, HttpServletRequest req) {
         String result;
-        Todo searchToDo = toDoServiceDB.searchByTitle(req.getParameter("titlesearch"));
-        if(searchToDo != null) {
+        List<Todo> searchResTit = toDoServiceDB.searchAllByTitle(req.getParameter("titlesearch"));
+        List<Todo> searchResAss = toDoServiceDB.searchAllByAssigneeName(req.getParameter("titlesearch"));
+        List<Todo> searchRes = new ArrayList<>();
+        searchRes.addAll(searchResTit);
+        searchRes.addAll(searchResAss);
+        if(!searchRes.isEmpty()) {
             result = "searchresult";
         } else {
             result = "redirect:/mainpage";
         }
-        model.addAttribute("searchtodo", searchToDo);
+        model.addAttribute("searchtodos", searchRes);
         model.addAttribute("todos", toDoServiceDB.getAllTodos());
         return result;
     }

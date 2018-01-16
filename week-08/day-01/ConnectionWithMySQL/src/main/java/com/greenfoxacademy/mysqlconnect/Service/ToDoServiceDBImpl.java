@@ -74,6 +74,16 @@ public class ToDoServiceDBImpl implements ToDoService {
     }
 
     @Override
+    public List<Todo> searchAllByTitle(String title) {
+        return toDoRepository.findAllByTitle(title);
+    }
+
+    @Override
+    public List<Todo> searchAllByAssigneeName(String assigneeName) {
+        return toDoRepository.findAllByAssigneeName(assigneeName);
+    }
+
+    @Override
     public List<Todo> searchByCreationtime(String creationTime) {
         return toDoRepository.findByCreationTime(creationTime);
     }

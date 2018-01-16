@@ -67,4 +67,14 @@ public class ToDoFileService implements ToDoService {
     public List<Todo> searchByDuedate(String dueDate) {
         return null;
     }
+
+    @Override
+    public List<Todo> searchAllByTitle(String title) {
+        return null;
+    }
+
+    @Override
+    public List<Todo> searchAllByAssigneeName(String assigneeName) {
+        return null;
+    }
 }
