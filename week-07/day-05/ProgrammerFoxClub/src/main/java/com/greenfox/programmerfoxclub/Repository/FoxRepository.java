@@ -6,7 +6,6 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.TreeMap;
 
 @Repository
 public class FoxRepository {
@@ -17,19 +16,6 @@ public class FoxRepository {
     private List<Trick> trickValues = Arrays.asList(Trick.values());
 
     public FoxRepository() {
-        super();
-
-        foxes.add(new Fox());
-        foxes.get(0).setName(Name.MsRed.toString());
-        foxes.get(0).setTricks(new ArrayList<>(Arrays.asList("code in Haskell")));
-        foxes.get(0).setDrink(Drink.apple_juice.toString());
-        foxes.get(0).setFood(Food.apple.toString());
-
-        foxes.add(new Fox());
-        foxes.get(1).setName(Name.MrGreen.toString());
-        foxes.get(1).setTricks(new ArrayList<>(Arrays.asList("code in Java", "play Overwatch")));
-        foxes.get(1).setDrink(Drink.cola.toString());
-        foxes.get(1).setFood(Food.chicken.toString());
     }
 
     public List<Fox> findAll() {
