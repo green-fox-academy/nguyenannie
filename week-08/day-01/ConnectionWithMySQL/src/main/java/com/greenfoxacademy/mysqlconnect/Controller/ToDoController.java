@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 public class ToDoController {
 
@@ -25,10 +27,18 @@ public class ToDoController {
         this.assigneeServiceDB = assigneeServiceDB;
     }
 
+    @ModelAttribute("assignees")
+    public List<Assignee> populateAssignee() {
+        return assigneeServiceDB.getAllAssignees();
+    }
+
+    @ModelAttribute("todos")
+    public List<Todo> populateTodos() {
+        return toDoServiceDB.getAllTodos();
+    }
+
     @RequestMapping(value = {"/mainpage"})
     public String list(Model model) {
-        model.addAttribute("assignees", assigneeServiceDB.getAllAssignees());
-        model.addAttribute("todos", toDoServiceDB.getAllTodos());
         return "todoslist";
     }
 
@@ -44,7 +54,6 @@ public class ToDoController {
 
     @GetMapping(value = {"/todo/add"})
     public String showadd(Model model) {
-        model.addAttribute("todos", toDoServiceDB.getAllTodos());
         return "addtodo";
     }
 
@@ -55,14 +64,12 @@ public class ToDoController {
         newTodo.setDone(Boolean.parseBoolean(req.getParameter("adddone")));
         newTodo.setUrgent(Boolean.parseBoolean(req.getParameter("addurgent")));
         toDoServiceDB.save(newTodo);
-        model.addAttribute("todos", toDoServiceDB.getAllTodos());
         return "redirect:/mainpage";
     }
 
     @PostMapping(value = "/{id}/delete")
     public String delete(Model model, @PathVariable(value="id") long id) {
         toDoServiceDB.delete(id);
-        model.addAttribute("todos", toDoServiceDB.getAllTodos());
         return "redirect:/mainpage";
     }
 
@@ -76,14 +83,12 @@ public class ToDoController {
             result = "redirect:/mainpage";
         }
         model.addAttribute("searchtodo", searchToDo);
-        model.addAttribute("todos", toDoServiceDB.getAllTodos());
         return result;
     }
 
     @GetMapping(value = {"/todo/{id}/edit"})
     public String showEditoDo(Model model, @PathVariable(value="id") long id) {
         model.addAttribute("todo", toDoServiceDB.getToDo(id));
-        model.addAttribute("assignees", assigneeServiceDB.getAllAssignees());
         return "edittodo";
     }
 
@@ -100,27 +105,23 @@ public class ToDoController {
 
         toDoServiceDB.save(needtoedittodo);
         model.addAttribute("todo", toDoServiceDB.getToDo(id));
-        model.addAttribute("assignees", assigneeServiceDB.getAllAssignees());
 
         return "redirect:/mainpage";
     }
 
     @GetMapping(value = "/assigneelist")
     public String showList(Model model) {
-        model.addAttribute("assignees", assigneeServiceDB.getAllAssignees());
         return "assigneelist";
     }
 
     @PostMapping(value = "/{id}/removeassignee")
     public String removeAssignee(Model model, @PathVariable(value="id") long id) {
         assigneeServiceDB.delete(id);
-        model.addAttribute("assignees", assigneeServiceDB.getAllAssignees());
         return "redirect:/assigneelist";
     }
 
     @GetMapping(value = {"/assignee/{id}/edit"})
     public String showEdiAssignee(Model model, @PathVariable(value="id") long id) {
-        model.addAttribute("assignees", assigneeServiceDB.getAllAssignees());
         model.addAttribute("ass", assigneeServiceDB.getAssignee(id));
         return "editassignee";
     }
@@ -131,14 +132,12 @@ public class ToDoController {
         needToEditAssignee.setName(req.getParameter("setname"));
         needToEditAssignee.setEmail(req.getParameter("setemail"));
         assigneeServiceDB.save(needToEditAssignee);
-        model.addAttribute("assignees", assigneeServiceDB.getAllAssignees());
         model.addAttribute("ass", assigneeServiceDB.getAssignee(id));
         return "redirect:/assigneelist";
     }
 
     @GetMapping(value = {"/assignee/add"})
     public String showaddAssignee(Model model) {
-        model.addAttribute("assignees", assigneeServiceDB.getAllAssignees());
         return "addassignee";
     }
 
@@ -148,7 +147,6 @@ public class ToDoController {
         newAssignee.setName(req.getParameter("addname"));
         newAssignee.setEmail(req.getParameter("addemail"));
         assigneeServiceDB.save(newAssignee);
-        model.addAttribute("assignees", assigneeServiceDB.getAllAssignees());
         return "redirect:/assigneelist";
     }
 }
