@@ -22,6 +22,7 @@ public class MysqlconnectApplication {
 	@Bean
 	public CommandLineRunner demo(AssigneeService assigneeService, ToDoServiceDBImpl toDoServiceDB) {
     	return (String... args) -> {
+
 		};
 	}
 }

@@ -13,11 +13,12 @@ import java.util.List;
 @Service
 public class FoxService {
 
-    @Autowired
-    private FoxRepository foxRepository;
+    private final FoxRepository foxRepository;
 
-    public FoxService() {
+    @Autowired
+    public FoxService(FoxRepository foxRepository) {
         super();
+        this.foxRepository = foxRepository;
     }
 
     public List<Fox> findAll() {

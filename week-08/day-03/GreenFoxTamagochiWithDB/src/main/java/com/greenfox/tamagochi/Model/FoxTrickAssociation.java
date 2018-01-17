@@ -9,9 +9,7 @@ import javax.persistence.*;
         @AssociationOverride(name ="pk.trick", joinColumns = @JoinColumn(name ="trick_id"))
 })
 public class FoxTrickAssociation {
-    @Id
     private long foxIdAss;
-    @Id
     private long trickIdAss;
 
     @ManyToOne
