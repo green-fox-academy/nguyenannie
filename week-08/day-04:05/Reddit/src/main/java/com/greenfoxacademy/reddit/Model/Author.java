@@ -15,6 +15,13 @@ public class Author {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "author")
     private List<Post> posts;
 
+    public Author() {
+
+    }
+
+    public Author(String name) {
+        this.name = name;
+    }
     public List<Comment> getComments() {
         return comments;
     }

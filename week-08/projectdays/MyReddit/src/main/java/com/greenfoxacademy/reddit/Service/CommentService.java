@@ -7,3 +7,4 @@ import org.springframework.stereotype.Service;
 public interface CommentService {
     void save(Comment comment);
 }
+

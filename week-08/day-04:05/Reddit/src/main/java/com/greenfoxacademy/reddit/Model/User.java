@@ -11,8 +11,6 @@ public class User {
     private long id;
     private String name;
     private String password;
-    private int numofposts;
-    private int numofcomments;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private List<Post> posts;
 
@@ -22,12 +20,9 @@ public class User {
     public User() {
     }
 
-    public int getNumofcomments() {
-        return numofcomments;
-    }
-
-    public void setNumofcomments(int numofcomments) {
-        this.numofcomments = numofcomments;
+    public User(String name, String password) {
+        this.name = name;
+        this.password = password;
     }
 
     public List<Post> getPosts() {
@@ -44,14 +39,6 @@ public class User {
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
-    }
-
-    public int getNumofposts() {
-        return numofposts;
-    }
-
-    public void setNumofposts(int numofposts) {
-        this.numofposts = numofposts;
     }
 
     public String getPassword() {

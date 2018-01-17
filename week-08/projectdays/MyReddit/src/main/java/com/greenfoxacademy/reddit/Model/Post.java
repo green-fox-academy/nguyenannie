@@ -15,25 +15,57 @@ public class Post {
     private int score;
     private String creationDate;
 
-    @ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
-    @JoinColumn(name = "author_id")
-    private Author author;
+    @ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.MERGE)
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "post")
     private List<Comment> comments;
-
-    @ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
-    @JoinColumn(name = "user_id")
-    private User user;
 
     public Post() {
         creationDate = String.valueOf(LocalDate.now());
     }
 
-    public Post(String title, String content, int score) {
+    public Post(User author, String title, String content, int score) {
+        this.user = author;
         this.title = title;
         this.content = content;
         this.score = score;
+        creationDate = String.valueOf(LocalDate.now());
+    }
+
+    public void setUser(User user) {
+        setUser(user, true);
+    }
+
+    void setUser(User user, boolean add) {
+        this.user = user;
+        if (user != null && add) {
+            user.addPost(this, false);
+        }
+    }
+
+    public void addComment(Comment comment) {
+        addComment(comment, true);
+    }
+
+    void addComment(Comment comment, boolean set) {
+        if (comment!= null) {
+            if(getComments().contains(comment)) {
+                getComments().set(getComments().indexOf(comment),comment);
+            }
+            else {
+                getComments().add(comment);
+            }
+            if (set) {
+                comment.setPost(this, false);
+            }
+        }
+    }
+
+    public void removeComment(Comment comment) {
+        getComments().remove(comment);
+        comment.setPost(null);
     }
 
     public long getId() {
@@ -84,19 +116,21 @@ public class Post {
         this.comments = comments;
     }
 
-    public Author getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(Author author) {
-        this.author = author;
-    }
-
     public User getUser() {
         return user;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    @Override
+    public boolean equals(Object object) {
+        if (object == this) {
+            return true;
+        }
+        if ((object == null) || !(object instanceof Post)) {
+            return false;
+        }
+
+        final Post post = (Post) object;
+
+        return this.id != 0 && post.getId() != 0 && this.id == post.getId();
     }
 }

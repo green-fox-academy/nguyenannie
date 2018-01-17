@@ -28,7 +28,6 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
 	compile('org.springframework.boot:spring-boot-starter-web')
 	runtime('org.springframework.boot:spring-boot-devtools')
-	compile group: 'org.webjars', name: 'bootstrap', version: '3.3.7-1'
 	runtime('com.h2database:h2')
 	runtime('mysql:mysql-connector-java')
 	compileOnly('org.projectlombok:lombok')
