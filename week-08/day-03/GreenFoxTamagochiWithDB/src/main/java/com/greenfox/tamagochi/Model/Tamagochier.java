@@ -14,6 +14,10 @@ public class Tamagochier {
     @OneToOne(fetch = FetchType.LAZY, cascade =  CascadeType.ALL, mappedBy = "tamagochier")
     private Fox fox;
 
+    public Tamagochier() {
+
+    }
+
     public long getId() {
         return id;
     }

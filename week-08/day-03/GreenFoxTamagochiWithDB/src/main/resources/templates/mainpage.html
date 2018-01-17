@@ -23,12 +23,12 @@
 
 <img src="/images/greenfox.jpeg"/>
 
-<p th:text="'This is ' + ${fox.name} +'. Currently living on ' + ${fox.food}
-            + ' and ' + ${fox.drink} + '. He knows ' + ${numoftricks} + ' trick(s)'">...</p>
+<p th:text="'This is ' + ${foxAss.name} +'. Currently living on ' + ${foxAss.food}
+            + ' and ' + ${foxAss.drink} + '. He knows ' + ${numoftricks} + ' trickAss(s)'">...</p>
 
 <h1>Known Tricks</h1>
-<ul th:each="trick:${usertricks}">
-    <li><p th:text="${trick}"></p></li>
+<ul th:each="trickAss:${usertricks}">
+    <li><p th:text="${trickAss}"></p></li>
 </ul>
 
 </body>

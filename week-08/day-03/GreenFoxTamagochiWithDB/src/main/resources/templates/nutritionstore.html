@@ -23,12 +23,12 @@
 <form action="#" th:action="@{'/tamagochi/' + ${user.name} + '/nutritionStore'}" method="post">
 
     Drink :
-    <select th:object="${fox}" name ="adddrinkhere">
+    <select th:object="${foxAss}" name ="adddrinkhere">
         <option th:each="drink:${drinks}" th:value="${drink}" th:selected="*{drink} == ${drink}" th:text="${drink}"></option>
     </select>
 
     Food :
-    <select th:object="${fox}" name ="addfoodhere">
+    <select th:object="${foxAss}" name ="addfoodhere">
         <option th:each="food:${foods}" th:value="${food}" th:selected="*{food} == ${food}" th:text="${food}"></option>
     </select>
 
