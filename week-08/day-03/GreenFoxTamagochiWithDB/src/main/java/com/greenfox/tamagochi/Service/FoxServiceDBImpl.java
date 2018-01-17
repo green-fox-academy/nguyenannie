@@ -27,8 +27,18 @@ public class FoxServiceDBImpl implements FoxService {
     }
 
     @Override
-    public Fox searchByName(String name) {
-        return foxRepository.findOne(name);
+    public void updateFox(Fox fox) {
+        foxRepository.save(fox);
+    }
+
+    @Override
+    public Fox searchOneByName(String name) {
+        return foxRepository.findByName(name);
+    }
+
+    @Override
+    public Fox searchOneById(long id) {
+        return foxRepository.findOne(id);
     }
 
     @Override

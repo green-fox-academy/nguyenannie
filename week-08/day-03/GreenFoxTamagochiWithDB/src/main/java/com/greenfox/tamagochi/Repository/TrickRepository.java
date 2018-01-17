@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TrickRepository extends CrudRepository<Trick, Long> {
+    Trick findByName(String name);
 }

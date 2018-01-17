@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Thymeleaf Exercise #</title>
+    <title>Tamagochi #</title>
     <link rel="stylesheet" th:href="@{/style.css}" />
     <meta charset="utf-8" />
 </head>
 <body>
 <ul>
     <li>
-        <a th:href="@{'/tamagochi/' + ${tamagochier.name}}">Information</a>
+        <a th:href="@{'/tamagochi/' + ${user.name}}">Information</a>
     </li>
     <li>
-        <a th:href="@{'/tamagochi/' + ${tamagochier.name} + '/nutritionStore'}">Nutrition Store</a>
+        <a th:href="@{'/tamagochi/' + ${user.name} + '/nutritionStore'}">Nutrition Store</a>
     </li>
     <li>
-        <a th:href="@{'/tamagochi/' + ${tamagochier.name} + '/trickCenter'}">Trick Center</a>
+        <a th:href="@{'/tamagochi/' + ${user.name} + '/trickCenter'}">Trick Center</a>
     </li>
     <li>
-        <a th:href="@{'/tamagochi/' + ${tamagochier.name} + '/actionhistory'}">Action History</a>
+        <a th:href="@{'/tamagochi/' + ${user.name} + '/actionhistory'}">Action History</a>
     </li>
 </ul>
 
@@ -27,7 +27,7 @@
             + ' and ' + ${fox.drink} + '. He knows ' + ${numoftricks} + ' trick(s)'">...</p>
 
 <h1>Known Tricks</h1>
-<ul th:each="trick:${fox.tricks}">
+<ul th:each="trick:${usertricks}">
     <li><p th:text="${trick}"></p></li>
 </ul>
 

@@ -73,4 +73,13 @@ public class Fox {
         this.tamagochier = tamagochier;
     }
 
+    public int getNumOfTricks() {
+        return getTricks().size();
+    }
+
+    @Override
+    public String toString() {
+        return "Name: " + this.name + " and food: " + this.getFood()
+                + " and drink " + this.getDrink() + " and list of tricks: " + this.getTricks();
+    }
 }

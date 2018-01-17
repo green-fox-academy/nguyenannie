@@ -20,23 +20,19 @@
         <a th:href="@{'/tamagochi/' + ${user.name} + '/actionhistory'}">Action History</a>
     </li>
 </ul>
-<form action="#" th:action="@{'/tamagochi/' + ${user.name} + '/nutritionStore'}" method="post">
 
-    Drink :
-    <select th:object="${fox}" name ="adddrinkhere">
-        <option th:each="drink:${drinks}" th:value="${drink}" th:selected="*{drink} == ${drink}" th:text="${drink}"></option>
+<form action="#" th:action="@{'/tamagochi/' + ${user.name} + '/trickCenter'}" method="post">
+    Tricks :
+    <select name ="addtrickhere">
+        <option th:each="trick:${tricks}" th:value="${trick}" th:selected="${trick} == ${newtrick}" th:text="${trick}"></option>
     </select>
-
-    Food :
-    <select th:object="${fox}" name ="addfoodhere">
-        <option th:each="food:${foods}" th:value="${food}" th:selected="*{food} == ${food}" th:text="${food}"></option>
-    </select>
-
-    <button type="submit" name = "changedrink">Submit</button>
+    <button type="submit" name ="changetrick">Submit</button>
 
 </form>
-<ul>
-    <li><a th:href="@{'/tamagochi/' + ${user.name}}">Back</a></li>
+
+<div>Learned tricks:</div>
+<ul th:each="trick : ${tricks}">
+    <li th:text="${trick}"></li>
 </ul>
 </body>
 </html>

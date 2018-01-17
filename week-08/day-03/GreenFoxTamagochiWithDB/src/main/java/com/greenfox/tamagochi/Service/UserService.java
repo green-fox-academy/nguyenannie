@@ -8,10 +8,9 @@ import java.util.List;
 @Service
 public interface UserService {
     List<Tamagochier> getAllUsers();
-    Tamagochier getOneUser(String name);
-    Tamagochier getByName(String name);
+    Tamagochier getOneUser(long id);
+    Tamagochier getOneUserByName(String name);
     void addNewUser(Tamagochier tamagochier);
-
-    boolean IsExisted(String username);
+    boolean IsExisted(String name);
 
 }

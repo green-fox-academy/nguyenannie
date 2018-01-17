@@ -25,13 +25,13 @@ public class UserServiceDBImpl implements UserService{
     }
 
     @Override
-    public Tamagochier getOneUser(String name) {
-        return userRepository.findOne(name);
+    public Tamagochier getOneUser(long id) {
+        return userRepository.findOne(id);
     }
 
     @Override
-    public Tamagochier getByName(String name) {
-        return userRepository.findOne(name);
+    public Tamagochier getOneUserByName(String name) {
+        return userRepository.findByName(name);
     }
 
     @Override
@@ -40,8 +40,8 @@ public class UserServiceDBImpl implements UserService{
     }
 
     @Override
-    public boolean IsExisted(String username) {
-        return userRepository.exists(username);
+    public boolean IsExisted(String name) {
+        return userRepository.exists(userRepository.findByName(name).getId());
     }
 
 }

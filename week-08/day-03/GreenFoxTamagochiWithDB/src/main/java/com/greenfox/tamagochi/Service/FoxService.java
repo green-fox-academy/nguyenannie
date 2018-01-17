@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 @Service
 public interface FoxService {
     void addNewFox(Fox fox);
-    Fox searchByName(String name);
+    void updateFox(Fox fox);
+    Fox searchOneByName(String name);
+    Fox searchOneById(long id);
     void save(Fox fox);
 }

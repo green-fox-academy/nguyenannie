@@ -2,7 +2,9 @@ package com.greenfox.tamagochi.Controller;
 
 import com.greenfox.tamagochi.Model.Fox;
 import com.greenfox.tamagochi.Model.Tamagochier;
+import com.greenfox.tamagochi.Model.Trick;
 import com.greenfox.tamagochi.Service.FoxServiceDBImpl;
+import com.greenfox.tamagochi.Service.TrickServiceDBImpl;
 import com.greenfox.tamagochi.Service.UserServiceDBImpl;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +21,11 @@ public class UserController {
 
     private final UserServiceDBImpl userServiceDB;
     private final FoxServiceDBImpl foxServiceDB;
+    private final TrickServiceDBImpl trickServiceDB;
     private List<String> history = new ArrayList<>();
 
     @ModelAttribute("allHistory")
-    public List<String> populateHsitory() {
+    public List<String> populateHistory() {
         return history;
     }
 
@@ -33,16 +36,19 @@ public class UserController {
 
 
     @Autowired
-    public UserController(UserServiceDBImpl userServiceDB, FoxServiceDBImpl foxServiceDB) {
+    public UserController(UserServiceDBImpl userServiceDB, FoxServiceDBImpl foxServiceDB, TrickServiceDBImpl trickServiceDB) {
         this.userServiceDB = userServiceDB;
         this.foxServiceDB = foxServiceDB;
+        this.trickServiceDB = trickServiceDB;
     }
 
     @RequestMapping(value = "/tamagochi/{username}")
     public String mainPage(Model model, @PathVariable String username) {
-        model.addAttribute("user", userServiceDB.getOneUser(username));
-        model.addAttribute("fox", userServiceDB.getOneUser(username).getFox());
-        model.addAttribute("numoftricks", userServiceDB.getOneUser(username).getFox().getTricks().size());
+        model.addAttribute("user", userServiceDB.getOneUserByName(username));
+        model.addAttribute("fox", userServiceDB.getOneUserByName(username).getFox());
+        model.addAttribute("numoftricks",
+                userServiceDB.getOneUserByName(username).getFox().getNumOfTricks());
+        model.addAttribute("usertricks", userServiceDB.getOneUserByName(username).getFox().getTricks());
         return "mainpage";
     }
 
@@ -56,9 +62,11 @@ public class UserController {
         String result;
         String username = req.getParameter("username");
         String password = req.getParameter("password");
-        if(userServiceDB.IsExisted(username) && userServiceDB.getByName(username).getPassword().equals(password)) {
-            result = "redirect:/tamagochi/" + req.getParameter("username");
-            model.addAttribute("user", userServiceDB.getOneUser(req.getParameter("username")));
+        Tamagochier tamagochier = userServiceDB.getOneUserByName(username);
+        if(userServiceDB.IsExisted(username) && tamagochier.getPassword().equals(password)) {
+            result = "redirect:/tamagochi/" + tamagochier.getName();
+            System.out.println( "redirect:/tamagochi/" + tamagochier.getName());
+            model.addAttribute("user", tamagochier);
         } else {
             result = "register";
         }
@@ -79,25 +87,28 @@ public class UserController {
             newRegister.setName(req.getParameter("setname"));
             newRegister.setPassword(password);
             userServiceDB.addNewUser(newRegister);
+            Fox newFox = new Fox();
+            newFox.setName(req.getParameter("setfoxname"));
+            foxServiceDB.addNewFox(newFox);
             result = "redirect:/login";
         } else {
             result = "somethingwrong";
         }
         return result;
     }
-    @GetMapping("tamagochi/{username}/nutritionStore")
+    @GetMapping("/tamagochi/{username}/nutritionStore")
     public String getNutrition(Model model, @PathVariable String username){
-        model.addAttribute("user",userServiceDB.getOneUser(username));
-        Fox afox = userServiceDB.getOneUser(username).getFox();
+        model.addAttribute("user",userServiceDB.getOneUserByName(username));
+        Fox afox = userServiceDB.getOneUserByName(username).getFox();
         model.addAttribute("fox", afox);
         model.addAttribute("foods", foxServiceDB.getFoodValues());
         model.addAttribute("drinks", foxServiceDB.getDrinkValues());
         return "nutritionstore";
     }
 
-    @PostMapping(value = "tamagochi/{username}/nutritionStore")
+    @PostMapping(value = "/tamagochi/{username}/nutritionStore")
     public String nutrition(Model model, @PathVariable String username, HttpServletRequest req) {
-        Fox afox = userServiceDB.getOneUser(username).getFox();
+        Fox afox = userServiceDB.getOneUserByName(username).getFox();
         if(!afox.getFood().equals(req.getParameter("addfoodhere"))){
             history.add(LocalDateTime.now() + " Food has been change from "
                     + afox.getFood() + " to " + req.getParameter("addfoodhere"));
@@ -118,35 +129,41 @@ public class UserController {
 
 
 
-    @GetMapping("tamagochi/{username}/trickCenter")
+    @GetMapping("/tamagochi/{username}/trickCenter")
     public String getTricks(Model model, @PathVariable String username){
-        Fox afox = userServiceDB.getOneUser(username).getFox();
+        Fox afox = userServiceDB.getOneUserByName(username).getFox();
         model.addAttribute("fox",afox);
-        model.addAttribute("tricks", afox.getTricks());
+        model.addAttribute("user", userServiceDB.getOneUserByName(username));
+        model.addAttribute("tricks", trickServiceDB.getAllTricks());
         return "trickcenter";
     }
-/*
-    @PostMapping(value = "tamagochi/{username}/trickCenter")
+
+    @PostMapping(value = "/tamagochi/{username}/trickCenter")
     public String postTricks(Model model, @PathVariable String username, HttpServletRequest req) {
-        String result = "alreadylearned";
-        Fox afox = userServiceDB.getOneUser(username).getFox();
-        if(!foxService.findOne(username).existed(req.getParameter("addtrickhere"))) {
-            history.add(LocalDateTime.now() + " Learned to " + req.getParameter("addtrickhere"));
-            foxService.findOne(username).addTrick(req.getParameter("addtrickhere"));
-            foxService.findOne(username).addLearnedTrick(req.getParameter("addtrickhere"));
-            result = "redirect:/foxclub/" + username;
-        }
 
-        model.addAttribute("fox", foxService.findOne(username));
-        model.addAttribute("learnedTricks", foxService.findOne(username).getLearnedTricks());
-        return result;
+        Trick newTrick = trickServiceDB.searchOneByName(req.getParameter("addtrickhere"));
+        Fox afox = userServiceDB.getOneUserByName(username).getFox();
+
+        history.add(LocalDateTime.now() + " Learned to " + req.getParameter("addtrickhere"));
+        List<Trick> foxTricks = afox.getTricks();
+        foxTricks.add(newTrick);
+        afox.setTricks(foxTricks);
+        foxServiceDB.updateFox(afox);
+        System.out.println(foxTricks);
+        System.out.println(afox);
+
+        model.addAttribute("fox", afox);
+        model.addAttribute("user", userServiceDB.getOneUserByName(username));
+        model.addAttribute("tricks", trickServiceDB.getAllTricks());
+        model.addAttribute("newtrick", newTrick);
+        return "redirect:/tamagochi/" + username;
     }
-*/
 
-    @GetMapping(value = "tamagochi/{username}/actionhistory")
+    @GetMapping(value = "/tamagochi/{username}/actionhistory")
     public String getHistory(Model model, @PathVariable String username){
-        Fox afox = userServiceDB.getOneUser(username).getFox();
+        Fox afox = userServiceDB.getOneUserByName(username).getFox();
         model.addAttribute("fox",afox);
+        model.addAttribute("user", userServiceDB.getOneUserByName(username));
         return "actionhistory";
     }
 
