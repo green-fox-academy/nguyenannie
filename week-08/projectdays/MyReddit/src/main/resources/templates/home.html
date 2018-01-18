@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>ToDo CRUD App #</title>
+    <link href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../static/css/style.css" rel="stylesheet" th:href="@{/css/style.css}"/>
+    <meta charset="utf-8" />
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" th:href="@{'/home/' + ${user.name}}">Reddit</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a class="nav-link" th:href="@{'/home/' + ${user.name}}">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li>
+                        <a th:href="@{'/home/' + ${user.name} + '/createpost'}">Create Post</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<div class="container-fluid">
+    <main role="main">
+        <h1>Trending Posts </h1>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Upvote</th>
+                    <th>Score</th>
+                    <th>Downvote</th>
+                    <th>Title</th>
+                    <th>Creation Time</th>
+                    <th>Author</th>
+                </tr>
+                </thead>
+                <tbody th:each="post:${posts}">
+                <tr>
+                    <form action="#" th:action="@{'/home/upvote/' + ${user.name} + '/' + ${post.id} }" method="post">
+                        <td><button class="btn btn-success" type="submit" name="upvote" th:value="${post.id}">Upvote</button></td>
+                    </form>
+                    <td th:text="${post.score}"></td>
+                    <form action="#" th:action="@{'/home/downvote/' + ${user.name} + '/' + ${post.id} }" method="post">
+                        <td><button class="btn btn-danger" type="submit" name="downvote" th:value="${post.id}">Downvote</button></td>
+                    </form>
+                    <td th:text="${post.title}"></td>
+                    <td th:text="${post.creationDate}"></td>
+                    <td th:text="${post.user.name}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+</div>
+<script src="/webjars/jquery/1.11.1/jquery.min.js"></script>
+<script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+</body>
+</html>

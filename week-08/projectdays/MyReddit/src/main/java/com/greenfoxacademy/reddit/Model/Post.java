@@ -10,6 +10,7 @@ public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+    @Column(nullable = false)
     private String title;
     private String content;
     private int score;
@@ -24,6 +25,7 @@ public class Post {
 
     public Post() {
         creationDate = String.valueOf(LocalDate.now());
+        score = 0;
     }
 
     public Post(User author, String title, String content, int score) {

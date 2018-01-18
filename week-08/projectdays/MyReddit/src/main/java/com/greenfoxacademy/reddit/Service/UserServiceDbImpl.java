@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 public class UserServiceDbImpl implements UserService {
     private final UserRepository userRepository;
 
+
     @Autowired
     public UserServiceDbImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -18,5 +19,15 @@ public class UserServiceDbImpl implements UserService {
     @Override
     public void save(User user) {
         userRepository.save(user);
+    }
+
+    @Override
+    public User findByName(String name) {
+        return userRepository.findByName(name);
+    }
+
+    @Override
+    public boolean exists(long id) {
+        return userRepository.exists(id);
     }
 }

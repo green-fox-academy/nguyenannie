@@ -28,16 +28,16 @@ public class RedditApplication {
 }
 
     /*
-            User user1 = new User("Annie");
-            User user2 = new User("Rubble");
-            User user3 = new User("Sonic");
-            User user4 = new User("Krisz");
-            User user5 = new User("Bea");
-            User user6 = new User("Sally");
-            User user7 = new User("John");
-            User user8 = new User("LadyKiller");
-            User user9 = new User("handsomeboy_903");
-            User user10 = new User("CuteDog");
+    User user1 = new User("Annie", "12345");
+            User user2 = new User("Rubble", "iamnotfat");
+            User user3 = new User("Sonic", "idonteatalot");
+            User user4 = new User("Krisz", "iamsuperhandsome");
+            User user5 = new User("Bea", "lovedrawing");
+            User user6 = new User("Sally", "idontknowwhoiam");
+            User user7 = new User("John", "madeupperson");
+            User user8 = new User("LadyKiller", "notkilllady");
+            User user9 = new User("handsomeboy_903", "12345");
+            User user10 = new User("CuteDog", "donthatecat");
 
             Post post1 = new Post(user1, "Cat is the best animal", "Cat gif", 500);
             Post post2 = new Post(user2, "2018 hair trend", "weird hair", 150);
@@ -75,4 +75,5 @@ public class RedditApplication {
             commentServiceDb.save(comment3);
             commentServiceDb.save(comment4);
             commentServiceDb.save(comment5);
+
             */

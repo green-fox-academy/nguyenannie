@@ -9,7 +9,9 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+    @Column(unique = true, nullable = false)
     private String name;
+    private String password;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private List<Comment> comments;
@@ -66,8 +68,9 @@ public class User {
         comment.setUser(null);
     }
 
-    public User(String name) {
+    public User(String name, String password) {
         this.name = name;
+        this.password = password;
     }
     public List<Comment> getComments() {
         return comments;
@@ -111,5 +114,13 @@ public class User {
         final User user = (User) object;
 
         return this.id != 0 && user.getId() != 0 && id == user.getId();
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
