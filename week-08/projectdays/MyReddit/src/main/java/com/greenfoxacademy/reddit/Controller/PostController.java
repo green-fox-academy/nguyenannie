@@ -1,26 +1,34 @@
 package com.greenfoxacademy.reddit.Controller;
 
 import com.greenfoxacademy.reddit.Model.Comment;
+import com.greenfoxacademy.reddit.Model.Pager;
 import com.greenfoxacademy.reddit.Model.Post;
 import com.greenfoxacademy.reddit.Model.User;
 import com.greenfoxacademy.reddit.Service.CommentServiceDbImpl;
 import com.greenfoxacademy.reddit.Service.PostServiceDbImpl;
 import com.greenfoxacademy.reddit.Service.UserServiceDbImpl;
-import javafx.geometry.Pos;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class PostController {
+    private static final int NUM_OF_BUTTONS = 5;
+    private static final int INITIAL_PAGE = 0;
+    private static final int INITIAL_PAGE_SIZE = 5;
+    private static final int[] PAGE_SIZES = {5, 10, 15};
+
     private final CommentServiceDbImpl commentServiceDb;
     private final PostServiceDbImpl postServiceDb;
     private final UserServiceDbImpl userServiceDb;
@@ -57,13 +65,24 @@ public class PostController {
     }
 
     @GetMapping("/home/{username}")
-    public String getHome(Model model, HttpServletRequest request, @PathVariable(value = "username") String username, Pageable pageable) {
+    public String getHome(Model model, HttpServletRequest request,
+                          @PathVariable(value = "username") String username,
+                          @RequestParam("pageSize") Optional<Integer> pageSize,
+                          @RequestParam("page") Optional<Integer> page) {
         User user = userServiceDb.findByName(username);
-        List<Post> posts = postServiceDb.findAll();
-        //Page<Post> posts = postServiceDb.findByPage(pageable);
+        //List<Post> posts = postServiceDb.findAll();
+
+        int setPageSize = pageSize.orElse(INITIAL_PAGE_SIZE);
+        int setPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get() - 1;
+
+        Page<Post> posts = postServiceDb.findByPage(new PageRequest(setPage, setPageSize));
+        Pager pager = new Pager(posts.getTotalPages(), posts.getNumber(), NUM_OF_BUTTONS);
 
         model.addAttribute("user", user);
         model.addAttribute("posts", posts);
+        model.addAttribute("pager", pager);
+        model.addAttribute("selectedPageSize", setPageSize);
+        model.addAttribute("pageSizes", PAGE_SIZES);
 
         return "home";
     }
@@ -175,10 +194,37 @@ public class PostController {
         return "userinfo";
     }
 
-    @PostMapping("/account/{username}/{postid}/delete")
-    public String deletePost(@PathVariable(value = "username") String username, @PathVariable(value = "postid") String postid) {
-        
-        return "redirect:/" + username + "/" + postid + "/delete";
+    @PostMapping("/account/{username}/post/{postid}/delete")
+    public String deletePost(Model model, @PathVariable(value = "username") String username, @PathVariable(value = "postid") String postid) {
+        User user = userServiceDb.findByName(username);
+        Post post = postServiceDb.findOne(Long.parseLong(postid));
+        List<Comment> comments = post.getComments();
+
+        for(Comment comment : comments) {
+            commentServiceDb.delete(comment.getId());
+        }
+
+        postServiceDb.delete(Long.parseLong(postid));
+
+        model.addAttribute("user", user);
+        model.addAttribute("post", post);
+
+        return "redirect:/account/" + username;
+    }
+
+    @PostMapping("/account/{username}/comment/{commentid}/delete")
+    public String deleteComment(Model model, @PathVariable(value = "username") String username, @PathVariable(value = "commentid") String commentid) {
+        User user = userServiceDb.findByName(username);
+        Comment comment = commentServiceDb.findOne(Long.parseLong(commentid));
+
+        user.removeComment(comment);
+        userServiceDb.save(user);
+        commentServiceDb.delete(Long.parseLong(commentid));
+
+        model.addAttribute("user", user);
+        model.addAttribute("comment", comment);
+
+        return "redirect:/" + username + "/" + commentid + "/delete";
     }
 
 
@@ -213,5 +259,4 @@ public class PostController {
 
         return result;
     }
-
 }

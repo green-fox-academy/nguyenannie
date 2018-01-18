@@ -67,6 +67,37 @@
                 </tbody>
             </table>
         </div>
+        <div class="row">
+            <div class="form-group col-md-1">
+                <select class="form-control pagination" id="pageSizeSelect">
+                    <option th:each="pageSize : ${pageSizes}" th:text="${pageSize}" th:value="${pageSize}"
+                            th:selected="${pageSize} == ${selectedPageSize}"></option>
+                </select>
+            </div>
+            <div th:if="${posts.totalPages != 1}" class="form-group col-md-11 pagination-centered">
+                <ul class="pagination">
+                    <li th:class="${posts.number == 0} ? disabled">
+                        <a class="pageLink" th:href="@{'/home/' + ${user.name} (pageSize=${selectedPageSize}, page=1)}">&laquo;</a>
+                    </li>
+                    <li th:class="${posts.number == 0} ? disabled">
+                        <a class="pageLink" th:href="@{'/home/' + ${user.name} (pageSize=${selectedPageSize}, page=${posts.number})}">&larr;</a>
+                    </li>
+                    <li th:class="${posts.number == (page - 1)} ? 'active pointer-disabled'"
+                        th:each="page : ${#numbers.sequence(pager.firstButton, pager.finalButton)}">
+                        <a class="pageLink" th:href="@{'/home/' + ${user.name} (pageSize=${selectedPageSize}, page=${page})}"
+                           th:text="${page}"></a>
+                    </li>
+                    <li th:class="${posts.number + 1 == posts.totalPages} ? disabled">
+                        <a class="pageLink"
+                           th:href="@{'/home/' + ${user.name} (pageSize=${selectedPageSize}, page=${posts.number + 2})}">&rarr;</a>
+                    </li>
+                    <li th:class="${posts.number + 1 == posts.totalPages} ? disabled">
+                        <a class="pageLink"
+                           th:href="@{'/home/' + ${user.name} (pageSize=${selectedPageSize}, page=${posts.totalPages})}">&raquo;</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </main>
 </div>
 <script src="/webjars/jquery/1.11.1/jquery.min.js"></script>

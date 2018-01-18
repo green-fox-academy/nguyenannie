@@ -20,4 +20,14 @@ public class CommentServiceDbImpl implements CommentService{
         commentRepository.save(comment);
     }
 
+    @Override
+    public Comment findOne(long id) {
+        return commentRepository.findOne(id);
+    }
+
+    @Override
+    public void delete(long id) {
+        commentRepository.delete(id);
+    }
+
 }

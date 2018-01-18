@@ -40,4 +40,9 @@ public class PostServiceDbImpl implements PostService {
     public Page<Post> findByPage(Pageable pageable) {
         return postRepository.findAll(pageable);
     }
+
+    @Override
+    public void delete(long id) {
+        postRepository.delete(id);
+    }
 }
