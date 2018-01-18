@@ -7,6 +7,7 @@
     <meta charset="utf-8" />
 </head>
 <body>
-<p>Something is wrong</p>
+<p>Cannot change your password. The new password has to be matched by the confirm password and cannot be the same as your current password.</p>
+<div><a class="btn btn-danger" role="button" th:href="@{'/account/' + ${user.name} + '/changepassword'}">Back</a></div>
 </body>
 </html>

@@ -2,8 +2,9 @@ package com.greenfoxacademy.reddit.Service;
 
 import com.greenfoxacademy.reddit.Model.Post;
 import com.greenfoxacademy.reddit.Repository.PostRepository;
-import javafx.geometry.Pos;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -33,5 +34,10 @@ public class PostServiceDbImpl implements PostService {
     @Override
     public Post findOne(long id) {
         return postRepository.findOne(id);
+    }
+
+    @Override
+    public Page<Post> findByPage(Pageable pageable) {
+        return postRepository.findAll(pageable);
     }
 }

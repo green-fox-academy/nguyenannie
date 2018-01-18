@@ -36,40 +36,56 @@
 </header>
 <div class="container-fluid">
     <main role="main">
-        <h1>Trending Posts </h1>
+    <h1>My Account</h1>
+    <h3>My Posts</h3>
         <div class="table-responsive">
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th>Upvote</th>
-                    <th>Score</th>
-                    <th>Downvote</th>
                     <th>Title</th>
+                    <th>Score</th>
                     <th>Creation Time</th>
-                    <th>Author</th>
+                    <th>Delete</th>
+                    <th>Edit</th>
                 </tr>
                 </thead>
-                <tbody th:each="post:${posts}">
+                <tbody th:each="mypost:${myposts}">
                 <tr>
-                    <form action="#" th:action="@{'/home/upvote/' + ${user.name} + '/' + ${post.id} }" method="post">
-                        <td><button class="btn btn-success" type="submit" name="upvote" th:value="${post.id}">
-                            <span class="glyphicon glyphicon-thumbs-up"></span></button></td>
+                    <td th:text="${mypost.title}"></td>
+                    <td th:text="${mypost.score}"></td>
+                    <td th:text="${mypost.creationDate}"></td>
+                    <form action="#" th:action="@{'/' + ${todo.id} + '/delete'}" method="post">
+                    <td><button class="btn btn-danger" type="submit" name="delete" th:value="${mypost.id}">Delete</button></td>
                     </form>
-                    <td th:text="${post.score}"></td>
-                    <form action="#" th:action="@{'/home/downvote/' + ${user.name} + '/' + ${post.id} }" method="post">
-                        <td><button class="btn btn-danger" type="submit" name="downvote" th:value="${post.id}">
-                            <span class="glyphicon glyphicon-thumbs-down"></span></button></td>
-                    </form>
-                    <td><a th:href="@{'/' + ${user.name} + '/post/' + ${post.id}}" th:text="${post.title}"></a></td>
-                    <td th:text="${post.creationDate}"></td>
-                    <td th:text="${post.user.name}"></td>
+                    <td>Edit</td>
                 </tr>
                 </tbody>
             </table>
         </div>
+    <h3>My Comments</h3>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Content</th>
+                    <th>Creation Time</th>
+                    <th>Delete</th>
+                    <th>Edit</th>
+                </tr>
+                </thead>
+                <tbody th:each="mycomment:${mycomments}">
+                <tr>
+                    <td th:text="${mycomment.content}"></td>
+                    <td th:text="${mycomment.creationDate}"></td>
+                    <td>Delete</td>
+                    <td>Edit</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    <div><a class="btn btn-danger" role="button" th:href="@{'/account/' + ${user.name} + '/changepassword'}">Change Password</a></div>
     </main>
 </div>
-<script src="/webjars/jquery/1.11.1/jquery.min.js"></script>
-<script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
 </body>
 </html>

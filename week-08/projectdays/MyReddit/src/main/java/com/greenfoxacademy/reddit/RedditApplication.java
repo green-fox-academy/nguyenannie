@@ -28,7 +28,7 @@ public class RedditApplication {
 }
 
     /*
-    User user1 = new User("Annie", "12345");
+            User user1 = new User("Annie", "12345");
             User user2 = new User("Rubble", "iamnotfat");
             User user3 = new User("Sonic", "idonteatalot");
             User user4 = new User("Krisz", "iamsuperhandsome");
@@ -75,5 +75,4 @@ public class RedditApplication {
             commentServiceDb.save(comment3);
             commentServiceDb.save(comment4);
             commentServiceDb.save(comment5);
-
             */

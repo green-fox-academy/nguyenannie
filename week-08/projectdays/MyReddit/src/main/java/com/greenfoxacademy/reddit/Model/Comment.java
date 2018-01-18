@@ -1,6 +1,8 @@
 package com.greenfoxacademy.reddit.Model;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table
@@ -10,6 +12,7 @@ public class Comment {
     private long id;
     @Column(nullable = false)
     private String content;
+    private String creationDate;
 
     @ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.MERGE)
     @JoinColumn(name = "post_id")
@@ -19,10 +22,15 @@ public class Comment {
     @JoinColumn(name = "user_id")
     private User user;
 
+    public Comment() {
+        creationDate = String.valueOf(LocalDateTime.now());
+    }
+
     public Comment(User user, Post post, String content) {
         this.user = user;
         this.content = content;
         this.post = post;
+        creationDate = String.valueOf(LocalDateTime.now());
     }
 
     public void setUser(User user) {
@@ -83,5 +91,13 @@ public class Comment {
         final Comment comment = (Comment) object;
 
         return this.id != 0 && comment.getId() != 0 && this.id == comment.getId();
+    }
+
+    public String getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(String creationDate) {
+        this.creationDate = creationDate;
     }
 }
