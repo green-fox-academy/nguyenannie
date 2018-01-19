@@ -18,6 +18,7 @@ import java.util.List;
 
 @Controller
 public class UserController {
+
     private final CommentServiceDbImpl commentServiceDb;
     private final PostServiceDbImpl postServiceDb;
     private final UserServiceDbImpl userServiceDb;
@@ -105,7 +106,6 @@ public class UserController {
         model.addAttribute("user", user);
         model.addAttribute("comment", comment);
 
-        return "redirect:/" + username + "/" + commentid + "/delete";
+        return "redirect:/account/" + username;
     }
-
 }

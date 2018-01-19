@@ -27,6 +27,6 @@
 //    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 //        auth
 //                .inMemoryAuthentication()
-//                .withUser("Annie").password("12345").roles("USER");
+//                .withUser("username").password("password").roles("USER");
 //    }
 //}

@@ -1,8 +1,6 @@
 package com.greenfoxacademy.reddit.Controller;
 
 import com.greenfoxacademy.reddit.Model.User;
-import com.greenfoxacademy.reddit.Service.CommentServiceDbImpl;
-import com.greenfoxacademy.reddit.Service.PostServiceDbImpl;
 import com.greenfoxacademy.reddit.Service.UserServiceDbImpl;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,14 +12,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class RegisterController {
 
-    private final CommentServiceDbImpl commentServiceDb;
-    private final PostServiceDbImpl postServiceDb;
     private final UserServiceDbImpl userServiceDb;
 
     @Autowired
-    public RegisterController(CommentServiceDbImpl commentServiceDb, PostServiceDbImpl postServiceDb, UserServiceDbImpl userServiceDb) {
-        this.commentServiceDb = commentServiceDb;
-        this.postServiceDb = postServiceDb;
+    public RegisterController(UserServiceDbImpl userServiceDb) {
         this.userServiceDb = userServiceDb;
     }
 

@@ -22,7 +22,7 @@ import java.util.Optional;
 public class HomeController {
     private static final int NUM_OF_BUTTONS = 5;
     private static final int INITIAL_PAGE = 0;
-    private static final int INITIAL_PAGE_SIZE = 5;
+    private static final int INITIAL_PAGE_SIZE = 10;
     private static final int[] PAGE_SIZES = {5, 10, 15};
 
     private final PostServiceDbImpl postServiceDb;

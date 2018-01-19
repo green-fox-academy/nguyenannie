@@ -1,8 +1,6 @@
 package com.greenfoxacademy.reddit.Controller;
 
 import com.greenfoxacademy.reddit.Model.User;
-import com.greenfoxacademy.reddit.Service.CommentServiceDbImpl;
-import com.greenfoxacademy.reddit.Service.PostServiceDbImpl;
 import com.greenfoxacademy.reddit.Service.UserServiceDbImpl;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;

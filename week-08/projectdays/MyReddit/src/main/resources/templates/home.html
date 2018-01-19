@@ -49,6 +49,7 @@
             <table class="table table-hover">
                 <thead>
                 <tr>
+                    <th>#</th>
                     <th>Upvote</th>
                     <th>Score</th>
                     <th>Downvote</th>
@@ -59,6 +60,7 @@
                 </thead>
                 <tbody th:each="post:${posts}">
                 <tr>
+                    <td th:text="${1 + postStat.index}"></td>
                     <form action="#" th:action="@{'/home/upvote/' + ${user.name} + '/' + ${post.id} }" method="post">
                         <td><button class="btn btn-success" type="submit" name="upvote" th:value="${post.id}">
                             <span class="glyphicon glyphicon-thumbs-up"></span></button></td>

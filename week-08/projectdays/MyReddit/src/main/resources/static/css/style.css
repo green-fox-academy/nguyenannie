@@ -83,3 +83,11 @@ h1 {
     margin: 20px 0;
     text-align: center;
 }
+
+body {
+    background: url("../images/background.png");
+}
+
+.created-by {
+    text-align: center;
+}
