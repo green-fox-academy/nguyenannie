@@ -2,8 +2,8 @@ package com.greenfoxacademy.reddit.Model;
 
 public class Pager {
     private int numOfButtons = 5;
-    int firstButton;
-    int finalButton;
+    private int firstButton;
+    private int finalButton;
 
     public Pager(int totalPages, int currentPage, int numOfButtons) {
 

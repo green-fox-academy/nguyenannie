@@ -30,4 +30,9 @@ public class UserServiceDbImpl implements UserService {
     public boolean exists(long id) {
         return userRepository.exists(id);
     }
+
+    @Override
+    public boolean exists(String username) {
+        return userRepository.findByName(username) != null;
+    }
 }

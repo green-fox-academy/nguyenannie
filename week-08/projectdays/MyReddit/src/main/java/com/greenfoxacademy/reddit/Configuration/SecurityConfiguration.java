@@ -12,7 +12,7 @@
 //    protected void configure(HttpSecurity httpSecurity) throws Exception {
 //        httpSecurity
 //                .authorizeRequests()
-//                    .antMatchers("/","/home").permitAll()
+//                    .antMatchers("/home/*").permitAll()
 //                    .anyRequest().authenticated()
 //                    .and()
 //                .formLogin()
@@ -27,6 +27,6 @@
 //    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 //        auth
 //                .inMemoryAuthentication()
-//                .withUser("user").password("password").roles("USER");
+//                .withUser("Annie").password("12345").roles("USER");
 //    }
 //}
