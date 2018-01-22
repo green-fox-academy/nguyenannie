@@ -1,8 +1,10 @@
 package com.greenfoxacademy.restexercise.Service;
 
-import com.greenfoxacademy.restexercise.Model.Log;
+import com.greenfoxacademy.restexercise.Model.LogEndpoint.Log;
 import com.greenfoxacademy.restexercise.Repository.LogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -27,5 +29,10 @@ public class LogServiceDbImpl implements LogService{
         List<Log> logs = new ArrayList<>();
         logRepository.findAll().forEach(logs::add);
         return logs;
+    }
+
+    @Override
+    public Page<Log> findByPage(Pageable pageable) {
+        return logRepository.findAll(pageable);
     }
 }

@@ -1,4 +1,4 @@
-package com.greenfoxacademy.restexercise.Model;
+package com.greenfoxacademy.restexercise.Model.ArraysEndpoint;
 
 import org.springframework.stereotype.Component;
 

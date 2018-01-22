@@ -1,6 +1,8 @@
 package com.greenfoxacademy.restexercise.Service;
 
-import com.greenfoxacademy.restexercise.Model.Log;
+import com.greenfoxacademy.restexercise.Model.LogEndpoint.Log;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,4 +11,5 @@ import java.util.List;
 public interface LogService {
     void save(Log log);
     List<Log> findAll();
+    Page<Log> findByPage(Pageable pageable);
 }

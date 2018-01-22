@@ -3,7 +3,20 @@ package com.greenfoxacademy.restexercise.Controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.greenfoxacademy.restexercise.Model.*;
+import com.greenfoxacademy.restexercise.Model.ArraysEndpoint.ArraySumandMultiple;
+import com.greenfoxacademy.restexercise.Model.ArraysEndpoint.ArraysDouble;
+import com.greenfoxacademy.restexercise.Model.ArraysEndpoint.ArraysRequestBody;
+import com.greenfoxacademy.restexercise.Model.DoUntilEndPoint.DoUntilGet;
+import com.greenfoxacademy.restexercise.Model.DoUntilEndPoint.DoUntilMultiple;
+import com.greenfoxacademy.restexercise.Model.DoUntilEndPoint.DoUntilSum;
 import com.greenfoxacademy.restexercise.Model.Error;
+import com.greenfoxacademy.restexercise.Model.LogEndpoint.Log;
+import com.greenfoxacademy.restexercise.Model.LogEndpoint.LogPages;
+import com.greenfoxacademy.restexercise.Model.LogEndpoint.LogResponse;
+import com.greenfoxacademy.restexercise.Model.SithEndPoint.Sith;
+import com.greenfoxacademy.restexercise.Model.SithEndPoint.SithRequestBody;
+import com.greenfoxacademy.restexercise.Model.TranslateEndPoint.TranslateRequestBody;
+import com.greenfoxacademy.restexercise.Model.TranslateEndPoint.TranslateResponse;
 import com.greenfoxacademy.restexercise.Service.LogServiceDbImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -67,18 +80,6 @@ public class MainController {
         int input = doUntilGet.getUntil();
         Object result;
 
-        ObjectMapper mapper = new ObjectMapper();
-        String requestBodyInString;
-
-        try {
-            requestBodyInString = mapper.writeValueAsString(doUntilGet);
-        } catch (JsonProcessingException e) {
-            requestBodyInString = null;
-            e.printStackTrace();
-        }
-
-        Log log = new Log();
-        log.setData(requestBodyInString);
         String endpoint = "/dountil/";
 
         switch (what) {
@@ -96,8 +97,7 @@ public class MainController {
                 break;
         }
 
-        log.setEndPoint(endpoint);
-        logServiceDb.save(log);
+        saveLog(endpoint, doUntilGet);
 
         return result;
     }
@@ -108,17 +108,7 @@ public class MainController {
         int[] numbers = arraysRequestBody.getNumbers();
         Object result;
 
-        ObjectMapper mapper = new ObjectMapper();
-        String requestBodyInString;
-        try {
-            requestBodyInString = mapper.writeValueAsString(arraysRequestBody);
-        } catch (JsonProcessingException e) {
-            requestBodyInString = null;
-            e.printStackTrace();
-        }
-
-        Log log = new Log("/arrays", requestBodyInString);
-        logServiceDb.save(log);
+        saveLog("/arrays", arraysRequestBody);
 
         switch (what) {
             case "double":
@@ -139,7 +129,51 @@ public class MainController {
     }
 
     @RequestMapping("/log")
-    public LogEndPoint getLog() {
-        return new LogEndPoint(logServiceDb);
+    public Object getLog(@RequestParam(value = "count", required = false) Integer count,
+                              @RequestParam(value = "page", required = false) Integer page) {
+        if(count == null || page == null) {
+            return new LogResponse(logServiceDb);
+        } else {
+            return new LogPages(logServiceDb, count, page);
+        }
     }
+
+    @PostMapping("/sith")
+    public Object sithEndpoint(@RequestBody SithRequestBody sithRequestBody) {
+
+        saveLog("/sith", sithRequestBody);
+
+        if(sithRequestBody != null) {
+            return new Sith(sithRequestBody.getText());
+        } else {
+            return new Error("Feed me some text you have to, padawan young you are. Hmmm.");
+        }
+    }
+
+    @PostMapping("/translate")
+    public Object translate(@RequestBody TranslateRequestBody translateRequestBody) {
+
+        saveLog("/translate", translateRequestBody);
+
+        if(translateRequestBody.getText() == null || translateRequestBody.getLang() == null) {
+            return new Error("I can't translate that!");
+        } else {
+            return new TranslateResponse(translateRequestBody.getText());
+        }
+    }
+
+    private void saveLog(String endpoint, Object requestBody) {
+        ObjectMapper mapper = new ObjectMapper();
+        String requestBodyInString;
+        try {
+            requestBodyInString = mapper.writeValueAsString(requestBody);
+        } catch (JsonProcessingException e) {
+            requestBodyInString = null;
+            e.printStackTrace();
+        }
+
+        Log log = new Log(endpoint, requestBodyInString);
+        logServiceDb.save(log);
+    }
+
 }
