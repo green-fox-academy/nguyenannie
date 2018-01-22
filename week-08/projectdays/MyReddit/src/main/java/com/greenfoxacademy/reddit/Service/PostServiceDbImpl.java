@@ -27,7 +27,7 @@ public class PostServiceDbImpl implements PostService {
     @Override
     public List<Post> findAll() {
         List<Post> posts = new ArrayList<>();
-        postRepository.findAll().forEach(posts::add);
+        posts.addAll(postRepository.findAll());
         return posts;
     }
 

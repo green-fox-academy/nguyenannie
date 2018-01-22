@@ -53,8 +53,7 @@ public class UserController {
     }
 
     @PostMapping("/account/{username}/changepassword")
-    public String postUserPassword(Model model,
-                                   @PathVariable(value = "username") String username,
+    public String postUserPassword(Model model, @PathVariable(value = "username") String username,
                                    HttpServletRequest request) {
 
         String result;
@@ -66,7 +65,7 @@ public class UserController {
         if(newPassword != null && newPassword.equals(confirmPassword) && !newPassword.equals(user.getPassword())) {
             user.setPassword(newPassword);
             userServiceDb.save(user);
-            result = "redirect:/account" + username;
+            result = "redirect:/account/" + username;
         } else {
             result = "cantchangeit";
         }
