@@ -1,12 +1,13 @@
 package com.greenfoxacademy.restexercise.Model.ArraysEndpoint;
 
+import com.greenfoxacademy.restexercise.Model.RestResponse;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 import java.util.stream.IntStream;
 
 @Component
-public class ArraySumandMultiple {
+public class ArraySumandMultiple extends RestResponse {
     private int result;
 
     public ArraySumandMultiple() {

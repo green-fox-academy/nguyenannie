@@ -1,12 +1,13 @@
 package com.greenfoxacademy.restexercise.Model.LogEndpoint;
 
+import com.greenfoxacademy.restexercise.Model.RestResponse;
 import com.greenfoxacademy.restexercise.Service.LogServiceDbImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class LogResponse {
+public class LogResponse extends RestResponse{
     private final LogServiceDbImpl logServiceDb;
 
     private List<Log> entries;

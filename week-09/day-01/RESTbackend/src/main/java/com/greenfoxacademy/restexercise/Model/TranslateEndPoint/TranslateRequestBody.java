@@ -1,9 +1,10 @@
 package com.greenfoxacademy.restexercise.Model.TranslateEndPoint;
 
+import com.greenfoxacademy.restexercise.Model.RestResponse;
 import org.springframework.stereotype.Component;
 
 @Component
-public class TranslateRequestBody {
+public class TranslateRequestBody extends RestResponse{
     private String text;
     private String lang;
 

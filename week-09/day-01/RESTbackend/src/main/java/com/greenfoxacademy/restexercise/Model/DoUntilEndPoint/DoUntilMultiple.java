@@ -1,9 +1,10 @@
 package com.greenfoxacademy.restexercise.Model.DoUntilEndPoint;
 
+import com.greenfoxacademy.restexercise.Model.RestResponse;
 import org.springframework.stereotype.Component;
 
 @Component
-public class DoUntilMultiple {
+public class DoUntilMultiple extends RestResponse {
     private int result;
 
     public DoUntilMultiple() {

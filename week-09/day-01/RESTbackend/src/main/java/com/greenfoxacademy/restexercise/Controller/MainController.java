@@ -1,5 +1,6 @@
 package com.greenfoxacademy.restexercise.Controller;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.greenfoxacademy.restexercise.Model.*;
@@ -19,6 +20,8 @@ import com.greenfoxacademy.restexercise.Model.TranslateEndPoint.TranslateRequest
 import com.greenfoxacademy.restexercise.Model.TranslateEndPoint.TranslateResponse;
 import com.greenfoxacademy.restexercise.Service.LogServiceDbImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -26,12 +29,13 @@ public class MainController {
     private final LogServiceDbImpl logServiceDb;
 
     @Autowired
+    @JsonIgnore
     public MainController(LogServiceDbImpl logServiceDb) {
         this.logServiceDb = logServiceDb;
     }
 
     @RequestMapping("/doubling")
-    public Object doubling(@RequestParam(value = "input", required = false) Integer input) {
+    public ResponseEntity<RestResponse> doubling(@RequestParam(value = "input", required = false) Integer input) {
         String endpoint = "/doubling";
         String data;
         Log log = new Log();
@@ -40,17 +44,17 @@ public class MainController {
             data = "input=" + input;
             log.setData(data);
             logServiceDb.save(log);
-            return new Doubling(input);
+            return new ResponseEntity<>(new Doubling(input), HttpStatus.OK);
         } else {
             data = "";
             log.setData(data);
             logServiceDb.save(log);
-            return new Error("Please provide an input!");
+            return new ResponseEntity<>(new Error("Please provide an input!"), HttpStatus.BAD_REQUEST);
         }
     }
 
     @RequestMapping("/greeter")
-    public Object greeting(@RequestParam(value = "name", required = false) String name, @RequestParam(value = "title", required = false) String title) {
+    public ResponseEntity<RestResponse> greeting(@RequestParam(value = "name", required = false) String name, @RequestParam(value = "title", required = false) String title) {
         String endpoint = "/greeter";
         String data;
         Log log = new Log();
@@ -59,24 +63,24 @@ public class MainController {
             data = "";
             log.setData("");
             logServiceDb.save(log);
-            return new Error("Please provide a name or a title!");
+            return new ResponseEntity<>(new Error("Please provide a name or a title!"), HttpStatus.BAD_REQUEST);
         } else {
             data = "name=" + name + "&title=" + title;
             log.setData(data);
             logServiceDb.save(log);
-            return new Greeter(name, title);
+            return new ResponseEntity<>(new Greeter(name, title), HttpStatus.OK);
         }
     }
 
     @RequestMapping("/appends/{appendable}")
-    public Append append(@PathVariable(value = "appendable") String appendable) {
+    public ResponseEntity<RestResponse> append(@PathVariable(value = "appendable") String appendable) {
         Log log = new Log("/appends/{appendable}", "appendable=" + appendable);
         logServiceDb.save(log);
-        return new Append(appendable);
+        return new ResponseEntity<>(new Append(appendable), HttpStatus.OK);
     }
 
     @PostMapping("/dountil/{what}")
-    public Object doUntil(@PathVariable(value = "what") String what, @RequestBody DoUntilGet doUntilGet) {
+    public ResponseEntity<RestResponse> doUntil(@PathVariable(value = "what") String what, @RequestBody DoUntilGet doUntilGet) {
         int input = doUntilGet.getUntil();
         Object result;
 
@@ -85,80 +89,71 @@ public class MainController {
         switch (what) {
             case "sum":
                 endpoint += "sum";
-                result = new DoUntilSum(input);
-                break;
+                saveLog(endpoint, doUntilGet);
+                return new ResponseEntity<>(new DoUntilSum(input), HttpStatus.OK);
             case "multiple":
                 endpoint += "multiple";
-                result = new DoUntilMultiple(input);
-                break;
+                saveLog(endpoint, doUntilGet);
+                return new ResponseEntity<>(new DoUntilMultiple(input), HttpStatus.OK);
             default:
                 endpoint += "";
-                result = new Error("Please provide an input!");
-                break;
+                saveLog(endpoint, doUntilGet);
+                return new ResponseEntity<>(new Error("Please provide an input!"), HttpStatus.BAD_REQUEST);
         }
-
-        saveLog(endpoint, doUntilGet);
-
-        return result;
     }
 
     @PostMapping("/arrays")
-    public Object arrays(@RequestBody ArraysRequestBody arraysRequestBody) {
+    public ResponseEntity<RestResponse> arrays(@RequestBody ArraysRequestBody arraysRequestBody) {
         String what = arraysRequestBody.getWhat();
         int[] numbers = arraysRequestBody.getNumbers();
-        Object result;
 
         saveLog("/arrays", arraysRequestBody);
 
         switch (what) {
             case "double":
-                result = new ArraysDouble(numbers);
-                break;
+                return new ResponseEntity<>(new ArraysDouble(numbers), HttpStatus.OK);
             case "sum":
-                result = new ArraySumandMultiple(what, numbers);
-                break;
+                return new ResponseEntity<>(new ArraySumandMultiple(what, numbers), HttpStatus.OK);
             case "multiple":
-                result = new ArraySumandMultiple(what, numbers);
-                break;
+                return new ResponseEntity<>(new ArraySumandMultiple(what, numbers), HttpStatus.OK);
             default:
-                result = new Error("Please provide what to do with the numbers!");
-                break;
+                return new ResponseEntity<>(new Error("Please provide what to do with the numbers!"), HttpStatus.BAD_REQUEST);
         }
-
-        return result;
     }
 
     @RequestMapping("/log")
-    public Object getLog(@RequestParam(value = "count", required = false) Integer count,
-                              @RequestParam(value = "page", required = false) Integer page) {
+    public ResponseEntity<RestResponse> getLog(@RequestParam(value = "count", required = false) Integer count,
+                         @RequestParam(value = "page", required = false) Integer page,
+                         @RequestParam(value = "q", required = false) String q) {
         if(count == null || page == null) {
-            return new LogResponse(logServiceDb);
+            return new ResponseEntity<>(new LogResponse(logServiceDb), HttpStatus.OK);
         } else {
-            return new LogPages(logServiceDb, count, page);
+            return new ResponseEntity<>(new LogPages(logServiceDb, count, page), HttpStatus.OK);
         }
     }
 
     @PostMapping("/sith")
-    public Object sithEndpoint(@RequestBody SithRequestBody sithRequestBody) {
+    public ResponseEntity<RestResponse> sithEndpoint(@RequestBody SithRequestBody sithRequestBody) {
 
         saveLog("/sith", sithRequestBody);
 
         if(sithRequestBody != null) {
-            return new Sith(sithRequestBody.getText());
+            return new ResponseEntity<>(new Sith(sithRequestBody.getText()), HttpStatus.OK);
         } else {
-            return new Error("Feed me some text you have to, padawan young you are. Hmmm.");
+            return new ResponseEntity<>(new Error("Feed me some text you have to, " +
+                    "padawan young you are. Hmmm."), HttpStatus.BAD_REQUEST);
         }
     }
 
     @PostMapping("/translate")
-    public Object translate(@RequestBody TranslateRequestBody translateRequestBody) {
+    public ResponseEntity<RestResponse> translate(@RequestBody TranslateRequestBody translateRequestBody) {
 
         saveLog("/translate", translateRequestBody);
 
         if(translateRequestBody.getText() == null || translateRequestBody.getLang() == null) {
-            return new Error("I can't translate that!");
+            return new ResponseEntity<>(new Error("I can't translate that!"), HttpStatus.BAD_REQUEST);
         } else {
-            return new TranslateResponse(translateRequestBody.getText());
+            return new ResponseEntity<>(new TranslateResponse(translateRequestBody.getText()), HttpStatus.OK);
         }
     }
 

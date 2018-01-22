@@ -1,9 +1,10 @@
 package com.greenfoxacademy.restexercise.Model.ArraysEndpoint;
 
+import com.greenfoxacademy.restexercise.Model.RestResponse;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ArraysDouble {
+public class ArraysDouble extends RestResponse {
     private int[] result;
 
     public ArraysDouble() {

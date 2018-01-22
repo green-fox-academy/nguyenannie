@@ -3,7 +3,7 @@ package com.greenfoxacademy.restexercise.Model;
 import org.springframework.stereotype.Component;
 
 @Component
-public class Doubling {
+public class Doubling extends RestResponse {
     private int input;
     private int result;
 

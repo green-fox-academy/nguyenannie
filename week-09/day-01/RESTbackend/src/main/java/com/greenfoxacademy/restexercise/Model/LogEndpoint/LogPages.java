@@ -1,14 +1,14 @@
 package com.greenfoxacademy.restexercise.Model.LogEndpoint;
 
+import com.greenfoxacademy.restexercise.Model.RestResponse;
 import com.greenfoxacademy.restexercise.Service.LogServiceDbImpl;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
 @Component
-public class LogPages {
+public class LogPages extends RestResponse{
 
     private Page<Log> entries;
     private long entry_count;

@@ -1,11 +1,12 @@
 package com.greenfoxacademy.restexercise.Model.SithEndPoint;
 
+import com.greenfoxacademy.restexercise.Model.RestResponse;
 import org.springframework.stereotype.Component;
 
 import java.util.Random;
 
 @Component
-public class Sith {
+public class Sith extends RestResponse{
     private String sith_text;
 
     public Sith() {

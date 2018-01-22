@@ -3,7 +3,7 @@ package com.greenfoxacademy.restexercise.Model;
 import org.springframework.stereotype.Component;
 
 @Component
-public class Append {
+public class Append extends RestResponse{
     private String appended;
 
     public Append() {

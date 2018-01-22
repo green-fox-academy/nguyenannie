@@ -1,29 +1,29 @@
 package com.greenfoxacademy.restexercise.Model.LogEndpoint;
 
+import com.greenfoxacademy.restexercise.Model.RestResponse;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Component
 @Entity
-public class Log {
+public class Log extends RestResponse{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt;
+    private String createdAt;
     private String endPoint;
     private String data;
 
     public Log() {
-        this.createdAt = new Date();
+        this.createdAt = String.valueOf(LocalDateTime.now());
     }
 
     public Log(String endpoint, String data) {
         this.endPoint = endpoint;
         this.data = data;
-        this.createdAt = new Date();
+        this.createdAt = String.valueOf(LocalDateTime.now());
     }
 
     public String getEndPoint() {
@@ -50,11 +50,11 @@ public class Log {
         this.id = id;
     }
 
-    public Date getCreatedAt() {
+    public String getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
     }
 }

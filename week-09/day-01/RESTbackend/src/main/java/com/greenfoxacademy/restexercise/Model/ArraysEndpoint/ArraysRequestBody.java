@@ -1,9 +1,10 @@
 package com.greenfoxacademy.restexercise.Model.ArraysEndpoint;
 
+import com.greenfoxacademy.restexercise.Model.RestResponse;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ArraysRequestBody {
+public class ArraysRequestBody extends RestResponse {
     private String what;
     private int[] numbers;
 

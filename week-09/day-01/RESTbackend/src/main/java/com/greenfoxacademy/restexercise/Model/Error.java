@@ -3,7 +3,7 @@ package com.greenfoxacademy.restexercise.Model;
 import org.springframework.stereotype.Component;
 
 @Component
-public class Error {
+public class Error extends RestResponse {
     private String errorMessage;
 
     public Error() {

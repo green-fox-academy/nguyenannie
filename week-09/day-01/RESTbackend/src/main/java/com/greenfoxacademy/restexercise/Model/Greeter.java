@@ -3,7 +3,7 @@ package com.greenfoxacademy.restexercise.Model;
 import org.springframework.stereotype.Component;
 
 @Component
-public class Greeter {
+public class Greeter extends RestResponse{
     private String welcomeMessage;
 
     public Greeter() {

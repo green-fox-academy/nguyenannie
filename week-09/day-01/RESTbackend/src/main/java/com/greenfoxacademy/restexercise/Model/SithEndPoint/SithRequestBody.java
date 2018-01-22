@@ -1,9 +1,10 @@
 package com.greenfoxacademy.restexercise.Model.SithEndPoint;
 
+import com.greenfoxacademy.restexercise.Model.RestResponse;
 import org.springframework.stereotype.Component;
 
 @Component
-public class SithRequestBody {
+public class SithRequestBody extends RestResponse{
     private String text;
 
     public SithRequestBody() {
