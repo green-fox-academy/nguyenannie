@@ -19,6 +19,9 @@ public class User {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private List<Post> posts;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private List<Vote> votes;
+
     public User() {
     }
 
@@ -66,6 +69,15 @@ public class User {
     public void removeComment(Comment comment) {
         getComments().remove(comment);
         comment.setUser(null);
+    }
+
+    public void addVote(Vote vote) {
+
+    }
+
+    public void unVote(Vote vote) {
+        getVotes().remove(vote);
+        vote.setUser(null);
     }
 
     public User(String name, String password) {
@@ -127,6 +139,14 @@ public class User {
     @Override
     public String toString() {
         return this.name;
+    }
+
+    public List<Vote> getVotes() {
+        return votes;
+    }
+
+    public void setVotes(List<Vote> votes) {
+        this.votes = votes;
     }
 }
 

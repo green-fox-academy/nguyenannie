@@ -13,8 +13,8 @@ public class Post {
     @Column(nullable = false)
     private String title;
     private String content;
-    private int score;
     private String creationDate;
+    private Vote vote;
 
     @ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.MERGE)
     @JoinColumn(name = "user_id")
@@ -23,18 +23,17 @@ public class Post {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "post")
     private List<Comment> comments;
 
-    //private List<Vote> votes;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "post")
+    private List<Vote> votes;
 
     public Post() {
         creationDate = String.valueOf(LocalDate.now());
-        score = 0;
     }
 
     public Post(User author, String title, String content, int score) {
         this.user = author;
         this.title = title;
         this.content = content;
-        this.score = score;
         creationDate = String.valueOf(LocalDate.now());
     }
 
@@ -72,6 +71,17 @@ public class Post {
         comment.setPost(null);
     }
 
+    public void upvote(User user) {
+        //Vote vote = votes.find(v -> v.user == user)
+        //if (vote == null)
+        //  votes.add(new Vote(user, this, true));
+        //else if(!vote.isUpvote)
+        //  vote.isUpvote = true
+        //  votes.save(vote)
+        //else //vote is upvote
+        //  votes.delete(vote); // if u want to unvote the upvote
+    }
+
     public long getId() {
         return id;
     }
@@ -94,14 +104,6 @@ public class Post {
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    public int getScore() {
-        return score;
-    }
-
-    public void setScore(int score) {
-        this.score = score;
     }
 
     public String getCreationDate() {
@@ -136,6 +138,22 @@ public class Post {
         final Post post = (Post) object;
 
         return this.id != 0 && post.getId() != 0 && this.id == post.getId();
+    }
+
+    public Vote getVote() {
+        return vote;
+    }
+
+    public void setVote(Vote vote) {
+        this.vote = vote;
+    }
+
+    public List<Vote> getVotes() {
+        return votes;
+    }
+
+    public void setVotes(List<Vote> votes) {
+        this.votes = votes;
     }
 }
 

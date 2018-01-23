@@ -15,7 +15,8 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
-import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.Is.*;
+import static org.hamcrest.collection.IsArrayContainingInOrder.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -251,7 +252,7 @@ public class RestexerciseApplicationTests {
     @Test
     public void successful_ArraysEndPoint_With_WhatIsDouble() {
         try {
-            int[] result = {2,4,10,20};
+            Integer[] result = {2,4,10,20};
             mockMvc.perform(post("/arrays")
                     .contentType(contentType)
                     .content(("{\"what\": \"double\", \"numbers\": [1, 2, 5, 10]}")))
