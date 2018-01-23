@@ -5,7 +5,9 @@ import javax.persistence.*;
 @Entity
 @Table
 public class Vote {
-//    private long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
     @ManyToOne(fetch= FetchType.LAZY, cascade= CascadeType.MERGE)
     @JoinColumn(name = "user_id")
@@ -15,24 +17,25 @@ public class Vote {
     @JoinColumn(name = "post_id")
     private Post post;
 
-    private boolean upvote;
-//
-//    public Vote(long id) {
-//        this.id = id;
-//    }
+    private int vote;
 
-    public Vote(User user, Post post) {
+    public Vote(User user, Post post, int vote) {
         this.user = user;
         this.post = post;
+        this.vote = vote;
     }
-//
-//    public long getId() {
-//        return id;
-//    }
-//
-//    public void setId(long id) {
-//        this.id = id;
-//    }
+
+    public Vote() {
+
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public User getUser() {
         return user;
@@ -50,11 +53,11 @@ public class Vote {
         this.post = post;
     }
 
-    public boolean isUpvote() {
-        return upvote;
+    public int getVote() {
+        return vote;
     }
 
-    public void setUpvote(boolean upvote) {
-        this.upvote = upvote;
+    public void setVote(int vote) {
+        this.vote = vote;
     }
 }

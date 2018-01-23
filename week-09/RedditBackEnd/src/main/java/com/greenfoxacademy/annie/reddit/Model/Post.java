@@ -1,7 +1,7 @@
 package com.greenfoxacademy.annie.reddit.Model;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -13,8 +13,8 @@ public class Post {
     @Column(nullable = false)
     private String title;
     private String content;
-    private String creationDate;
-    private Vote vote;
+    @Temporal(TemporalType.DATE)
+    private Date creationDate;
 
     @ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.MERGE)
     @JoinColumn(name = "user_id")
@@ -27,14 +27,14 @@ public class Post {
     private List<Vote> votes;
 
     public Post() {
-        creationDate = String.valueOf(LocalDate.now());
+        creationDate = new Date();
     }
 
-    public Post(User author, String title, String content, int score) {
+    public Post(User author, String title, String content) {
         this.user = author;
         this.title = title;
         this.content = content;
-        creationDate = String.valueOf(LocalDate.now());
+        creationDate = new Date();
     }
 
     public void setUser(User user) {
@@ -71,17 +71,6 @@ public class Post {
         comment.setPost(null);
     }
 
-    public void upvote(User user) {
-        //Vote vote = votes.find(v -> v.user == user)
-        //if (vote == null)
-        //  votes.add(new Vote(user, this, true));
-        //else if(!vote.isUpvote)
-        //  vote.isUpvote = true
-        //  votes.save(vote)
-        //else //vote is upvote
-        //  votes.delete(vote); // if u want to unvote the upvote
-    }
-
     public long getId() {
         return id;
     }
@@ -106,11 +95,11 @@ public class Post {
         this.content = content;
     }
 
-    public String getCreationDate() {
+    public Date getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(String creationDate) {
+    public void setCreationDate(Date creationDate) {
         this.creationDate = creationDate;
     }
 
@@ -140,14 +129,6 @@ public class Post {
         return this.id != 0 && post.getId() != 0 && this.id == post.getId();
     }
 
-    public Vote getVote() {
-        return vote;
-    }
-
-    public void setVote(Vote vote) {
-        this.vote = vote;
-    }
-
     public List<Vote> getVotes() {
         return votes;
     }
@@ -155,5 +136,25 @@ public class Post {
     public void setVotes(List<Vote> votes) {
         this.votes = votes;
     }
+
+    public int getScore() {
+        int score = 0;
+        for(int i = 0; i < getVotes().size(); i++) {
+            score += getVotes().get(i).getVote();
+        }
+        return score;
+    }
+
+    public int getVoteState(User user) {
+        Integer vote = 0;
+        for(int i = 0; i < getVotes().size(); i++) {
+            if(getVotes().get(i).getUser() == user) {
+                vote = getVotes().get(i).getVote();
+                break;
+            }
+        }
+        return vote;
+    }
+
 }
 
