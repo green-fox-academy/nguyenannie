@@ -8,7 +8,7 @@ import com.greenfoxacademy.restexercise.Model.ArraysEndpoint.ArraySumandMultiple
 import com.greenfoxacademy.restexercise.Model.ArraysEndpoint.ArraysDouble;
 import com.greenfoxacademy.restexercise.Model.ArraysEndpoint.ArraysRequestBody;
 import com.greenfoxacademy.restexercise.Model.DoUntilEndPoint.DoUntilGet;
-import com.greenfoxacademy.restexercise.Model.DoUntilEndPoint.DoUntilMultiple;
+import com.greenfoxacademy.restexercise.Model.DoUntilEndPoint.DoUntilFactor;
 import com.greenfoxacademy.restexercise.Model.DoUntilEndPoint.DoUntilSum;
 import com.greenfoxacademy.restexercise.Model.Error;
 import com.greenfoxacademy.restexercise.Model.LogEndpoint.Log;
@@ -38,8 +38,10 @@ public class MainController {
     public ResponseEntity<RestResponse> doubling(@RequestParam(value = "input", required = false) Integer input) {
         String endpoint = "/doubling";
         String data;
+
         Log log = new Log();
         log.setEndPoint(endpoint);
+
         if(input != null) {
             data = "input=" + input;
             log.setData(data);
@@ -59,9 +61,9 @@ public class MainController {
         String data;
         Log log = new Log();
         log.setEndPoint(endpoint);
-        if(name == null && title == null) {
-            data = "";
-            log.setData("");
+        if(name == null || title == null) {
+            data = null;
+            log.setData(data);
             logServiceDb.save(log);
             return new ResponseEntity<>(new Error("Please provide a name or a title!"), HttpStatus.BAD_REQUEST);
         } else {
@@ -81,22 +83,21 @@ public class MainController {
 
     @PostMapping("/dountil/{what}")
     public ResponseEntity<RestResponse> doUntil(@PathVariable(value = "what") String what, @RequestBody DoUntilGet doUntilGet) {
-        int input = doUntilGet.getUntil();
-        Object result;
+        Integer input = doUntilGet.getUntil();
 
-        String endpoint = "/dountil/";
+        String endpoint = "/dountil";
 
         switch (what) {
-            case "sum":
-                endpoint += "sum";
+            case "/sum":
+                endpoint += "/sum";
                 saveLog(endpoint, doUntilGet);
                 return new ResponseEntity<>(new DoUntilSum(input), HttpStatus.OK);
-            case "multiple":
-                endpoint += "multiple";
+            case "/factor":
+                endpoint += "/factor";
                 saveLog(endpoint, doUntilGet);
-                return new ResponseEntity<>(new DoUntilMultiple(input), HttpStatus.OK);
+                return new ResponseEntity<>(new DoUntilFactor(input), HttpStatus.OK);
             default:
-                endpoint += "";
+                endpoint += "/";
                 saveLog(endpoint, doUntilGet);
                 return new ResponseEntity<>(new Error("Please provide an input!"), HttpStatus.BAD_REQUEST);
         }

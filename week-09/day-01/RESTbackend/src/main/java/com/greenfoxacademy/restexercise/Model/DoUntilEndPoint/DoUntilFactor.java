@@ -4,14 +4,14 @@ import com.greenfoxacademy.restexercise.Model.RestResponse;
 import org.springframework.stereotype.Component;
 
 @Component
-public class DoUntilMultiple extends RestResponse {
+public class DoUntilFactor extends RestResponse {
     private int result;
 
-    public DoUntilMultiple() {
+    public DoUntilFactor() {
 
     }
 
-    public DoUntilMultiple(int result) {
+    public DoUntilFactor(int result) {
         this.result = consecutiveProduct(result);
 
     }

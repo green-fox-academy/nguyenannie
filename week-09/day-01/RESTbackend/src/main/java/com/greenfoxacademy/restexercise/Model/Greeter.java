@@ -4,20 +4,20 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Greeter extends RestResponse{
-    private String welcomeMessage;
+    private String welcome_Message;
 
     public Greeter() {
 
     }
     public Greeter(String name, String title) {
-        this.welcomeMessage = "Oh, hi there " + name + ", my dear " +  title +"!";
+        this.welcome_Message = "Oh, hi there " + name + ", my dear " +  title +"!";
     }
 
-    public String getWelcomeMessage() {
-        return welcomeMessage;
+    public String getWelcome_Message() {
+        return welcome_Message;
     }
 
-    public void setWelcomeMessage(String welcomeMessage) {
-        this.welcomeMessage = welcomeMessage;
+    public void setWelcome_Message(String welcome_Message) {
+        this.welcome_Message = welcome_Message;
     }
 }

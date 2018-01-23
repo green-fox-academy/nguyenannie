@@ -4,21 +4,21 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Error extends RestResponse {
-    private String errorMessage;
+    private String error;
 
     public Error() {
 
     }
 
-    public Error(String errorMessage) {
-        this.errorMessage = errorMessage;
+    public Error(String error) {
+        this.error = error;
     }
 
-    public String getErrorMessage() {
-        return errorMessage;
+    public String getError() {
+        return error;
     }
 
-    public void setErrorMessage(String errorMessage) {
-        this.errorMessage = errorMessage;
+    public void setError(String error) {
+        this.error = error;
     }
 }

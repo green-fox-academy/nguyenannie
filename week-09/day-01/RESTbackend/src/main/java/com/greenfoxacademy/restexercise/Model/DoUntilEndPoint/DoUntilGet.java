@@ -3,8 +3,11 @@ package com.greenfoxacademy.restexercise.Model.DoUntilEndPoint;
 import com.greenfoxacademy.restexercise.Model.RestResponse;
 import org.springframework.stereotype.Component;
 
+import javax.validation.constraints.NotNull;
+
 @Component
 public class DoUntilGet extends RestResponse {
+    @NotNull
     private int until;
 
     public DoUntilGet() {
