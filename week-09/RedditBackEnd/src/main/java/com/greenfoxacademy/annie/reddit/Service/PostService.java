@@ -13,4 +13,5 @@ public interface PostService {
     Post findOne(long id);
     Page<Post> findByPage(Pageable pageable);
     void save(Post post);
+    void delete(long id);
 }

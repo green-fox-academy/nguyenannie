@@ -1,6 +1,7 @@
 package com.greenfoxacademy.annie.reddit.Model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -23,6 +24,9 @@ public class User {
     private List<Vote> votes;
 
     public User() {
+        votes = new ArrayList<>();
+        posts = new ArrayList<>();
+        comments = new ArrayList<>();
     }
 
     public void addPost(Post post) {

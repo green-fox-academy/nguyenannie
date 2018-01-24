@@ -1,4 +1,4 @@
-package com.greenfoxacademy.annie.reddit.Responses;
+package com.greenfoxacademy.annie.reddit.DTO;
 
 import com.greenfoxacademy.annie.reddit.Model.Post;
 import com.greenfoxacademy.annie.reddit.Model.User;
@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import java.util.Date;
 
 @Component
-public class PostsResponse {
+public class VoteResponseDTO {
     private long id;
     private String title;
     private String url;
@@ -16,14 +16,14 @@ public class PostsResponse {
     private String owner;
     private int vote;
 
-    public PostsResponse() {
+    public VoteResponseDTO() {
 
     }
 
-    public PostsResponse(Post post, User user) {
+    public VoteResponseDTO(Post post, User user) {
         this.id = post.getId();
         this.title = post.getTitle();
-        this.url = "http://localhost:8080/posts?username=" + user.getName();
+        this.url = "http://localhost:8080/posts/" + post.getId() + "/upvote?username=" + user.getName();
         this.timestamp = post.getCreationDate();
         this.score = post.getScore();
         this.owner = user.getName();

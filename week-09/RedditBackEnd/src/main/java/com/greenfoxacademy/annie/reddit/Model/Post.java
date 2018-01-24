@@ -1,6 +1,9 @@
 package com.greenfoxacademy.annie.reddit.Model;
 
+import com.greenfoxacademy.annie.reddit.DTO.PostResponseDTO;
+
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -13,7 +16,6 @@ public class Post {
     @Column(nullable = false)
     private String title;
     private String content;
-    @Temporal(TemporalType.DATE)
     private Date creationDate;
 
     @ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.MERGE)
@@ -28,6 +30,8 @@ public class Post {
 
     public Post() {
         creationDate = new Date();
+        comments = new ArrayList<>();
+        votes = new ArrayList<>();
     }
 
     public Post(User author, String title, String content) {
@@ -35,6 +39,27 @@ public class Post {
         this.title = title;
         this.content = content;
         creationDate = new Date();
+        comments = new ArrayList<>();
+        votes = new ArrayList<>();
+    }
+
+    public Post(User author, String title) {
+        this.user = author;
+        this.title = title;
+        creationDate = new Date();
+        comments = new ArrayList<>();
+        votes = new ArrayList<>();
+    }
+
+    public PostResponseDTO clone() {
+        PostResponseDTO postResponseDTO = new PostResponseDTO();
+        postResponseDTO.setId(this.id);
+        postResponseDTO.setTitle(this.getTitle());
+        postResponseDTO.setTimestamp(this.getCreationDate());
+        postResponseDTO.setOwner(this.getUser().getName());
+        postResponseDTO.setScore(this.getScore());
+        postResponseDTO.setVote(this.getVoteState(getUser()));
+        return postResponseDTO;
     }
 
     public void setUser(User user) {
@@ -139,9 +164,14 @@ public class Post {
 
     public int getScore() {
         int score = 0;
-        for(int i = 0; i < getVotes().size(); i++) {
-            score += getVotes().get(i).getVote();
+        if(getVotes().size() == 0) {
+            score = 0;
+        } else {
+            for (int i = 0; i < getVotes().size(); i++) {
+                score += getVotes().get(i).getVote();
+            }
         }
+
         return score;
     }
 
@@ -155,6 +185,5 @@ public class Post {
         }
         return vote;
     }
-
 }
 

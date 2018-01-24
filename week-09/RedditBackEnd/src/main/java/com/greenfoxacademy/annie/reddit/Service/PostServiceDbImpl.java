@@ -40,4 +40,9 @@ public class PostServiceDbImpl implements PostService{
     public void save(Post post) {
         postRepository.save(post);
     }
+
+    @Override
+    public void delete(long id) {
+        postRepository.delete(id);
+    }
 }
