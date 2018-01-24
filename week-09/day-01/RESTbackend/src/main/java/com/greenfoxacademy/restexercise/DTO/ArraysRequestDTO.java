@@ -1,14 +1,14 @@
-package com.greenfoxacademy.restexercise.Model.ArraysEndpoint;
+package com.greenfoxacademy.restexercise.DTO;
 
 import com.greenfoxacademy.restexercise.Model.RestResponse;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ArraysRequestBody extends RestResponse {
+public class ArraysRequestDTO extends RestResponse {
     private String what;
     private int[] numbers;
 
-    public ArraysRequestBody() {
+    public ArraysRequestDTO() {
 
     }
 

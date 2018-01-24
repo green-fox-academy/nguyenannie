@@ -1,5 +1,6 @@
-package com.greenfoxacademy.restexercise.Model.LogEndpoint;
+package com.greenfoxacademy.restexercise.DTO;
 
+import com.greenfoxacademy.restexercise.Model.Log;
 import com.greenfoxacademy.restexercise.Model.RestResponse;
 import com.greenfoxacademy.restexercise.Service.LogServiceDbImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,14 +8,14 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class LogResponse extends RestResponse{
+public class LogDTO extends RestResponse{
     private final LogServiceDbImpl logServiceDb;
 
     private List<Log> entries;
     private int entry_count;
 
     @Autowired
-    public LogResponse(LogServiceDbImpl logServiceDb) {
+    public LogDTO(LogServiceDbImpl logServiceDb) {
         entries = logServiceDb.findAll();
         entry_count = getEntries().size();
         this.logServiceDb = logServiceDb;

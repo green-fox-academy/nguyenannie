@@ -1,4 +1,4 @@
-package com.greenfoxacademy.restexercise.Model.TranslateEndPoint;
+package com.greenfoxacademy.restexercise.Model;
 
 import com.greenfoxacademy.restexercise.Model.RestResponse;
 import org.springframework.stereotype.Component;
@@ -8,15 +8,15 @@ import java.util.Arrays;
 import java.util.List;
 
 @Component
-public class TranslateResponse extends RestResponse{
+public class Translation extends RestResponse{
     private String translated;
     private String lang;
 
-    public TranslateResponse() {
+    public Translation() {
 
     }
 
-    public TranslateResponse(String text) {
+    public Translation(String text) {
         this.translated = translate(text);
         this.lang = "teve";
     }

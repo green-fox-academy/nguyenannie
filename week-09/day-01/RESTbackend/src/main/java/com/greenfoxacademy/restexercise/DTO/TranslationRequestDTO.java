@@ -1,14 +1,14 @@
-package com.greenfoxacademy.restexercise.Model.TranslateEndPoint;
+package com.greenfoxacademy.restexercise.DTO;
 
 import com.greenfoxacademy.restexercise.Model.RestResponse;
 import org.springframework.stereotype.Component;
 
 @Component
-public class TranslateRequestBody extends RestResponse{
+public class TranslationRequestDTO extends RestResponse{
     private String text;
     private String lang;
 
-    public TranslateRequestBody() {
+    public TranslationRequestDTO() {
 
     }
 

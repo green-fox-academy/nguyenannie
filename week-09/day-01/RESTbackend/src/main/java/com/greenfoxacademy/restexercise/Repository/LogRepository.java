@@ -1,7 +1,6 @@
 package com.greenfoxacademy.restexercise.Repository;
 
-import com.greenfoxacademy.restexercise.Model.LogEndpoint.Log;
-import org.springframework.data.repository.CrudRepository;
+import com.greenfoxacademy.restexercise.Model.Log;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 

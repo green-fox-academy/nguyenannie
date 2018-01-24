@@ -1,6 +1,6 @@
 package com.greenfoxacademy.restexercise.Service;
 
-import com.greenfoxacademy.restexercise.Model.LogEndpoint.Log;
+import com.greenfoxacademy.restexercise.Model.Log;
 import com.greenfoxacademy.restexercise.Repository.LogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

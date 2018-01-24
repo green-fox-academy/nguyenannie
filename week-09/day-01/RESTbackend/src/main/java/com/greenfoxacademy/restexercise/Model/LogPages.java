@@ -1,5 +1,6 @@
-package com.greenfoxacademy.restexercise.Model.LogEndpoint;
+package com.greenfoxacademy.restexercise.Model;
 
+import com.greenfoxacademy.restexercise.Model.Log;
 import com.greenfoxacademy.restexercise.Model.RestResponse;
 import com.greenfoxacademy.restexercise.Service.LogServiceDbImpl;
 import org.springframework.data.domain.Page;

@@ -4,20 +4,20 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.greenfoxacademy.restexercise.Model.*;
-import com.greenfoxacademy.restexercise.Model.ArraysEndpoint.ArraySumandMultiple;
-import com.greenfoxacademy.restexercise.Model.ArraysEndpoint.ArraysDouble;
-import com.greenfoxacademy.restexercise.Model.ArraysEndpoint.ArraysRequestBody;
-import com.greenfoxacademy.restexercise.Model.DoUntilEndPoint.DoUntilGet;
-import com.greenfoxacademy.restexercise.Model.DoUntilEndPoint.DoUntilFactor;
-import com.greenfoxacademy.restexercise.Model.DoUntilEndPoint.DoUntilSum;
+import com.greenfoxacademy.restexercise.Model.ArraySumandMultiple;
+import com.greenfoxacademy.restexercise.Model.ArraysDouble;
+import com.greenfoxacademy.restexercise.DTO.ArraysRequestDTO;
+import com.greenfoxacademy.restexercise.DTO.DoUntilDTO;
+import com.greenfoxacademy.restexercise.Model.DoUntilFactor;
+import com.greenfoxacademy.restexercise.Model.DoUntilSum;
 import com.greenfoxacademy.restexercise.Model.Error;
-import com.greenfoxacademy.restexercise.Model.LogEndpoint.Log;
-import com.greenfoxacademy.restexercise.Model.LogEndpoint.LogPages;
-import com.greenfoxacademy.restexercise.Model.LogEndpoint.LogResponse;
-import com.greenfoxacademy.restexercise.Model.SithEndPoint.Sith;
-import com.greenfoxacademy.restexercise.Model.SithEndPoint.SithRequestBody;
-import com.greenfoxacademy.restexercise.Model.TranslateEndPoint.TranslateRequestBody;
-import com.greenfoxacademy.restexercise.Model.TranslateEndPoint.TranslateResponse;
+import com.greenfoxacademy.restexercise.Model.Log;
+import com.greenfoxacademy.restexercise.Model.LogPages;
+import com.greenfoxacademy.restexercise.DTO.LogDTO;
+import com.greenfoxacademy.restexercise.Model.Sith;
+import com.greenfoxacademy.restexercise.DTO.SithRequestDTO;
+import com.greenfoxacademy.restexercise.DTO.TranslationRequestDTO;
+import com.greenfoxacademy.restexercise.Model.Translation;
 import com.greenfoxacademy.restexercise.Service.LogServiceDbImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -82,7 +82,7 @@ public class MainController {
     }
 
     @PostMapping("/dountil/{what}")
-    public ResponseEntity<RestResponse> doUntil(@PathVariable(value = "what") String what, @RequestBody DoUntilGet doUntilGet) {
+    public ResponseEntity<RestResponse> doUntil(@PathVariable(value = "what") String what, @RequestBody DoUntilDTO doUntilGet) {
         Integer input = doUntilGet.getUntil();
 
         String endpoint = "/dountil";
@@ -104,7 +104,7 @@ public class MainController {
     }
 
     @PostMapping("/arrays")
-    public ResponseEntity<RestResponse> arrays(@RequestBody ArraysRequestBody arraysRequestBody) {
+    public ResponseEntity<RestResponse> arrays(@RequestBody ArraysRequestDTO arraysRequestBody) {
         String what = arraysRequestBody.getWhat();
         int[] numbers = arraysRequestBody.getNumbers();
 
@@ -127,14 +127,14 @@ public class MainController {
                          @RequestParam(value = "page", required = false) Integer page,
                          @RequestParam(value = "q", required = false) String q) {
         if(count == null || page == null) {
-            return new ResponseEntity<>(new LogResponse(logServiceDb), HttpStatus.OK);
+            return new ResponseEntity<>(new LogDTO(logServiceDb), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(new LogPages(logServiceDb, count, page), HttpStatus.OK);
         }
     }
 
     @PostMapping("/sith")
-    public ResponseEntity<RestResponse> sithEndpoint(@RequestBody SithRequestBody sithRequestBody) {
+    public ResponseEntity<RestResponse> sithEndpoint(@RequestBody SithRequestDTO sithRequestBody) {
 
         saveLog("/sith", sithRequestBody);
 
@@ -147,14 +147,14 @@ public class MainController {
     }
 
     @PostMapping("/translate")
-    public ResponseEntity<RestResponse> translate(@RequestBody TranslateRequestBody translateRequestBody) {
+    public ResponseEntity<RestResponse> translate(@RequestBody TranslationRequestDTO translateRequestBody) {
 
         saveLog("/translate", translateRequestBody);
 
         if(translateRequestBody.getText() == null || translateRequestBody.getLang() == null) {
             return new ResponseEntity<>(new Error("I can't translate that!"), HttpStatus.BAD_REQUEST);
         } else {
-            return new ResponseEntity<>(new TranslateResponse(translateRequestBody.getText()), HttpStatus.OK);
+            return new ResponseEntity<>(new Translation(translateRequestBody.getText()), HttpStatus.OK);
         }
     }
 

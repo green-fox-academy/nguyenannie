@@ -1,4 +1,4 @@
-package com.greenfoxacademy.restexercise.Model.DoUntilEndPoint;
+package com.greenfoxacademy.restexercise.Model;
 
 import com.greenfoxacademy.restexercise.Model.RestResponse;
 import org.springframework.stereotype.Component;

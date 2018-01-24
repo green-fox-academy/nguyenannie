@@ -1,13 +1,13 @@
-package com.greenfoxacademy.restexercise.Model.SithEndPoint;
+package com.greenfoxacademy.restexercise.DTO;
 
 import com.greenfoxacademy.restexercise.Model.RestResponse;
 import org.springframework.stereotype.Component;
 
 @Component
-public class SithRequestBody extends RestResponse{
+public class SithRequestDTO extends RestResponse{
     private String text;
 
-    public SithRequestBody() {
+    public SithRequestDTO() {
 
     }
 
