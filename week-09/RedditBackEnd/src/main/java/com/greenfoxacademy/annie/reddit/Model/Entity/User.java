@@ -1,4 +1,4 @@
-package com.greenfoxacademy.annie.reddit.Model;
+package com.greenfoxacademy.annie.reddit.Model.Entity;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -33,7 +33,7 @@ public class User {
         addPost(post, true);
     }
 
-    void addPost(Post post, boolean set) {
+    public void addPost(Post post, boolean set) {
         if (post != null) {
             if(getPosts().contains(post)) {
                 getPosts().set(getPosts().indexOf(post),post);

@@ -1,4 +1,4 @@
-package com.greenfoxacademy.annie.reddit.Model;
+package com.greenfoxacademy.annie.reddit.Model.Entity;
 
 public class Pager {
     private int numOfButtons = 5;

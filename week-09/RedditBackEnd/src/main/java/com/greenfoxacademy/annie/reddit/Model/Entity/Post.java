@@ -1,6 +1,6 @@
-package com.greenfoxacademy.annie.reddit.Model;
+package com.greenfoxacademy.annie.reddit.Model.Entity;
 
-import com.greenfoxacademy.annie.reddit.DTO.PostResponseDTO;
+import com.greenfoxacademy.annie.reddit.DTO.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -51,7 +51,7 @@ public class Post {
         votes = new ArrayList<>();
     }
 
-    public PostResponseDTO clone() {
+    public PostResponseDTO convert() {
         PostResponseDTO postResponseDTO = new PostResponseDTO();
         postResponseDTO.setId(this.id);
         postResponseDTO.setTitle(this.getTitle());
@@ -66,7 +66,7 @@ public class Post {
         setUser(user, true);
     }
 
-    void setUser(User user, boolean add) {
+    public void setUser(User user, boolean add) {
         this.user = user;
         if (user != null && add) {
             user.addPost(this, false);
@@ -77,7 +77,7 @@ public class Post {
         addComment(comment, true);
     }
 
-    void addComment(Comment comment, boolean set) {
+    public void addComment(Comment comment, boolean set) {
         if (comment!= null) {
             if(getComments().contains(comment)) {
                 getComments().set(getComments().indexOf(comment),comment);

@@ -35,6 +35,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .successHandler(loginSuccessHandler())
                 .failureHandler(loginFailureHandler())
                 .and().logout()
+                .invalidateHttpSession(true)
                 .logoutSuccessUrl("/login")
                 .and().csrf();
     }

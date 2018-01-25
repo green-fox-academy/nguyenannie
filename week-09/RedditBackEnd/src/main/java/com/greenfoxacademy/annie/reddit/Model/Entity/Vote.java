@@ -1,4 +1,7 @@
-package com.greenfoxacademy.annie.reddit.Model;
+package com.greenfoxacademy.annie.reddit.Model.Entity;
+
+import com.greenfoxacademy.annie.reddit.Model.Entity.Post;
+import com.greenfoxacademy.annie.reddit.Model.Entity.User;
 
 import javax.persistence.*;
 

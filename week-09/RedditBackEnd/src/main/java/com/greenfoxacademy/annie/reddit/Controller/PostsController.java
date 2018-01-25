@@ -2,10 +2,7 @@ package com.greenfoxacademy.annie.reddit.Controller;
 
 import com.greenfoxacademy.annie.reddit.DTO.*;
 import com.greenfoxacademy.annie.reddit.DTO.Error;
-import com.greenfoxacademy.annie.reddit.Model.Comment;
-import com.greenfoxacademy.annie.reddit.Model.Post;
-import com.greenfoxacademy.annie.reddit.Model.User;
-import com.greenfoxacademy.annie.reddit.Model.Vote;
+import com.greenfoxacademy.annie.reddit.Model.Entity.*;
 import com.greenfoxacademy.annie.reddit.Service.CommentServiceDbImpl;
 import com.greenfoxacademy.annie.reddit.Service.PostServiceDbImpl;
 import com.greenfoxacademy.annie.reddit.Service.UserServiceDbImpl;
@@ -123,7 +120,7 @@ public class PostsController {
         User userResponse = post.getUser();
 
         if(user == userResponse) {
-            PostResponseDTO postResponseDTO = post.clone();
+            PostResponseDTO postResponseDTO = post.convert();
 
             List<Comment> comments = post.getComments();
             List<Vote> votes = post.getVotes();

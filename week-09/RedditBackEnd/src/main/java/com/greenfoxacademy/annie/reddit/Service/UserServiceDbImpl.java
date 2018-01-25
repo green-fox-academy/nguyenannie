@@ -1,6 +1,6 @@
 package com.greenfoxacademy.annie.reddit.Service;
 
-import com.greenfoxacademy.annie.reddit.Model.User;
+import com.greenfoxacademy.annie.reddit.Model.Entity.User;
 import com.greenfoxacademy.annie.reddit.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -34,6 +34,7 @@ public class LoginController {
         User user = userServiceDb.findByName(usernameinput);
 
         if(userServiceDb.exists(id) && userServiceDb.findByName(usernameinput).getPassword().equals(userpasswordinput)) {
+            //add id to session??
             result = "redirect:/home/" + usernameinput;
         } else {
             result = "cannotdoit";

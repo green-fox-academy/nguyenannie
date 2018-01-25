@@ -1,9 +1,9 @@
 package com.greenfoxacademy.annie.reddit.DTO;
 
-import com.greenfoxacademy.annie.reddit.Model.Comment;
-import com.greenfoxacademy.annie.reddit.Model.Post;
-import com.greenfoxacademy.annie.reddit.Model.User;
-import com.greenfoxacademy.annie.reddit.Model.Vote;
+import com.greenfoxacademy.annie.reddit.Model.Entity.Comment;
+import com.greenfoxacademy.annie.reddit.Model.Entity.Post;
+import com.greenfoxacademy.annie.reddit.Model.Entity.User;
+import com.greenfoxacademy.annie.reddit.Model.Entity.Vote;
 
 import java.util.List;
 

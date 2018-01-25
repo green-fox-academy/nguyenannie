@@ -36,4 +36,6 @@ dependencies {
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	compile('org.postgresql:postgresql')
 	compile("org.springframework.boot:spring-boot-starter-security")
+	compile group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-springsecurity4', version: '2.1.2.RELEASE'
+
 }

@@ -1,4 +1,4 @@
-package com.greenfoxacademy.annie.reddit.Model;
+package com.greenfoxacademy.annie.reddit.Model.Entity;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -48,7 +48,7 @@ public class Comment {
         setPost(post, true);
     }
 
-    void setPost(Post post, boolean add) {
+    public void setPost(Post post, boolean add) {
         this.post = post;
         if (post != null && add) {
             post.addComment(this, false);
