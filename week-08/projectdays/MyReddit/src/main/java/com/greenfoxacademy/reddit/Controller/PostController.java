@@ -21,14 +21,18 @@ public class PostController {
     private final UserServiceDbImpl userServiceDb;
 
     @Autowired
-    public PostController(CommentServiceDbImpl commentServiceDb, PostServiceDbImpl postServiceDb, UserServiceDbImpl userServiceDb) {
+    public PostController(CommentServiceDbImpl commentServiceDb,
+                          PostServiceDbImpl postServiceDb,
+                          UserServiceDbImpl userServiceDb) {
         this.commentServiceDb = commentServiceDb;
         this.postServiceDb = postServiceDb;
         this.userServiceDb = userServiceDb;
     }
 
     @PostMapping("/home/upvote/{username}/{id}")
-    public String postUpvote(Model model, HttpServletRequest request, @PathVariable(value = "id") String id, @PathVariable(value = "username") String username) {
+    public String postUpvote(Model model, HttpServletRequest request,
+                             @PathVariable(value = "id") String id,
+                             @PathVariable(value = "username") String username) {
         Post post = postServiceDb.findOne(Long.parseLong(id));
 
         int score = post.getScore();
@@ -41,7 +45,9 @@ public class PostController {
     }
 
     @PostMapping("/home/downvote/{username}/{id}")
-    public String postDownvote(Model model, HttpServletRequest request, @PathVariable(value = "id") String id, @PathVariable(value = "username") String username) {
+    public String postDownvote(Model model, HttpServletRequest request,
+                               @PathVariable(value = "id") String id,
+                               @PathVariable(value = "username") String username) {
         Post post = postServiceDb.findOne(Long.parseLong(id));
 
         int score = post.getScore();
@@ -54,7 +60,8 @@ public class PostController {
     }
 
     @GetMapping("/home/{username}/createpost")
-    public String getAdd(Model model, HttpServletRequest request, @PathVariable(value = "username") String username) {
+    public String getAdd(Model model, HttpServletRequest request,
+                         @PathVariable(value = "username") String username) {
         User user = userServiceDb.findByName(username);
         model.addAttribute("user", user);
 
@@ -62,7 +69,8 @@ public class PostController {
     }
 
     @PostMapping("/home/{username}/createpost")
-    public String postAdd(Model model, HttpServletRequest request, @PathVariable(value = "username") String username) {
+    public String postAdd(Model model, HttpServletRequest request,
+                          @PathVariable(value = "username") String username) {
         User user = userServiceDb.findByName(username);
         model.addAttribute("user", user);
 

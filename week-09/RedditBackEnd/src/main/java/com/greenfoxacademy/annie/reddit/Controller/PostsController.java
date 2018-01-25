@@ -1,6 +1,7 @@
 package com.greenfoxacademy.annie.reddit.Controller;
 
 import com.greenfoxacademy.annie.reddit.DTO.*;
+import com.greenfoxacademy.annie.reddit.DTO.Error;
 import com.greenfoxacademy.annie.reddit.Model.Comment;
 import com.greenfoxacademy.annie.reddit.Model.Post;
 import com.greenfoxacademy.annie.reddit.Model.User;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/posts")
 public class PostsController {
 
@@ -27,7 +29,8 @@ public class PostsController {
     private final VoteServiceDbImpl voteServiceDb;
 
     @Autowired
-    public PostsController(CommentServiceDbImpl commentServiceDb, PostServiceDbImpl postServiceDb, UserServiceDbImpl userServiceDb, VoteServiceDbImpl voteServiceDb) {
+    public PostsController(CommentServiceDbImpl commentServiceDb, PostServiceDbImpl postServiceDb,
+                           UserServiceDbImpl userServiceDb, VoteServiceDbImpl voteServiceDb) {
         this.commentServiceDb = commentServiceDb;
         this.postServiceDb = postServiceDb;
         this.userServiceDb = userServiceDb;
@@ -35,11 +38,11 @@ public class PostsController {
     }
 
     @GetMapping("")
-    public ResponseEntity<List<PostResponseDTO>> getPosts(@RequestParam(value = "username") String username) {
+    public ResponseEntity<List<PostResponseDTO>> getPosts(@RequestHeader(value = "owner") String owner) {
 
         List<Post> posts = postServiceDb.findAll();
         List<PostResponseDTO> postsResponses = new ArrayList<>();
-        User user = userServiceDb.findByName(username);
+        User user = userServiceDb.findByName(owner);
         for(Post post : posts) {
             PostResponseDTO postsResponse = new PostResponseDTO(post, user);
             postsResponses.add(postsResponse);
@@ -48,10 +51,10 @@ public class PostsController {
     }
 
     @PutMapping("/{id}/upvote")
-    public ResponseEntity<VoteResponseDTO> upvote(@RequestParam(value = "username") String username,
+    public ResponseEntity<VoteResponseDTO> upvote(@RequestHeader(value = "owner") String owner,
                                                   @PathVariable(value = "id") long id) {
 
-        User user = userServiceDb.findByName(username);
+        User user = userServiceDb.findByName(owner);
         Post post = postServiceDb.findOne(id);
         Vote vote = voteServiceDb.findByPostAndUser(post, user);
 
@@ -71,10 +74,10 @@ public class PostsController {
     }
 
     @PutMapping("/{id}/downvote")
-    public ResponseEntity<VoteResponseDTO> downvote(@RequestParam(value = "username") String username,
+    public ResponseEntity<VoteResponseDTO> downvote(@RequestHeader(value = "owner") String owner,
                                                     @PathVariable(value = "id") long id) {
 
-        User user = userServiceDb.findByName(username);
+        User user = userServiceDb.findByName(owner);
         Post post = postServiceDb.findOne(id);
         Vote vote = voteServiceDb.findByPostAndUser(post, user);
 
@@ -94,12 +97,12 @@ public class PostsController {
     }
 
     @PostMapping("")
-    public ResponseEntity<PostResponseDTO> createPost(@RequestParam(value = "username") String username,
+    public ResponseEntity<PostResponseDTO> createPost(@RequestHeader(value = "owner") String owner,
                                                       @RequestBody PostRequestDTO postRequestBody) {
         String title = postRequestBody.getTitle();
         String url = postRequestBody.getUrl();
 
-        User user = userServiceDb.findByName(username);
+        User user = userServiceDb.findByName(owner);
         Post post = new Post();
         post.setUser(user);
         post.setTitle(title);
@@ -113,9 +116,9 @@ public class PostsController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<ResponseDTO> delete(@RequestParam(value = "username") String username,
-                                                  @PathVariable(value = "id") long id)  {
-        User user = userServiceDb.findByName(username);
+    public ResponseEntity<?> delete(@RequestHeader(value = "owner") String owner,
+                                    @PathVariable(value = "id") long id)  {
+        User user = userServiceDb.findByName(owner);
         Post post = postServiceDb.findOne(id);
         User userResponse = post.getUser();
 
@@ -123,9 +126,14 @@ public class PostsController {
             PostResponseDTO postResponseDTO = post.clone();
 
             List<Comment> comments = post.getComments();
+            List<Vote> votes = post.getVotes();
 
             for (Comment comment : comments) {
                 commentServiceDb.delete(comment.getId());
+            }
+
+            for (Vote vote : votes) {
+                voteServiceDb.delete(vote);
             }
 
             postServiceDb.delete(id);
@@ -133,18 +141,19 @@ public class PostsController {
 
             return new ResponseEntity<>(postResponseDTO, HttpStatus.OK);
         } else {
-            return new ResponseEntity<ResponseDTO>(new UnauthorizedDTO("You don't have the right " +
-                    "                                                   to delete this post"), HttpStatus.OK);
+            return new ResponseEntity<>(new Error("You don't have the right " +
+                                                                "to delete this post"), HttpStatus.OK);
         }
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ResponseDTO> modifyTitle(@RequestParam(value = "username") String username,
+    public ResponseEntity<?> modifyTitle(@RequestHeader(value = "owner") String owner,
                                                    @PathVariable(value = "id") long id,
                                                    @RequestBody PostRequestDTO postRequestDTO)  {
-        User user = userServiceDb.findByName(username);
+        User user = userServiceDb.findByName(owner);
         Post post = postServiceDb.findOne(id);
         User userResponse = post.getUser();
+
         if(user == userResponse) {
             post.setTitle(postRequestDTO.getTitle());
             postServiceDb.save(post);
@@ -152,7 +161,7 @@ public class PostsController {
             postResponseDTO.setUrl(postRequestDTO.getUrl());
             return new ResponseEntity<>(postResponseDTO, HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(new UnauthorizedDTO("You dont have " +
+            return new ResponseEntity<>(new Error("You dont have " +
                                                                 "the right to modify this post"), HttpStatus.OK);
         }
     }

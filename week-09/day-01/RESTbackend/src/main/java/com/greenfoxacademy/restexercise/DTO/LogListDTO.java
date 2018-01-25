@@ -8,14 +8,14 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class LogDTO extends RestResponse{
+public class LogListDTO extends RestResponse{
     private final LogServiceDbImpl logServiceDb;
 
     private List<Log> entries;
     private int entry_count;
 
     @Autowired
-    public LogDTO(LogServiceDbImpl logServiceDb) {
+    public LogListDTO(LogServiceDbImpl logServiceDb) {
         entries = logServiceDb.findAll();
         entry_count = getEntries().size();
         this.logServiceDb = logServiceDb;

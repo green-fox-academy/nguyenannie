@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import java.util.Date;
 
 @Component
-public class PostResponseDTO extends ResponseDTO{
+public class PostResponseDTO {
     private long id;
     private String title;
     private String url;

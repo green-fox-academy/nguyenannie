@@ -1,13 +1,13 @@
 package com.greenfoxacademy.annie.reddit.DTO;
 
-public class UnauthorizedDTO extends ResponseDTO{
+public class Error {
     private String error;
 
-    public UnauthorizedDTO() {
+    public Error() {
 
     }
 
-    public UnauthorizedDTO(String errorMessage) {
+    public Error(String errorMessage) {
         this.error = errorMessage;
     }
 

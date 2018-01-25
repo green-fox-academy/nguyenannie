@@ -12,8 +12,8 @@ import com.greenfoxacademy.restexercise.Model.DoUntilFactor;
 import com.greenfoxacademy.restexercise.Model.DoUntilSum;
 import com.greenfoxacademy.restexercise.Model.Error;
 import com.greenfoxacademy.restexercise.Model.Log;
-import com.greenfoxacademy.restexercise.Model.LogPages;
-import com.greenfoxacademy.restexercise.DTO.LogDTO;
+import com.greenfoxacademy.restexercise.DTO.LogPages;
+import com.greenfoxacademy.restexercise.DTO.LogListDTO;
 import com.greenfoxacademy.restexercise.Model.Sith;
 import com.greenfoxacademy.restexercise.DTO.SithRequestDTO;
 import com.greenfoxacademy.restexercise.DTO.TranslationRequestDTO;
@@ -123,11 +123,11 @@ public class MainController {
     }
 
     @RequestMapping("/log")
-    public ResponseEntity<RestResponse> getLog(@RequestParam(value = "count", required = false) Integer count,
+    public ResponseEntity<?> getLog(@RequestParam(value = "count", required = false) Integer count,
                          @RequestParam(value = "page", required = false) Integer page,
                          @RequestParam(value = "q", required = false) String q) {
         if(count == null || page == null) {
-            return new ResponseEntity<>(new LogDTO(logServiceDb), HttpStatus.OK);
+            return new ResponseEntity<>(new LogListDTO(logServiceDb), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(new LogPages(logServiceDb, count, page), HttpStatus.OK);
         }

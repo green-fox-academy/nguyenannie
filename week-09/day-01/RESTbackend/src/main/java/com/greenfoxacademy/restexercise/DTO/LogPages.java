@@ -1,4 +1,4 @@
-package com.greenfoxacademy.restexercise.Model;
+package com.greenfoxacademy.restexercise.DTO;
 
 import com.greenfoxacademy.restexercise.Model.Log;
 import com.greenfoxacademy.restexercise.Model.RestResponse;
@@ -9,7 +9,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
 @Component
-public class LogPages extends RestResponse{
+public class LogPages {
 
     private Page<Log> entries;
     private long entry_count;

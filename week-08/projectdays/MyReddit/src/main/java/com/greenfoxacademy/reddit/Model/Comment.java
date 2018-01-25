@@ -1,7 +1,6 @@
 package com.greenfoxacademy.reddit.Model;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
