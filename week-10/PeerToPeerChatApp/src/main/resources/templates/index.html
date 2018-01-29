@@ -7,5 +7,10 @@
 </head>
 <body>
     <h1>Peer to Peer Chat App</h1>
+    <form action="#" th:action="@{/}" method="post">
+        <div th:if="${entername} == null"><p>Username is empty</p></div>
+        <input type="text" name="username"/>
+        <button type="submit">Update</button>
+    </form>
 </body>
 </html>
