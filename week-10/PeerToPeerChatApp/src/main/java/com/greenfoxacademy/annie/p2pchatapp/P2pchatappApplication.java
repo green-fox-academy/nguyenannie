@@ -22,11 +22,11 @@ public class P2pchatappApplication {
 	@Bean
 	public CommandLineRunner demo(AppuserService appuserService, MessageService messageService) {
 		return (String... args) -> {
-			Appuser appuser = new Appuser("annie");
-			Appmessage appmessage = new Appmessage(appuser, "Hey!");
-			appuser.setMessages(Collections.singletonList(appmessage));
-			appuserService.save(appuser);
-			messageService.save(appmessage);
+//			Appuser appuser = new Appuser("App");
+//			Appmessage appmessage = new Appmessage(appuser, "Hi there! Submit your message using the send button!");
+//			appuser.setMessages(Collections.singletonList(appmessage));
+//			appuserService.save(appuser);
+//			messageService.save(appmessage);
 		};
 	}
 }

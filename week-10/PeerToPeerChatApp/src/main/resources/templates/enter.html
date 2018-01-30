@@ -7,9 +7,9 @@
 </head>
 <body>
     <h1>Enter</h1>
-    <div th:if = "${isempty}">Input is empty</div>
-    <form action="#" th:action="@{/enter}" method="post">
-        <input type="text" name="appuser"/>
+    <form action="#" th:action="@{/enter}" th:object="${form}" method="post">
+        <input type="text" th:field = "*{name}" name="appuser"/>
+        <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>
         <button type="submit">Submit</button>
     </form>
 </body>

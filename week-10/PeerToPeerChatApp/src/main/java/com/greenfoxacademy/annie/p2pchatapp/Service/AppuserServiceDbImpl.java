@@ -41,7 +41,8 @@ public class AppuserServiceDbImpl implements AppuserService {
 
     @Override
     public boolean exist(String name) {
-        return findAll().contains(appuserRepository.findByName(name));
+        //return findAll().contains(appuserRepository.findByName(name));
+        return appuserRepository.findByName(name) != null;
     }
 
 }

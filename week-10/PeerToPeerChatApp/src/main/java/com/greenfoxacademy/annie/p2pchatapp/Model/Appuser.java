@@ -9,7 +9,7 @@ public class Appuser {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String name;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "appuser")
     private List<Appmessage> appmessages;
@@ -44,5 +44,10 @@ public class Appuser {
 
     public void setMessages(List<Appmessage> appmessages) {
         this.appmessages = appmessages;
+    }
+
+    @Override
+    public String toString() {
+        return "Appuser " + id + " " + name;
     }
 }

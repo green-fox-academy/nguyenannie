@@ -28,10 +28,7 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
 	compile('org.springframework.boot:spring-boot-starter-web')
 	runtime('org.springframework.boot:spring-boot-devtools')
-	compile("org.hibernate:hibernate-validator")
-	compile("org.apache.tomcat.embed:tomcat-embed-el")
 	runtime('com.h2database:h2')
 	runtime('mysql:mysql-connector-java')
-	runtime('org.postgresql:postgresql')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/style.css}" />
+    <meta charset="utf-8" />
+    <title>Form</title>
+</head>
+<body>
+<h1>Form</h1>
+    <form action="#" th:action="@{/search}" th:object="${form}" method="get">
+        <input type="text" name="q"/>
+        <td th:if="${#fields.hasErrors('q')}" th:errors="*{q}">Plate Error</td>
+        <button type="submit">Search</button>
+    </form>
+
+    <form action="#" th:action="@{/search}" method="get">
+        <a th:href="@{/search?police=}" name="police" th:value="${searches}">Find Police Cars</a>
+    </form>
+
+    <form action="#" th:action="@{/search}" method="get">
+        <a th:href="@{/search?diplomat=}" name="diplomat" th:value="${searches}">Find Diplomat Cars</a>
+    </form>
+
+<div th:if="${searches} != null">
+    <table>
+        <thead>
+            <tr>
+                <td>Plate</td>
+                <td>Car Brand</td>
+                <td>Car Model</td>
+                <td>Color</td>
+                <td>Year</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="search : ${searches}" th:object="${search}">
+                <td th:text="*{plate}"></td>
+                <form action="#" th:action="@{'/search/' + *{carBrand}}" method="get">
+                    <td><a th:href="@{'/search/' + *{carBrand}}" th:text="*{carBrand}"></a></td>
+                </form>
+                <td th:text="*{car_model}"></td>
+                <td th:text="*{color}"></td>
+                <td th:text="*{year}"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
