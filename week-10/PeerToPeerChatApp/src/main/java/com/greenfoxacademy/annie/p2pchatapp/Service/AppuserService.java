@@ -7,7 +7,7 @@ import java.util.List;
 
 @Service
 public interface AppuserService {
-    Appuser findOne(int id);
+    Appuser findOne(long id);
     List<Appuser> findAll();
     void save(Appuser appuser);
     Appuser findByName(String name);

@@ -7,26 +7,24 @@
 </head>
 <body>
     <h1>Peer to Peer Chat App</h1>
-    <form action="#" th:action="@{/}" th:object="${form}" method="post">
-        <input type="text" th:field = "*{name}" name="username"/>
-        <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>
+    <div><p th:text="${errormessage}"></p></div>
+    <form action="#" th:action="@{/}" method="post">
+        <input type="hidden" th:field="${appuser.id}"/>
+        <input type="text" id="username" th:field="${appuser.username}" th:placeholder="${appuser.username}"/>
         <button type="submit">Update</button>
     </form>
 
-    <ul>
-        <li th:text="${app}"></li>
-        <li th:text="${defaultmessage}"></li>
+    <ul th:each="message : ${messages}">
+        <li th:text="${message.appuser.username}"></li>
+        <div th:text="${message.text}"></div>
     </ul>
+    <div><p th:text="${errormessage}"></p></div>
+    <form action="#" th:action="@{/send}" method="post">
+        <input type="hidden" th:field="${appmessage.appuser.id}"/>
+        <input type="hidden" id="username" th:field="${appmessage.appuser.username}"/>
+        <input type="text" id="textmessage" th:field="${appmessage.text}"/>
+        <button type="submit">Send</button>
+    </form>
 
-    <ul th:each="message : ${messages}" th:object="${message}">
-        <li th:text="*{appuser.name}"></li>
-        <li th:text="*{text}"></li>
-    </ul>
-    <div th:if = "${user} != null">
-        <form action="#" th:action="@{'/send/' + ${user.name}}" method="post">
-            <input type="text" name="textmessage"/>
-            <button type="submit">Send</button>
-        </form>
-    </div>
 </body>
 </html>

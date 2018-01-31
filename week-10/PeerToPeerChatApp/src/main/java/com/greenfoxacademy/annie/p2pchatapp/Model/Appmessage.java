@@ -1,7 +1,7 @@
 package com.greenfoxacademy.annie.p2pchatapp.Model;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 @Entity
 @Table
@@ -13,17 +13,24 @@ public class Appmessage {
     @JoinColumn(name = "appuser_id")
     private Appuser appuser;
     private String text;
-    private LocalDateTime timestamp;
+    private Instant timestamp;
 
     public Appmessage(Appuser appuser, String text) {
         this.appuser = appuser;
         this.text = text;
-        this.timestamp = LocalDateTime.now();
+        this.timestamp = Instant.now();
         this.id = UniqueRandomNumber.generate();
     }
 
+    public Appmessage(Appuser appuser, String text, long id, Instant timestamp) {
+        this.appuser = appuser;
+        this.text = text;
+        this.timestamp = timestamp;
+        this.id = id;
+    }
+
     public Appmessage() {
-        this.timestamp = LocalDateTime.now();
+        this.timestamp = Instant.now();
         this.id = UniqueRandomNumber.generate();
     }
 
@@ -51,17 +58,17 @@ public class Appmessage {
         this.text = text;
     }
 
-    public LocalDateTime getTimestamp() {
-        return timestamp;
+    public void setTimestamp(Instant timestamp) {
+        this.timestamp = timestamp;
     }
 
-    public void setTimestamp(LocalDateTime timestamp) {
-        this.timestamp = timestamp;
+    public Instant getTimestamp() {
+        return timestamp;
     }
 
     @Override
     public String toString() {
-        return "id: " + this.id + " message: " + this.text + " user: " + appuser.getName()
+        return "id: " + this.id + " message: " + this.text + " user: " + appuser.getUsername()
                 + " timestamp: " + this.timestamp;
     }
 }

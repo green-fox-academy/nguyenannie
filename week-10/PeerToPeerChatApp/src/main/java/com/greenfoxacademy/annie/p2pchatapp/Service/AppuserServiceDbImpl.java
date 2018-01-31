@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -18,7 +20,7 @@ public class AppuserServiceDbImpl implements AppuserService {
     }
 
     @Override
-    public Appuser findOne(int id) {
+    public Appuser findOne(long id) {
         return appuserRepository.findOne(id);
     }
 
@@ -26,6 +28,7 @@ public class AppuserServiceDbImpl implements AppuserService {
     public List<Appuser> findAll() {
         List<Appuser> appusers = new ArrayList<>();
         appuserRepository.findAll().forEach(appusers::add);
+        Collections.sort(appusers, Comparator.comparing(Appuser::getId));
         return appusers;
     }
 
@@ -36,13 +39,13 @@ public class AppuserServiceDbImpl implements AppuserService {
 
     @Override
     public Appuser findByName(String name) {
-        return appuserRepository.findByName(name);
+        return appuserRepository.findByUsername(name);
     }
 
     @Override
     public boolean exist(String name) {
         //return findAll().contains(appuserRepository.findByName(name));
-        return appuserRepository.findByName(name) != null;
+        return appuserRepository.findByUsername(name) != null;
     }
 
 }

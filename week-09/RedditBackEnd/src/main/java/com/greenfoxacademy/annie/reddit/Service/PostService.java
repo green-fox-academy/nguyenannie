@@ -1,6 +1,6 @@
 package com.greenfoxacademy.annie.reddit.Service;
 
-import com.greenfoxacademy.annie.reddit.Model.Entity.Post;
+import com.greenfoxacademy.annie.reddit.Entity.Post;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;

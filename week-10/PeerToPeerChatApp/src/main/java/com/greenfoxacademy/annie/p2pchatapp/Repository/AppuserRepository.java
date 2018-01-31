@@ -5,6 +5,6 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface AppuserRepository extends CrudRepository<Appuser, Integer> {
-    Appuser findByName(String name);
+public interface AppuserRepository extends CrudRepository<Appuser, Long> {
+    Appuser findByUsername(String name);
 }

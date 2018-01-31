@@ -1,6 +1,6 @@
 package com.greenfoxacademy.annie.reddit.Service;
 
-import com.greenfoxacademy.annie.reddit.Model.Entity.User;
+import com.greenfoxacademy.annie.reddit.Entity.User;
 import org.springframework.stereotype.Service;
 
 @Service

@@ -1,8 +1,8 @@
 package com.greenfoxacademy.annie.reddit.Controller;
 
 import com.greenfoxacademy.annie.reddit.DTO.UserInfoDTO;
-import com.greenfoxacademy.annie.reddit.Model.Entity.Post;
-import com.greenfoxacademy.annie.reddit.Model.Entity.User;
+import com.greenfoxacademy.annie.reddit.Entity.Post;
+import com.greenfoxacademy.annie.reddit.Entity.User;
 import com.greenfoxacademy.annie.reddit.Service.PostServiceDbImpl;
 import com.greenfoxacademy.annie.reddit.Service.UserServiceDbImpl;
 import org.springframework.beans.factory.annotation.Autowired;

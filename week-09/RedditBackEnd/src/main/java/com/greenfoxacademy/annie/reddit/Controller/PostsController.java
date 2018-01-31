@@ -1,8 +1,13 @@
 package com.greenfoxacademy.annie.reddit.Controller;
 
-import com.greenfoxacademy.annie.reddit.DTO.*;
 import com.greenfoxacademy.annie.reddit.DTO.Error;
-import com.greenfoxacademy.annie.reddit.Model.Entity.*;
+import com.greenfoxacademy.annie.reddit.DTO.PostRequestDTO;
+import com.greenfoxacademy.annie.reddit.DTO.PostResponseDTO;
+import com.greenfoxacademy.annie.reddit.DTO.VoteResponseDTO;
+import com.greenfoxacademy.annie.reddit.Entity.Comment;
+import com.greenfoxacademy.annie.reddit.Entity.Post;
+import com.greenfoxacademy.annie.reddit.Entity.User;
+import com.greenfoxacademy.annie.reddit.Entity.Vote;
 import com.greenfoxacademy.annie.reddit.Service.CommentServiceDbImpl;
 import com.greenfoxacademy.annie.reddit.Service.PostServiceDbImpl;
 import com.greenfoxacademy.annie.reddit.Service.UserServiceDbImpl;

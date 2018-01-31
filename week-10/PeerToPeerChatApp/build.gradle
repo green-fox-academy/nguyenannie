@@ -30,6 +30,9 @@ dependencies {
 	runtime('org.springframework.boot:spring-boot-devtools')
 	compile("org.hibernate:hibernate-validator")
 	compile("org.apache.tomcat.embed:tomcat-embed-el")
+	compile 'com.fasterxml.jackson.core:jackson-core:2.7.3'
+	compile 'com.fasterxml.jackson.core:jackson-annotations:2.7.3'
+	compile 'com.fasterxml.jackson.core:jackson-databind:2.7.3'
 	runtime('com.h2database:h2')
 	runtime('mysql:mysql-connector-java')
 	runtime('org.postgresql:postgresql')

@@ -29,10 +29,10 @@ public class MainController {
     private final LogServiceDbImpl logServiceDb;
 
     @Autowired
-    @JsonIgnore
     public MainController(LogServiceDbImpl logServiceDb) {
         this.logServiceDb = logServiceDb;
     }
+
 
     @RequestMapping("/doubling")
     public ResponseEntity<RestResponse> doubling(@RequestParam(value = "input", required = false) Integer input) {

@@ -1,6 +1,6 @@
 package com.greenfoxacademy.annie.reddit.Service;
 
-import com.greenfoxacademy.annie.reddit.Model.Entity.Comment;
+import com.greenfoxacademy.annie.reddit.Entity.Comment;
 import com.greenfoxacademy.annie.reddit.Repository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

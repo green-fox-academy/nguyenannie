@@ -1,8 +1,8 @@
 package com.greenfoxacademy.annie.reddit.Service;
 
-import com.greenfoxacademy.annie.reddit.Model.Entity.Post;
-import com.greenfoxacademy.annie.reddit.Model.Entity.User;
-import com.greenfoxacademy.annie.reddit.Model.Entity.Vote;
+import com.greenfoxacademy.annie.reddit.Entity.Post;
+import com.greenfoxacademy.annie.reddit.Entity.User;
+import com.greenfoxacademy.annie.reddit.Entity.Vote;
 import com.greenfoxacademy.annie.reddit.Repository.VoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

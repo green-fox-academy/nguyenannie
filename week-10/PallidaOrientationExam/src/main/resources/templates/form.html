@@ -7,9 +7,9 @@
 </head>
 <body>
 <h1>Form</h1>
-    <form action="#" th:action="@{/search}" th:object="${form}" method="get">
+    <p th:text="${error}"></p>
+    <form action="#" th:action="@{/search}" method="get">
         <input type="text" name="q"/>
-        <td th:if="${#fields.hasErrors('q')}" th:errors="*{q}">Plate Error</td>
         <button type="submit">Search</button>
     </form>
 

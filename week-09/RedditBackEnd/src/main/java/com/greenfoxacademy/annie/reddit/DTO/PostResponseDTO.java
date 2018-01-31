@@ -1,7 +1,7 @@
 package com.greenfoxacademy.annie.reddit.DTO;
 
-import com.greenfoxacademy.annie.reddit.Model.Entity.Post;
-import com.greenfoxacademy.annie.reddit.Model.Entity.User;
+import com.greenfoxacademy.annie.reddit.Entity.Post;
+import com.greenfoxacademy.annie.reddit.Entity.User;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
