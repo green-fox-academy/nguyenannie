@@ -17,10 +17,14 @@ import java.time.Instant;
 
 @RestController
 public class restController {
+    private final MessageService messageService;
+    private final AppuserService appuserService;
+
     @Autowired
-    MessageService messageService;
-    @Autowired
-    AppuserService appuserService;
+    public restController(MessageService messageService, AppuserService appuserService) {
+        this.messageService = messageService;
+        this.appuserService = appuserService;
+    }
 
     @PostMapping("/api/message/receive")
     public ResponseEntity<?> receive(@RequestBody MessageRequestBodyDTO bodyDTO) {

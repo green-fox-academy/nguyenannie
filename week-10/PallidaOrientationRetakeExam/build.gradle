@@ -31,4 +31,8 @@ dependencies {
 	runtime('com.h2database:h2')
 	runtime('mysql:mysql-connector-java')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
+	compile group: 'com.jayway.jsonpath', name: 'json-path', version: '2.2.0', ext: 'pom'
+	compile group: 'com.jayway.jsonpath', name: 'json-path-assert', version: '2.2.0', ext: 'pom'
+
+
 }

@@ -26,6 +26,15 @@ public class Clothing {
         this.size = size;
     }
 
+    public Clothing(long id, String itemName, String manufacturer, String category, String size, float unitPrice) {
+        this.id = id;
+        this.itemName = itemName;
+        this.manufacturer = manufacturer;
+        this.category = category;
+        this.size = size;
+        this.unitPrice = unitPrice;
+    }
+
     public Clothing() {
 
     }
