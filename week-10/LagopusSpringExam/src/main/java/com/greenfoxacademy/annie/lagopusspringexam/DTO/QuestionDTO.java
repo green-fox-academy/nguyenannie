@@ -8,6 +8,11 @@ public class QuestionDTO {
 
     }
 
+    public QuestionDTO(long id, String question) {
+        this.id = id;
+        this.question = question;
+    }
+
     public long getId() {
         return id;
     }

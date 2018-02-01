@@ -9,4 +9,6 @@ import java.util.List;
 public interface QuizService {
     List<Quiz> findAll();
     Quiz findOne(long id);
+    List<Quiz> find5RandomQuestions();
+    Quiz findByQuestion(String question);
 }
