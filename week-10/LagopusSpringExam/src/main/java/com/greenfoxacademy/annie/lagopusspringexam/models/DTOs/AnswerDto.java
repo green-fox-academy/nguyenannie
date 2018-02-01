@@ -1,10 +1,11 @@
-package com.greenfoxacademy.annie.lagopusspringexam.DTO;
+package com.greenfoxacademy.annie.lagopusspringexam.models.DTOs;
 
-public class AnswerDTO {
+public class AnswerDto {
+
     private long id;
     private String answer;
 
-    public AnswerDTO() {
+    public AnswerDto() {
 
     }
 
@@ -23,4 +24,5 @@ public class AnswerDTO {
     public void setAnswer(String answer) {
         this.answer = answer;
     }
+
 }

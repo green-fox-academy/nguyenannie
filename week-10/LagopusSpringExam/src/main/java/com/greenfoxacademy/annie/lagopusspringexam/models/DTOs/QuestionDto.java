@@ -1,14 +1,15 @@
-package com.greenfoxacademy.annie.lagopusspringexam.DTO;
+package com.greenfoxacademy.annie.lagopusspringexam.models.DTOs;
 
-public class QuestionDTO {
+public class QuestionDto {
+
     private long id;
     private String question;
 
-    public QuestionDTO() {
+    public QuestionDto() {
 
     }
 
-    public QuestionDTO(long id, String question) {
+    public QuestionDto(long id, String question) {
         this.id = id;
         this.question = question;
     }
@@ -28,4 +29,5 @@ public class QuestionDTO {
     public void setQuestion(String question) {
         this.question = question;
     }
+
 }

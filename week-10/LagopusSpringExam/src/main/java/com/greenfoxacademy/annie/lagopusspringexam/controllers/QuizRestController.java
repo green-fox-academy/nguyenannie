@@ -1,8 +1,8 @@
-package com.greenfoxacademy.annie.lagopusspringexam.Controller;
+package com.greenfoxacademy.annie.lagopusspringexam.controllers;
 
-import com.greenfoxacademy.annie.lagopusspringexam.DTO.*;
-import com.greenfoxacademy.annie.lagopusspringexam.Model.Quiz;
-import com.greenfoxacademy.annie.lagopusspringexam.Service.QuizService;
+import com.greenfoxacademy.annie.lagopusspringexam.models.DTOs.*;
+import com.greenfoxacademy.annie.lagopusspringexam.models.entities.Quiz;
+import com.greenfoxacademy.annie.lagopusspringexam.services.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +16,7 @@ import java.util.List;
 
 @RestController
 public class QuizRestController {
+
     private final
     QuizService quizService;
     private QuestionRequestResponse questionRequestResponse = new QuestionRequestResponse();
@@ -28,10 +29,10 @@ public class QuizRestController {
 
     @GetMapping("/questions")
     public ResponseEntity<?> getQuestions() {
-        List<QuestionDTO> questionDTOs = new ArrayList<>();
+        List<QuestionDto> questionDTOs = new ArrayList<>();
         List<Quiz> quizzes = quizService.find5RandomQuestions();
         for (Quiz quizze : quizzes) {
-            questionDTOs.add(new QuestionDTO(quizze.getId(), quizze.getQuestion()));
+            questionDTOs.add(new QuestionDto(quizze.getId(), quizze.getQuestion()));
         }
         count += 1;
         questionRequestResponse.setId(count);
@@ -40,14 +41,14 @@ public class QuizRestController {
     }
 
     @PostMapping("/answers")
-    public ResponseEntity<Response> postAnswers(@RequestBody AnswerRequestBody answerRequestBody) {
+    public ResponseEntity<ResponseDto> postAnswers(@RequestBody AnswerRequestBody answerRequestBody) {
         String message = "default";
-        List<QuestionDTO> questionDTOS = questionRequestResponse.getQuestions();
+        List<QuestionDto> questionDTOS = questionRequestResponse.getQuestions();
 
         if (answerRequestBody.getId() != count || answerRequestBody.getAnswers().size() > questionDTOS.size()
                 || answerRequestBody.getAnswers().size() < questionDTOS.size()) {
             message = "Your answer is not qualified!";
-            return new ResponseEntity<>(new Response(message),
+            return new ResponseEntity<>(new ResponseDto(message),
                     HttpStatus.BAD_REQUEST);
         }
 
@@ -62,7 +63,7 @@ public class QuizRestController {
             long answerId = answerRequestBody.getAnswers().get(i).getId();
             if(!questionIds.contains(answerId)) {
                 message = "Wrong set of questions";
-                return new ResponseEntity<>(new Response(message), HttpStatus.BAD_REQUEST);
+                return new ResponseEntity<>(new ResponseDto(message), HttpStatus.BAD_REQUEST);
             }
         }
 
@@ -72,7 +73,7 @@ public class QuizRestController {
             String receivedAnswer = answerRequestBody.getAnswers().get(i).getAnswer();
             if(!receivedAnswer.equals(correctAnswer)) {
                 message = "Your answers are not correct";
-                return new ResponseEntity<>(new Response(message), HttpStatus.BAD_REQUEST);
+                return new ResponseEntity<>(new ResponseDto(message), HttpStatus.BAD_REQUEST);
             } else {
                 message = "Your answers are correct";
                 isAccepted = true;
@@ -80,9 +81,10 @@ public class QuizRestController {
         }
 
         if (isAccepted) {
-            return new ResponseEntity<>(new Response(message), HttpStatus.OK);
+            return new ResponseEntity<>(new ResponseDto(message), HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(new Response("Something went wrong"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new ResponseDto("Something went wrong"), HttpStatus.BAD_REQUEST);
         }
     }
+
 }

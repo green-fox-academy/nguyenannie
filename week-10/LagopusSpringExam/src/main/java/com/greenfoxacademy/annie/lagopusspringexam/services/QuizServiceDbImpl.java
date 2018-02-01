@@ -1,17 +1,17 @@
-package com.greenfoxacademy.annie.lagopusspringexam.Service;
+package com.greenfoxacademy.annie.lagopusspringexam.services;
 
-import com.greenfoxacademy.annie.lagopusspringexam.Model.Quiz;
-import com.greenfoxacademy.annie.lagopusspringexam.Repository.QuizRepository;
+import com.greenfoxacademy.annie.lagopusspringexam.models.entities.Quiz;
+import com.greenfoxacademy.annie.lagopusspringexam.repositories.QuizRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 @Service
 public class QuizServiceDbImpl implements QuizService {
+
     private final QuizRepository quizRepository;
 
     @Autowired
@@ -56,4 +56,5 @@ public class QuizServiceDbImpl implements QuizService {
     public Quiz findByQuestion(String question) {
         return quizRepository.findByQuestion(question);
     }
+
 }

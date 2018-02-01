@@ -1,13 +1,14 @@
-package com.greenfoxacademy.annie.lagopusspringexam.DTO;
+package com.greenfoxacademy.annie.lagopusspringexam.models.DTOs;
 
-public class Response {
+public class ResponseDto {
+
     private String status;
 
-    public Response() {
+    public ResponseDto() {
 
     }
 
-    public Response(String status) {
+    public ResponseDto(String status) {
         this.status = status;
     }
 
@@ -18,4 +19,5 @@ public class Response {
     public void setStatus(String status) {
         this.status = status;
     }
+
 }

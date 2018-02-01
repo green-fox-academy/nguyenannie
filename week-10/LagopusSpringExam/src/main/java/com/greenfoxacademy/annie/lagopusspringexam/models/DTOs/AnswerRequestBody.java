@@ -1,11 +1,12 @@
-package com.greenfoxacademy.annie.lagopusspringexam.DTO;
+package com.greenfoxacademy.annie.lagopusspringexam.models.DTOs;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class AnswerRequestBody {
+
     private long id;
-    private List<AnswerDTO> answers;
+    private List<AnswerDto> answers;
 
     public AnswerRequestBody() {
         this.answers = new ArrayList<>();
@@ -19,11 +20,12 @@ public class AnswerRequestBody {
         this.id = id;
     }
 
-    public List<AnswerDTO> getAnswers() {
+    public List<AnswerDto> getAnswers() {
         return answers;
     }
 
-    public void setAnswers(List<AnswerDTO> answers) {
+    public void setAnswers(List<AnswerDto> answers) {
         this.answers = answers;
     }
+
 }

@@ -1,10 +1,11 @@
-package com.greenfoxacademy.annie.lagopusspringexam.Model;
+package com.greenfoxacademy.annie.lagopusspringexam.models.entities;
 
 import javax.persistence.*;
 
 @Entity
 @Table
 public class Quiz {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -39,4 +40,5 @@ public class Quiz {
     public void setAnswer(String answer) {
         this.answer = answer;
     }
+
 }
