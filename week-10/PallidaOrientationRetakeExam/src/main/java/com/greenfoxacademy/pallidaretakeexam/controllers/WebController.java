@@ -1,9 +1,9 @@
-package com.greenfoxacademy.pallidaretakeexam.Controller;
+package com.greenfoxacademy.pallidaretakeexam.controllers;
 
-import com.greenfoxacademy.pallidaretakeexam.Model.Clothing;
-import com.greenfoxacademy.pallidaretakeexam.Model.ClothingOrder;
-import com.greenfoxacademy.pallidaretakeexam.Model.OrderForm;
-import com.greenfoxacademy.pallidaretakeexam.Service.ClothingService;
+import com.greenfoxacademy.pallidaretakeexam.models.entities.Clothing;
+import com.greenfoxacademy.pallidaretakeexam.models.entities.ClothingOrder;
+import com.greenfoxacademy.pallidaretakeexam.models.entities.OrderForm;
+import com.greenfoxacademy.pallidaretakeexam.services.ClothingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +16,7 @@ import java.util.List;
 
 @Controller
 public class WebController {
+
     private final ClothingService clothingService;
     private List<ClothingOrder> summaries = new ArrayList<>();
 
@@ -54,4 +55,5 @@ public class WebController {
         model.addAttribute("quantity", orderForm.getQuantity());
         return "summary";
     }
+
 }

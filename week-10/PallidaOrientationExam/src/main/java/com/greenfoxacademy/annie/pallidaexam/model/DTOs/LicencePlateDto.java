@@ -1,14 +1,15 @@
-package com.greenfoxacademy.annie.pallidaexam.DTOs;
+package com.greenfoxacademy.annie.pallidaexam.model.DTOs;
 
-import com.greenfoxacademy.annie.pallidaexam.model.LicencePlate;
+import com.greenfoxacademy.annie.pallidaexam.model.entities.LicencePlate;
 
 import java.util.List;
 
-public class LicencePlateDTO {
+public class LicencePlateDto {
+
     private String result;
     private List<LicencePlate> data;
 
-    public LicencePlateDTO() {
+    public LicencePlateDto() {
 
     }
 
@@ -27,4 +28,5 @@ public class LicencePlateDTO {
     public void setData(List<LicencePlate> data) {
         this.data = data;
     }
+
 }

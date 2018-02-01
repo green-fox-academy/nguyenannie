@@ -1,8 +1,8 @@
-package com.greenfoxacademy.pallidaretakeexam.Controller;
+package com.greenfoxacademy.pallidaretakeexam.controllers;
 
-import com.greenfoxacademy.pallidaretakeexam.DTO.ClothingDTO;
-import com.greenfoxacademy.pallidaretakeexam.Model.Clothing;
-import com.greenfoxacademy.pallidaretakeexam.Service.ClothingService;
+import com.greenfoxacademy.pallidaretakeexam.models.DTOs.ClothingDto;
+import com.greenfoxacademy.pallidaretakeexam.models.entities.Clothing;
+import com.greenfoxacademy.pallidaretakeexam.services.ClothingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +14,7 @@ import java.util.List;
 
 @RestController
 public class MainController {
+
     private final ClothingService clothingService;
 
     @Autowired
@@ -28,15 +29,16 @@ public class MainController {
         switch (type) {
             case "lower":
                 clothes = clothingService.findAllByUnitPriceLessThan(Float.parseFloat(price));
-                return new ResponseEntity<>(new ClothingDTO("ok", clothes), HttpStatus.OK);
+                return new ResponseEntity<>(new ClothingDto("ok", clothes), HttpStatus.OK);
             case "higher":
                 clothes = clothingService.findAllByUnitPriceGreaterThan(Float.parseFloat(price));
-                return new ResponseEntity<>(new ClothingDTO("ok", clothes), HttpStatus.OK);
+                return new ResponseEntity<>(new ClothingDto("ok", clothes), HttpStatus.OK);
             case "equal":
                 clothes = clothingService.findAllByUnitPriceEquals(Float.parseFloat(price));
-                return new ResponseEntity<>(new ClothingDTO("ok", clothes), HttpStatus.OK);
+                return new ResponseEntity<>(new ClothingDto("ok", clothes), HttpStatus.OK);
             default:
-                return new ResponseEntity<>(new ClothingDTO("ok", null), HttpStatus.BAD_REQUEST);
+                return new ResponseEntity<>(new ClothingDto("ok", null), HttpStatus.BAD_REQUEST);
         }
     }
+
 }

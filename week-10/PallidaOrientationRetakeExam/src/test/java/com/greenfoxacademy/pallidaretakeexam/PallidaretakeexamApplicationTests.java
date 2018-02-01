@@ -1,7 +1,7 @@
 package com.greenfoxacademy.pallidaretakeexam;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.greenfoxacademy.pallidaretakeexam.Model.Clothing;
+import com.greenfoxacademy.pallidaretakeexam.models.entities.Clothing;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

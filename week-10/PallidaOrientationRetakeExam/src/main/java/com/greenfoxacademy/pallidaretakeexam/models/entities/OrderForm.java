@@ -1,6 +1,7 @@
-package com.greenfoxacademy.pallidaretakeexam.Model;
+package com.greenfoxacademy.pallidaretakeexam.models.entities;
 
 public class OrderForm {
+
     private String itemName;
     private String size;
     private int quantity;
@@ -39,4 +40,5 @@ public class OrderForm {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+
 }

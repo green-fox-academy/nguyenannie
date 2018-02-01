@@ -1,6 +1,7 @@
-package com.greenfoxacademy.annie.pallidaexam.model;
+package com.greenfoxacademy.annie.pallidaexam.model.entities;
 
 public class SearchForm {
+
     private String brand;
     private String color;
 
@@ -28,4 +29,5 @@ public class SearchForm {
     public void setColor(String color) {
         this.color = color;
     }
+
 }

@@ -1,18 +1,19 @@
-package com.greenfoxacademy.pallidaretakeexam.DTO;
+package com.greenfoxacademy.pallidaretakeexam.models.DTOs;
 
-import com.greenfoxacademy.pallidaretakeexam.Model.Clothing;
+import com.greenfoxacademy.pallidaretakeexam.models.entities.Clothing;
 
 import java.util.List;
 
-public class ClothingDTO {
+public class ClothingDto {
+
     private String result;
     private List<Clothing> clothes;
 
-    public ClothingDTO() {
+    public ClothingDto() {
 
     }
 
-    public ClothingDTO(String result, List<Clothing> clothes) {
+    public ClothingDto(String result, List<Clothing> clothes) {
         this.result = result;
         this.clothes = clothes;
     }
@@ -32,4 +33,5 @@ public class ClothingDTO {
     public void setClothes(List<Clothing> clothes) {
         this.clothes = clothes;
     }
+
 }

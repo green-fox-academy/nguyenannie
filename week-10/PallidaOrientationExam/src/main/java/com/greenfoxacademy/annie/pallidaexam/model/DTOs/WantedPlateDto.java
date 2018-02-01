@@ -1,23 +1,24 @@
-package com.greenfoxacademy.annie.pallidaexam.DTOs;
+package com.greenfoxacademy.annie.pallidaexam.model.DTOs;
 
-public class WantedPlateDTO {
+public class WantedPlateDto {
+
     private String result;
-    private DataDTO data;
+    private DataDto data;
 
-    public WantedPlateDTO() {
+    public WantedPlateDto() {
 
     }
 
-    public WantedPlateDTO(String result) {
+    public WantedPlateDto(String result) {
         this.result = result;
     }
 
-    public WantedPlateDTO(String result, DataDTO data) {
+    public WantedPlateDto(String result, DataDto data) {
         this.result = result;
         this.data = data;
     }
 
-    public DataDTO getData() {
+    public DataDto getData() {
         return data;
     }
 
@@ -25,11 +26,12 @@ public class WantedPlateDTO {
         return result;
     }
 
-    public void setData(DataDTO data) {
+    public void setData(DataDto data) {
         this.data = data;
     }
 
     public void setResult(String result) {
         this.result = result;
     }
+
 }

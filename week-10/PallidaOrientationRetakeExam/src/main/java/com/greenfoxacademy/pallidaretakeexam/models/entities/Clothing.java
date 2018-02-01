@@ -1,4 +1,4 @@
-package com.greenfoxacademy.pallidaretakeexam.Model;
+package com.greenfoxacademy.pallidaretakeexam.models.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -7,6 +7,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "warehouse")
 public class Clothing {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -94,4 +95,5 @@ public class Clothing {
     public void setInStore(Integer inStore) {
         this.inStore = inStore;
     }
+
 }

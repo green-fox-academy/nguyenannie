@@ -1,12 +1,13 @@
-package com.greenfoxacademy.pallidaretakeexam.Service;
+package com.greenfoxacademy.pallidaretakeexam.services;
 
-import com.greenfoxacademy.pallidaretakeexam.Model.Clothing;
+import com.greenfoxacademy.pallidaretakeexam.models.entities.Clothing;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public interface ClothingService {
+
     List<Clothing> findAll();
     List<String> uniqueItemNames();
     List<String> uniqueSizes();
@@ -15,4 +16,5 @@ public interface ClothingService {
     List<Clothing> findAllByUnitPriceGreaterThan(float price);
     List<Clothing> findAllByUnitPriceEquals(float price);
     float findPrice(List<Clothing> clothes);
+
 }

@@ -1,14 +1,15 @@
-package com.greenfoxacademy.annie.pallidaexam.DTOs;
+package com.greenfoxacademy.annie.pallidaexam.model.DTOs;
 
-public class DataDTO {
+public class DataDto {
+
     private String plate;
     private boolean wanted;
 
-    public DataDTO() {
+    public DataDto() {
 
     }
 
-    public DataDTO(String plate, boolean wanted) {
+    public DataDto(String plate, boolean wanted) {
         this.plate = plate;
         this.wanted = wanted;
     }
@@ -28,4 +29,5 @@ public class DataDTO {
     public void setWanted(boolean wanted) {
         this.wanted = wanted;
     }
+
 }

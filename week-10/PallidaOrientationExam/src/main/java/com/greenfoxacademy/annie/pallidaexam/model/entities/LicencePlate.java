@@ -1,4 +1,4 @@
-package com.greenfoxacademy.annie.pallidaexam.model;
+package com.greenfoxacademy.annie.pallidaexam.model.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +8,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "licence_plates")
 public class LicencePlate {
+
     @Id
     @Column(name = "plate")
     private String plate;
@@ -63,4 +64,5 @@ public class LicencePlate {
     public void setYear(int year) {
         this.year = year;
     }
+
 }

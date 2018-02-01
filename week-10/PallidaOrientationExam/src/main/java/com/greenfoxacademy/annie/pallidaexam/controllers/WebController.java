@@ -1,7 +1,7 @@
-package com.greenfoxacademy.annie.pallidaexam.Controller;
+package com.greenfoxacademy.annie.pallidaexam.controllers;
 
-import com.greenfoxacademy.annie.pallidaexam.Model.LicencePlate;
-import com.greenfoxacademy.annie.pallidaexam.Service.LicencePlateService;
+import com.greenfoxacademy.annie.pallidaexam.model.entities.LicencePlate;
+import com.greenfoxacademy.annie.pallidaexam.services.LicencePlateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +14,7 @@ import java.util.regex.Pattern;
 @Controller
 @RequestMapping("/search")
 public class WebController {
+
     private final LicencePlateService licencePlateService;
 
     @Autowired
@@ -64,4 +65,5 @@ public class WebController {
         model.addAttribute("searches", searches);
         return "form";
     }
+
 }

@@ -1,8 +1,8 @@
-package com.greenfoxacademy.annie.pallidaexam.Controller;
+package com.greenfoxacademy.annie.pallidaexam.controllers;
 
-import com.greenfoxacademy.annie.pallidaexam.Model.LicencePlate;
-import com.greenfoxacademy.annie.pallidaexam.Model.SearchForm;
-import com.greenfoxacademy.annie.pallidaexam.Service.LicencePlateService;
+import com.greenfoxacademy.annie.pallidaexam.model.entities.LicencePlate;
+import com.greenfoxacademy.annie.pallidaexam.model.entities.SearchForm;
+import com.greenfoxacademy.annie.pallidaexam.services.LicencePlateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +16,7 @@ import java.util.List;
 
 @Controller
 public class ExtraController {
+
     private final LicencePlateService licencePlateService;
     List<String> wantedLicense = new ArrayList<>(Arrays.asList("CBI-960", "CXX-648", "MIND-01", "RB12-05", "TIBI-01"));
 
@@ -46,4 +47,5 @@ public class ExtraController {
         model.addAttribute("searchplates",licencePlates);
         return "extraform";
     }
+
 }

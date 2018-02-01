@@ -1,7 +1,7 @@
-package com.greenfoxacademy.pallidaretakeexam.Service;
+package com.greenfoxacademy.pallidaretakeexam.services;
 
-import com.greenfoxacademy.pallidaretakeexam.Model.Clothing;
-import com.greenfoxacademy.pallidaretakeexam.Repository.ClothingRepository;
+import com.greenfoxacademy.pallidaretakeexam.models.entities.Clothing;
+import com.greenfoxacademy.pallidaretakeexam.repositories.ClothingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class ClothingServiceDbImpl implements ClothingService {
+
     private final ClothingRepository clothingRepository;
 
     @Autowired

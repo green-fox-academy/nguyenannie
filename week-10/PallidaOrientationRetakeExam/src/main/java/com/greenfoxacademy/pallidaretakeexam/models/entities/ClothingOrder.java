@@ -1,6 +1,7 @@
-package com.greenfoxacademy.pallidaretakeexam.Model;
+package com.greenfoxacademy.pallidaretakeexam.models.entities;
 
 public class ClothingOrder {
+
     private String itemName;
     private String manufacturer;
     private String category;
@@ -70,4 +71,5 @@ public class ClothingOrder {
     public float getSubTotal() {
         return this.quantity * this.unitPrice;
     }
+
 }
