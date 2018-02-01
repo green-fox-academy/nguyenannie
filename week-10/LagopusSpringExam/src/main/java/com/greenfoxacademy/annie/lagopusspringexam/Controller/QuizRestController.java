@@ -19,6 +19,7 @@ public class QuizRestController {
     private final
     QuizService quizService;
     private QuestionRequestResponse questionRequestResponse = new QuestionRequestResponse();
+    private long count;
 
     @Autowired
     public QuizRestController(QuizService quizService) {
@@ -32,31 +33,56 @@ public class QuizRestController {
         for (Quiz quizze : quizzes) {
             questionDTOs.add(new QuestionDTO(quizze.getId(), quizze.getQuestion()));
         }
-
-        questionRequestResponse.setId(1);
+        count += 1;
+        questionRequestResponse.setId(count);
         questionRequestResponse.setQuestions(questionDTOs);
         return new ResponseEntity<>(questionRequestResponse, HttpStatus.OK);
     }
 
     @PostMapping("/answers")
     public ResponseEntity<Response> postAnswers(@RequestBody AnswerRequestBody answerRequestBody) {
-        if (answerRequestBody.getId() != questionRequestResponse.getId()) {
-            return new ResponseEntity<>(new Response("You answer to the wrong set of questions"),
+        String message = "default";
+        List<QuestionDTO> questionDTOS = questionRequestResponse.getQuestions();
+
+        if (answerRequestBody.getId() != count || answerRequestBody.getAnswers().size() > questionDTOS.size()
+                || answerRequestBody.getAnswers().size() < questionDTOS.size()) {
+            message = "Your answer is not qualified!";
+            return new ResponseEntity<>(new Response(message),
                     HttpStatus.BAD_REQUEST);
         }
 
-        List<QuestionDTO> questionDTOS = questionRequestResponse.getQuestions();
         boolean isAccepted = false;
-        for (int i = 0; i < 5; i++) {
-            long id = questionDTOS.get(i).getId();
-            isAccepted = id == answerRequestBody.getAnswers().get(i).getId() &&
-                    quizService.findOne(id).getAnswer().equals(answerRequestBody.getAnswers().get(i).getAnswer());
+
+        List<Long> questionIds = new ArrayList<>();
+        for(int i = 0; i < questionRequestResponse.getQuestions().size(); i++) {
+            questionIds.add(questionRequestResponse.getQuestions().get(i).getId());
+        }
+
+        for(int i = 0; i < answerRequestBody.getAnswers().size(); i++ ) {
+            long answerId = answerRequestBody.getAnswers().get(i).getId();
+            if(!questionIds.contains(answerId)) {
+                message = "Wrong set of questions";
+                return new ResponseEntity<>(new Response(message), HttpStatus.BAD_REQUEST);
+            }
+        }
+
+        for(int i = 0; i < answerRequestBody.getAnswers().size(); i++) {
+            long answerId = answerRequestBody.getAnswers().get(i).getId();
+            String correctAnswer = quizService.findOne(answerId).getAnswer();
+            String receivedAnswer = answerRequestBody.getAnswers().get(i).getAnswer();
+            if(!receivedAnswer.equals(correctAnswer)) {
+                message = "Your answers are not correct";
+                return new ResponseEntity<>(new Response(message), HttpStatus.BAD_REQUEST);
+            } else {
+                message = "Your answers are correct";
+                isAccepted = true;
+            }
         }
 
         if (isAccepted) {
-            return new ResponseEntity<>(new Response("Your answers are correct"), HttpStatus.OK);
+            return new ResponseEntity<>(new Response(message), HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(new Response("Your answer is not correct"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new Response("Something went wrong"), HttpStatus.BAD_REQUEST);
         }
     }
 }
