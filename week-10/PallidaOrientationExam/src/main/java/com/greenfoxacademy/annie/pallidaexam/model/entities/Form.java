@@ -1,4 +1,4 @@
-package com.greenfoxacademy.annie.pallidaexam.Model;
+package com.greenfoxacademy.annie.pallidaexam.model;
 
 import javax.validation.constraints.Pattern;
 

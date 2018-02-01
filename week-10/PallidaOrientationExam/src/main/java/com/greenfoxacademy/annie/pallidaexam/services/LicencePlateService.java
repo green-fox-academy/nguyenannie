@@ -1,6 +1,6 @@
-package com.greenfoxacademy.annie.pallidaexam.Service;
+package com.greenfoxacademy.annie.pallidaexam.service;
 
-import com.greenfoxacademy.annie.pallidaexam.Model.LicencePlate;
+import com.greenfoxacademy.annie.pallidaexam.model.LicencePlate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,4 +14,5 @@ public interface LicencePlateService {
     List<LicencePlate> findPoliceCars();
     List<LicencePlate> findDiplomatCars();
     List<LicencePlate> findAllByCarBrand(String car_brand);
+    List<LicencePlate> findAllByCarBrandAndColor(String brand, String color);
 }

@@ -1,7 +1,7 @@
-package com.greenfoxacademy.annie.pallidaexam.Service;
+package com.greenfoxacademy.annie.pallidaexam.service;
 
-import com.greenfoxacademy.annie.pallidaexam.Model.LicencePlate;
-import com.greenfoxacademy.annie.pallidaexam.Repository.LicencePlateRepository;
+import com.greenfoxacademy.annie.pallidaexam.model.LicencePlate;
+import com.greenfoxacademy.annie.pallidaexam.repository.LicencePlateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -53,5 +53,10 @@ public class LicencePlateServiceDbImpl implements LicencePlateService {
     @Override
     public List<LicencePlate> findAllByCarBrand(String car_brand) {
         return licencePlateRepository.findAllByCarBrand(car_brand);
+    }
+
+    @Override
+    public List<LicencePlate> findAllByCarBrandAndColor(String brand, String color) {
+        return licencePlateRepository.findAllByCarBrandAndColor(brand, color);
     }
 }

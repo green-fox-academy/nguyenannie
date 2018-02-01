@@ -1,6 +1,6 @@
-package com.greenfoxacademy.annie.pallidaexam.DTO;
+package com.greenfoxacademy.annie.pallidaexam.DTOs;
 
-import com.greenfoxacademy.annie.pallidaexam.Model.LicencePlate;
+import com.greenfoxacademy.annie.pallidaexam.model.LicencePlate;
 
 import java.util.List;
 

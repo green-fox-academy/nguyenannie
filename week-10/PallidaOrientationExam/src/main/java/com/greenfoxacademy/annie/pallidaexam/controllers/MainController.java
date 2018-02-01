@@ -1,6 +1,8 @@
 package com.greenfoxacademy.annie.pallidaexam.Controller;
 
+import com.greenfoxacademy.annie.pallidaexam.DTO.DataDTO;
 import com.greenfoxacademy.annie.pallidaexam.DTO.LicencePlateDTO;
+import com.greenfoxacademy.annie.pallidaexam.DTO.WantedPlateDTO;
 import com.greenfoxacademy.annie.pallidaexam.Model.LicencePlate;
 import com.greenfoxacademy.annie.pallidaexam.Service.LicencePlateService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,12 +14,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/search")
 public class MainController {
     private final LicencePlateService licencePlateService;
+    private List<String> wantedLicense = new ArrayList<>(Arrays.asList("CBI-960", "CXX-648", "MIND-01", "RB12-05", "TIBI-01"));
 
     @Autowired
     public MainController(LicencePlateService licencePlateService) {
@@ -32,4 +37,12 @@ public class MainController {
         return new ResponseEntity<>(licencePlateDTO, HttpStatus.OK);
     }
 
+    @GetMapping("/wanted/{plate}")
+    public ResponseEntity<?> getWanted(@PathVariable(value = "plate") String plate) {
+        if(!wantedLicense.contains(plate)) {
+            return new ResponseEntity<Object>(new WantedPlateDTO("Not in the wanted list"), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<Object>(new WantedPlateDTO("ok", new DataDTO(plate, true)), HttpStatus.OK);
+        }
+    }
 }
