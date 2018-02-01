@@ -23,8 +23,8 @@ public class WebController {
 
     @GetMapping("")
     public String search(@RequestParam(value = "q", required = false) String q,
-                         @RequestParam(value = "police", required = false) String police,
-                         @RequestParam(value = "diplomat", required = false) String diplomat,
+                         @RequestParam(value = "police", required = false) Integer police,
+                         @RequestParam(value = "diplomat", required = false) Integer diplomat,
 //                         @Valid Form form,
 //                         BindingResult bindingResult,
                          Model model) {
@@ -46,11 +46,11 @@ public class WebController {
             }
         }
 
-        if(police != null) {
+        if(police != null && police == 1) {
             searches = licencePlateService.findPoliceCars();
         }
 
-        if(diplomat != null) {
+        if(diplomat != null && diplomat == 1) {
             searches = licencePlateService.findDiplomatCars();
         }
 

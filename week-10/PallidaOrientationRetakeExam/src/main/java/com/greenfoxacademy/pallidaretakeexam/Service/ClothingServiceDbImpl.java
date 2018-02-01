@@ -63,4 +63,13 @@ public class ClothingServiceDbImpl implements ClothingService {
         return clothingRepository.findAllByUnitPriceEquals(price);
     }
 
+    @Override
+    public float findPrice(List<Clothing> clothes) {
+        float price = 0;
+        for(Clothing clothing : clothes) {
+            price += clothing.getUnitPrice();
+        }
+        return price/clothes.size();
+    }
+
 }

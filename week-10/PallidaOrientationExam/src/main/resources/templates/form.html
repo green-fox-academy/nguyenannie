@@ -13,13 +13,9 @@
         <button type="submit">Search</button>
     </form>
 
-    <form action="#" th:action="@{/search}" method="get">
-        <a th:href="@{/search?police=}" name="police" th:value="${searches}">Find Police Cars</a>
-    </form>
+        <a th:href="@{/search?police=1}" name="police">Find Police Cars</a>
 
-    <form action="#" th:action="@{/search}" method="get">
-        <a th:href="@{/search?diplomat=}" name="diplomat" th:value="${searches}">Find Diplomat Cars</a>
-    </form>
+        <a th:href="@{/search?diplomat=1}" name="diplomat">Find Diplomat Cars</a>
 
 <div th:if="${searches} != null">
     <table>

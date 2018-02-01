@@ -1,8 +1,9 @@
 package com.greenfoxacademy.pallidaretakeexam.Controller;
 
 import com.greenfoxacademy.pallidaretakeexam.Model.Clothing;
+import com.greenfoxacademy.pallidaretakeexam.Model.ClothingOrder;
+import com.greenfoxacademy.pallidaretakeexam.Model.OrderForm;
 import com.greenfoxacademy.pallidaretakeexam.Service.ClothingService;
-import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,8 +17,7 @@ import java.util.List;
 @Controller
 public class WebController {
     private final ClothingService clothingService;
-    private int quantity;
-    private List<Clothing> summaries = new ArrayList<>();
+    private List<ClothingOrder> summaries = new ArrayList<>();
 
     @Autowired
     public WebController(ClothingService clothingService) {
@@ -34,28 +34,24 @@ public class WebController {
     }
 
     @PostMapping("/warehouse")
-    public String postWareHouse(Model model, @ModelAttribute(value = "clothing") Clothing clothing,
-                                HttpServletRequest request) {
+    public String postWareHouse(Model model, @ModelAttribute(value = "clothing") OrderForm orderForm) {
 
         model.addAttribute("itemnames", clothingService.uniqueItemNames());
         model.addAttribute("sizes", clothingService.uniqueSizes());
         model.addAttribute("clothes", clothingService.findAll());
-        model.addAttribute("clothing", clothing);
+        model.addAttribute("clothing", orderForm);
 
-        quantity = Integer.parseInt(request.getParameter("quantity"));
-        summaries.addAll(clothingService.findByItemNameAndSize(clothing.getItemName(), clothing.getSize()));
-        return "redirect:/summary";
+        List<Clothing> clothesWithSameNameandSize = clothingService.findByItemNameAndSize(orderForm.getItemName(), orderForm.getSize());
+        for(Clothing clothing : clothesWithSameNameandSize) {
+            summaries.add(new ClothingOrder(clothing.getItemName(), clothing.getSize(), orderForm.getQuantity(), clothing.getUnitPrice()));
+        }
+        return "redirect:/warehouse/summary";
     }
 
-    @GetMapping("/summary")
-    public String summary(Model model, @ModelAttribute(value = "clothing") Clothing clothing) {
+    @GetMapping("/warehouse/summary")
+    public String summary(Model model, @ModelAttribute(value = "clothing") OrderForm orderForm) {
         model.addAttribute("summaries", summaries);
-        model.addAttribute("quantity", quantity);
-        float total = 0;
-        for(Clothing w : summaries) {
-            total += w.getUnitPrice();
-        }
-        model.addAttribute("subtotalprice", total * quantity);
+        model.addAttribute("quantity", orderForm.getQuantity());
         return "summary";
     }
 }

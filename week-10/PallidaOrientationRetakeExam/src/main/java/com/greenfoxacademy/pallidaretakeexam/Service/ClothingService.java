@@ -14,4 +14,5 @@ public interface ClothingService {
     List<Clothing> findAllByUnitPriceLessThan(float price);
     List<Clothing> findAllByUnitPriceGreaterThan(float price);
     List<Clothing> findAllByUnitPriceEquals(float price);
+    float findPrice(List<Clothing> clothes);
 }

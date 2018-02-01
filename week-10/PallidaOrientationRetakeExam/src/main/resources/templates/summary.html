@@ -22,8 +22,8 @@
         <td th:text="*{itemName}"></td>
         <td th:text="*{manufacturer}">Manufacture</td>
         <td th:text="*{category}">Category</td>
-        <td th:text="${quantity}">Size</td>
-        <td th:text="${subtotalprice}">Unit Price</td>
+        <td th:text="*{quantity}">Size</td>
+        <td th:text="*{subTotal}">Sub Total Price</td>
     </tr>
     </tbody>
     <a th:href="@{/warehouse}">Back to Main</a>
