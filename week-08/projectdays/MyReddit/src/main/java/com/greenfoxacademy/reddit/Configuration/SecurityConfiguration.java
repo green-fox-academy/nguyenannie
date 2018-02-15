@@ -2,17 +2,11 @@ package com.greenfoxacademy.reddit.Configuration;
 
 import com.greenfoxacademy.reddit.Service.UserServiceDbImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.repository.query.spi.EvaluationContextExtension;
-import org.springframework.data.repository.query.spi.EvaluationContextExtensionSupport;
-import org.springframework.security.access.expression.SecurityExpressionRoot;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
@@ -50,23 +44,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             request.getSession().setAttribute("flash", new FlashMessage("Incorrect username and/or " +
                     "password. Please try again.", FlashMessage.Status.FAILURE));
             response.sendRedirect("/reddit/welcome");
-        };
-    }
-
-    @Bean
-    public EvaluationContextExtension securityExtension() {
-        return new EvaluationContextExtensionSupport() {
-            @Override
-            public String getExtensionId() {
-                return "sec";
-            }
-
-            @Override
-            public Object getRootObject() {
-                Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-                return new SecurityExpressionRoot(authentication) {
-                };
-            }
         };
     }
 }
